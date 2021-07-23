@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<title>印刷通-报价</title>		<link rel="stylesheet" type="text/css" href="css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/rem.css"/>
+		<link rel="stylesheet" type="text/css" href="css/initialization1.css"/>		<style type="text/css">
+			#text{			    box-shadow: 0px 1px 6px #c3c3c3;			    border-radius: 10px;			    width: 90%;			    height: 400px;			    margin-left: 4%;			    background-color: #FFFFFF;			    margin-top: 10px;			}			body,html{				background-color: #f2f2f2;				width: 100%;				height: 100%;				position: relative;							}			.title{				width: 100%;				height: 120px;				background-color: #ff6f00;				color: #FFFFFF;				position: fixed;				top: 0;				z-index: 100;				/*margin-top: 80px;*/			}			.search{				width: 100%;				height: 60px;/*				background-color: red;*/			}			.search span{				display: inline-block;				float: left;				line-height: 50px;				font-size: 20px;				font-weight: inherit;				padding-left: 10px;			}			#search{				float: left;				width: 250px;				height: 40px;				border-radius: 20px;				background-color: #ff9a4d;				margin-top: 10px;				margin-left: 10px;			}						.list{				width: 100%;				height: 60px;				text-align: center;			}			.list ul li{				width: 33%;				height: 60px;				float: left;											}			.list ul li p{				color: #FFFFFF;			}			.list ul li p:first-child{				font-size: 18px;			}			.list ul li p:last-child{				font-size: 12px;			}			.orderlist ul li{				width: 100%;
+				height: 80px;
+				cursor: pointer;			}						.list .active{				color: #ffee4d !important;				background-color: #ff6f00 !important;			}			.orderlist{				margin-top: 120px;				position: relative;				overflow: hidden;				padding-bottom: 60px;			}			#list li .left{				width: 77%;				float: left;			}			#list li .left p{				padding-left: 20px;			}			#list li .left p:nth-child(1){				line-height: 40px;							}						#list li .left p:nth-child(1) span:nth-child(1){				color: #666666;			}			#list li .left p:nth-child(1) span:nth-child(2){				color: #FF6F00;			}			#list li .left p>span:nth-child(1){				width: 57%;				display: inline-block;				font-size: 1.6rem;							}			#list li .left p>span:nth-child(1)>span{				display: inline-block;				width: 20px;				height: 20px;				font-size: 1rem;				text-align: center;				line-height: 20px;				border-radius: 10px;				color: #FFFFFF !important;				background-color: #FF6F00;				margin-top: -5px;				position: absolute;				left: 0;				top: 5px;			}			#list li .left p:nth-child(2){				color: #7f7f7f;			}			#list li .left p:nth-child(2)>span:nth-child(1){				width: 35%;			}			#list li .left p:nth-child(2)>span:nth-child(2){				text-align: right;			}			.mui-table-view-cell.mui-collapse.mui-active a{				background-color: #FF6F00;			}			#list li .right{				width: 20%;				float: left;				position: relative;			}			#list li .right button{				background-color: #FF6F00;				border: 0px;				color: white;				margin-top: 25px;				padding: 6px 20px			}			body,html{				background-color: #FFFFFF;			}			#list li:nth-child(odd){			background: #f2f2f2;			}			.orderNo,.status,.time{				font-family:"微软雅黑";				font-weight:300;			}						.time{				font-size: 20px;			}			#list li .left p>span:nth-child(1){				font-size: 1.8rem;			}			#list li .left p>span:nth-child(1).orderNo{				font-size: 1.5rem;			}			.name{				font-family:"微软雅黑";				font-weight:400;				font-size: 18px;				width:40px;	            overflow:hidden;				text-overflow:ellipsis;				white-space:nowrap;			}			#list li{				position:relative;			}
+			/* 领料弹框 */
+			#caseid .headtitle{
+				width: 100%;
+				text-align: center;
+				color: #808080;
+				margin-top: 25%;
+				position: relative;
+				border: 1px solid #FFFFFF;
+				
+			}
+			#caseid .headtitle p:nth-child(1){
+				font-size: 2.3rem;
+				line-height: 3rem;
+			}
+			#caseid .headtitle p:nth-child(2){
+				font-size: 1.1rem;
+				line-height: 2rem;
+			}
+			#caseid .headtitle p:nth-child(3){
+				font-size: 1.1rem;
+				line-height: 2rem;
+			}
+			#caseid .content button{
+				width: 80%;
+				height: 50px;
+				border: 0px;
+				background-color: #ff6600;
+				color: #FFFFFF;
+				border-radius: 8px;
+				margin-left: 10%;
+				margin-top: 50px;
+			}
+			
+			#caseid .papercol span{
+				margin-left: 6px;
+				color: #ff6f00;
+			}
+			#caseid .papercol p{
+				line-height: 25px;
+			}
+			#caseid .papercol span img{
+				height:20px;
+				width: auto;
+			}
+			#caseid .papercol span input{
+				height: 20px;
+				width: 35%;
+				border: 0px;
+				text-align: center;
+				margin-bottom: 0px;
+				padding: 0px;
+				/* font-size: 1rem; */
+				border-bottom: 1px solid #ff6600;
+				
+			}
+			#caseid .receive{
+				line-height: 30px;
+				margin-top: 6px;
+			}
+		</style>		
+	</head>
+	<body>		<!--<div class="mui-scroll-wrapper">
+		<div class="mui-scroll">-->
+		<div class="title">			<div class="search">
+				<span>领料任务</span>
+			</div>			<div class="list">
+				<ul>
+					<li status = '0' outType="0">						<p class="notReceivedCount active">0</p>						<p class="active">未领料</p>					</li>					<li status = '0' outType='1'>
+						<p class="outCount">0</p>
+						<p>外协</p>
+					</li>					<li status = '2' outType='0'>						<p class="lackPaperCount">0</p>						<p>缺纸</p>					</li>					<!--<li status = '3'>
+						<p class="allCount">0</p>
+						<p>全部</p>
+					</li>-->
+				</ul>
+			</div>
+		</div>		<div class="orderlist">
+			<ul id="list">
+				<!--<li>
+					<div class="left">
+						<p><span>LL19120501<span>申领</span></span><span>三禾画册</span></p>
+						<p><span>部分已领料</span><span>2020-01-16</span></p>
+					</div>
+					<div class="right">
+						<button>发料</button>
+					</div>
+				</li>
+				<li>
+					<div class="left">
+						<p><span>LL19120501<span>申领</span></span><span>三禾画册</span></p>
+						<p><span>部分已领料</span><span>2020-01-16</span></p>
+					</div>
+					<div class="right">
+						<button>发料</button>
+					</div>
+				</li>
+				<li>
+					<div class="left">
+						<p><span>LL19120501<span>申领</span></span><span>三禾画册</span></p>
+						<p><span>部分已领料</span><span>2020-01-16</span></p>
+					</div>
+					<div class="right">
+						<button>发料</button>
+					</div>
+				</li>-->
+			</ul>
+		</div>		
+		<!--</div>
+		</div>-->				<nav class="mui-bar mui-bar-tab foot-bar">			<a class="mui-tab-item orderlistbtn" href="orderlist.html">				<p><img src="img/nav02.png" style="height: 30px;padding-top:5px ;"/></p>				<span class="mui-tab-label" style="color: #FF6F00;">工单</span>			</a>
+			<a class="mui-tab-item daka" href="map.html">
+				<p><img src="img/daka2.png" style="height: 30px;padding-top:5px ;"/></p>
+				<span class="mui-tab-label" >打卡</span>
+			</a>			<a class="mui-tab-item scan" href="scan.html">				<p><img src="img/scan1.png" style="height: 30px;padding-top:5px ;"/></p>				<span class="mui-tab-label" >扫描</span>			</a>			<a class="mui-tab-item myself" href="myselfinfo.html">				<p><img src="img/nav3.png" style="height: 30px;padding-top:5px ;"/></p>				<span class="mui-tab-label" >我的</span>			</a>		</nav>		<input type="hidden" id="page" value="1" />		<input type="hidden" id="per_page" value="20" />		<div id="caseid" style="z-index: 999;width: 100%;height: 100%;position:absolute;top: 0;background-color: rgba(0,0,0,0.3);overflow: hidden;display: none;">
+			<div class="headers" style="width: 78%;position:absolute;top:10%;left: 11%;height: 20px;background-color: #FFFFFF;border-radius: 8px 8px 0px 0px ;z-index: 1000;padding: 5px;">
+				<span class="headerstitle" style="display: inline-block;line-height: 20px;font-size: 20px;color: #666666;padding-left: 10px;">发料</span><span style="display: inline-block;line-height: 20px;float: right;"><img class="closebtn" src="img/close.png" style="display: inline-block; width: 20px;height: auto;"/></span>
+			</div>
+			<div style="width: 80%;height: 60%;position:absolute;top: 10%;left: 10%;border-radius: 8px 8px 8px 8px ;border: 1px;padding: 20px;background-color: #FFFFFF;">
+				<div class="content">
+					<div id="content">
+						<div class="papercol">
+							<p>1.<span class="name" style="white-space:normal;word-wrap: break-word;word-break: break-all;"></span></p>
+							<p>数量：<span><input type="number" name="sendNum" id="sendNum" value="" disabled="disabled"/>大张</span></p>
+							<!--<p class="receive" style="margin-top: 10px;"><span style="color: #8f8f94" class="receiveNum">已领0张</span></p>-->
+							<p style="margin-top: 10px;"><span style="color: #8f8f94;display: inline-block;" class="receivetime">2019-02-12 9:20</span></p>
+						</div>
+						<div class="papercol">
+							<p>备注<span class="memo"></span></p>
+						</div>
+					</div>
+					
+					
+					<button class="backsubmit" id='sureId'>确认发料</button>
+					
+				</div>
+			</div>
+			<!-- <iframe name="ifarmes" style="width: 80%;height: 60%;position:absolute;top: 10%;left: 10%;border-radius: 8px 8px 8px 8px ;border: 1px;" src=""></iframe> -->
+		</div>
+	</body>
+	<script type="text/javascript" src="js/jquery.min.js"></script>	<script type="text/javascript" src="js/mui.min.js"></script>
+	<script type="text/javascript" src="js/layer3.0.1/layer.js"></script>
+	<script src="js/pages/share.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="js/pages/other-Materials.js"></script>	<script type="text/javascript">//		mui.init();
+//		(function($){
+//
+//		    $(".mui-scroll-wrapper").scroll();
+//		})(mui);
+		var u = navigator.userAgent, app = navigator.appVersion;		var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //g		var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端//ios终端		$("#list li:even").css("background","#f2f2f2");		$("#list li:odd").css("background","#FFFFFF");		$('.orderlistbtn').on('tap',function(){
+			window.location = 'stockorderlist.html';
+		})		var type = 0;		var outType = 0;		if(localStorage.getItem('type')!=null){			type = localStorage.getItem('type')			outType = localStorage.getItem('outType');			list(type,outType);			if(outType == 1){				$('.list ul li').eq(1).find('p').addClass('active');				$('.list ul li').eq(1).siblings().find('p').removeClass('active');			}else{				$('.list ul li').eq(type).find('p').addClass('active');				$('.list ul li').eq(type).siblings().find('p').removeClass('active');			}					}else{			list('0',outType);		}		$('.scan').on('tap',function(){			window.location = 'scan.html';		})		$('.myself').on('tap',function(){			window.location = 'myselfinfo.html';		})		$('.list ul li').on('click',function(){			$('html,body').animate({scrollTop:0},100);//回到顶端			$(this).find('p').addClass('active');			$(this).siblings().find('p').removeClass('active');			type = $(this).attr('status');			outType = $(this).attr('outType')			localStorage.setItem('type',type);			localStorage.setItem('outType',outType)			list(type,outType);								})
+		$('.daka').on('tap',function(){
+			window.location = 'map.html'
+		})		pushHistory(); 	    window.addEventListener("popstate", function(e) { 
+	    	plus.runtime.quit();
+	      	
+	    }, false); 
+	    function pushHistory() { 
+	      var state = { 
+	        title: "title", 
+	        url: "#"
+	      }; 
+	      window.history.pushState(state, "title", "#"); 
+	    }//		var flag1 = false;		initindex()		function initindex(){								$.ajax({				type:"post",				dataType:'json',				url:ajaxUrlPath+"/mobile/workOrder/receiveTaskNum",				data:{	//				memberId:14					sellerId:localStorage.getItem('sellerId'),				},				success:function(data){					console.log(JSON.stringify(data));					if(data.code == 0){						$('.notReceivedCount').html(data.result.notReceivedCount);						$('.outCount').html(data.result.outCount);						$('.lackPaperCount').html(data.result.lackPaperCount);//						$('.allCount').html(data.result.allCount);					}				}			})		}
+				function list(type,outType){			$.ajax({				type:"post",				dataType:'json',				url:ajaxUrlPath+"/mobile/workOrder/receiveTasks",				data:{					sellerId:localStorage.getItem('sellerId'),					type:type,					pageNo:1,					outType:outType,					pageSize:100									},				success:function(data){					console.log(data);					if(data.code == 0){						var li = '';						console.log(data);						for (var i = 0; i < data.result.length; i++) {							var applyhtml = '';							if(data.result[i].isApply==0){								applyhtml = ''							}else if(data.result[i].isApply==1){								applyhtml = '<span>申领</span>'								if(data.result[i].type==3){									applyhtml = '<span>补</span>'								}else{									applyhtml='';								}							}							var status = '';							if(data.result[i].status==0){								status = '待领料'							}else if(data.result[i].status==1){								status = '部分领料'							}else if(data.result[i].status==2){								status = '领料完成'							}							if(data.result[i].type==3){								status='待发料'							}							var sendStatus = '';							if(data.result[i].sendStatus==2){								sendStatus = '<button class="picking" sendStatu="2" objId="'+data.result[i].id+'" weight="'+data.result[i].weight+'" brand="'+data.result[i].brand+'" normal="'+data.result[i].normal+'" name="'+data.result[i].name+'" sendNum="'+data.result[i].sendNum+'" receiveNum="'+data.result[i].receiveNum+'" isApply="'+data.result[i].isApply+'" num="'+data.result[i].num+'" receiveTime="'+data.result[i].receiveTime+'" memo="'+(data.result[i].memo==null?"":data.result[i].memo)+'"  billNo="'+data.result[i].billNo+'" style="background-color:#ccc; padding: 6px 13px">已发料</button>'							}else{								sendStatus = '<button class="picking" sendStatu="0" objId="'+data.result[i].id+'" weight="'+data.result[i].weight+'" brand="'+data.result[i].brand+'" normal="'+data.result[i].normal+'" name="'+data.result[i].name+'" sendNum="'+data.result[i].sendNum+'" receiveNum="'+data.result[i].receiveNum+'" isApply="'+data.result[i].isApply+'" num="'+data.result[i].num+'" receiveTime="'+data.result[i].receiveTime+'" memo="'+(data.result[i].memo==null?"":data.result[i].memo)+'"  billNo="'+data.result[i].billNo+'">发料</button>'															}							var billNo = data.result[i].billNo.split('-');							billNo = billNo.slice(0,billNo.length-2).join('-');															li += '<li>'+					'<div class="left">'+						'<p><span class="orderNo" >'+billNo+applyhtml+'</span><span class="name" >'+data.result[i].workOrderName.substring(0,5)+'</span></p>'+						'<p><span class="status">'+status+'</span><span class="time">'+(data.result[i].createTime==null?'':data.result[i].createTime.substring(0,10))+'</span></p>'+					'</div>'+					'<div class="right">'+sendStatus+					'</div>'+				'</li>'																															}						console.log(li)						$('#list').html(li);
+						$('.closebtn').on('tap',function(){
+							$('#caseid').hide();
+							$('html').css('height',"auto");
+							$('html').css('overflow','auto');
+							$('body').css('height',"auto");
+							$('body').css('overflow','auto');
+						})						$('.picking').off().on('tap',function(){
+							$('html').css('height',"100%");
+							$('html').css('overflow','hidden');
+							$('body').css('height',"100%");
+							$('body').css('overflow','hidden');							var objId = $(this).attr('objId');							var sendNum = $(this).attr('sendNum');							var receiveNum= $(this).attr('receiveNum');							var isApply=$(this).attr('isApply');							var num = Number(sendNum)-Number(receiveNum);							var inputnum = $(this).attr('num');							var weight = $(this).attr('weight');							var normal = $(this).attr('normal');							var name = $(this).attr('name');							var memo = $(this).attr('memo');							var billNo = $(this).attr('billNo');							var brand = $(this).attr('brand');							var sendStatu = $(this).attr('sendStatu');							var receiveTime=''							if($(this).attr('receiveTime') != 'null'){								receiveTime = $(this).attr('receiveTime')							}
+							if(isIOS){
+								$('#caseid').show();
+								var body = $('#caseid');
+								body.find('.headerstitle').html('领料单<span style="font-size:16px;display: inline;float: right;">'+billNo+'</span>')
+								body.find('.name').html(name);
+								if(isApply==1){
+									body.find('#sendNum').val(inputnum);
+								}else{
+									body.find('#sendNum').val(inputnum);
+								}
+								if(sendStatu==2){
+									body.find('.backsubmit').css('display','none');
+								}
+								body.find('#sendNum').attr('sendNum',sendNum);
+								body.find('#sendNum').attr('receiveNum',receiveNum);
+								body.find('#sendNum').attr('num',inputnum);
+								body.find('.receivetime').html(receiveTime);
+								body.find('.receiveNum').html()
+								body.find('.backsubmit').attr('isApply',isApply);
+								body.find('.backsubmit').attr('objId',objId);
+								body.find('.memo').html(memo);
+								var type = 1;
+											var id= '';
+											var num = 0;
+											var objId = objId;
+											var winHeight = $(window).height();   //获取当前页面高度
+											// var name = localStorage.getItem('name');
+											// alert(name);
+											// $('.name').html(name);
+											
+											$(window).resize(function(){
+											   var thisHeight=$(this).height();
+											    if(winHeight - thisHeight >50){
+											         //当软键盘弹出，在这里面操作
+													$('#layui-layer1').css('bottom','0');
+											    }else{
+											        //当软键盘收起，在此处操作
+													
+											    }
+											});
+								
+											$('.backsubmit').off().on('tap',function(e){
+												$(this).attr('disabled','disabled');
+												e.stopPropagation();
+												e.preventDefault();
+												console.log(111);
+												var papernum = Number($('#sendNum').val());
+												var sendNum = Number($('#sendNum').attr('sendNum'));
+												var receiveNum = Number($('#sendNum').attr('receiveNum'));
+												var inputnum = Number($('#sendNum').attr('num'));
+												var isApply = $(this).attr('isApply');
+								//				if(isApply==1){
+								//					num = receiveNum;
+								//					papernum = papernum - receiveNum;
+								//				}else{
+								//					num = sendNum
+								//				}
+												var totelNum = (inputnum+receiveNum)-sendNum
+												id = $(this).attr('objId');
+								//				console.log(num);
+								//				console.log(papernum);
+												if(papernum>totelNum){
+													mui.toast('超出数据总量');
+													return false;
+												}else{
+													$.ajax({
+														type:"post",
+														dataType:'json',
+														url:ajaxUrlPath+"/mobile/workOrder/sendMaterial",
+														data:{
+															id:id,
+															num:papernum,
+														},
+														success:function(data){
+															console.log(JSON.stringify(data));
+															$('html').css('height',"auto");
+															$('html').css('overflow','auto');
+															$('body').css('height',"auto");
+															$('body').css('overflow','auto');
+															if(data.code == 0){
+																alert('发料成功')
+																location.reload();
+																// $('#caseid').hide();
+																// $('#caseid button[objId="'+id+'"]').attr('disabled','disabled');
+																// $('#caseid button[objId="'+id+'"]').css('background-color','#ccc');
+															}else{
+																alert(data.message);
+																location.reload();
+								//								parent.layer.msg(data.message,500,{offset:'80%'});
+															}
+															
+															
+								//							
+															
+														}
+													});
+												}
+												
+											})
+							}else{
+								layer.open({
+											  type: 2,
+											  skin: 'demo-class',
+											  area: ['80%', '400px'], //宽高
+								//			  scrollbar: false,
+											  title:'领料单<span style="font-size:16px;display: inline;float: right;">'+billNo+'</span>',
+											  content: 'outpicking.html?objId='+objId+'&type=1',
+											  scrollbar: false,
+											  closeBtn: 2,
+											  shadeClose:false,
+											  success: function(layero,index){
+											  	$(layero).addClass("scroll-wrapper");
+											  	var body = layer.getChildFrame('body', index);
+									    		var iframeWin = window[layero.find('iframe')[0]['name']]; //得到iframe页的窗口对象，执行iframe页的方法：iframeWin.method();
+											  	console.log(body);
+											  	console.log(iframeWin+'测试');
+											  	body.find('.name').html(name);
+											  	if(isApply==1){
+											  		body.find('#sendNum').val(inputnum);
+											  	}else{
+											  		body.find('#sendNum').val(inputnum);
+											  	}
+											  	if(sendStatu==2){
+											  		body.find('.back').css('display','none');
+											  	}
+											  	body.find('#sendNum').attr('sendNum',sendNum);
+											  	body.find('#sendNum').attr('receiveNum',receiveNum);
+											  	body.find('#sendNum').attr('num',inputnum);
+											  	body.find('.receivetime').html(receiveTime);
+											  	body.find('.receiveNum').html()
+											  	body.find('.back').attr('isApply',isApply);
+											  	body.find('.back').attr('objId',objId);
+											  	body.find('.memo').html(memo);
+											  	$(layero).find('.back').on('tap',function(){
+											  		layer.close(index);
+												})
+											  	
+											  },
+											  end:function(){
+											  	
+											  	location.reload();
+											  	$('html').css('height',"auto");
+											  	$('html').css('overflow','auto');
+											  	$('body').css('height',"auto");
+											  	$('body').css('overflow','auto');
+											  }
+											});
+							}													})																	}				}			})		}								
+	</script>
+</html>

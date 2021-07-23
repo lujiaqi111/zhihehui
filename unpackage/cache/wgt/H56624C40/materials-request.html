@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<title>印刷通-报价</title>
+		<link rel="stylesheet" type="text/css" href="css/rem.css"/>
+		<link rel="stylesheet" type="text/css" href="css/initialization1.css"/>		<style type="text/css">
+			#text{			    box-shadow: 0px 1px 6px #c3c3c3;			    border-radius: 10px;			    width: 90%;			    height: 300px;			    margin-left: 4%;			    background-color: #FFFFFF;			    margin-top: 10px;			    color: #808080;			}			body{				background-color: #FFFFFF;			}			.container{				background-color: #FFFFFF;			}			.header{				border: 0px;				background-color: #FFFFFF;				color: #878787;			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<h3 class="header" style="text-align: center;">请填写您的要求</h3>
+			<textarea name="content" rows="8" cols="" id="text" style="" placeholder=""></textarea>
+			<button type="button" class="sure-button" id="sureMaterBut">确定</button>
+		</div>
+	</body>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/layer3.0.1/layer.js"></script>
+	<script src="js/pages/share.js" type="text/javascript" charset="utf-8"></script>
+	<!--<script type="text/javascript" src="js/pages/other-Materials.js"></script>-->	<script type="text/javascript">		console.log($('#sureMaterBut'))		var bindingJson={};		var offerParaJson={};
+		$('#sureMaterBut').on('click',function(){//			alert(222);//			window.location = 'order-list.html';			$.ajax({				type:"post",				dataType:'json',				url:ajaxUrlPath+"/mobile/enquiryOrder/submitSpecialRequirement",				async:true,				data:{					memberId:localStorage.getItem('memberId'),					sellerId:localStorage.getItem('sellerId'),					content:$('#text').val()				},				success:function(data){					console.log()					if(data.code==0){						layer.open({						  type: 2,						  skin: 'demo-class',						  area: ['100%', '100%'], //宽高			//			  area: '95%',						  title:'',						  shadeClose:false,						  closeBtn: 2,						  content: 'materials-success.html',						  success: function(layero,index){										  	$(layero).addClass("scroll-wrapper");			//							  	$(layero).find('#sureMaterBut').on('tap',function(){			//									layer.close(index);			//									window.location = 'index.html';			//								})							},						  end:function(){						  }						});//						bindingJson.bindStyle=$('#text').val();//						offerParaJson.binging=bindingJson;//						sessionStorage.setItem('offerParaJson',JSON.stringify(offerParaJson));//						parent.window.location.href = "index.html"					}				}			})		})
+	</script>
+</html>

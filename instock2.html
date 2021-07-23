@@ -1,0 +1,381 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/initialization1.css"/>
+	</head>
+	<style type="text/css">
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		html,body{
+			width: 100%;
+			background-color: #FFFFFF;
+			
+		}
+		/*p{
+			    font-size: 18px;
+		}*/
+		.headtitle{
+			width: 100%;
+			text-align: center;
+			color: #808080;
+			margin-top: 25%;
+			position: relative;
+			border: 1px solid #FFFFFF;
+			
+		}
+		.headtitle p:nth-child(1){
+			font-size: 2.3rem;
+			line-height: 3rem;
+		}
+		.headtitle p:nth-child(2){
+			font-size: 1.1rem;
+			line-height: 2rem;
+		}
+		.headtitle p:nth-child(3){
+			font-size: 1.1rem;
+			line-height: 2rem;
+		}
+		.content button{
+			width: 80%;
+			height: 50px;
+			border: 0px;
+			background-color: #ff6600;
+			color: #FFFFFF;
+			border-radius: 8px;
+			margin-left: 10%;
+			margin-top: 10px;
+		}
+		
+		@media screen and (min-width:300px) and (max-width:415px){
+		  
+		  	.papercol p{
+				font-size: 14px;
+			}
+			.papercol div.left{
+				font-size: 14px;
+			}
+			.papercol b{
+				font-size: 20px;
+			}
+			.papercol fonts{
+				font-size: 20px;
+			}
+			.papercol input#packNum{
+				font-size: 20px;
+			}
+			
+			.papercol input#packDetail{
+				font-size: 20px;
+			}
+			.papercol input#remainNum{
+				font-size: 20px;
+			}
+			.papercol span{
+				font-size: 20px;
+			}
+		}
+		@media screen and (min-width:415px){
+			
+		  	.papercol p{
+				font-size: 16px;
+			}
+			.papercol div.left{
+				font-size: 16px;
+			}
+			.papercol b{
+				font-size: 26px;
+			}
+			.papercol fonts{
+				font-size: 26px;
+			}
+			.papercol input#packNum{
+				font-size: 26px;
+			}
+			.papercol input#packDetail{
+				font-size: 26px;
+			}
+			.papercol input#remainNum{
+				font-size: 26px;
+			}
+			.papercol span{
+				font-size: 26px;
+			}
+			
+		}
+		
+		.papercol span{
+			margin-left: 6px;
+			color: #ff6f00;
+			/*font-size: 25px;*/
+		}
+		.right span b{
+			margin-left: 0px;
+		}
+		.papercol span img{
+			height:20px;
+			width: auto;
+		}
+		.papercol span:nth-child(1){
+			display: inline-block;
+			/*width: 100px;*/
+		}
+		.papercol span input{
+			height: 20px;
+			width: 70%;
+			border: 0px;
+			text-align: left;
+			margin-bottom: 0px;
+			padding: 0px;
+			font-size: 1rem;
+			text-align:left；
+		}
+		.papercol .righttext{
+			display: inline-block;
+			float: right;
+			margin-right: 20px;
+		}
+		.papercol b{
+			/*font-size: 30px;*/
+			margin-left: 20px;
+			font-weight: initial;
+		}
+		.totle{
+			text-align: center;
+			padding: 30px 0px 10px 0px;
+			font-size: 20px;
+		}
+		.totle span{
+			color: #ff6f00;
+		}
+		.packtype b{
+			color: #8f8f94;
+			font-weight: initial;
+		}
+		.packtype b.active{
+			color: #FF6F00;
+			background-color: #FFFFFF!important;
+		}
+		.papercol input#packNum{
+			width: 30%;
+			/*font-size: 30px;*/
+			height: 30px;
+			margin-left: 0px;
+		}
+		.papercol input#packDetail{
+			width: 20%;
+			/*font-size: 30px;*/
+			height: 30px;
+			margin-left: 0px;
+		}
+		.papercol input#remainNum{
+			width: 35%;
+			/*font-size: 30px;*/
+			height: 30px;
+		}
+		.packdetail{
+			/*float: right;
+			margin-top: -20px;
+			margin-right: -50px;*/
+		}
+		
+		.papercol div{
+			float: left;
+		}
+		.left{
+			width: 22%;
+		}
+		.right{
+			width: 78%;
+		}
+		.deplaneNumber{
+			margin-left: 24px;
+		}
+	</style>
+
+	<body>
+		<div class="content" style="margin-top: 20px;">
+			<div class="papercol">
+				<p class="worderOrdername">AS 2018春装形象 <font class="righttext">2019-12-23</font></p>
+				<p style="margin-top: 10px;">下单数量<span class="deplaneNumber" style="margin-left: 24px;">1000份</span></p>
+			</div>
+			<div class="papercol">
+				<p>包装方式<span class="packtype"><b class="active">装箱</b><b>打包</b></span></p>
+			</div>
+			<div class="papercol" style="height: 80px;">
+				<div class="left">
+					包装明细
+				</div>
+				<div class="right">
+					<span  class="packdetail"><b><input type="number" name="packNum" id="packNum" value="0" />份</b><fonts class="unitpack">/箱X</fonts><b class="packDetail"><input type="number" name="packDetail" id="packDetail" value="0" /></b><fonts class="packnum">箱</fonts></span>
+				</div>
+			</div>
+			<div class="papercol">
+				<p><span style="padding-left: 60px;">+<b style="margin-left: 10px;" class="remainNum"><input type="number" name="remainNum" id="remainNum" value="0" /></b>份</span></p>
+			</div>
+			<p class="totle">合计：<span><span id="total">
+				0
+			</span>份</span></p>
+			<button class="back" id="submit">提 交</button>
+			
+		</div>
+	</body>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/layer3.0.1/layer.js"></script>
+		<script type="text/javascript" src="js/pages/share.js"></script>
+		<script type="text/javascript" src="js/ios_adapter.js"></script>
+		<script type="text/javascript">
+						
+			
+			    window.addEventListener('resize', function(){
+			        if (document.activeElement.tagName == 'INPUT') {
+			            window.setTimeout(function(){
+			                document.activeElement.scrollIntoViewIfNeeded()
+			            }, 0)
+			        }
+			    })
+
+
+//			document.querySelector('body').addEventListener('touchend', function(e) {
+//				if(e.target.tagName != 'input') {
+//					alert(111);
+//					document.querySelector('input').blur();
+//				}
+//			});
+			var index = parent.layer.getFrameIndex(window.name);
+			function getUrlParam(name) {
+			    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+			    var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+			    if (r != null) return decodeURI(r[2]); return null; //返回参数值
+			}
+			$('input[type="number"]').keypress(function(event){
+				var key = event.key;
+				if (key === 'e' || key === 'E' || key === '+' || key === '-') {
+					event.returnValue = false;
+					return false;
+				}
+				return true;
+			})
+//			var workOrderId  = getUrlParam('workOrderId');
+//			var objId = getUrlParam('objId');
+			var worderOrderNum = Number(parent.$('#caseid').attr('worderOrderNum'));
+			$('.deplaneNumber').html(worderOrderNum+'份');
+//			alert(parent.$('#caseid').attr('worderOrdername'));
+			var worderOrdername = parent.$('#caseid').attr('worderOrdername');
+			var deliveryTime = parent.$('#caseid').attr('deliveryTime');
+			var html  = worderOrdername+'<font class="righttext">'+deliveryTime+'</font>'
+			$('.worderOrdername').html(html)
+			var packNum = $('input[name="packNum"]').val();
+			var packDetails = $('input[name="packDetail"]').val();
+			var remainNum = $('input[name="remainNum"]').val();
+			var packDetail = packNum+'份/箱X'+packDetails+'箱';
+//			alert(localStorage.getItem('packNum'))
+			if(localStorage.getItem('packNum') == null){
+				$('input[name="packNum"]').val(0);
+			}else{
+				$('input[name="packNum"]').val(localStorage.getItem('packNum'));
+			}
+			
+			var inNum = 0;
+			mui.init();
+			$('input').blur(function(){
+				packNum = Number($('input[name="packNum"]').val());
+				packDetails = Number($('input[name="packDetail"]').val());
+				remainNum =Number($('input[name="remainNum"]').val());
+				inNum = packNum*packDetails+remainNum;
+				$('#total').html(inNum);
+			})
+			$('input').on('focus',function(){
+			        var str = $(this).val();
+			        if(str == 0){
+			        	$(this).val('')
+			        }
+			});
+			
+			var packMethod = '装箱';
+			$('.packtype b').on('tap',function(){
+				$(this).addClass('active');
+				$(this).siblings().removeClass('active');
+				packMethod = $(this).html();
+				$('input').blur();
+				if(packMethod=="打包"){
+					$('.unitpack').html('/包X');
+					$('.packnum').html('包');
+				}else{
+					$('.unitpack').html('/箱X');
+					$('.packnum').html('箱');
+				}
+			})
+			var isIPHONE = navigator.userAgent.toUpperCase().indexOf('IPHONE') != -1;
+			if(isIPHONE) {
+				var obj = $('input')
+				$('.packtype b').on('click', function() {
+					obj.blur();
+				});
+			}
+			$('#submit').on('tap',function(){
+				var workOrderId  = parent.$('#caseid').attr('workOrderId');
+				var objId = parent.$('#caseid').attr('objId');
+
+				packNum = Number($('input[name="packNum"]').val());
+				localStorage.setItem('packNum',packNum);
+				packDetails = Number($('input[name="packDetail"]').val());
+				remainNum =Number($('input[name="remainNum"]').val());
+				inNum = packNum*packDetails+remainNum;
+				$('#total').html(inNum);
+				if(packNum==0){
+					alert('请填写每箱几份');
+					return false;
+				}
+				if(packMethod=='装箱'){
+					var packDetail = packNum+'份/箱X'+packDetails+'箱+'+remainNum+'份'
+				}else if(packMethod == '打包'){
+					var packDetail = packNum+'份/包X'+packDetails+'包+'+remainNum+'份'
+				}
+				
+				$.ajax({
+					type:"post",
+					dataType:'json',
+					url:ajaxUrlPath+"/mobile/workOrder/updateStatus",
+					data:{
+						workOrderId:workOrderId,
+						objId:objId,
+						type:5,
+						status:2,
+						userId:localStorage.getItem("memberId"),
+						unitNum:packNum,
+						packNum:packDetails,
+						packDetail:packDetail,
+						remainNum:remainNum,
+						inNum:inNum,
+						packMethod:packMethod,
+						processId:0
+					},
+					success:function(data){
+						console.log(data);
+						parent.$('html').css('height',"auto");
+						parent.$('html').css('overflow','auto');
+						parent.$('body').css('height',"auto");
+						parent.$('body').css('overflow','auto');
+						parent.location.reload();
+						if(localStorage.getItem('pos')!=null){
+		 					parent.$('.container').animate({scrollTop: localStorage.getItem('pos')+'px'},200);
+		 				}else{
+		 					parent.$('.container').animate({scrollTop: '0px'},200);
+		 				}
+					}
+				})
+				
+				
+				
+				
+			})
+		</script>
+</html>

@@ -1,0 +1,223 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/initialization1.css"/>
+	</head>
+	<style type="text/css">
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		html,body{
+			width: 100%;
+			background-color: #FFFFFF;
+			
+		}
+		.headtitle{
+			width: 100%;
+			text-align: center;
+			color: #808080;
+			margin-top: 25%;
+			position: relative;
+			border: 1px solid #FFFFFF;
+			
+		}
+		.headtitle p:nth-child(1){
+			font-size: 2.3rem;
+			line-height: 3rem;
+		}
+		.headtitle p:nth-child(2){
+			font-size: 1.1rem;
+			line-height: 2rem;
+		}
+		.headtitle p:nth-child(3){
+			font-size: 1.1rem;
+			line-height: 2rem;
+		}
+		.content button{
+			width: 80%;
+			height: 50px;
+			border: 0px;
+			background-color: #ff6600;
+			color: #FFFFFF;
+			border-radius: 8px;
+			margin-left: 10%;
+			margin-top: 10px;
+		}
+
+		.papercol span{
+			margin-left: 6px;
+			color: #ff6f00;
+		}
+		.papercol span img{
+			height:20px;
+			width: auto;
+		}
+		.papercol span:nth-child(1){
+			display: inline-block;
+			width: 100px;
+		}
+		.papercol span input{
+			height: 20px;
+			width: 70%;
+			border: 0px;
+			text-align: left;
+			margin-bottom: 0px;
+			padding: 0px;
+			font-size: 1rem;
+		}
+		textarea{
+			background-color:#FFFFFF;
+			border: 0px;
+			color: #8f8f94;
+			font-size: 16px;
+			padding: 0px;
+		}
+		.memo{
+			line-height: 30px;
+			vertical-align: top;
+			
+		}
+	</style>
+
+	<body>
+		<div class="content">
+			<div class="papercol">
+				<p>下机数量：<span class="deplanenum"></span></p>
+			</div>
+			<div class="papercol">
+				<p>合格数量：<span><input style="width: 150%;" type="number" name="deplane" id="" value="" /></span></p>
+			</div>
+			<div class="papercol">
+				<p class="memo">备注：<span><input style="width: 150%;"  type="text" name="memo" id="" value="" /></span></p>
+			</div>
+			<div class="papercol">
+				&nbsp;
+			</div>
+			<button class="back" id="submit">提 交</button>
+			
+		</div>
+	</body>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/layer3.0.1/layer.js"></script>
+		<script type="text/javascript" src="js/pages/share.js"></script>
+
+		<script type="text/javascript">
+			var index = parent.layer.getFrameIndex(window.name);
+			function getUrlParam(name) {
+			    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+			    var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+			    if (r != null) return decodeURI(r[2]); return null; //返回参数值
+			}
+			$('input[type=number]').keyup(function(e) {
+				this.value=this.value.replace(/D/g,'')
+			});
+			var paperCuttingId  = getUrlParam('paperCuttingId');
+			var workOrderId  = getUrlParam('workOrderId');
+			var type = getUrlParam('type');
+			var key = getUrlParam('key');
+			var memo = getUrlParam('memo');
+			var needNumber = getUrlParam('needNumber');
+//			alert(goodCount);
+			
+			$('input[name="memo"]').val(memo);
+			var deplaneNumber = Number(getUrlParam('deplaneNumber'));
+			$('.deplanenum').html(deplaneNumber);
+			console.log(key);
+			mui.init();
+//			$('.back').on('click tap',function(){
+//				parent.parent.window.location.href = "adminorderlist.html"
+//			})
+			$('.check').on('tap',function(){
+				console.log($(this).attr('src'));
+				if($(this).attr('src') == 'img/uncheck2.png'){
+					$(this).attr('src','img/checked.png');
+					$(this).parent().siblings().find('img').attr('src','img/uncheck2.png');
+				}else{
+					$(this).attr('src','img/uncheck2.png');
+				}
+			})
+			$('#submit').on('tap',function(){
+				var goodCount = Number(getUrlParam('goodCount'));
+				var number = $('input[name="deplane"]').val();
+				console.log($('.papercol img').length);
+				var memo = $('input[name="memo"]').val();
+				var otherStatus = 2;
+				var worderOrderNum = Number(localStorage.getItem('worderOrderNum'));
+				goodCount = goodCount+Number(number);
+				if(number>deplaneNumber){
+					alert('合格数量不能大于下机数量');
+					return false;
+				} 
+				if(goodCount>deplaneNumber){
+					alert('合格数量不能大于下机数量');
+					return false;
+				}
+				
+				$.ajax({
+					type:"post",
+					dataType:'json',
+					url:ajaxUrlPath+"/mobile/workOrder/updateStatus",
+					data:{
+						objId:paperCuttingId,
+						workOrderId:workOrderId,
+						type:4,
+						status:6,
+						userId:localStorage.getItem("memberId"),
+						otherStatus:otherStatus,
+						type:type,
+						semiFinishedNumber:number,
+						key:key,
+						memo:memo
+					},
+					success:function(data){
+						if(data.code==0){
+							$.ajax({
+							type:"post",
+							dataType:'json',
+							url:ajaxUrlPath+"/mobile/workOrder/addMemo",
+							data:{
+								type:4,
+								workOrderId:workOrderId,
+								objId:paperCuttingId,
+								memo:memo
+							},
+							success:function(data){
+								console.log(JSON.stringify(data));
+								if(data.code==0){
+								
+//									location.reload();
+								}
+		//						
+							}
+						})
+						}else{
+							mui.toast(data.message);
+						}
+						var nokey = paperCuttingId+key;
+//						console.log(parent.$('.mui-collapse-content').find('button[nokey="'+nokey+'"]').parent().prev().find('p').eq(1).html());
+//						var oldtext = parent.$('.mui-collapse-content').find('button[nokey="'+nokey+'"]').parent().prev().find('p').eq(1).html();
+						if(Number(goodCount)>=Number(needNumber)){
+							parent.$('.mui-collapse-content').find('button[nokey="'+nokey+'"]').parent().prev().find('p').eq(1).html('下机数量'+deplaneNumber+' 合格数量'+goodCount);
+							parent.$('.mui-collapse-content').find('button[nokey="'+nokey+'"]').html('已完成');
+							parent.$('.mui-collapse-content').find('button[nokey="'+nokey+'"]').css('background-color','#CCCCCC');
+						}else{
+							parent.$('.mui-collapse-content').find('button[nokey="'+nokey+'"]').parent().prev().find('p').eq(1).html('下机数量'+deplaneNumber+' 合格数量'+goodCount);
+						}
+						
+//						
+					}
+				})
+				parent.layer.close(index);
+				
+				
+				
+			})
+		</script>
+</html>

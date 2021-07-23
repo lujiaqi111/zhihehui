@@ -1,0 +1,507 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/initialization1.css"/>
+	</head>
+	<style type="text/css">
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		html,body{
+			width: 100%;
+			background-color: #FFFFFF;
+			
+		}
+		/*p{
+			    font-size: 18px;
+		}*/
+		.headtitle{
+			width: 100%;
+			text-align: center;
+			color: #808080;
+			margin-top: 25%;
+			position: relative;
+			border: 1px solid #FFFFFF;
+			
+		}
+		.headtitle p:nth-child(1){
+			font-size: 2.3rem;
+			line-height: 3rem;
+		}
+		.headtitle p:nth-child(2){
+			font-size: 1.1rem;
+			line-height: 2rem;
+		}
+		.headtitle p:nth-child(3){
+			font-size: 1.1rem;
+			line-height: 2rem;
+		}
+		.content button{
+			width: 80%;
+			height: 50px;
+			border: 0px;
+			background-color: #ff6600;
+			color: #FFFFFF;
+			border-radius: 8px;
+			margin-left: 10%;
+			margin-top: 10px;
+		}
+		
+		@media screen and (min-width:300px) and (max-width:415px){
+		  
+		  	.papercol p{
+				font-size: 14px;
+			}
+			.papercol div.left{
+				font-size: 14px;
+			}
+			.papercol b{
+				font-size: 20px;
+			}
+			.papercol fonts{
+				font-size: 20px;
+			}
+			.papercol input#packNum{
+				font-size: 20px;
+			}
+			
+			.papercol input#packDetail{
+				font-size: 20px;
+			}
+			.papercol input#remainNum{
+				font-size: 20px;
+			}
+			.papercol span{
+				font-size: 20px;
+			}
+		}
+		@media screen and (min-width:415px){
+			
+		  	.papercol p{
+				font-size: 16px;
+			}
+			.papercol div.left{
+				font-size: 16px;
+			}
+			.papercol b{
+				font-size: 26px;
+			}
+			.papercol fonts{
+				font-size: 26px;
+			}
+			.papercol input#packNum{
+				font-size: 26px;
+			}
+			.papercol input#packDetail{
+				font-size: 26px;
+			}
+			.papercol input#remainNum{
+				font-size: 26px;
+			}
+			.papercol span{
+				font-size: 26px;
+			}
+			
+		}
+		
+		.papercol span{
+			margin-left: 6px;
+			color: #ff6f00;
+			/*font-size: 25px;*/
+		}
+		.right span b{
+			margin-left: 0px;
+		}
+		.papercol span img{
+			height:20px;
+			width: auto;
+		}
+		.papercol span:nth-child(1){
+			display: inline-block;
+			/*width: 100px;*/
+		}
+		.papercol span input{
+			height: 20px;
+			width: 70%;
+			border: 0px;
+			text-align: left;
+			margin-bottom: 0px;
+			padding: 0px;
+			font-size: 1rem;
+		}
+		.papercol .righttext{
+			display: inline-block;
+			float: right;
+			margin-right: 20px;
+		}
+		.papercol b{
+			/*font-size: 30px;*/
+			margin-left: 20px;
+			font-weight: initial;
+		}
+		.totle{
+			text-align: center;
+			padding: 30px 0px 10px 0px;
+			font-size: 20px;
+		}
+		.totle span{
+			color: #ff6f00;
+		}
+		.packtype b{
+			color: #8f8f94;
+			font-weight: initial;
+		}
+		.packtype b.active{
+			color: #FF6F00;
+			background-color: #FFFFFF!important;
+		}
+		.papercol input#packNum{
+			width: 30%;
+			/*font-size: 30px;*/
+			height: 30px;
+			margin-left: 0px;
+		}
+		.papercol input#packDetail{
+			width: 20%;
+			/*font-size: 30px;*/
+			height: 30px;
+			margin-left: 0px;
+		}
+		.papercol input#remainNum{
+			width: 35%;
+			/*font-size: 30px;*/
+			height: 30px;
+		}
+		.packdetail{
+			/*float: right;
+			margin-top: -20px;
+			margin-right: -50px;*/
+		}
+		
+		.papercol div{
+			float: left;
+		}
+		.left{
+			width: 22%;
+		}
+		.right{
+			width: 78%;
+		}
+		.deplaneNumber{
+			margin-left: 24px;
+		}
+		#storageLocation{
+			width: 100px;
+			text-align: left;
+		}
+		.storageLocation span{
+			color: #8f8f94;
+			font-size: 15px;
+		}
+		.storageLocation span.active{
+			color:#FF6F00;
+			background-color: #FFFFFF !important;
+		}
+	</style>
+
+	<body>
+		<div class="content">
+			<div class="papercol">
+				<p class="worderOrdername">AS 2018春装形象</p>
+				<p style="margin-top: 10px;">下单数量<span class="deplaneNumber" style="margin-left: 8px;">1000份</span> <font class="righttext">2019-12-23</font></p>
+			</div>
+			<div class="papercol">
+				<p>包装方式<span class="packtype"><b class="active">装箱</b><b>打包</b></span></p>
+			</div>
+			<div class="papercol" style="height: 80px;">
+				<div class="left" style="line-height: 40px;">
+					库  位
+				</div>
+				<div class="right storageLocation">
+					<input type="text" name="storageLocation" id="storageLocation" value="" /><span class="finallyPutInStorage">最后一笔入库</span>
+				</div>
+				
+			</div>
+			<div class="papercol" style="height: 80px;">
+				<div class="left">
+					包装明细
+				</div>
+				<div class="right">
+					<span  class="packdetail"><b><input type="number" name="packNum" id="packNum" value="0" />份</b><fonts class="unitpack">/箱X</fonts><b class="packDetail"><input type="number" name="packDetail" id="packDetail" value="0" /></b><fonts class="packnum">箱</fonts></span>
+				</div>
+			</div>
+			<div class="papercol">
+				<p><span style="padding-left: 60px;">+<b style="margin-left: 10px;" class="remainNum"><input type="number" name="remainNum" id="remainNum" value="0" /></b>份</span></p>
+			</div>
+			<p class="totle">合计：<span><span id="total">
+				0
+			</span>份</span></p>
+			<button class="back" id="submit">提 交</button>
+			
+		</div>
+	</body>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/layer3.0.1/layer.js"></script>
+		<script type="text/javascript" src="js/pages/share.js"></script>
+
+		<script type="text/javascript">
+			window.addEventListener('resize',function(){
+				var activeElement = document.activeElement;
+				if(activeElement.tagName=='input' || activeElement.tagName=='textarea'){
+					setTimeout(function(){
+						activeElement.scrollIntoView();
+					},200)
+				}
+			})
+			 var u = navigator.userAgent;
+		    this.isAndroid =u.indexOf("Android") > -1 || u.indexOf("Adr") > -1; //Android终端
+		    this.isIOS =!!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //IOS终端
+			$('input').focus(function () {
+				var that = this;
+		        var bfscrolltop = document.body.scrollTop; // 记录当前位置
+		        console.log(bfscrolltop)
+		        if(this.isIOS){
+		            setTimeout(function(){
+		            	parent.layer.style(index,{top:"10px"});
+//		           		document.body.scrollTop = document.body.scrollTop*1 + 400;
+		            },300)
+		        }
+			});
+			var finallyPutInStorage = 0;
+			$('.finallyPutInStorage').on('click',function(){
+				var _this = this
+				if($(_this).hasClass('active')){
+					$(_this).removeClass('active');
+					finallyPutInStorage = 0;
+				}else{
+					$(_this).addClass('active');
+					finallyPutInStorage = 1;
+				}
+			})
+			var index = parent.layer.getFrameIndex(window.name);
+			function getUrlParam(name) {
+			    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+			    var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+			    if (r != null) return decodeURI(r[2]); return null; //返回参数值
+			}
+			$('input[type="number"]').keypress(function(event){
+				var key = event.key;
+				if (key === 'e' || key === 'E' || key === '+' || key === '-') {
+					event.returnValue = false;
+					return false;
+				}
+				return true;
+			})
+			var deliveryid = getUrlParam('deliveryid');
+			var workOrderId  = getUrlParam('workOrderId');
+			var objId = getUrlParam('objId');
+			var packMethod = '装箱';
+			var worderOrderNum = Number(localStorage.getItem('worderOrderNum'));
+			$('.deplaneNumber').html(worderOrderNum+'份');
+			var worderOrdername = localStorage.getItem('worderOrdername');
+			var deliveryTime = localStorage.getItem('deliveryTime');
+			var html  = worderOrdername
+			$('.righttext').html(deliveryTime)
+			$('.worderOrdername').html(html)
+			var packNum = $('input[name="packNum"]').val();
+			var packDetails = $('input[name="packDetail"]').val();
+			var remainNum = $('input[name="remainNum"]').val();
+			var packDetail = packNum+'份/箱X'+packDetails+'箱';
+			
+			
+			var inNum = 0;
+			if(localStorage.getItem('packNum') == null){
+				$('input[name="packNum"]').val(0);
+			}else{
+				$('input[name="packNum"]').val(localStorage.getItem('packNum'));
+			}
+			mui.init();
+			$('input').blur(function(){
+				packNum = Number($('input[name="packNum"]').val());
+				packDetails = Number($('input[name="packDetail"]').val());
+				remainNum =Number($('input[name="remainNum"]').val());
+				inNum = packNum*packDetails+remainNum;
+				$('#total').html(inNum);
+			})
+			$('input').on('focus',function(){
+			        var str = $(this).val();
+			        if(str == 0){
+			        	$(this).val('')
+			        }
+			});
+			 
+			if(deliveryid != null){
+				$.ajax({
+					type:"post",
+					dataType:'json',
+					url:ajaxUrlPath+"/mobile/workOrder/getStorageRecord",
+					data:{
+						id:deliveryid
+					},
+					success:function(data){
+						console.log(JSON.stringify(data));
+						$('input[name="packNum"]').val(data.result.unitNum);
+						$('input[name="packDetail"]').val(data.result.packNum);
+						$('input[name="remainNum"]').val(data.result.remainNum);
+						$('input[name="storageLocation"]').val(data.result.storageLocation);
+						$('#total').html(data.result.num);
+						for (var i = 0; i < $('.packtype b').length; i++) {
+							if($('.packtype b').eq(i).html() == data.result.packMethod){
+								$('.packtype b').eq(i).addClass('active');
+								$('.packtype b').eq(i).siblings().removeClass('active');
+							}
+						}
+						packMethod = data.result.packMethod
+						if(data.result.packMethod=='装箱'){
+							$('.packdetail').html('<b><input type="number" name="packNum" id="packNum" value="'+data.result.unitNum+'" />份</b><fonts class="unitpack">/箱X</fonts><b class="packDetail"><input type="number" name="packDetail" id="packDetail" value="'+data.result.packNum+'" /></b><fonts class="packnum">箱</fonts>')
+						}else{
+							$('.packdetail').html('<b><input type="number" name="packNum" id="packNum" value="'+data.result.unitNum+'" />份</b><fonts class="unitpack">/包X</fonts><b class="packDetail"><input type="number" name="packDetail" id="packDetail" value="'+data.result.packNum+'" /></b><fonts class="packnum">包</fonts>')
+						}
+						console.log(data);
+					}
+				})
+			}
+//			$('input').on('click',function(){
+//							$('input').focus();
+//						})
+//			$('input').on('focus',function(){
+//					parent.layer.style(index,{top:"-80px"});//设置弹出层位置
+//			})
+//			$('input').on('blur',function(){
+//				parent.layer.style(index,{top:"80px"});//设置弹出层位置
+//			})
+			
+			$('.packtype b').on('tap',function(){
+				$(this).addClass('active');
+				$(this).siblings().removeClass('active');
+				packMethod = $(this).html();
+				if(packMethod=="打包"){
+					$('.unitpack').html('/包X');
+					$('.packnum').html('包');
+				}else{
+					$('.unitpack').html('/箱X');
+					$('.packnum').html('箱');
+				}
+			})
+			$('#submit').on('tap',function(){
+				storageLocation = $('input[name="storageLocation"]').val();
+				packNum = Number($('input[name="packNum"]').val());
+				localStorage.setItem('packNum',packNum);
+				packDetails = Number($('input[name="packDetail"]').val());
+				remainNum =Number($('input[name="remainNum"]').val());
+				inNum = packNum*packDetails+remainNum;
+				$('#total').html(inNum);
+				// if(packNum==0){
+				// 	alert('请填写每箱几份');
+				// 	return false;
+				// }
+				if(inNum==0){
+					alert('请填写数量');
+					return false;
+				}
+				var packDetail = '';
+				if(packMethod=='装箱'){
+					packDetail = packNum+'份/箱X'+packDetails+'箱+'+remainNum+'份'
+				}else if(packMethod == '打包'){
+					packDetail = packNum+'份/包X'+packDetails+'包+'+remainNum+'份'
+				}
+				if(deliveryid != null){
+					$.ajax({
+						type:"post",
+						dataType:'json',
+						url:ajaxUrlPath+"/mobile/workOrder/updateStorageRecord",
+						data:{
+							id:deliveryid,
+							unitNum:packNum,
+							packNum:packDetails,
+							packDetail:packDetail,
+							remainNum:remainNum,
+							inNum:inNum,
+							packMethod:packMethod,
+							storageLocation:storageLocation,
+						},
+						success:function(data){
+							console.log(data);
+						}
+					})
+					parent.layer.close(index);
+				}else{
+					
+
+					if(finallyPutInStorage == 1){
+							 var con = confirm('您勾选了最后一笔入库按钮，勾选后无法再次入库，请仔细检查确认！')
+							        if (con) {
+							            $.ajax({
+											type:"post",
+											dataType:'json',
+											url:ajaxUrlPath+"/mobile/workOrder/updateStatus",
+											data:{
+												workOrderId:workOrderId,
+												objId:objId,
+												type:5,
+												status:'',
+												userId:localStorage.getItem("memberId"),
+												unitNum:packNum,
+												packNum:packDetails,
+												packDetail:packDetail,
+												remainNum:remainNum,
+												inNum:inNum,
+												packMethod:packMethod,
+												processId:0,
+												finallyPutInStorage:finallyPutInStorage,
+												storageLocation:storageLocation,
+												
+											},
+											success:function(data){
+												console.log(data);
+											}
+										})
+							            parent.layer.close(index);
+							        } 
+							
+						
+					}else{
+						$.ajax({
+							type:"post",
+							dataType:'json',
+							url:ajaxUrlPath+"/mobile/workOrder/updateStatus",
+							data:{
+								workOrderId:workOrderId,
+								objId:objId,
+								type:5,
+								status:'',
+								userId:localStorage.getItem("memberId"),
+								unitNum:packNum,
+								packNum:packDetails,
+								packDetail:packDetail,
+								remainNum:remainNum,
+								inNum:inNum,
+								packMethod:packMethod,
+								processId:0,
+								finallyPutInStorage:finallyPutInStorage,
+								storageLocation:storageLocation,
+								
+							},
+							success:function(data){
+								console.log(data);
+							}
+						})
+						parent.layer.close(index);
+					}
+					
+				}
+				
+				
+				
+				
+				
+			})
+		</script>
+</html>

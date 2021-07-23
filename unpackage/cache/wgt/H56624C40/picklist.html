@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<title>印刷通-报价</title>		<link rel="stylesheet" type="text/css" href="css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/rem.css"/>
+		<link rel="stylesheet" type="text/css" href="css/initialization1.css"/>		<style type="text/css">
+			#text{			    box-shadow: 0px 1px 6px #c3c3c3;			    border-radius: 10px;			    width: 90%;			    height: 400px;			    margin-left: 4%;			    background-color: #FFFFFF;			    margin-top: 10px;			}			body,html{				background-color: #f2f2f2;				width: 100%;				height: 100%;							}			.back img{				height: 24px;				padding-right:6px ;				display: inline-block;				line-height: 24px;			}			.ordernum{				display: inline-block;				float: right;				text-align: right;				padding-right: 20px;				line-height: 24px;			}			#content{				margin-bottom: 60px;			}			#content li{				/*height: 100px;*/				width: 100%;				background-color: #FFFFFF;			}			#content li div{				width: 90%;				margin-left: 5%;				height: 100%;			}			#content li div p{				line-height: 30px;			}			#content li{				position: relative;			}			#content li:after{			    position: absolute;			    right: 0;			    bottom: 0;			    left: 0;			    height: 1px;			    width: 100%;			    content: '';			    -webkit-transform: scaleY(.5);			    transform: scaleY(.5);			    background-color: #d2d2d2;			}			.content .name{				display: inline-block;				/*width: 40%;*/			}			.color1{				color: #ff6e00;			}			.content .specs{				display: inline-block;				width: 44%;			}			.content .num{				display: inline-block;				width: 30%;			}			.content .man{				display: inline-block;				width: 44%;			}			.content .time{				display: inline-block;				width: 56%;							}			.add{				display: inline-block;				width: 30px;				height: 30px;				color: #FFFFFF;				background-color: #FF6600;				line-height: 30px;				text-align: center;				border-radius: 50%;				font-size: 12px;				position: absolute;    			right: 5px;			}
+		</style>		
+	</head>
+	<body>		<!--<div class="mui-scroll-wrapper">
+		<div class="mui-scroll">-->
+		<h1 class="header">			<span class="back">				<img  style="" src="img/backbtn.png"/>				工单-领料记录			</span>			<span class="ordernum">No.</span>		</h1>		<div class="orderlist">
+			<ul id="content">				<!--<li>
+					<div class="content">
+						<p><span class="name color1">ps版</span><span class="specs">规格<span class="color1">4开</span></span><span class="num">数量<span class="color1">12</span></span></p>
+						<p><span class="man">领用人 <span class="color1">XXX</span></span><span class="color1 time">2020-02-02 16:07</span><span class="add">补</span></p>
+					</div>
+				</li>
+				<li>
+					<div class="content">
+						<p><span class="name color1">ps版</span></p>
+						<p></p>
+						<p><span class="man">领用人 <span class="color1">XXX</span></span><span class="color1 time">2020-02-02 16:07</span></p>
+					</div>
+				</li>
+				<li>
+					<div class="content">
+						<p><span class="name color1">250G东帆双铜</span></p>
+						<p><span class="man">领用人 <span class="color1">XXX</span></span><span class="color1 time">2020-02-02 16:07</span></p>
+					</div>
+				</li>-->
+
+			</ul>
+		</div>		<!--</div>
+		</div>-->						<nav class="mui-bar mui-bar-tab foot-bar">			<a class="mui-tab-item orderlistbtn" href="orderlist.html">				<p><img src="img/nav02.png" style="height: 30px;padding-top:5px ;"/></p>				<span class="mui-tab-label" style="color: #FF6F00;">工单</span>			</a>			<a class="mui-tab-item scan" href="scan.html">				<p><img src="img/scan1.png" style="height: 30px;padding-top:5px ;"/></p>				<span class="mui-tab-label" >扫描</span>			</a>			<a class="mui-tab-item myself" href="">				<p><img src="img/nav3.png" style="height: 30px;padding-top:5px ;"/></p>				<span class="mui-tab-label" >我的</span>			</a>		</nav>
+	</body>
+	<script type="text/javascript" src="js/jquery.min.js"></script>	<script type="text/javascript" src="js/mui.min.js"></script>
+	<script type="text/javascript" src="js/layer3.0.1/layer.js"></script>	
+	<script src="js/pages/share.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="js/pages/other-Materials.js"></script>	<script type="text/javascript">		var sort = 0;		var status = 0;		var name = '';//		mui.init();
+//		(function($){
+//
+//		    $(".mui-scroll-wrapper").scroll();
+//		})(mui);		$('.orderlistbtn').on('tap',function(){
+			window.location = 'orderlist.html';
+		})		$('.scan').on('tap',function(){			window.location = 'scan.html';		})		$('.myself').on('tap',function(){			window.location = 'myselfinfo.html';		})		$('.ordernum').html('No.'+localStorage.getItem('workOrderNo'));		$('.back').on('click',function(){			mui.back();		})		function getUrlParam(name) {			    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象			    var r = window.location.search.substr(1).match(reg);  //匹配目标参数			    if (r != null) return decodeURI(r[2]); return null; //返回参数值		}		var workOrderId = getUrlParam('workOrderId');				var li=''		list()		function list(){			$.ajax({				type:"post",				dataType:'json',				url:ajaxUrlPath+"/mobile/workOrder/getPaperFeedingRecord",				async:false,				data:{					type:3,					workOrderId:workOrderId,				},				success:function(data){					console.log(JSON.stringify(data));					var result = data.result;					for (var i = 0; i < result.length; i++) {//						var receiveNum = 0;
+//						if(result[i].name=='PS版'){
+//							receiveNum= result[i].num
+//						}else{
+//							receiveNum = result[i].receiveNum
+//						}						if(result[i].type==2){							li += '<li>'+								'<div class="content">'+									'<p><span class="name color1">'+result[i].name+'</span></p>'+									'<p><span class="specs">规格<span class="color1">'+result[i].normal+'</span></span><span class="num">数量<span class="color1">'+result[i].num+'</span></span></p>'+									'<p><span class="man">领用人 <span class="color1">'+(result[i].userName==null?"":result[i].userName)+'</span></span><span class="color1 time">'+(result[i].time==null?"":result[i].time)+'</span><span class="add">补</span></p>'+								'</div>'+							'</li>'						}else if(result[i].type==3){							li += '<li>'+								'<div class="content">'+									'<p><span class="name color1">'+result[i].name+'</span></p>'+									'<p><span class="specs">规格<span class="color1">'+result[i].normal+'</span></span><span class="num">数量<span class="color1">'+result[i].num+'</span></span></p>'+									'<p><span class="man">领用人 <span class="color1">'+(result[i].userName==null?"":result[i].userName)+'</span></span><span class="color1 time">'+(result[i].time==null?"":result[i].time)+'</span><span class="add">补</span></p>'+								'</div>'+							'</li>'						}else{														li += '<li>'+								'<div class="content">'+
+									'<p><span class="name color1">'+result[i].name+'</span></p>'+
+									'<p><span class="specs">规格<span class="color1">'+result[i].normal+'</span></span><span class="num">数量<span class="color1">'+result[i].num+'</span></span></p>'+
+									'<p><span class="man">领用人 <span class="color1">'+(result[i].receiveUser==null?"":result[i].receiveUser)+'</span></span><span class="color1 time">'+(result[i].time==null?"":result[i].time)+'</span></p>'+
+								'</div>'+
+							'</li>'						}											}					console.log(li)				}			})//			$.ajax({
+//				type:"post",
+//				dataType:'json',
+//				url:ajaxUrlPath+"/mobile/workOrder/getPaperFeedingRecord",
+//				async:false,
+//				data:{
+//					type:2,
+//					workOrderId:workOrderId,
+//				},
+//				success:function(data){
+//					console.log(JSON.stringify(data));
+//					var result = data.result;
+//					for (var i = 0; i < result.length; i++) {
+//						li += '<li>'+
+//							'<div class="content">'+
+//								'<p><span class="name color1">'+(result[i].brand==null?"":result[i].brand)+'  '+(result[i].weight==null?"":result[i].weight)+result[i].name+'</span></p>'+
+//								'<p><span class="specs">规格<span class="color1">'+result[i].normal+'</span></span><span class="num">数量<span class="color1">'+result[i].num+'</span></span></p>'+
+//								'<p><span class="man">领用人 <span class="color1">'+(result[i].userName==null?"":result[i].userName)+'</span></span><span class="color1 time">'+(result[i].time==null?"":result[i].time.substring(5,16))+'</span><span class="add">补</span></p>'+
+//							'</div>'+
+//						'</li>'
+//					}
+//					console.log(li)
+//				}
+//			})
+//			$.ajax({
+//				type:"post",
+//				dataType:'json',
+//				async:false,
+//				url:ajaxUrlPath+"/mobile/workOrder/getPickRecord",
+//				data:{
+//					workOrderId:workOrderId,
+//				},
+//				success:function(data){
+//					var result = data.result;
+//					for (var i = 0; i < result.length; i++) {
+//						var receiveNum = 0;
+//						if(result[i].name=='PS版'){
+//							receiveNum= result[i].num
+//						}else{
+//							receiveNum = result[i].receiveNum
+//						}
+//						li += '<li>'+
+//							'<div class="content">'+
+//								'<p><span class="name color1">'+(result[i].weight==null?"":result[i].weight)+result[i].name+'</span></p>'+
+//								'<p><span class="specs">规格<span class="color1">'+result[i].normal+'</span></span><span class="num">数量<span class="color1">'+receiveNum+'</span></span></p>'+
+//								'<p><span class="man">领用人 <span class="color1">'+(result[i].receiveUser==null?"":result[i].receiveUser)+'</span></span><span class="color1 time">'+(result[i].receiveTime==null?"":result[i].receiveTime.substring(5,16))+'</span></p>'+
+//							'</div>'+
+//						'</li>'
+//					}
+//				}
+//			})//			$.ajax({
+//				type:"post",
+//				dataType:'json',
+//				async:false,
+//				url:ajaxUrlPath+"/mobile/workOrder/getPsFeedingRecord",
+//				data:{
+//					workOrderId:workOrderId,
+//				},
+//				success:function(data){
+//					console.log(JSON.stringify(data));
+//					var result = data.result;
+//					for (var i = 0; i < result.length; i++) {
+//						if(result[i].type==0){
+//							li += '<li>'+
+//								'<div class="content">'+
+//									'<p><span class="name color1">'+result[i].materiel+'</span><span class="specs">规格<span class="color1">'+result[i].normal+'</span></span><span class="num">数量<span class="color1">'+result[i].num+'</span></span></p>'+
+//									'<p><span class="man">领用人 <span class="color1">'+(result[i].userName==null?"":result[i].userName)+'</span></span><span class="color1 time">'+(result[i].time==null?"":result[i].time.substring(5,16))+'</span></p>'+
+//								'</div>'+
+//							'</li>'
+//						}else{
+//							li += '<li>'+
+//								'<div class="content">'+
+//									'<p><span class="name color1">'+result[i].materiel+'</span><span class="specs">规格<span class="color1">'+result[i].normal+'</span></span><span class="num">数量<span class="color1">'+result[i].num+'</span></span></p>'+
+//									'<p><span class="man">领用人 <span class="color1">'+(result[i].userName==null?"":result[i].userName)+'</span></span><span class="color1 time">'+(result[i].time==null?"":result[i].time.substring(5,16))+'</span><span class="add">补</span></p>'+
+//								'</div>'+
+//							'</li>'
+//						}
+//						
+//					}
+//				}
+//			})			console.log(li)			$('#content').html(li);					}										
+	</script>
+</html>

@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+
+		<meta charset="UTF-8">
+
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+		<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover" name="viewport">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<meta name="format-detection" content="telephone=no">
+
+		<title>印刷通-报价</title>
+		<link rel="stylesheet" type="text/css" href="css/mui.min.css"/>
+
+		<link rel="stylesheet" type="text/css" href="css/rem.css"/>
+
+		<link rel="stylesheet" type="text/css" href="css/initialization1.css"/>
+		<style type="text/css">
+			body,html{
+				background-color: #CCCCCC;
+				overflow: auto;
+				width: 100%;
+				height: 100%;
+			}
+
+			.content img.scan{
+				width: 60%;
+				height: auto;
+				margin-left: 20%;
+				margin-top:30px ;
+			}
+			.content p{
+				text-align: center;
+				line-height: 30px;
+				font-size: 20px;
+			}
+			.content>p.desc{
+				margin-top: 20px;
+			}
+			.search{
+				width: 70%;
+				height: 50px;
+				background-color: #FFFFFF;
+				margin-top: 20px;
+				margin-left: 15%;
+			}
+			.search input{
+				width: 75%;
+				height: 50px;
+				text-align: left;
+				border: 0px;
+				font-size: 20px;
+				line-height: 50px;
+			}
+			.search img{
+				display: inline-block;
+				float: right;
+				height: 30px;
+				width: auto;
+				margin-top: 10px;
+				margin-right: 6px;
+			}
+			.right{
+				float: right;
+				width: 10%;
+				height: 100%;
+			}
+			::-webkit-input-placeholder { /* Chrome/Opera/Safari */ 
+				color: #C0C0C0;
+			}
+			::-moz-placeholder { /* Firefox 19+ */  
+				color: #C0C0C0;
+			}
+			:-ms-input-placeholder { /* IE 10+ */ 
+			 	color: #C0C0C0;
+			}
+			:-moz-placeholder { /* Firefox 18- */ 
+			 	color: #C0C0C0;
+			}
+			.mui-bar-tab{
+				z-index: 0;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<h1 class="header">
+			<span class="back">
+				工单扫描
+			</span>
+		</h1>
+		<div class="content mui-scroll">
+			<img class="scan" src="img/scan.png"/>
+			<p class="desc">扫描二维码获取工单信息</p>
+			<p>或</p>
+			<div class="search">
+				<input type="text"  name="workOrderNo" class="workOrderNo" id="search" value="" placeholder="输入工单号查询" />
+				<div class="right">
+					<img src="img/nextbtn2.png" id="searchtext"/>
+				</div>
+				
+			</div>
+		</div>
+		<nav class="mui-bar mui-bar-tab foot-bar">
+			<a class="mui-tab-item orderlistbtn" href="orderlist.html">
+				<p><img src="img/nav2.png" style="height: 30px;padding-top:5px ;"/></p>
+				<span class="mui-tab-label">工单</span>
+			</a>
+			<a class="mui-tab-item scanbtn" href="scan.html">
+				<p><img src="img/scan01.png" style="height: 30px;padding-top:5px ;"/></p>
+				<span class="mui-tab-label" style="color: #FF6F00;">扫描</span>
+			</a>
+			
+			<a class="mui-tab-item myself" href="">
+				<p><img src="img/nav3.png" style="height: 30px;padding-top:5px ;"/></p>
+				<span class="mui-tab-label" >我的</span>
+			</a>
+		</nav>
+
+	</body>
+	
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/mui.min.js"></script>
+	<script type="text/javascript" src="js/pages/share.js"></script>
+	
+	<script type="text/javascript">
+		var winHeight = $(window).height();
+            $(window).resize(function() {
+                var thisHeight = $(this).height();
+                if (winHeight - thisHeight > 50) {
+                    //当软键盘弹出
+                    $('body').css('height', winHeight + 'px');
+                } else {
+                    //当软键盘收起
+                    $('body').css('height', '100%');
+                }
+            });
+			pushHistory(); 
+	    window.addEventListener("popstate", function(e) { 
+	    	plus.runtime.quit();
+	      	
+	    }, false); 
+	    function pushHistory() { 
+	      var state = { 
+	        title: "title", 
+	        url: "#"
+	      }; 
+	      window.history.pushState(state, "title", "#"); 
+	    }
+		if (/Android/gi.test(navigator.userAgent)) {
+    window.addEventListener('resize', function () {
+    	console.log(JSON.stringify(document.activeElement));
+        if (document.activeElement.tagName == 'INPUT' || document.activeElement.tagName == 'TEXTAREA') {
+            console.log(document.activeElement.className);
+            if(document.activeElement.className == 'workOrderNo'){
+            	console.log(222);
+            	document.activeElement.scrollIntoView({ behavior: "smooth" , inline: "start",block:"center"});
+            }else{
+            	window.setTimeout(function () {
+//	                document.activeElement.scrollIntoViewIfNeeded(true);
+	                document.activeElement.scrollIntoView({ behavior: "smooth" , inline: "start",block:"center"});
+	        	}, 0);
+            }
+            
+        }
+        
+    })
+    }
+		function getUrlParam(name) {
+			    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+			    var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+			    if (r != null) return decodeURI(r[2]); return null; //返回参数值
+		}
+		var qctype = getUrlParam('type');
+		var authorityType = localStorage.getItem('authorityType');
+		if(authorityType==6||authorityType==7||authorityType==8||authorityType==9||authorityType==10||authorityType==11||authorityType==12||authorityType==13||authorityType==14||authorityType==15||authorityType==16||authorityType==17||authorityType==18||authorityType==19||authorityType==20||authorityType==21 || authorityType==23 || authorityType==24 || authorityType==25){
+			var html = '<a class="mui-tab-item orderlistbtn" href="orderlist.html">'+
+				'<p><img src="img/nav2.png" style="height: 30px;padding-top:5px ;"/></p>'+
+				'<span class="mui-tab-label">工单</span>'+
+			'</a>'+
+			'<a class="mui-tab-item daka" href="map.html">'+
+				'<p><img src="img/daka2.png" style="height: 30px;padding-top:5px ;"/></p>'+
+				'<span class="mui-tab-label">打卡</span>'+
+			'</a>'+
+			'<a class="mui-tab-item scanbtn" href="scan.html">'+
+				'<p><img src="img/scan01.png" style="height: 30px;padding-top:5px ;"/></p>'+
+				'<span class="mui-tab-label"  style="color: #FF6F00;">扫描</span>'+
+			'</a>'+
+			'<a class="mui-tab-item myself" href="">'+
+				'<p><img src="img/nav3.png" style="height: 30px;padding-top:5px ;"/></p>'+
+				'<span class="mui-tab-label">我的</span>'+
+			'</a>'
+	        $('.foot-bar').html(html);
+	        $('.orderlistbtn').on('tap',function(){
+	        	if(qctype == 'qc'){
+					window.location = 'orderlist.html?type=qc';
+				}else{
+					window.location = 'orderlist.html';
+				}
+//				window.location = 'orderlist.html';
+			})
+			$('.scanbtn').on('tap',function(){
+				if(qctype == 'qc'){
+					window.location = 'scan.html?type=qc';
+				}else{
+					window.location = 'scan.html';
+				}
+			})
+			$('.myself').on('tap',function(){
+				if(qctype == 'qc'){
+					window.location = 'myselfinfo.html?type=qc';
+				}else{
+					window.location = 'myselfinfo.html';
+				}
+			})
+			$('.daka').on('tap',function(){
+						if(qctype == 'qc'){
+							window.location = 'map.html?type=qc';
+						}else{
+							window.location = 'map.html';
+						}
+			//			window.location = 'myselfinfo.html';
+					})
+	    }else if(localStorage.getItem('authorityType')==20){
+	        var html = '<a class="mui-tab-item orderlistbtn" href="orderlist.html">'+
+				'<p><img src="img/nav2.png" style="height: 30px;padding-top:5px ;"/></p>'+
+				'<span class="mui-tab-label">工单</span>'+
+			'</a>'+
+			'<a class="mui-tab-item daka" href="map.html">'+
+				'<p><img src="img/daka2.png" style="height: 30px;padding-top:5px ;"/></p>'+
+				'<span class="mui-tab-label">打卡</span>'+
+			'</a>'+
+			'<a class="mui-tab-item scanbtn" href="scan.html">'+
+				'<p><img src="img/scan01.png" style="height: 30px;padding-top:5px ;"/></p>'+
+				'<span class="mui-tab-label" style="color: #FF6F00;">扫描</span>'+
+			'</a>'+
+			'<a class="mui-tab-item myself" href="">'+
+				'<p><img src="img/nav3.png" style="height: 30px;padding-top:5px ;"/></p>'+
+				'<span class="mui-tab-label" >我的</span>'+
+			'</a>'
+	        $('.foot-bar').html(html);
+	        $('.orderlistbtn').on('tap',function(){
+	        	if(qctype == 'qc'){
+					window.location = 'orderlist.html?type=qc';
+				}else{
+					window.location = 'orderlist.html';
+				}
+//				window.location = 'orderlist.html';
+			})
+			$('.scanbtn').on('tap',function(){
+				if(qctype == 'qc'){
+					window.location = 'scan.html?type=qc';
+				}else{
+					window.location = 'scan.html';
+				}
+			})
+			$('.myself').on('tap',function(){
+				if(qctype == 'qc'){
+					window.location = 'myselfinfo.html?type=qc';
+				}else{
+					window.location = 'myselfinfo.html';
+				}
+			})
+			$('.daka').on('tap',function(){
+						if(qctype == 'qc'){
+							window.location = 'map.html?type=qc';
+						}else{
+							window.location = 'map.html';
+						}
+			//			window.location = 'myselfinfo.html';
+					})
+	    }else if(localStorage.getItem('authorityType')==5){
+	         var html = '<a class="mui-tab-item orderlistbtn" href="orderlist.html">'+
+				'<p><img src="img/nav2.png" style="height: 30px;padding-top:5px ;"/></p>'+
+				'<span class="mui-tab-label">工单</span>'+
+			'</a>'+
+			'<a class="mui-tab-item daka" href="map.html">'+
+				'<p><img src="img/daka2.png" style="height: 30px;padding-top:5px ;"/></p>'+
+				'<span class="mui-tab-label">打卡</span>'+
+			'</a>'+
+			'<a class="mui-tab-item scanbtn" href="scan.html">'+
+				'<p><img src="img/scan01.png" style="height: 30px;padding-top:5px ;"/></p>'+
+				'<span class="mui-tab-label" style="color: #FF6F00;">扫描</span>'+
+			'</a>'+
+			'<a class="mui-tab-item myself" href="">'+
+				'<p><img src="img/nav3.png" style="height: 30px;padding-top:5px ;"/></p>'+
+				'<span class="mui-tab-label" >我的</span>'+
+			'</a>'
+	        $('.foot-bar').html(html);
+	        $('.orderlistbtn').on('tap',function(){
+				 window.location.href='stockorderlist.html'
+			})
+			$('.scanbtn').on('tap',function(){
+				window.location = 'scan.html';
+			})
+			$('.myself').on('tap',function(){
+				window.location = 'myselfinfo.html';
+			})
+			$('.daka').on('tap',function(){
+						if(qctype == 'qc'){
+							window.location = 'map.html?type=qc';
+						}else{
+							window.location = 'map.html';
+						}
+			//			window.location = 'myselfinfo.html';
+					})
+	     }else if(localStorage.getItem('authorityType')==22){
+	     	var html = '<a class="mui-tab-item orderlistbtn" href="orderlist.html">'+
+				'<p><img src="img/nav2.png" style="height: 30px;padding-top:5px ;"/></p>'+
+				'<span class="mui-tab-label">工单</span>'+
+			'</a>'+
+			'<a class="mui-tab-item daka" href="map.html">'+
+				'<p><img src="img/daka2.png" style="height: 30px;padding-top:5px ;"/></p>'+
+				'<span class="mui-tab-label">打卡</span>'+
+			'</a>'+
+			'<a class="mui-tab-item scanbtn" href="scan.html">'+
+				'<p><img src="img/scan01.png" style="height: 30px;padding-top:5px ;"/></p>'+
+				'<span class="mui-tab-label" style="color: #FF6F00;">扫描</span>'+
+			'</a>'+
+			'<a class="mui-tab-item myself" href="">'+
+				'<p><img src="img/nav3.png" style="height: 30px;padding-top:5px ;"/></p>'+
+				'<span class="mui-tab-label" >我的</span>'+
+			'</a>'
+	        $('.foot-bar').html(html);
+	        $('.orderlistbtn').on('tap',function(){
+				 window.location.href='instockorderlist.html'
+			})
+			$('.scanbtn').on('tap',function(){
+				window.location = 'scan.html';
+			})
+			$('.myself').on('tap',function(){
+				window.location = 'myselfinfo.html';
+			})
+			$('.daka').on('tap',function(){
+						if(qctype == 'qc'){
+							window.location = 'map.html?type=qc';
+						}else{
+							window.location = 'map.html';
+						}
+			//			window.location = 'myselfinfo.html';
+					})
+	    }else if(localStorage.getItem('authorityType')==3){
+	         var html = '<a class="mui-tab-item orderlistbtn" href="orderlist.html">'+
+				'<p><img src="img/nav2.png" style="height: 30px;padding-top:5px ;"/></p>'+
+				'<span class="mui-tab-label">工单</span>'+
+			'</a>'+
+			'<a class="mui-tab-item daka" href="map.html">'+
+				'<p><img src="img/daka2.png" style="height: 30px;padding-top:5px ;"/></p>'+
+				'<span class="mui-tab-label">打卡</span>'+
+			'</a>'+
+			'<a class="mui-tab-item scanbtn" href="scan.html">'+
+				'<p><img src="img/scan01.png" style="height: 30px;padding-top:5px ;"/></p>'+
+				'<span class="mui-tab-label" style="color: #FF6F00;">扫描</span>'+
+			'</a>'+
+			'<a class="mui-tab-item myself" href="">'+
+				'<p><img src="img/nav3.png" style="height: 30px;padding-top:5px ;"/></p>'+
+				'<span class="mui-tab-label" >我的</span>'+
+			'</a>'
+	        $('.foot-bar').html(html);
+	        $('.orderlistbtn').on('tap',function(){
+				window.location = 'adminwaitorderlist.html';
+			})
+			$('.scanbtn').on('tap',function(){
+				window.location = 'scan.html';
+			})
+			$('.myself').on('tap',function(){
+				window.location = 'myselfinfo.html';
+			})
+			$('.daka').on('tap',function(){
+						if(qctype == 'qc'){
+							window.location = 'map.html?type=qc';
+						}else{
+							window.location = 'map.html';
+						}
+					})
+	    }else if(localStorage.getItem('authorityType')==1){	        var html ='<a class="mui-tab-item indexbtn" href="indexview.html">'+				'<p><img src="img/nav2.png" style="height: 30px;padding-top:5px ;"/></p>'+				'<span class="mui-tab-label">首页</span>'+			'</a>'+
+			 '<a class="mui-tab-item orderlistbtn" href="orderlist.html">'+				'<p><img src="img/nav2.png" style="height: 30px;padding-top:5px ;"/></p>'+				'<span class="mui-tab-label">工单</span>'+			'</a>'+			'<a class="mui-tab-item scanbtn" href="scan.html">'+				'<p><img src="img/scan01.png" style="height: 30px;padding-top:5px ;"/></p>'+				'<span class="mui-tab-label"  style="color: #FF6F00;">扫描</span>'+			'</a>'+			'<a class="mui-tab-item myself" href="">'+				'<p><img src="img/nav3.png" style="height: 30px;padding-top:5px ;"/></p>'+				'<span class="mui-tab-label">我的</span>'+			'</a>'	        $('.foot-bar').html(html);	        $('.orderlistbtn').on('tap',function(){	        	if(qctype == 'qc'){					window.location = 'orderlist.html?type=qc';				}else{					window.location = 'orderlist.html';				}//				window.location = 'orderlist.html';			})
+			$('.indexbtn').on('tap',function(){
+					window.location = 'indexview.html';
+			})			$('.scanbtn').on('tap',function(){				if(qctype == 'qc'){					window.location = 'scan.html?type=qc';				}else{					window.location = 'scan.html';				}			})			$('.myself').on('tap',function(){				if(qctype == 'qc'){					window.location = 'myselfinfo.html?type=qc';				}else{					window.location = 'myselfinfo.html';				}			})	    }
+//		$('.scanbtn').on('tap',function(){
+//			window.location = 'scan.html';
+//		})
+//		$('.myself').on('tap',function(){
+//			window.location = 'myselfinfo.html';
+//		})
+		$('.scan').on('click',function(){
+//			console.log(111);
+//			open.window({
+//				url:'scan1.html',
+//				id:'scan1.html'
+//			})
+//			plus.runtime.openURL('scan1.html');
+			if(qctype == 'qc'){
+				window.location = 'scan1.html?type=qc';
+			}else{
+				window.location = 'scan1.html';
+			}
+			
+		})
+		var textField = document.getElementById("search"), //获取表单域
+		startText = 'G'; //获取开头字符串
+		textField.onfocus= function () {
+			$('#search').val('G');
+		    //如果不是以startText开头的，就把文本框内的值设为startText
+		    (textField.value.indexOf('G') === 0) || (textField.value = 'G');
+		};
+
+		$('.right').on('click',function(){
+//			alert(111);
+			var result = $('input[name="workOrderNo"]').val();
+//			open.window({
+//				url:'orderdetail.html?result='+result,
+//				id:'orderdetail.html'
+//			})
+			var printingDepartmentId = 0
+			var workOrderId = '';
+			var workOrderNo = result;
+			$.ajax({
+					type:"post",
+					dataType:'json',
+					url:ajaxUrlPath+"/mobile/workOrder/workOrderDetail",
+					data:{
+						workOrderId:workOrderId,
+						workOrderNo:workOrderNo,
+						printingDepartmentId:printingDepartmentId
+					},
+					success:function(data){
+						
+//						location.reload();
+						console.log(data);
+						if(data.code==0){
+							if(data.result == null){
+								alert('查询无此工单')
+							}else{
+								if(localStorage.getItem('authorityType')==20){
+									window.location = 'orderQCdetail2.html?result='+result+'&type=qc';
+								}else{
+									if(qctype == 'qc'){
+										window.location = 'orderQCdetail2.html?result='+result+'&type=qc';
+									}else{
+										// alert(result);
+										// var  skipresult = result+Date.parse(new Date());
+										// mui.openWindow({
+										//     url:'orderdetail2.html',
+										//     id:skipresult,
+										//     extras: {
+										//         workOrderId: result,
+										//     }
+										// });
+										window.location = 'orderdetail2.html?result='+result;	
+									}
+																
+								}
+							}
+							
+							
+							
+						}else{
+							alert('查询无此工单')
+						}
+					}
+				})
+//			window.location = 'orderdetail.html?result='+result;
+		})
+		
+	</script>
+
+
+</html>
+

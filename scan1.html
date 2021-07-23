@@ -1,0 +1,229 @@
+<!doctype html>  
+<html>  
+   <head>  
+    <meta charset="UTF-8">  
+    <title></title>  
+   <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover" name="viewport">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+   <!-- <meta name="apple-mobile-web-app-status-bar-style" content="black"> -->
+    <link href="css/mui.min.css" rel="stylesheet" />  
+    <script src="js/mui.min.js"></script>  
+    <style type="text/css">  
+        #bcid{  
+            width: 100%;  
+            height: 100%;  
+            position: absolute; 
+			top: 45px;
+            background: #000000;  
+        }  
+        html, body ,div{  
+            height:100%
+            width: 100%;  
+        }  
+        .fbt{  
+            color: #0E76E1;  
+            width: 50%;  
+            background-color: #ffffff;  
+            float: left;   
+            line-height: 44px;  
+            text-align: center;  
+        }  
+		.mui-bar{
+			position: fixed;
+			z-index: 9999;
+		}
+    </style>  
+   </head>  
+  <body>  
+    <header class="mui-bar mui-bar-nav" style="background-color: #ffffff;">  
+      <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>  
+      <h1 class="mui-title" style="color: #0E76E1;">二维码扫描</h1>  
+      <span class="mui-icon mui-icon-spinner-cycle mui-spin mui-pull-right" id="turnTheLight"></span>  
+    </header>  
+          
+    <div id="bcid">     
+         <!--盛放扫描控件的div-->          
+    </div>  
+          
+    <div class="mui-bar mui-bar-footer" style="padding: 0px;">  
+        <div class="fbt" onclick="scanPicture();">从相册选择二维码</div>  
+        <div class="fbt mui-action-back">取　 消</div>  
+    </div>  
+     
+	 <script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	 <script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+	 <script type="text/javascript" src="js/template-native.min.js"></script>
+	 <!--<script type="text/javascript" src="js/immersed.js"></script>-->
+	 <script type="text/javascript" src="js/pages/share.js"></script>
+    <script type="text/javascript">  
+    
+    var height = window.innerHeight + 'px';//获取页面实际高度  
+    var width = window.innerWidth + 'px';  
+    document.getElementById("bcid").style.height= 'calc(100% - 90px)';  
+    document.getElementById("bcid").style.width= '100%';  
+	function getUrlParam(name) {
+			    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+			    var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+			    if (r != null) return decodeURI(r[2]); return null; //返回参数值
+		}
+		function isJSON(str) {
+		            if (typeof str == 'string') {
+		                try {
+		                    var obj=JSON.parse(str);
+		                    if(typeof obj == 'object' && obj ){
+		                        return true;
+		                    }else{
+		                        return false;
+		                    }
+		
+		                } catch(e) {
+		                    return false;
+		                }
+		            }else if (typeof str == 'object'  && str) {
+		                return true;
+		            }
+		        }
+	var qctype = getUrlParam('type');
+    
+    
+           scan = null;//扫描对象  
+        mui.plusReady(function () {  //通过mui初始化扫描
+              mui.init();  
+          startRecognize();  
+        });  
+              
+        function startRecognize(){  //开启扫描
+           try{  
+              var filter;  
+             //自定义的扫描控件样式  
+             var styles = {frameColor: "#29E52C",scanbarColor: "#29E52C",background: ""}  
+            //扫描控件构造  
+            scan = new plus.barcode.Barcode('bcid',filter,styles);  
+            scan.onmarked = onmarked;   
+            scan.onerror = onerror;  //扫描错误
+            scan.start();  
+            //打开关闭闪光灯处理  
+            var flag = false;  
+            document.getElementById("turnTheLight").addEventListener('tap',function(){  
+               if(flag == false){  
+                  scan.setFlash(true);  
+                  flag = true;  
+               }else{  
+                 scan.setFlash(false);  
+                 flag = false;  
+               }  
+            });  
+          }catch(e){  
+            alert("出现错误啦:\n"+e);  
+             }  
+          };  
+            function onerror(e){  //错误弹框
+                    alert(e);  
+            };  
+            function onmarked( type, result ) {  //这个是扫描二维码的回调函数，type是扫描二维码回调的类型
+                    var text = '';  
+                    switch(type){ //QR,EAN13,EAN8都是二维码的一种编码格式,result是返回的结果
+                        case plus.barcode.QR:  
+                        text = 'QR: ';  
+                        break;  
+                        case plus.barcode.EAN13:  
+                        text = 'EAN13: ';  
+                        break;  
+                        case plus.barcode.EAN8:  
+                        text = 'EAN8: ';  
+                        break;  
+                    }  
+					
+					if(isJSON(result)==false){
+						// alert('请扫描正确的二维码');
+						// scan.close();
+						// window.location = 'scan.html';
+						// return false;
+						 workOrderId = result;
+					}else{
+						var result = JSON.parse(result);
+						 workOrderId = result.workOrderId
+					}
+                    
+                     scan.close()
+//                   alert(qctype)
+					$.ajax({
+						type:"post",
+						dataType:'json',
+						url:ajaxUrlPath+"/mobile/workOrder/workOrderDetail",
+						data:{
+							workOrderId:workOrderId,
+							workOrderNo:workOrderId,
+							printingDepartmentId:0
+						},
+						error:function(){
+							alert('查询无此工单');
+						},
+						success:function(data){
+							console.log(JSON.stringify(data));
+							if(data.code == 0){
+								if(data.result==null){
+									alert('查询无此工单')
+									window.location = 'scan.html';
+								}else{
+									if(qctype=='qc'){
+										window.location = 'orderQCdetail2.html?result='+workOrderId+'&type=qc';
+									}else{
+										// var  skipresult = workOrderId+Date.parse(new Date());
+										// mui.openWindow({
+										// 						url:'orderdetail2.html?result='+workOrderId,
+										// 						id:skipresult,
+										// 						createNew:true,
+										// 					})
+										window.location = 'orderdetail2.html?result='+workOrderId;	
+									}
+								}
+								
+							}
+						},
+					})
+                     
+                     
+
+            };    
+                  
+        // 从相册中选择二维码图片   
+        function scanPicture() {  //可以直接识别二维码图片
+            plus.gallery.pick(function(path){  
+                plus.barcode.scan(path,onmarked,function(error){  
+                    plus.nativeUI.alert( "无法识别此图片" );  
+                });  
+            },function(err){  
+                plus.nativeUI.alert("Failed: "+err.message);  
+            });  
+        }         
+           $('.mui-action-back').on('tap',function(){
+           	scan.close() ;
+			mui.back()
+//                   mui.openWindow({
+//					url:'scan.html',
+//					id:'scan',
+//					createNew:true,
+//				})
+           })
+            pushHistory(); 
+		    window.addEventListener("popstate", function(e) { 
+		    	scan.close() 
+				mui.back()
+    //              mui.openWindow({
+				// 	url:'scan.html',
+				// 	id:'scan',
+				// 	createNew:true,
+				// })
+		      	
+		    }, false); 
+		    function pushHistory() { 
+		      var state = { 
+		        title: "title", 
+		        url: "#"
+		      }; 
+		      window.history.pushState(state, "title", "#"); 
+		    }
+        </script>  
+    </body>  
+</html>  

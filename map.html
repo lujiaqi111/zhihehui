@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html>
+ <head>
+ <meta charset="utf-8">
+ <meta charset="utf-8"/>
+		<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover" name="viewport">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="HandheldFriendly" content="true"/>
+		
+		<meta name="MobileOptimized" content="320"/>
+		<title>Hello H5+</title>
+		<link rel="stylesheet" type="text/css" href="css/mui.min.css"/>
+		
+		<link rel="stylesheet" type="text/css" href="css/rem.css"/>
+		
+		<link rel="stylesheet" type="text/css" href="css/initialization1.css"/>
+		<script type="text/javascript" src="js/map/common.js"></script>
+    <style type="text/css">
+		p{
+			color: #FFFFFF;
+		}
+    	*{
+    		padding: 0;
+    		margin: 0;
+    	}
+    	html,body{
+    		background-color: #f1f5f8;
+    		width: 100%;
+    		height: 100%;
+    		overflow: hidden
+    	}
+    	.head{
+    		width: 100%;
+    		height: 80px;
+    		background-color: #ff6f00;
+    		color: #FFFFFF;
+    	}
+    	
+    	.left{
+    		width: 30%;
+    		height: 80px;
+    		float: left;
+    	}
+    	.left img{
+    		width: 60px;
+    		height: 60px;
+    		margin: 10px 20px;
+    	}
+    	.right{
+    		width: 70%;
+    		height: 80px;
+    		/*background-color: red;*/
+    		float: right;
+    	}
+    	.right p{
+    		line-height: 40px;
+			color: #FFFFFF;
+    	}
+    	.right p:nth-child(1){
+    		font-size: 20px;
+    	}
+    	#contain{
+    		width: 94%;
+    		/* height: 80%; */
+    		/* background-color: #FFFFFF; */
+    		margin-left: 3%;
+    		border-radius: 6px;
+    		/* border: 1px solid #FFFFFF; */
+			/* box-shadow: 1px 1px 3px #666666; */
+    	}
+    	.time{
+    		width: 100%;
+    		height: 60px;
+    		margin-top:20px;
+    	}
+    	.time li{
+    		list-style-type: none;
+    		width: 44%;
+    		height: 60px;
+    		background-color: #f1f5f8;
+    		float: left;
+    		margin-left:4% ;
+    		border-radius: 6px;
+    		
+    	}
+    	.time li p{
+    		line-height: 30px;
+    		padding-left: 6px;
+    	}
+    	.time li p:nth-child(1){
+    		font-size: 20px;
+    	}
+    	#submit{
+    		width: 160px;
+    		height: 160px;
+    		background-color: #ff6f00;
+    		border-radius: 50%;
+    		position: absolute;
+    		left: 50%;
+    		margin-left: -80px;
+    		top: 50%;
+    		box-shadow: 1px 1px 2px #cef2e8;
+    		text-align: center;
+    		color: #FFFFFF;
+    	}
+		#submit p{
+			font-family: "arial, helvetica, sans-serif";
+		}
+    	#submit p:nth-child(1){
+    		margin-top: 30px;
+    		font-size: 30px;
+			font-weight: 200;
+			
+    	}
+    	#submit p:nth-child(2){
+    		margin-top: 20px;
+			font-size: 34px;
+			font-weight: 200;
+    	}
+		#submit p:nth-child(3){
+			margin-top: 10px;
+			font-weight: 200;
+		}
+    	#container{
+    		width: 100%;
+    		height: 50px;
+    		opacity: 0;
+    	}
+    	#tip{
+    		width: 90%;
+    		height: 40px;
+    		display: block;
+    		position: absolute;
+    		top: 80%;
+    		text-align: center;
+    	}
+    	.header{
+				background-color: #FF6E00;
+				position: relative;
+				width: 100%;
+				height: 42px;
+		}
+
+		.title{
+			position: absolute;
+			text-align: left;
+			display: inline-block;
+			font-size: 18px;
+			line-height: 40px;
+			color: #FFFFFF;
+			width: 100%;
+			/* left: 0; */
+			height: 40px;
+			border: 2px solid #FF6E00;
+			padding-left: 10px;
+			font-weight: normal;
+			top: 0;
+			
+			/*margin-left: 30%;*/
+		}
+		.headcontent{
+			width: 100%;
+			height: 130px;
+			background-color: #FF6E00;
+		}
+		.userName span{
+			font-size: 14px;
+			padding-left: 15px;
+		}
+		.maplist{
+			width: 94%;
+			margin: 3%;
+			margin-top: 5%;
+			height: 120px;
+			background-color: #FFFFFF;
+			box-shadow: 1px 1px 3px #666666;
+			border-radius: 5px;
+			position: relative;
+		}
+		.maplist .maplistlogo{
+			width: 80px;
+			height: 80px;
+			margin: 20px 10px;
+		}
+		.maplist p:nth-child(1){
+			font-size: 17px;
+			color: #676767;
+			margin-top: 30px;
+		}
+		.maplist p:nth-child(2){
+			font-size: 13px;
+			margin-top: -15px;
+			color: #676767;
+		}
+		#attendance{
+			position: absolute;
+			width: 94%;
+			margin: 3%;
+			margin-top: 5%;
+			height: 60px;
+			background-color: #FFFFFF;
+			box-shadow: 1px 1px 3px #666666;
+			border-radius: 5px;
+			bottom: 60px;
+			line-height: 60px;
+			text-align: center;
+			color: #676767;
+			font-size: 16px;
+		}
+		.attendancelogo{
+			position: absolute;
+			width: 14px;
+			height: 28px;
+			right: 10px;
+			top: 16px;
+		}
+		.mui-bar-tab{
+			position: absolute;
+			bottom: 0px;
+		}
+		.mui-scrollbar-indicator{
+			background: rgba(0,0,0,0);
+		}
+		.mui-pull-top-tips{position:absolute;top:-20px;left:50%;margin-left:-25px;width:40px;height:40px;border-radius:100%;z-index:999;}
+		.mui-bar~.mui-pull-top-tips{top:24px;}
+		.mui-pull-top-wrapper{width:42px;height:42px;display:block;text-align:center;background-color:#efeff4;border:1px solid #ddd;border-radius:25px;background-clip:padding-box;box-shadow:0 4px 10px #bbb;overflow: hidden;}
+		.mui-pull-top-tips.mui-transitioning {-webkit-transition-duration:200ms;transition-duration:200ms;}
+		.mui-pull-top-tips .mui-pull-loading{margin:0;}
+		.mui-pull-top-wrapper .mui-icon, .mui-pull-top-wrapper .mui-spinner{margin-top:7px;}
+		.mui-pull-bottom-tips{text-align:center;background-color:#efeff4;font-size:15px;line-height:40px;color:#777;}
+		.mui-pull-top-canvas{overflow:hidden;background-color:#fafafa;border-radius:40px;box-shadow:0 4px 10px #bbb;width:40px;height:40px;margin:0 auto;}
+		.mui-pull-top-canvas canvas{width:40px;}
+		.maplogo{
+			display: block;
+			position: absolute;
+			right: 10px;
+			width: 14px;
+			height: 28px;
+			top: 46px;
+		}
+		#addresscontent{
+			line-height: 30px;
+			width: 90%;
+		}
+		@media screen and (max-width: 330px) {
+		    #submit {
+		        width: 135px;
+		        height: 135px;
+		        background-color: #ff6f00;
+		        border-radius: 50%;
+		        position: absolute;
+		        left: 50%;
+		        margin-left: -80px;
+		        top: 50%;
+		        box-shadow: 1px 1px 2px #cef2e8;
+		        text-align: center;
+		        color: #FFFFFF;
+		    }
+			#submit p:nth-child(1) {
+			    margin-top: 20px;
+			    font-size: 25px;
+			    font-weight: 200;
+			}
+		}
+    </style>
+ </head>
+ <body>
+	 <nav class="mui-bar mui-bar-tab foot-bar">
+	 	<a class="mui-tab-item orderlistbtn" href="orderlist.html">
+	 		<p><img src="img/nav2.png" style="height: 30px;padding-top:5px ;"/></p>
+	 		<span class="mui-tab-label" >工单</span>
+	 	</a>
+		<a class="mui-tab-item daka" href="map.html">
+			<p><img src="img/daka.png" style="height: 30px;padding-top:5px ;"/></p>
+			<span class="mui-tab-label" style="color: #FF6F00;">打卡</span>
+		</a>
+	 	<a class="mui-tab-item scanbtn" href="scan.html">
+	 		<p><img src="img/scan1.png" style="height: 30px;padding-top:5px ;"/></p>
+	 		<span class="mui-tab-label" >扫描</span>
+	 	</a>
+	 	<a class="mui-tab-item myself" href="myselfinfo.html">
+	 		<p><img src="img/nav3.png" style="height: 30px;padding-top:5px ;"/></p>
+	 		<span class="mui-tab-label" >我的</span>
+	 	</a>
+	 </nav>
+ 	<div class="headcontent">
+ 	<h2 class="header">
+			<span class="title">打卡上班</span>
+	</h2>
+ 	<div class="head">
+ 		<div class="left">
+ 				<img class="logo" src="img/header.png"/>
+ 		</div>
+ 		<div class="right">
+ 			<p class="userName">XXX <span class="companyName">印刷部</span></p>
+ 			<p class="teams schedule">今日晚班</p>
+ 		</div>
+ 	</div>
+ 	</div>
+	<div class="maplist" onclick="showtomap()">
+		<div class="left">
+				<img class="maplistlogo" src="img/map.png"/>
+		</div>
+		<div class="right">
+			<p id="addresstitle">当前位置在打卡范围内</p>
+			<p id="addresscontent">杭州市余杭区贤街道大安村诸家墩58号</p>
+		</div>
+		<img class="maplogo" src="img/nextbtn3.png" >
+	</div>
+ 	<div id="contain">
+ 		<div id="submit" onclick="clickcode()">
+ 			<p id="nowstatus">打卡</p>
+ 			<p id="nowtime"></p>
+			<p id="nowdate"></p>
+ 		</div>
+ 		<!-- <p class="space" id="tip">距离目的地：</p> -->
+ 	</div>
+	<div id="attendance" >
+		打卡记录查询
+		<img class="attendancelogo" src="img/nextbtn3.png" >
+	</div> 
+ </body>
+ <script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+ <script type="text/javascript" src="js/map/immersed.js" ></script>
+  <script type="text/javascript" src="js/mui.min.js" ></script>
+  <script type="text/javascript" src="js/layer3.0.1/layer.js"></script>
+ <script src="js/pages/share.js" type="text/javascript" charset="utf-8"></script>
+ <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=TgGWRchxNH8neH8rzOwWqrY0DtEPAKVt"></script>
+ <script type="text/javascript">
+ 	$('.header').on('tap',function(){
+				mui.back();
+			})
+	function getUrlParam(name) {
+		    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+		    var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+		    if (r != null) return decodeURI(r[2]); return null; //返回参数值
+	}
+	var qctype = getUrlParam('type');		
+	var authorityType = localStorage.getItem('authorityType');
+			if(authorityType=='6'||authorityType=='7'||authorityType=='8'||authorityType=='9'||authorityType=='10'||authorityType=='11'||authorityType=='12'||authorityType=='13'||authorityType=='14'||authorityType=='15'||authorityType=='16'||authorityType=='17'||authorityType=='18'||authorityType=='19'||authorityType=='20'||authorityType=='21' || authorityType=='23' || authorityType=='24' || authorityType=='25'){
+	//			alert(1111);
+				var html = '<a class="mui-tab-item orderlistbtn" href="orderlist.html">'+
+					'<p><img src="img/nav2.png" style="height: 30px;padding-top:5px ;"/></p>'+
+					'<span class="mui-tab-label">工单</span>'+
+				'</a>'+
+				'<a class="mui-tab-item daka" href="map.html">'+
+					'<p><img src="img/daka.png" style="height: 30px;padding-top:5px ;"/></p>'+
+					'<span class="mui-tab-label"  style="color: #FF6F00;">打卡</span>'+
+				'</a>'+
+				'<a class="mui-tab-item scanbtn" href="scan.html">'+
+					'<p><img src="img/scan1.png" style="height: 30px;padding-top:5px ;"/></p>'+
+					'<span class="mui-tab-label" >扫描</span>'+
+				'</a>'+
+				'<a class="mui-tab-item myself" href="">'+
+					'<p><img src="img/nav3.png" style="height: 30px;padding-top:5px ;"/></p>'+
+					'<span class="mui-tab-label">我的</span>'+
+				'</a>'
+				console.log(html);
+		        $('.foot-bar').html(html);
+		        $('.orderlistbtn').on('tap',function(){
+		        	if(qctype == 'qc'){
+						window.location = 'orderlist.html?type=qc';
+					}else{
+						window.location = 'orderlist.html';
+					}
+	//				window.location = 'orderlist.html';
+				})
+				$('.scanbtn').on('tap',function(){
+					if(qctype == 'qc'){
+						window.location = 'scan.html?type=qc';
+					}else{
+						window.location = 'scan.html';
+					}
+				})
+				$('.myself').on('tap',function(){
+					if(qctype == 'qc'){
+						window.location = 'myselfinfo.html?type=qc';
+					}else{
+						window.location = 'myselfinfo.html';
+					}
+				})
+				$('.daka').on('tap',function(){
+							if(qctype == 'qc'){
+								window.location = 'map.html?type=qc';
+							}else{
+								window.location = 'map.html';
+							}
+						})
+		    }else if(localStorage.getItem('authorityType')==20){
+		        var html = '<a class="mui-tab-item orderlistbtn" href="orderlist.html">'+
+					'<p><img src="img/nav2.png" style="height: 30px;padding-top:5px ;"/></p>'+
+					'<span class="mui-tab-label">工单</span>'+
+				'</a>'+
+				'<a class="mui-tab-item daka" href="map.html">'+
+					'<p><img src="img/daka.png" style="height: 30px;padding-top:5px ;"/></p>'+
+					'<span class="mui-tab-label"  style="color: #FF6F00;">打卡</span>'+
+				'</a>'+
+				'<a class="mui-tab-item scanbtn" href="scan.html">'+
+					'<p><img src="img/scan1.png" style="height: 30px;padding-top:5px ;"/></p>'+
+					'<span class="mui-tab-label" >扫描</span>'+
+				'</a>'+
+				'<a class="mui-tab-item myself" href="">'+
+					'<p><img src="img/nav3.png" style="height: 30px;padding-top:5px ;"/></p>'+
+					'<span class="mui-tab-label">我的</span>'+
+				'</a>'
+		        $('.foot-bar').html(html);
+		        $('.orderlistbtn').on('tap',function(){
+		        	if(qctype == 'qc'){
+						window.location = 'orderlist.html?type=qc';
+					}else{
+						window.location = 'orderlist.html';
+					}
+	//				window.location = 'orderlist.html';
+				})
+				$('.scanbtn').on('tap',function(){
+					if(qctype == 'qc'){
+						window.location = 'scan.html?type=qc';
+					}else{
+						window.location = 'scan.html';
+					}
+				})
+				$('.myself').on('tap',function(){
+					if(qctype == 'qc'){
+						window.location = 'myselfinfo.html?type=qc';
+					}else{
+						window.location = 'myselfinfo.html';
+					}
+				})
+				$('.daka').on('tap',function(){
+							if(qctype == 'qc'){
+								window.location = 'map.html?type=qc';
+							}else{
+								window.location = 'map.html';
+							}
+						})
+		    }else if(localStorage.getItem('authorityType')==5){
+		         var html = '<a class="mui-tab-item orderlistbtn" href="orderlist.html">'+
+					'<p><img src="img/nav2.png" style="height: 30px;padding-top:5px ;"/></p>'+
+					'<span class="mui-tab-label">工单</span>'+
+				'</a>'+
+				'<a class="mui-tab-item daka" href="map.html">'+
+					'<p><img src="img/daka.png" style="height: 30px;padding-top:5px ;"/></p>'+
+					'<span class="mui-tab-label"  style="color: #FF6F00;">打卡</span>'+
+				'</a>'+
+				'<a class="mui-tab-item scanbtn" href="scan.html">'+
+					'<p><img src="img/scan1.png" style="height: 30px;padding-top:5px ;"/></p>'+
+					'<span class="mui-tab-label" >扫描</span>'+
+				'</a>'+
+				'<a class="mui-tab-item myself" href="">'+
+					'<p><img src="img/nav3.png" style="height: 30px;padding-top:5px ;"/></p>'+
+					'<span class="mui-tab-label">我的</span>'+
+				'</a>'
+		        $('.foot-bar').html(html);
+		        $('.orderlistbtn').on('tap',function(){
+					 window.location.href='stockorderlist.html'
+				})
+				$('.scanbtn').on('tap',function(){
+					window.location = 'scan.html';
+				})
+				$('.myself').on('tap',function(){
+					window.location = 'myselfinfo.html';
+				})
+				$('.daka').on('tap',function(){
+							if(qctype == 'qc'){
+								window.location = 'map.html?type=qc';
+							}else{
+								window.location = 'map.html';
+							}
+						})
+		     }else if(localStorage.getItem('authorityType')==22){
+		     	var html = '<a class="mui-tab-item orderlistbtn" href="orderlist.html">'+
+					'<p><img src="img/nav2.png" style="height: 30px;padding-top:5px ;"/></p>'+
+					'<span class="mui-tab-label">工单</span>'+
+				'</a>'+
+				'<a class="mui-tab-item daka" href="map.html">'+
+					'<p><img src="img/daka.png" style="height: 30px;padding-top:5px ;"/></p>'+
+					'<span class="mui-tab-label"  style="color: #FF6F00;">打卡</span>'+
+				'</a>'+
+				'<a class="mui-tab-item scanbtn" href="scan.html">'+
+					'<p><img src="img/scan1.png" style="height: 30px;padding-top:5px ;"/></p>'+
+					'<span class="mui-tab-label" >扫描</span>'+
+				'</a>'+
+				'<a class="mui-tab-item myself" href="">'+
+					'<p><img src="img/nav3.png" style="height: 30px;padding-top:5px ;"/></p>'+
+					'<span class="mui-tab-label">我的</span>'+
+				'</a>'
+		        $('.foot-bar').html(html);
+		        $('.orderlistbtn').on('tap',function(){
+					 window.location.href='instockorderlist.html'
+				})
+				$('.scanbtn').on('tap',function(){
+					window.location = 'scan.html';
+				})
+				$('.myself').on('tap',function(){
+					window.location = 'myselfinfo.html';
+				})
+				$('.daka').on('tap',function(){
+							if(qctype == 'qc'){
+								window.location = 'map.html?type=qc';
+							}else{
+								window.location = 'map.html';
+							}
+						})
+		    }else if(localStorage.getItem('authorityType')==3){
+		         var html = '<a class="mui-tab-item orderlistbtn" href="orderlist.html">'+
+					'<p><img src="img/nav2.png" style="height: 30px;padding-top:5px ;"/></p>'+
+					'<span class="mui-tab-label">工单</span>'+
+				'</a>'+
+				'<a class="mui-tab-item daka" href="map.html">'+
+					'<p><img src="img/daka.png" style="height: 30px;padding-top:5px ;"/></p>'+
+					'<span class="mui-tab-label"  style="color: #FF6F00;">打卡</span>'+
+				'</a>'+
+				'<a class="mui-tab-item scanbtn" href="scan.html">'+
+					'<p><img src="img/scan1.png" style="height: 30px;padding-top:5px ;"/></p>'+
+					'<span class="mui-tab-label" >扫描</span>'+
+				'</a>'+
+				'<a class="mui-tab-item myself" href="">'+
+					'<p><img src="img/nav3.png" style="height: 30px;padding-top:5px ;"/></p>'+
+					'<span class="mui-tab-label">我的</span>'+
+				'</a>'
+		        $('.foot-bar').html(html);
+		        $('.orderlistbtn').on('tap',function(){
+					window.location = 'adminwaitorderlist.html';
+				})
+				$('.scanbtn').on('tap',function(){
+					window.location = 'scan.html';
+				})
+				$('.myself').on('tap',function(){
+					window.location = 'myselfinfo.html';
+				})
+				$('.daka').on('tap',function(){
+							if(qctype == 'qc'){
+								window.location = 'map.html?type=qc';
+							}else{
+								window.location = 'map.html';
+							}
+						})
+		    }else if(localStorage.getItem('authorityType')==1){
+		        var html ='<a class="mui-tab-item indexbtn" href="indexview.html">'+
+					'<p><img src="img/nav2.png" style="height: 30px;padding-top:5px ;"/></p>'+
+					'<span class="mui-tab-label" >首页</span>'+
+				'</a>'+
+				 '<a class="mui-tab-item orderlistbtn" href="orderlist.html">'+
+					'<p><img src="img/nav2.png" style="height: 30px;padding-top:5px ;"/></p>'+
+					'<span class="mui-tab-label" >工单</span>'+
+				'</a>'+
+				'<a class="mui-tab-item scanbtn" href="scan.html">'+
+					'<p><img src="img/scan1.png" style="height: 30px;padding-top:5px ;"/></p>'+
+					'<span class="mui-tab-label" >扫描</span>'+
+				'</a>'+
+				'<a class="mui-tab-item myself" href="">'+
+					'<p><img src="img/nav3.png" style="height: 30px;padding-top:5px ;"/></p>'+
+					'<span class="mui-tab-label" >我的</span>'+
+				'</a>'
+		        $('.foot-bar').html(html);
+		        $('.orderlistbtn').on('tap',function(){
+		        	if(qctype == 'qc'){
+						window.location = 'orderlist.html?type=qc';
+					}else{
+						window.location = 'orderlist.html';
+					}
+	//				window.location = 'orderlist.html';
+				})
+				$('.indexbtn').on('tap',function(){
+						window.location = 'indexview.html';
+				})
+				$('.scanbtn').on('tap',function(){
+					if(qctype == 'qc'){
+						window.location = 'scan.html?type=qc';
+					}else{
+						window.location = 'scan.html';
+					}
+				})
+				$('.myself').on('tap',function(){
+					if(qctype == 'qc'){
+						window.location = 'myselfinfo.html?type=qc';
+					}else{
+						window.location = 'myselfinfo.html';
+					}
+				})
+		    }
+	
+	var punchType = 0;
+	var status = 0;
+	var address = '';
+	var memo = '';
+	var punchDate = '';
+	var countstatus = 0;
+   pushHistory();
+   window.addEventListener("popstate", function(e) { 
+   	plus.runtime.quit();
+     	
+   }, false); 
+   function pushHistory() { 
+     var state = { 
+       title: "title", 
+       url: "#"
+     }; 
+     window.history.pushState(state, "title", "#"); 
+   }
+   $.ajax({
+   				type:"post",
+   				url:ajaxUrlPath+"/mobile/userPunch/punchCount",
+   				data:{
+   					userId:localStorage.getItem('memberId'),
+   				},
+   				success:function(data){
+					if(data.code==0){
+						var count = data.result.count;
+						if(count==0){
+							$('.title').html('打卡上班')
+							countstatus = 0;
+						}else{
+							$('.title').html('打卡下班')
+							countstatus = 1;
+						}
+						localStorage.setItem('count',count);
+					}
+					
+				},
+	})
+ 	$.ajax({
+					type:"post",
+					url:ajaxUrlPath+"/mobile/member/getById",
+					async:true,
+					data:{
+						userId:localStorage.getItem('memberId'),
+						type:0,
+					},
+					success:function(data){
+						// alert(JSON.stringify(data));
+						if(data.code==0){ 
+							if(data.result.schedule==null){
+								punchType = ''
+							}else{
+								punchType = data.result.schedule
+							}
+							
+							if(data.result.schedule==1){
+								$('.schedule').html('今日早班('+(data.result.scheduleTime==null?'':data.result.scheduleTime)+')')
+							}else if(data.result.schedule==2){
+								$('.schedule').html('今日早班('+(data.result.scheduleTime==null?'':data.result.scheduleTime)+')')
+							}else if(data.result.schedule==3){
+								$('.schedule').html('今日晚班('+(data.result.scheduleTime==null?'':data.result.scheduleTime)+')')
+							}else{
+								$('.schedule').html('今日未排班')
+							}
+							var logo = '';
+							if(data.result.logo=='' || data.result.logo == null){
+								logo = 'img/header.png'
+							}else{
+								logo = data.result.logo
+							}
+							console.log(logo);
+							$('.logo').attr('src',logo)
+							
+							var authorityType = '';
+							if(data.result.authorityType == 1){
+								authorityType = '老板'
+							}else if(data.result.authorityType == 2){
+								authorityType = '业务员'
+							}else if(data.result.authorityType == 3){
+								authorityType = '前台'
+							}else if(data.result.authorityType == 4){
+								authorityType = '财务'
+							}else if(data.result.authorityType == 5){
+								authorityType = '仓库'
+							}else if(data.result.authorityType == 6){
+								authorityType = '印刷'
+							}else if(data.result.authorityType == 7){
+								authorityType = '制版'
+							}else if(data.result.authorityType == 8){
+								authorityType = '切纸'
+							}else if(data.result.authorityType == 9){
+								authorityType = '覆膜'
+							}else if(data.result.authorityType == 10){
+								authorityType = 'UV/丝印'
+							}else if(data.result.authorityType == 11){
+								authorityType = '烫印'
+							}else if(data.result.authorityType == 12){
+								authorityType = '凹凸'
+							}else if(data.result.authorityType == 13){
+								authorityType = '模切'
+							}else if(data.result.authorityType == 14){
+								authorityType = '糊盒'
+							}else if(data.result.authorityType == 15){
+								authorityType = '喷码'
+							}else if(data.result.authorityType == 16){
+								authorityType = '装箱'
+							}else if(data.result.authorityType == 17){
+								authorityType = '手工'
+							}else if(data.result.authorityType == 18){
+								authorityType = '拆边'
+							}else if(data.result.authorityType == 19){
+								authorityType = '品检'
+							}else if(data.result.authorityType == 20){
+								authorityType = 'QC'
+							}else if(data.result.authorityType == 21){
+								authorityType = '生产厂长'
+							}else if(data.result.authorityType == 22){
+								authorityType = '成品入库'
+							}else if(data.result.authorityType == 23){
+								authorityType = '印刷主管'
+							}else if(data.result.authorityType == 24){
+								authorityType = '后道主管'
+							}else if(data.result.authorityType == 25){
+								authorityType = '外协主管'
+							}
+							$('.userName').html(data.result.userName+'<span class="companyName">'+authorityType+'</span>');
+							// $('.companyName').html(authorityType)
+						}else{
+							mui.toast(data.message);
+						}
+					}
+					
+				});
+ 	var myDate = new Date();
+	var hh = myDate.getHours();       //获取当前小时数(0-23)
+	var mm = myDate.getMinutes();     //获取当前分钟数(0-59)
+	var ss = myDate.getSeconds();     //获取当前秒数(0-59)
+	var y = myDate.getFullYear();
+	var m = myDate.getMonth()+1;
+	var d = myDate.getDate();
+	var nowdate = y+'年'+m+'月'+d+'日';
+	punchDate = y+'-'+m+'-'+d+' ';
+	console.log(nowdate);
+	document.getElementById('nowdate').innerHTML = nowdate;
+	if(hh<10){
+		hh = '0'+hh;
+	}
+	if(mm<10){
+		mm = '0'+mm;
+	}
+	if(ss<10){
+		ss = '0'+ss;
+	}
+	var nowtime = hh+':'+mm+':'+ss;
+	document.getElementById('nowtime').innerHTML = nowtime;
+	setInterval(function(){
+		var myDate = new Date();
+		var hh = myDate.getHours();       //获取当前小时数(0-23)
+		var mm = myDate.getMinutes();     //获取当前分钟数(0-59)
+		var ss = myDate.getSeconds();     //获取当前秒数(0-59)
+		if(hh<10){
+			hh = '0'+hh;
+		}
+		if(mm<10){
+			mm = '0'+mm;
+		}
+		if(ss<10){
+			ss = '0'+ss;
+		}
+		var nowtime = hh+':'+mm+':'+ss;
+		document.getElementById('nowtime').innerHTML = nowtime;
+	},1000)
+	var dis  = 0;
+//	var p2 = [120.128437,30.33691];
+	var p2 = [120.174781,30.416663];//华芳布艺
+	
+	// var p2 = [120.121083,30.341714];
+	
+	var p1 = '';
+	function plusReady(){
+		getGeocode();
+	}
+	if(window.plus){
+		plusReady();
+	}else{
+		document.addEventListener('plusready', plusReady, false);
+	}
+	function geoInf( position ) {
+		// alert(JSON.stringify(position));
+		var str = "";
+		var strs = [];
+		str += "地址："+position.addresses+"\n";//获取地址信息
+		var codns = position.coords;//获取地理坐标信息；
+		var longt = codns.longitude;//获取到当前位置的经度
+		strs.push(longt)
+		str += "经度："+longt+"\n";
+		var lat = codns.latitude;//获取到当前位置的纬度；
+		strs.push(lat)
+		str += "纬度："+lat+"\n";
+		// alert(JSON.stringify(position));
+		p1 = strs
+		dis = getDistance(lat, longt, p2[1], p2[0]);
+	   // alert(dis);
+	   if(dis<150){
+		    status = 0;
+		  document.getElementById('addresstitle').innerHTML='当前位置在打卡范围内';
+	      document.getElementById('nowstatus').innerHTML='打卡';
+	   }else{
+	      
+		   status = 1;
+		   document.getElementById('addresstitle').innerHTML='当前位置不在打卡范围内';
+		   document.getElementById('nowstatus').innerHTML='外勤打卡';
+		   // document.getElementById('addresscontent').innerHTML=position.addresses;
+	   
+	   }
+	   document.getElementById('addresscontent').innerHTML=position.addresses+'距离'+dis.toFixed(0)+'米';
+	   address = position.addresses;
+	     // console.log(lat+','+longt);
+//	     let gpsPoint = new BMap.Point(longt,lat);
+//	     var ggPoint = new BMap.Point(longt,lat);
+//
+//  //地图初始化
+//  var bm = new BMap.Map("container");
+//  bm.centerAndZoom(ggPoint, 15);
+//  bm.addControl(new BMap.NavigationControl());
+//
+//  //添加gps marker和label
+//  var markergg = new BMap.Marker(ggPoint);
+//  bm.addOverlay(markergg); //添加GPS marker
+//  var labelgg = new BMap.Label("未转换的GPS坐标（错误）",{offset:new BMap.Size(20,-10)});
+//  markergg.setLabel(labelgg); //添加GPS label
+//
+//  //坐标转换完之后的回调函数
+//  translateCallback = function (data){
+//    if(data.status === 0) {
+//      var marker = new BMap.Marker(data.points[0]);
+//      bm.addOverlay(marker);
+//      var label = new BMap.Label("转换后的百度坐标（正确）",{offset:new BMap.Size(20,-10)});
+//      marker.setLabel(label); //添加百度label
+//      console.log(JSON.stringify(data));
+//      bm.setCenter(data.points[0]);
+//      
+//      dis = getDistance(data.points[0].lat, data.points[0].lng, p2[1], p2[0]);
+//	   console.log(dis);
+//	   document.getElementById('tip').innerHTML='距离祥园创意产业园目的地：'+(dis.toFixed(0))+'米,<br>';
+//    }
+//  }
+//
+//  setTimeout(function(){
+//      var convertor = new BMap.Convertor();
+//      var pointArr = [];
+//      pointArr.push(ggPoint);
+//      convertor.translate(pointArr, 1, 5, translateCallback)
+//  }, 1000);
+		
+	     
+		
+	}
+	// 通过定位模块获取位置信息
+	function getGeocode(){
+//		alert( "获取定位位置信息:" );
+		plus.geolocation.getCurrentPosition(geoInf,function(e) {
+			alert( "获取定位位置信息失败："+e.message);
+		},{
+		provider: 'baidu',
+		coordsType: "bd09ll"
+	});
+	}
+	function clickcode(){
+		getGeocode();
+		punchDate = punchDate+document.getElementById('nowtime').innerHTML;
+		// alert(punchDate+','+status+','+address+','+punchType+','+status)
+		// alert(localStorage.getItem('memberId'))
+			if(punchType == ''){
+				alert('不可打卡,今日未排版')
+			}else{
+				mui.openWindow({
+					url:'map2.html',
+					id:'"map'+Date.parse(new Date())+'"'
+					})
+			}
+			
+		
+		
+		
+	}
+	 //角度转换为弧度
+            function toRadians(degree) {
+                return degree * Math.PI / 180;
+            }
+ 
+            //计算两个坐标点之间的距离
+            function getDistance(lat1, long1, lat2, long2) {
+                // 地球的半径（单位：公里）
+                var R = 6371*1000;
+                //角度转换为弧度
+                var deltaLat = toRadians(lat2 - lat1);
+                var deltaLong = toRadians(long2 - long1);
+                lat1 = toRadians(lat1);
+                lat2 = toRadians(lat2);
+                //计算过程
+                var h = Math.sin(deltaLat / 2) * Math.sin(deltaLat / 2) + Math.cos(lat1) * Math.cos(lat2) * Math.sin(deltaLong / 2) * Math.sin(deltaLong / 2);
+                //求距离
+                var d = 2 * R * Math.asin(Math.sqrt(h));
+                return d;
+            }
+	
+		function showtomap(){
+			mui.openWindow({
+			url:'map3.html',
+			id:'"map3'+Date.parse(new Date())+'"',
+			})
+		}
+		$('#attendance').on('click',function(){
+			mui.openWindow({
+			url:'schedule.html',
+			id:'"schedule'+Date.parse(new Date())+'"',
+			})
+		})
+ </script>
+ </html>

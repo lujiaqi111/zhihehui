@@ -1,0 +1,187 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/initialization1.css"/>
+	</head>
+	<style type="text/css">
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		html,body{
+			width: 100%;
+			background-color: #FFFFFF;
+			
+		}
+		.headtitle{
+			width: 100%;
+			text-align: center;
+			color: #808080;
+			margin-top: 25%;
+			position: relative;
+			border: 1px solid #FFFFFF;
+			
+		}
+		.headtitle p:nth-child(1){
+			font-size: 2.3rem;
+			line-height: 3rem;
+		}
+		.headtitle p:nth-child(2){
+			font-size: 1.1rem;
+			line-height: 2rem;
+		}
+		.headtitle p:nth-child(3){
+			font-size: 1.1rem;
+			line-height: 2rem;
+		}
+		.content button{
+			width: 80%;
+			height: 50px;
+			border: 0px;
+			background-color: #ff6600;
+			color: #FFFFFF;
+			border-radius: 8px;
+			margin-left: 10%;
+			margin-top: 50px;
+		}
+
+		.papercol span{
+			margin-left: 6px;
+			color: #ff6f00;
+		}
+		.papercol p{
+			line-height: 25px;
+		}
+		.papercol span img{
+			height:20px;
+			width: auto;
+		}
+		.papercol span input{
+			height: 20px;
+			width: 35%;
+			border: 0px;
+			text-align: center;
+			margin-bottom: 0px;
+			padding: 0px;
+			font-size: 1rem;
+			border-bottom: 1px solid #ff6600;
+			
+		}
+		.receive{
+			line-height: 30px;
+			margin-top: 6px;
+		}
+	</style>
+
+	<body>
+		<div class="content">
+			<div id="content">
+				<div class="papercol">
+					<p>1.<span class="name"></span></p>
+					<p>数量：<span><input type="number" name="sendNum" id="sendNum" value="" disabled="disabled"/>大张</span></p>
+					<!--<p class="receive" style="margin-top: 10px;"><span style="color: #8f8f94" class="receiveNum">已领0张</span></p>-->
+					<p style="margin-top: 10px;"><span style="color: #8f8f94;display: inline-block;" class="receivetime">2019-02-12 9:20</span></p>
+				</div>
+				<div class="papercol">
+					<p>备注<span class="memo"></span></p>
+				</div>
+			</div>
+			
+			
+			<button class="back">确认发料</button>
+			
+		</div>
+	</body>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/layer3.0.1/layer.js"></script>
+		<script type="text/javascript" src="js/pages/share.js"></script>
+
+		<script type="text/javascript">
+			mui.init();
+			var index = parent.layer.getFrameIndex(window.name);
+			function getUrlParam(name) {
+			    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+			    var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+			    if (r != null) return decodeURI(r[2]); return null; //返回参数值
+			}
+			var type = getUrlParam('type');
+			var id= '';
+			var num = 0;
+			var objId = getUrlParam('objId');
+			var winHeight = $(window).height();   //获取当前页面高度
+			$(window).resize(function(){
+			   var thisHeight=$(this).height();
+			    if(winHeight - thisHeight >50){
+			         //当软键盘弹出，在这里面操作
+					$('#layui-layer1').css('bottom','0');
+			    }else{
+			        //当软键盘收起，在此处操作
+					
+			    }
+			});
+
+			$('.back').on('tap',function(){
+				console.log(111);
+				var papernum = Number($('#sendNum').val());
+				var sendNum = Number($('#sendNum').attr('sendNum'));
+				var receiveNum = Number($('#sendNum').attr('receiveNum'));
+				var inputnum = Number($('#sendNum').attr('num'));
+				var isApply = $(this).attr('isApply');
+//				if(isApply==1){
+//					num = receiveNum;
+//					papernum = papernum - receiveNum;
+//				}else{
+//					num = sendNum
+//				}
+				var totelNum = (inputnum+receiveNum)-sendNum
+				id = $(this).attr('objId');
+//				console.log(num);
+//				console.log(papernum);
+				if(papernum>totelNum){
+					mui.toast('超出数据总量');
+					return false;
+				}else{
+					$.ajax({
+						type:"post",
+						dataType:'json',
+						url:ajaxUrlPath+"/mobile/workOrder/sendMaterial",
+						data:{
+							id:id,
+							num:papernum,
+						},
+						success:function(data){
+							console.log(JSON.stringify(data));
+							console.log(index);
+							if(data.code == 0){
+								alert('发料成功')
+								location.reload();
+								parent.layer.close(index);
+								parent.$('button[objId="'+id+'"]').attr('disabled','disabled');
+								parent.$('button[objId="'+id+'"]').css('background-color','#ccc');
+							}else{
+								alert(data.message)
+//								parent.layer.msg(data.message,500,{offset:'80%'});
+							}
+							
+							
+//							
+							
+						}
+					});
+				}
+//				if(papernum == 0){
+//					mui.toast('暂无领料数据');
+//					return false;
+//				}
+				
+				
+			})
+			
+		</script>
+</html>

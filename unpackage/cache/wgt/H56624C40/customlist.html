@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<title>印刷通-报价</title>		<link rel="stylesheet" type="text/css" href="css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/rem.css"/>
+		<link rel="stylesheet" type="text/css" href="css/initialization1.css"/>		<style type="text/css">
+			#text{			    box-shadow: 0px 1px 6px #c3c3c3;			    border-radius: 10px;			    width: 90%;			    height: 400px;			    margin-left: 4%;			    background-color: #FFFFFF;			    margin-top: 10px;			}			body,html{				background-color: #f2f2f2;				width: 100%;				height: 100%;							}			.title{				width: 100%;				height: 120px;				background-color: #ff6f00;				color: #FFFFFF;				/*margin-top: 80px;*/			}			.search{				width: 100%;				height: 60px;/*				background-color: red;*/			}			.search span{				display: inline-block;				float: left;				line-height: 50px;				font-size: 20px;				font-weight: inherit;				padding-left: 10px;			}			#search{				float: left;				width: 250px;				height: 40px;				border-radius: 20px;				background-color: #ff9a4d;				margin-top: 10px;				margin-left: 10px;			}			#search img{				display: block;				height: 20px;				width: 20px;				margin: 10px;				float: left;			}			#search input{				display: block;				float: left;				width: 200px;				background-color: rgba(0,0,0,0);				border: 0px;				text-align: left;    			color: #ffffff;			}			.orderlist{				width: 90%;				min-height: 110px;				/*background-color: red;*/				margin-left: 5%;				margin-top: 10px;			}			.orderlist>ul>li{				/*width: 100%;*/				min-height: 50px;				background-color: #FFFFFF;				/*margin-top: 10px;*/				border: 1px solid rgba(0,0,0,0.2);				border-radius: 5px;				cursor: pointer;			}			#content>li p{				height: 20px;				position: relative;			}			.tip{				height: 30px;				position: relative;			}			.tip span{				height: 30px;			}			.tip:after{				content: '';				display: block;				position: absolute;				width: 90%;				left: 5%; 				bottom: 0;				height: 1px;				background-color: #c8c7cc;				transform: scaleY(0.5);			}			.leftspan{				display:inline-block ;				float: left;				padding: 6px;				font-size: 16px;				height: 30px;				color: #ff6f00;			}			.rightspan{				display: inline-block;				float: right;				padding: 6px;				font-size: 16px;				height: 30px;			}			.info{				width: 100%;				height: 66px;				position: relative;			}			.info div{				float: left;			}			.leftinfo{				width: 66px;				height: 66px;							}			.orderlogo{				width: 50px;				height: 50px;				border: 1px solid #FFFFFF;				border-radius: 50%;				margin: 8px;				background-color: #ff6f00;				text-align: center;			}			.orderlogo img{				display: inline-block;				width: auto;				height: 90%;							}			.rightinfo{				width: auto;				height: 66px;			}			.ordername{				font-size: 12px;			}			.orderinfo{				font-size: 12px;			}			.del{				position: absolute;				right: 6px;				top: 6px;			}			.del img{				width: 20px;			}			.price{				position: absolute;				right: 6px;				bottom: 6px;				font-size: 16px;				color: #ff6f00;			}			.list .active{				color: #ffee4d !important;				background-color: #ff6f00 !important;			}			.mui-collapse{				background-color: #FFFFFF;			}			.mui-table-view-cell.mui-active{				background-color: #FFFFFF;			}			.left{				width: 40px;				height: 100%;				float: left;			}			.left img{				width: 40px;			}			.right{				float: left;				height: 100%;				width: calc(100%-70px);				/*background-color: red;*/			}			.mui-collapse-content p{
+				margin-bottom: 10px;
+				
+			}			#content>li{				margin-top: 10px;			}			.mui-table-view{				border-radius: 6px;			}			.mui-navigate-right{				border-bottom: 1px solid #c8c7cc;			}			.mui-collapse{				width: 96%;				margin-left: 2%;			}			#memberlist p.active{				color: #ff6f00;				background-color: #FFFFFF !important;			}			.back{				display: inline-block;				float: left;				height: 24px;				margin: 14px 0px 0px 10px;			}
+		</style>		
+	</head>
+	<body>
+		<div class="title">			<div class="search">				<img class="back" style="" src="img/backbtn.png"/>
+				<span>选择客户</span>				<div id="search">					<input type="text" name="" id="searchkey" value="" />
+				</div>
+			</div>		</div>		<div class="orderlist">
+			<ul id="content">				<!--<li>
+					<ul class="mui-table-view contentlist"> 
+				        <li class="mui-table-view-cell mui-collapse">
+				            <a class="mui-navigate-right" href="#">
+				            	<div>
+				            		<div class="left">
+				            			<img src="img/infolist.png"/>
+				            		</div>
+				            		<div class="right">
+				            			<p style="padding-left: 20px;color: #ff6f00;">王若灵</p>
+				            			<p style="padding-left: 20px;">138****3675</p>
+				            		</div>
+				            	</div>
+				            </a>
+				            <div class="mui-collapse-content">
+				                <p>新客户</p>
+				                <p>杭州兴业策划有限公司</p>
+				                <p>浙江三立大酒店</p>
+				                <p>杭丝联</p>
+				                <p>华立房产</p>
+				                <p>新客户</p>
+				                
+				            </div>
+				        </li>
+				        
+				    </ul>
+				</li>
+				<li>
+					<ul class="mui-table-view contentlist"> 
+				        <li class="mui-table-view-cell mui-collapse">
+				            <a class="mui-navigate-right" href="#">
+				            	<div>
+				            		<div class="left">
+				            			<img src="img/infolist.png"/>
+				            		</div>
+				            		<div class="right">
+				            			<p style="padding-left: 20px;color: #ff6f00;">刘健</p>
+				            			<p style="padding-left: 20px;">138****3675</p>
+				            		</div>
+				            	</div>
+				            </a>
+				            <div class="mui-collapse-content">
+				                <p>新客户</p>
+				                <p>杭州兴业策划有限公司</p>
+				                <p>浙江三立大酒店</p>
+				                <p>杭丝联</p>
+				                <p>华立房产</p>
+				                <p>新客户</p>
+				                
+				            </div>
+				        </li>
+				        
+				    </ul>
+				</li>
+				<li>
+					<ul class="mui-table-view contentlist"> 
+				        <li class="mui-table-view-cell mui-collapse">
+				            <a class="mui-navigate-right" href="#">
+				            	<div>
+				            		<div class="left">
+				            			<img src="img/infolist.png"/>
+				            		</div>
+				            		<div class="right">
+				            			<p style="padding-left: 20px;color: #ff6f00;">王兴业</p>
+				            			<p style="padding-left: 20px;">138****3675</p>
+				            		</div>
+				            	</div>
+				            </a>
+				            <div class="mui-collapse-content">
+				                <p>新客户</p>
+				                <p>杭州兴业策划有限公司</p>
+				                <p>浙江三立大酒店</p>
+				                <p>杭丝联</p>
+				                <p>华立房产</p>
+				                <p>新客户</p>
+				                
+				            </div>
+				        </li>
+				        
+				    </ul>
+				</li>-->
+				
+			</ul>
+		</div>								<nav class="mui-bar mui-bar-tab foot-bar">			<a class="mui-tab-item way" href="#">				<p><img src="img/nav1.png" style="height: 30px;padding-top:5px ;"/></p>				<span class="mui-tab-label" style="color: #FF6F00;">询价</span>			</a>			<a class="mui-tab-item listhref" href="#">				<p><img src="img/nav2.png" style="height: 30px;padding-top:5px ;"/></p>				<span class="mui-tab-label">订单</span>			</a>			<a class="mui-tab-item myself" href="#">				<p><img src="img/nav3.png" style="height: 30px;padding-top:5px ;"/></p>				<span class="mui-tab-label">我的</span>			</a>		</nav>
+	</body>
+	<script type="text/javascript" src="js/jquery.min.js"></script>	<script type="text/javascript" src="js/mui.min.js"></script>
+	<script type="text/javascript" src="js/layer3.0.1/layer.js"></script>
+	<script src="js/pages/share.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="js/pages/other-Materials.js"></script>	<script type="text/javascript">		var sort = 0;		var status = 0;		var name = '';		var key = '';		$('.back').on('touch',function(){			mui.back();		})		$('.way').on('touch',function(){			window.location = 'adminwaitorderlist.html';		})		$('.listhref').on('touch',function(){			window.location = 'adminorderlist.html';		})		$('.myself').on('touch',function(){			window.location = 'myselfinfo.html';		})		function getUrlParam(name){					var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)"); 					var r = window.location.search.substr(1).match(reg);  					if (r!=null) 						return unescape(r[2]); 					return null; 				}		var palce0rder = getUrlParam('palce0rder');		var placestatus = getUrlParam('placestatus');		var flag1 = false;		$('#searchkey').on({			'compositionstart': function() {					      flag1 = true;					    },					    'compositionend': function() {					      flag1 = false;					      if(!flag1) {					      	key = $('#searchkey').val();					        initindex();					      }					    },					    'input propertychange': function() {					        if(!flag1) {					        	key = $('#searchkey').val();						       initindex();					        }					    }		})		initindex()		function initindex(){								$.ajax({				type:"post",				dataType:'json',				url:ajaxUrlPath+"/mobile/sellerUser/agentList",				data:{	//				memberId:14					userId:localStorage.getItem("memberId"),										sellerId:10,					key:key				},				success:function(data){					console.log(JSON.stringify(data));					if(data.code == 0){						var li = '';						for (var i = 0; i < data.result.length; i++) {
+							li += '<li>'+					'<ul class="mui-table-view contentlist">'+ 				        '<li class="mui-table-view-cell mui-collapse">'+				            '<a class="mui-navigate-right" href="#">'+				            	'<div>'+				            		'<div class="left">'+				            			'<img src="img/infolist.png"/>'+				            		'</div>'+				            		'<div class="right">'+				            			'<p style="padding-left: 20px;color: #ff6f00;" agentId="'+data.result[i].id+'">'+data.result[i].userName+'</p>'+				            			'<p style="padding-left: 20px;">'+data.result[i].mobile+'</p>'+				            		'</div>'+				            	'</div>'+				            '</a>'+				            '<div class="mui-collapse-content" id="memberlist">'+				            '<p class="add" agentId="'+data.result[i].id+'" ><span memberId="">新客户</span></p>'				            for (var j = 0; j < data.result[i].customers.length; j++) {
+				            	li += '<p agentId="'+data.result[i].id+'" mobile="'+data.result[i].customers[j].mobile+'" memberId="'+data.result[i].customers[j].memberId+'"><span style="text-align:left"  >'+data.result[i].customers[j].company+'('+data.result[i].customers[j].name+')'+'</span><span style="float:right">'+data.result[i].customers[j].firstPinYin+'</span></p>'
+				            }				            li+='</div></li></ul></li>'//				                <p>新客户</p>
+//				                <p>杭州兴业策划有限公司</p>
+//				                <p>浙江三立大酒店</p>
+//				                <p>杭丝联</p>
+//				                <p>华立房产</p>
+//				                <p>新客户</p>
+//				                
+//				            </div>
+//				        </li>
+//				        
+//				    </ul>
+//				</li>'
+						}						$('#content').html(li);						console.log(localStorage.getItem('authorityType'))						if(localStorage.getItem('authorityType')==2){							$('#memberlist').css('display','block')						}//						$('.add').on('tap',function(){
+//							var agentId = $(this).attr('agentId');
+//							window.location.href = 'adminregister.html?agentId='+agentId;
+//						})						$('#memberlist p').on('click',function(){							var memberId = $(this).attr('agentId');							var mobile = $(this).attr('mobile');							var customerCompany = $(this).find('span').eq(0).html();							var agentName = $(this).parent().parent().find('.right p').eq(0).html()							var customerId = $(this).attr('memberId');							console.log(customerId+'---'+memberId+'----'+agentName);														$(this).addClass('active');							$(this).parent().siblings().removeClass('active');							$(this).parent().parent().siblings().find('p').removeClass('active');							var offerParaJson = JSON.parse(sessionStorage.getItem('offerParaJson'));//							alert(JSON.stringify(offerParaJson));							console.log(offerParaJson.ordername+'测试');							if(offerParaJson.ordername !=null && (offerParaJson.ordername.enquiryorderid != null || offerParaJson.ordername.enquiryorderid != undefined)){								console.log(222);								if(customerId != undefined){									$.ajax({										type:"post",										dataType:'json',										url:ajaxUrlPath+"/mobile/enquiryOrder/setAgent",										data:{											enquiryOrderId:offerParaJson.ordername.enquiryorderid,											agentId:memberId																					},										success:function(data){	//										alert(JSON.stringify(data))											if(data.code == 0){												mui.toast('业务员更换成功');												offerParaJson.ordername.agentId = memberId;												offerParaJson.ordername.agentName = agentName;												offerParaJson.ordername.customerCompany = customerCompany;												offerParaJson.ordername.customerId = customerId;												offerParaJson.ordername.mobile = mobile;												sessionStorage.setItem('offerParaJson',JSON.stringify(offerParaJson));												alert(placestatus);												if(placestatus == '1'){													window.location.href = 'admineditsingle.html?palce0rder='+palce0rder+'&placestatus='+placestatus;												}else{													window.location.href = 'admineditsingle.html?palce0rder='+palce0rder;												}																							}else{												mui.toast(data.message);											}										}									})								}else{									console.log(222);									offerParaJson.ordername.agentName = agentName;									offerParaJson.ordername.customerCompany = customerCompany;									offerParaJson.ordername.agentId = memberId;									offerParaJson.ordername.mobile = mobile;									sessionStorage.setItem('offerParaJson',JSON.stringify(offerParaJson));									window.location.href = 'admineditsingle.html?palce0rder='+palce0rder;									//									offerParaJson['ordername'] = {
+//										agentId:memberId,
+//										agentName:agentName,
+//										customerCompany:customerCompany,
+////										customerId:customerId
+//									}
+//									sessionStorage.setItem('offerParaJson',JSON.stringify(offerParaJson));
+//									window.location.href = 'admineditsingle.html?palce0rder='+palce0rder;								}															}else{																if(offerParaJson != null && offerParaJson.ordername !=null ){									console.log('ceshi')									offerParaJson.ordername.agentId = memberId;									offerParaJson.ordername.agentName = agentName;									offerParaJson.ordername.customerCompany = customerCompany;									offerParaJson.ordername.customerId = customerId;								}else{									offerParaJson['ordername'] = {										agentId:memberId,										agentName:agentName,										customerCompany:customerCompany,										customerId:customerId									}								}																sessionStorage.setItem('offerParaJson',JSON.stringify(offerParaJson));								if(placestatus==1){									window.location.href = 'admineditsingle.html?palce0rder='+palce0rder+'&placestatus='+placestatus;								}else{									window.location.href = 'admineditsingle.html?palce0rder='+palce0rder;								}															}																																		})					}				}			})		}
+								
+	</script>
+</html>

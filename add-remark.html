@@ -1,0 +1,180 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+	</head>
+	<style type="text/css">
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		html,body{
+			width: 100%;
+			background-color: #FFFFFF;
+			
+		}
+		.headtitle{
+			width: 100%;
+			color: #808080;
+			margin-top: 25%;
+			position: relative;
+			border: 1px solid #FFFFFF;
+			
+		}
+		.headtitle p:nth-child(1){
+			font-size: 2.3rem;
+			line-height: 3rem;
+		}
+		.headtitle p:nth-child(2){
+			font-size: 1.1rem;
+			line-height: 2rem;
+		}
+		.headtitle p:nth-child(3){
+			font-size: 1.1rem;
+			line-height: 2rem;
+		}
+		.content button{
+			width: 80%;
+			height: 50px;
+			border: 0px;
+			background-color: #ff6600;
+			color: #FFFFFF;
+			border-radius: 8px;
+			margin-left: 10%;
+		}
+		.content textarea[name="remarks"]{
+			border: 0px;
+		    width: 90%;
+		    min-height: 150px;
+		    margin-left: 5%;
+		    margin-top: 5%;
+		    background-image: url(img/underline.png);
+		    background-size: 80%;
+		    font-size: 20px;
+			word-break:break-all;
+		    
+		    
+		}
+		@media screen and (max-width:280px){
+			#remarks{
+				line-height: 32px;
+			}
+		}
+		@media screen and (min-width:280px) and (max-width:300px){
+			#remarks{
+				line-height: 37px;
+			}
+		}
+		@media screen and (min-width:300px) and (max-width:320px){
+			#remarks{
+				line-height: 40px;
+			}
+		}
+		@media screen and (min-width:320px) and (max-width:350px){
+			#remarks{
+				line-height: 44px;
+			}
+		}
+		@media screen and (min-width:350px) and (max-width:375px){
+			#remarks{
+				line-height: 47px;
+			}
+		}
+		@media screen and (min-width:375px) and (max-width:385px){
+			#remarks{
+				line-height: 50px;
+			}
+		}
+		@media screen and (min-width:385px) and (max-width:414px){
+			#remarks{
+				line-height: 54px;
+			}
+		}
+		@media screen and (min-width:414px){
+			#remarks{
+				line-height: 58px;
+			}
+		}
+	</style>
+
+	<body>
+		<div class="content">
+			<textarea name="remarks" rows="" cols="" id="remarks"></textarea>
+			<button class="back" id="submit">提 交</button>
+			
+		</div>
+	</body>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/layer3.0.1/layer.js"></script>
+		<script type="text/javascript" src="js/pages/share.js"></script>
+
+		<script type="text/javascript">
+			mui.init();
+//			alert(document.body.clientWidth);
+			var index = parent.layer.getFrameIndex(window.name);
+			function getUrlParam(name) {
+			    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+			    var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+			    if (r != null) return decodeURI(r[2]); return null; //返回参数值
+			}
+			var type = getUrlParam('type');
+			var objId = getUrlParam('objId');
+//			alert(objId);
+			var workorderid = getUrlParam('workorderid');
+			var memo = getUrlParam('memo');
+			var titlememo = getUrlParam('titlememo')
+			if (titlememo == undefined || titlememo == 'undefined') {
+				titlememo = '';
+			}
+			$('textarea[name="remarks"]').val(memo);
+			$('textarea').each(function () {
+			  this.setAttribute('style', 'height:' + (this.scrollHeight) + 'px;overflow-y:hidden;');
+			}).on('input', function () {
+			  this.style.height = 'auto';
+			  this.style.height = (this.scrollHeight) + 'px';
+			});
+
+			$('#submit').on('tap',function(){
+				var divIndex = $(this).attr('sign');
+				var memo = $('textarea[name="remarks"]').val();
+//				memo = memo.substring(titlememo.length-1,memo.length);
+//				if(execution=="全部完成"){
+//					otherStatus = 2;
+//				}else if(execution == '部分完成'){
+//					otherStatus = 1;
+//				}else{
+//					otherStatus = 1;
+//				}
+				$.ajax({
+					type:"post",
+					dataType:'json',
+					url:ajaxUrlPath+"/mobile/workOrder/addMemo",
+					data:{
+//						type:type,
+//						workOrderId:workorderid,
+						objId:objId,
+						memo:memo
+					},
+					success:function(data){
+						console.log(JSON.stringify(data));
+						if(data.code==0){
+							parent.location.reload();
+							parent.$('.desc').eq(divIndex).attr('memo',memo)
+							parent.$('.memo').eq(divIndex).html(memo);
+							parent.layer.close(index);
+						}
+//						
+					}
+				})
+				
+				
+				
+				
+			})
+		</script>
+</html>

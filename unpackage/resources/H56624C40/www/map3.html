@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+ <head>
+ <meta charset="utf-8">
+ <meta charset="utf-8"/>
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+		<meta name="HandheldFriendly" content="true"/>
+		<meta name="MobileOptimized" content="320"/>
+		<title>Hello H5+</title>
+		<script type="text/javascript" src="js/map/common.js"></script>
+    <style type="text/css">
+    	*{
+    		padding: 0;
+    		margin: 0;
+    	}
+    	html,body{
+    		background-color: #f1f5f8;
+    		width: 100%;
+    		height: 100%;
+    		overflow: hidden
+    	}
+    	.head{
+    		width: 100%;
+    		height: 80px;
+    		background-color: #ff6f00;
+    		color: #FFFFFF;
+    	}
+    	
+    	.left{
+    		width: 30%;
+    		height: 80px;
+    		float: left;
+    	}
+    	.left img{
+    		width: 60px;
+    		height: 60px;
+    		margin: 10px 20px;
+    	}
+    	.right{
+    		width: 70%;
+    		height: 80px;
+    		/*background-color: red;*/
+    		float: right;
+    	}
+    	.right p{
+    		line-height: 40px;
+    	}
+    	.right p:nth-child(1){
+    		font-size: 20px;
+    	}
+    	#contain{
+    		width: 94%;
+    		/* height: 80%; */
+    		/* background-color: #FFFFFF; */
+    		margin-left: 3%;
+    		border-radius: 6px;
+    		/* border: 1px solid #FFFFFF; */
+			/* box-shadow: 1px 1px 3px #666666; */
+    	}
+    	.time{
+    		width: 100%;
+    		height: 60px;
+    		margin-top:20px;
+    	}
+    	.time li{
+    		list-style-type: none;
+    		width: 44%;
+    		height: 60px;
+    		background-color: #f1f5f8;
+    		float: left;
+    		margin-left:4% ;
+    		border-radius: 6px;
+    		
+    	}
+    	.time li p{
+    		line-height: 30px;
+    		padding-left: 6px;
+    	}
+    	.time li p:nth-child(1){
+    		font-size: 20px;
+    	}
+    	#submit{
+    		width: 94%;
+    		height: 60px;
+    		background-color: #ff6f00;
+    		/* border-radius: 50%; */
+    		position: fixed;
+    		/* left: 50%; */
+    		/* margin-left: 3%; */
+    		bottom: 3%;
+    		box-shadow: 1px 1px 2px #cef2e8;
+    		text-align: center;
+    		color: #FFFFFF;
+			border-radius: 5px;
+			z-index: 99;
+    	}
+		#submit p{
+			font-family: "arial, helvetica, sans-serif";
+		}
+		#submit .left{
+			width: 50%;
+		}
+		#submit .right{
+			width: 50%;
+		}
+    	#submit .left p:nth-child(1){
+    		/* margin-top: 20px; */
+    		font-size: 24px;
+			font-weight: 200;
+			line-height: 60px;
+			
+    	}
+		#submit .right p:nth-child(1){
+			font-size: 20px;
+			font-weight: 200;
+		}
+    	#submit .right p:nth-child(2){
+    		margin-top: -13px;
+			font-size: 14px;
+			font-weight: 200;
+    	}
+    	#container{
+    		width: 100%;
+    		height: 100%;
+    		opacity: 1;
+			/* background-color: #0E76E1; */
+    	}
+    	#tip{
+    		width: 90%;
+    		height: 40px;
+    		display: block;
+    		position: absolute;
+    		top: 80%;
+    		text-align: center;
+    	}
+    	.header{
+				background-color: #FF6E00;
+				position: relative;
+				width: 100%;
+				height: 42px;
+		}
+		.header img{
+				width: auto;
+				height: 20px;
+				margin-left: 10px;
+				margin-top: 12px;
+		}
+		.title{
+			position: absolute;
+			text-align: left;
+			display: inline-block;
+			font-size: 18px;
+			line-height: 40px;
+			color: #FFFFFF;
+			width: 100%;
+			/* left: 0; */
+			height: 40px;
+			border: 2px solid #FF6E00;
+			padding-left: 10px;
+			font-weight: normal;
+			
+			/*margin-left: 30%;*/
+		}
+		.headcontent{
+			width: 100%;
+			height: 45px;
+			background-color: #FF6E00;
+		}
+		.userName span{
+			font-size: 14px;
+			padding-left: 15px;
+		}
+		.maplist{
+			width: 94%;
+			margin: 3%;
+			margin-top: 5%;
+			height: 200px;
+			background-color: #FFFFFF;
+			box-shadow: 1px 1px 3px #666666;
+			border-radius: 5px;
+			position: absolute;
+			top: 55%;
+			z-index: 100;
+		}
+		.maplist .logo{
+			width: 80px;
+			height: 80px;
+			margin: 20px 10px;
+		}
+		.maplist p:nth-child(1){
+			font-size: 18px;
+			color: #676767;
+			margin-top: 30px;
+		}
+		.maplist p:nth-child(2){
+			font-size: 13px;
+			margin-top: -15px;
+		}
+		#attendance{
+			position: absolute;
+			width: 94%;
+			margin: 3%;
+			margin-top: 5%;
+			height: 50px;
+			background-color: #FFFFFF;
+			box-shadow: 1px 1px 3px #666666;
+			border-radius: 5px;
+			bottom: 60px;
+			line-height: 50px;
+			text-align: center;
+			color: #676767;
+		}
+		.nowaddress{
+			width: 92%;
+			height: 50px;
+			/* background-color: forestgreen; */
+			/* padding-left: 20px; */
+			margin-left: 4%;
+			line-height: 40px;
+			margin-top: -20px;
+			
+		}
+		.nowaddress:after{
+			content: "";
+			display: block;
+			position: absolute;
+			left: -175%;
+			width: 450%;
+			height: 1px;
+			background: #676767;
+			-webkit-transform:scale(0.2);
+			
+		}
+		.nowaddress p{
+			font-size: 26px;
+		}
+		.memocontent{
+			width: 92%;
+			height: 50px;
+			margin-left: 4%;
+		}
+		.memocontent textarea{
+			width: 100%;
+			height: 80px;
+			border: 0px;
+			outline: none;
+		}
+    </style>
+ </head>
+ <body>
+ 	<div class="headcontent">
+ 	<h2 class="header">
+			<img src="img/back.png" >
+			<span class="title">当前位置</span>
+	</h2>
+
+ 	</div>
+
+
+	<div id="container"></div>
+ </body>
+ <script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+ <script type="text/javascript" src="js/map/immersed.js" ></script>
+  <script type="text/javascript" src="js/mui.min.js" ></script>
+ <script src="js/pages/share.js" type="text/javascript" charset="utf-8"></script>
+ <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=TgGWRchxNH8neH8rzOwWqrY0DtEPAKVt"></script>
+ <script type="text/javascript">
+ 	$('.header').on('tap',function(){
+				mui.back();
+			})
+	window.ontouchmove=function(e){
+	    e.preventDefault && e.preventDefault();
+	    e.returnValue=true;
+	    e.stopPropagation && e.stopPropagation();
+	    return true;
+	}
+	
+ 	window.addEventListener("popstate", function(e) {
+ 	location.href = 'map.html';
+ 	}, false); 
+ 	function pushHistory() { 
+ 	  var state = { 
+ 	    title: "title", 
+ 	    url: "#"
+ 	  }; 
+ 	  window.history.pushState(state, "title", "#"); 
+ 	} 
+	var dis  = 0;
+//	var p2 = [120.128437,30.33691];
+	// var p2 = [120.174781,30.416663];//华芳布艺
+	var p2 = [120.121083,30.341714]
+	var p1 = '';
+	function plusReady(){
+		getGeocode();
+	}
+	if(window.plus){
+		plusReady();
+	}else{
+		document.addEventListener('plusready', plusReady, false);
+	}
+	function geoInf( position ) {
+		// alert(JSON.stringify(position));
+		var str = "";
+		var strs = [];
+		str += "地址："+position.addresses+"\n";//获取地址信息
+		var codns = position.coords;//获取地理坐标信息；
+		var longt = codns.longitude;//获取到当前位置的经度
+		strs.push(longt)
+		str += "经度："+longt+"\n";
+		var lat = codns.latitude;//获取到当前位置的纬度；
+		strs.push(lat)
+		str += "纬度："+lat+"\n";
+//		alert(JSON.stringify(position));
+		p1 = strs
+		dis = getDistance(lat, longt, p2[1], p2[0]);
+	   // alert(dis);
+	   if(dis<150){
+		   status = 0;
+		   
+		  // document.getElementById('addresstitle').innerHTML='当前位置在打卡范围内';
+	      // document.getElementById('nowstatus').innerHTML='打卡';
+	   }else{
+	       status = 1;
+		   // document.getElementById('addresstitle').innerHTML='当前位置不在打卡范围内';
+		   // document.getElementById('nowstatus').innerHTML='外勤打卡';
+	   
+	   }
+	   // alert(position.addresses);
+	   // document.getElementById('addresscontent').innerHTML=position.addresses;
+	   // address = position.addresses;
+	     console.log(lat+','+longt);
+	     let gpsPoint = new BMap.Point(longt,lat);
+	     var ggPoint = new BMap.Point(longt,lat);
+
+		 //地图初始化
+		 var bm = new BMap.Map("container");
+		 bm.centerAndZoom(ggPoint, 15);
+		 bm.addControl(new BMap.NavigationControl());
+
+	 //添加gps marker和label
+	 var markergg = new BMap.Marker(ggPoint);
+	 bm.addOverlay(markergg); //添加GPS marker
+	 // var labelgg = new BMap.Label("未转换的GPS坐标",{offset:new BMap.Size(20,-10)});
+	 // markergg.setLabel(labelgg); //添加GPS label
+
+	 //坐标转换完之后的回调函数
+	 translateCallback = function (data){
+	   if(data.status === 0) {
+		 var marker = new BMap.Marker(data.points[0]);
+		 bm.addOverlay(marker);
+		 var label = new BMap.Label("转换后的百度坐标（正确）",{offset:new BMap.Size(20,-10)});
+		 marker.setLabel(label); //添加百度label
+		 console.log(JSON.stringify(data));
+		 bm.setCenter(data.points[0]);
+		 
+		 dis = getDistance(data.points[0].lat, data.points[0].lng, p2[1], p2[0]);
+		   console.log(dis);
+		  // document.getElementById('tip').innerHTML='距离祥园创意产业园目的地：'+(dis.toFixed(0))+'米,<br>';
+	   }
+	 }
+
+	 // setTimeout(function(){
+		//  var convertor = new BMap.Convertor();
+		//  var pointArr = [];
+		//  pointArr.push(ggPoint);
+		//  convertor.translate(pointArr, 1, 5, translateCallback)
+	 // }, 1000);
+			
+			 
+			
+		}
+	// 通过定位模块获取位置信息
+	function getGeocode(){
+//		alert( "获取定位位置信息:" );
+		plus.geolocation.getCurrentPosition(geoInf,function(e) {
+			alert( "获取定位位置信息失败："+e.message);
+		},{
+		provider: 'baidu',
+		coordsType: "bd09ll"
+	});
+	}
+
+	 //角度转换为弧度
+            function toRadians(degree) {
+                return degree * Math.PI / 180;
+            }
+ 
+            //计算两个坐标点之间的距离
+            function getDistance(lat1, long1, lat2, long2) {
+                // 地球的半径（单位：公里）
+                var R = 6371*1000;
+                //角度转换为弧度
+                var deltaLat = toRadians(lat2 - lat1);
+                var deltaLong = toRadians(long2 - long1);
+                lat1 = toRadians(lat1);
+                lat2 = toRadians(lat2);
+                //计算过程
+                var h = Math.sin(deltaLat / 2) * Math.sin(deltaLat / 2) + Math.cos(lat1) * Math.cos(lat2) * Math.sin(deltaLong / 2) * Math.sin(deltaLong / 2);
+                //求距离
+                var d = 2 * R * Math.asin(Math.sqrt(h));
+                return d;
+            }
+	
+
+ </script>
+ </html>

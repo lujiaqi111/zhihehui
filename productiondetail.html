@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>纸盒汇管理后台</title>
+    <link rel="shortcut icon" href="favicon.ico">
+   <link rel="stylesheet" type="text/css" href="css/mui.min.css"/>
+   <link rel="stylesheet" type="text/css" href="css/rem.css"/>
+   <link rel="stylesheet" type="text/css" href="css/initialization1.css"/>
+</head>
+<style>
+	body,html{
+		background-color: #FFFFFF;
+		width: 100%;
+		height: 100%;
+		overflow-x: hidden;
+		position: relative;
+		font-family: "微软雅黑";
+		
+	}
+    .input-sm{
+        width: 150px !important;
+    }
+    input[name="btSelectAll"]{
+        width: 25px;
+        height: 25px;
+    }
+    input[name="btSelectItem"]{
+        width: 25px;
+        height: 25px;
+    }
+	.table{
+		border: 1px solid #ddd;
+	}
+	.title{
+					width: 100%;
+					height: 120px;
+					background-color: #ff6f00;
+					color: #FFFFFF;
+					position: absolute;
+					top: 0px;
+					z-index: 100;
+					/*margin-top: 80px;*/
+				}
+				.search{
+					width: 100%;
+					height: 60px;
+	/*				background-color: red;*/
+				}
+				.search span{
+					display: inline-block;
+					float: left;
+					line-height: 50px;
+					font-size: 20px;
+					font-weight: inherit;
+					padding-left: 10px;
+				}
+				#search{
+					float: left;
+					width: 200px;
+					height: 40px;
+					border-radius: 20px;
+					background-color: #ff9a4d;
+					margin-top: 10px;
+					margin-left: 10px;
+				}
+				#search img{
+					display: block;
+					height: 20px;
+					width: 20px;
+					margin: 10px;
+					float: left;
+				}
+				#search input{
+					display: block;
+					float: left;
+					width: 150px;
+					background-color: rgba(0,0,0,0);
+					border: 0px;
+					text-align: left;
+	    			color: #ffffff;
+				}
+				.list{
+					width: 100%;
+					height: 60px;
+					text-align: center;
+				}
+				.list ul li{
+					width: 16%;
+					height: 60px;
+					float: left;
+					
+					
+				}
+				.list ul li p{
+					color: #FFFFFF;
+				}
+				.list ul li p:first-child{
+					font-size: 18px;
+				}
+				.list ul li p:last-child{
+					font-size: 12px;
+				}
+				.orderlist{
+					width: 90%;
+					/*min-height: 110px;*/
+					/*background-color: red;*/
+					margin-left: 5%;
+					/*margin-top: 130px;*/
+					
+				}
+				.orderlist ul li{
+					width: 100%;
+					height: 120px;
+					background-color: #FFFFFF;
+					margin-top: 10px;
+					border: 1px solid rgba(0,0,0,0.2);
+					border-radius: 5px;
+					cursor: pointer;
+				}
+				.rightinfo ul li p{
+					height: 20px;
+					position: relative;
+				}
+				.tip{
+					height: 30px;
+					position: relative;
+				}
+				.tip span{
+					height: 30px;
+				}
+				.tip:after{
+					content: '';
+					display: block;
+					position: absolute;
+					width: 90%;
+					left: 5%; 
+					bottom: 0;
+					height: 1px;
+					background-color: #c8c7cc;
+					transform: scaleY(0.5);
+	
+				}
+				.leftspan{
+					display:inline-block ;
+					float: left;
+					padding: 6px;
+					font-size: 16px;
+					height: 30px;
+					color: #ff6f00;
+					width: 40%;
+					text-overflow:ellipsis;
+					white-space:nowrap;
+					overflow:hidden;
+					
+				}
+				.rightspan{
+					display: inline-block;
+					text-align: right;
+					float: right;
+					padding: 6px;
+					font-size: 16px;
+					height: 30px;
+					width: 60%;
+				}
+				.info{
+					width: 100%;
+					height: 88px;
+					position: relative;
+				}
+				.info div{
+					float: left;
+				}
+				.leftinfo{
+					width: 66px;
+					height: 66px;
+					
+				}
+				.orderlogo{
+					width: 50px;
+					height: 50px;
+					border: 1px solid #FFFFFF;
+					border-radius: 50%;
+					margin: 16px 8px;
+					/*background-color: #ff6f00;*/
+					text-align: center;
+				}
+				.orderlogo img{
+					display: inline-block;
+					width: auto;
+					height: 100%;
+					
+				}
+				.rightinfo{
+					width: auto;
+					height: 66px;
+					width: 70%;
+				}
+				.ordername{
+					font-size: 12px;
+				}
+				.orderinfo{
+					font-size: 12px;
+					width: 225px;
+			        overflow:hidden;
+			        text-overflow:ellipsis; 
+			        white-space: nowrap;/*加宽度width属来兼容部分浏览*/
+				}
+				.del{
+					position: absolute;
+					right: 6px;
+					top: 6px;
+				}
+				.del img{
+					width: 20px;
+				}
+				.price{
+					position: absolute;
+					right: 6px;
+					bottom: 6px;
+					font-size: 16px;
+					color: #ff6f00;
+				}
+				.list .active{
+					color: #ffee4d !important;
+					background-color: #ff6f00 !important;
+				}
+				.orderlist{
+					padding-bottom: 200px;
+					height: 100%;
+					/* top: 0px; */
+	    			/* overflow-y: hidden; */
+				}
+				#content{
+					width: 96%;
+					margin-left: 2%;
+					/* overflow-y: hidden; */
+					/* position: absolute; */
+					/* top: 130px; */
+				}
+				#content li{
+					border: 1px solid #C7C7CC;
+					border-radius: 5px;
+					margin-bottom: 0.625rem;
+				}
+				/*.title{
+					position: fixed;
+					top: 0;
+				}
+				.orderlist{
+					overflow: auto;
+				    padding-bottom: 30px;
+				    margin-top: 120px;
+				}*/
+				.status{
+					background-color: #FF6F00;
+					color: #FFFFFF;
+					padding: 3px 5px;
+					border-radius: 5px;
+					position: absolute;
+					right: 5px;
+					bottom: 5px;
+				}
+				.mui-bar-tab{
+					position: absolute;
+					bottom: 0px;
+				}
+				.mui-scrollbar-indicator{
+					background: rgba(0,0,0,0);
+				}
+	.pagination{margin: 0px;}
+	.mui-pull-top-tips{position:absolute;top:-20px;left:50%;margin-left:-25px;width:40px;height:40px;border-radius:100%;z-index:999;}
+	.mui-bar~.mui-pull-top-tips{top:24px;}
+	.mui-pull-top-wrapper{width:42px;height:42px;display:block;text-align:center;background-color:#efeff4;border:1px solid #ddd;border-radius:25px;background-clip:padding-box;box-shadow:0 4px 10px #bbb;overflow: hidden;}
+	.mui-pull-top-tips.mui-transitioning {-webkit-transition-duration:200ms;transition-duration:200ms;}
+	.mui-pull-top-tips .mui-pull-loading{margin:0;}
+	.mui-pull-top-wrapper .mui-icon, .mui-pull-top-wrapper .mui-spinner{margin-top:7px;}
+	.mui-pull-bottom-tips{text-align:center;background-color:#efeff4;font-size:15px;line-height:40px;color:#777;}
+	.mui-pull-top-canvas{overflow:hidden;background-color:#fafafa;border-radius:40px;box-shadow:0 4px 10px #bbb;width:40px;height:40px;margin:0 auto;}
+	.mui-pull-top-canvas canvas{width:40px;}
+	.mui-scroll-wrapper{position: static;}
+	.plantitle{ color: #007bcf;font-size: 18px;padding-left: 20px;}
+	.contenttitle{font-size: 20px;color:#182987;}
+	.contenttitle img{height: 24px;width: auto;vertical-align:middle;display: inline-block;margin-right: 10px;}
+</style>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row" style="position: relative;z-index: 999;background-color: #FFFFFF;">
+        <div class="col-sm-15">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content" style="padding: 20px;">
+                    <div  style="margin-bottom: 15px;">
+							<span class="contenttitle"><img src="img/bbtn.png"/>生产计划-印刷</span>
+                        <table style="width: 100%;">
+                            <tr>
+                                <td style="width: 60px;font-size: 10px;">0</td>
+                                <td style="width: 60px;font-size: 10px;">20</td>
+                                <td style="width: 60px;font-size: 10px;">40</td>
+                                <td style="width: 60px;font-size: 10px;">60</td>
+                                <td style="width: 60px;font-size: 10px;">80</td>
+                                <td style="width: 60px;font-size: 10px;">100</td>
+                                <td style="width: 60px;font-size: 10px;">120</td>
+                                <td style="width: 60px;font-size: 10px;">140</td>
+                                <td style="width: 60px;font-size: 10px;">160</td>
+                                <td style="width: 60px;font-size: 10px;">180(hrs)</td>
+                            </tr>
+                        </table>
+                        <table id="tableS" style="width: 100%;">
+                            <tr>
+                                <td>
+									<div style="width: 100% height: 23px; background-size:cover;background-repeat:no-repeat;">
+									     <div id="divZong6" style="width: 100%; height: 23px; background: #0077c7;">
+									         <table id="tableZong6"  style="width:100%">
+									             <tr>
+									                 <td id="tdPlanZong6" style="width: 40%;color: white;text-align: right;background-color: #0077c7;">72</td>
+									                 <td id="tdZong6" style="width: 60%;color: white;text-align: right;background-color: #001587; ">152</td>
+									             </tr>
+									         </table>
+									     </div>
+									</div>
+                                </td>
+                            </tr>
+                        </table>
+                        <span style="color: #182987;font-size: 20px;" id="total">总任务：25.06万张/22印版 </span>
+                        <div id="statusSar" >
+                       <span style="color: #474E8C;font-size: 14px;">当前状态: G210120-08 农药盒喷码 2021-01-22 19:36:33 已完成</span>
+						</div>
+					</div>
+
+
+                  
+                </div>
+				
+			</div>
+        </div>
+    </div>
+</div>
+<span class="plantitle" style="position: relative;z-index: 999;background-color: #FFFFFF;">已计划任务：19.2万张</span>
+<!-- <div class="mui-scroll-wrapper" style="overflow: scroll;"> -->
+						<!--<div class="mui-scroll">-->
+						<!-- <div class="orderlist mui-scroll"> -->
+							
+							<ul id="content" >
+								<li>
+										<p class="tip"><span class="leftspan">画册211-35365</span><span class="rightspan">2021-01-13 14:44</span></p>
+										<div class="info">
+											<div class="leftinfo">
+												<div class="orderlogo">
+													<img src="img/orderlogo.png"/>
+												</div>
+											</div>
+											<div class="rightinfo">
+												<p class="ordername">G210113-05</p>
+												<p class="orderinfo">成品数量:20000</p>
+												<p class="orderinfo">拼版尺寸:636*829</p>
+											</div>
+											<div class="del">
+												<span>2021-01-28</span>
+											</div>
+											<div class="price">
+												<span>5280</span>
+											</div>
+										</div>
+								</li>
+							</ul>
+						<!-- </div> -->
+						<!--</div>-->
+<!-- </div> -->
+
+
+<input type="hidden" id="page" value="1" />
+<input type="hidden" id="per_page" value="10" />
+
+</body>
+
+<!-- <script src="js/jquery.min.js?v=2.1.4"></script>
+<script src="/h_admin/js/bootstrap.min.js?v=3.3.6"></script>
+<script src="js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+
+<script src="js/bootstrap-datetimepicker.js"></script>
+<script src="js/bootstrap-datetimepicker.min.js"></script>
+<script src="js/plugins/bootstrap-table/bootstrap-table.js?v=1.11.0"></script>
+<script src="js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+
+<script src="js/plugins/validate/jquery.validate.min.js?v=1.15.0"></script>
+<script src="js/plugins/validate/additional-methods.js"></script>
+<script src="js/plugins/validate/jquery-form.js"></script>
+<script src="js/plugins/validate/messages_zh.min.js"></script>
+
+<script src="/h_admin/js/plugins/sweetalert/sweetalert.min.js"></script>
+<script src="js/plugins/layer/layer.js?v=2.4"></script>
+<script src="js/myself/share.js"></script>
+
+<script src="js/plugins/bootstrap-table/bootstrap-editable.js"></script>
+<script src="js/plugins/editable/bootstrap-table-editable.js"></script> -->
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/mui.min.js"></script>
+<script type="text/javascript" src="js/layer3.0.1/layer.js"></script>
+<script src="js/pages/share.js" type="text/javascript" charset="utf-8"></script>
+	<!--<script type="text/javascript" src="js/updateversion.js"></script>--><script type="text/javascript" src="js/pages/other-Materials.js"></script><script type="text/javascript" src="js/mui.pullToRefresh.min.js"></script><script type="text/javascript" src="js/mui.pullToRefresh.material.min.js"></script>
+
+
+<script type="text/javascript">
+    //获得合同订单的id
+	
+
+	var hoursAdded=getUrlParam('hoursAdded');
+	var hours=getUrlParam('hours');
+	var total=getUrlParam('total');
+	var printingPlateCount=getUrlParam('printingPlateCount');
+	var planSum=getUrlParam('planSum');
+	var dataType=getUrlParam('dataType');
+	function getQueryString(key){
+	        var reg = new RegExp("(^|&)"+key+"=([^&]*)(&|$)");
+	        var result = window.location.search.substr(1).match(reg);
+	        return result?decodeURIComponent(result[2]):null;
+	 }
+	 $('.contenttitle').on('click',function(){
+		 mui.back();
+	 })
+	 var statusSar = getQueryString('statusSar');
+
+	var tablehtml = '<tr>'+
+                                '<td>'+
+									'<div style="width: 100% height: 23px; background-size:cover;background-repeat:no-repeat;">'+
+									    '<div id="divZong6" style="width: 100%; height: 23px; background: #0077c7;">'+
+									         '<table id="tableZong6"  style="width:100%">'+
+									             '<tr>'+
+									                 '<td id="tdPlanZong6" style="width: '+hoursAdded/180+'%;color: white;text-align: right;background-color: #0077c7;">'+hoursAdded+'</td>'+
+									                 '<td id="tdZong6" style="width: '+hours/180+'%;color: white;text-align: right;background-color: #001587; ">'+hours+'</td>'+
+									             '</tr>'+
+									         '</table>'+
+									    '</div>'+
+									'</div>'+
+                                '</td>'+
+                            '</tr>'
+	$('#tableS').html(tablehtml);
+	$('#total').html('总任务：'+total+'万张/'+printingPlateCount+'印版 ');
+	$('#statusSar span').html(decodeURI(statusSar))
+	$('.plantitle').html('已计划任务：'+planSum+'万张')
+	if(dataType==1){
+		$('.contenttitle').html('<img src="img/bbtn.png"/>生产计划-印刷');
+	}else if(dataType==2){
+		$('.contenttitle').html('<img src="img/bbtn.png"/>生产计划-切纸');
+	}else if(dataType==3){
+		$('.contenttitle').html('<img src="img/bbtn.png"/>生产计划-覆膜');
+	}else if(dataType==4){
+		$('.contenttitle').html('<img src="img/bbtn.png"/>生产计划-模切');
+	}else if(dataType==5){
+		$('.contenttitle').html('<img src="img/bbtn.png"/>生产计划-喷码');
+	}else if(dataType==6){
+		$('.contenttitle').html('<img src="img/bbtn.png"/>生产计划-糊盒');
+	}else if(dataType==7){
+		$('.contenttitle').html('<img src="img/bbtn.png"/>生产计划-品鉴');
+	}else if(dataType==8){
+		$('.contenttitle').html('<img src="img/bbtn.png"/>生产计划-手工');
+	}
+	var per_page = $('#per_page').val();
+	var page = $('#page').val();
+	list('', per_page, page);
+	var self = mui('.mui-scroll').pullRefresh({
+				up: {
+					callback: function() {
+						console.log(1111);
+						up_refresh(this);
+					}
+				}
+			});
+		
+	function up_refresh(obj) {
+				var per_page = $('#per_page').val();
+				var page = $('#page').val();
+				list('up', per_page, page);
+			}
+	function list(type, per_page, page){
+				$.ajax({
+					type:"post",
+					dataType:'json',
+					url:ajaxUrlPath+"/mobile/index/productionPlanList",
+					data:{
+						type:dataType,
+						page: page,
+						rows: per_page,
+					},
+					success:function(data){
+						console.log('测试2')
+						console.log(data.rows.length);
+							var li = '';
+							
+							for (var i = 0; i < data.rows.length; i++) {
+									li += '<li>'+
+										'<p class="tip"><span class="leftspan">'+data.rows[i].workOrderName+'</span><span class="rightspan">'+data.rows[i].contractTimeStr+'</span></p>'+
+										'<div class="info">'+
+											'<div class="leftinfo">'+
+												'<div class="orderlogo">'+
+													'<img src="img/orderlogo.png"/>'+
+												'</div>'+
+											'</div>'+
+											'<div class="rightinfo">'+
+												'<p class="ordername">'+data.rows[i].workOrderNo+'</p>'+
+												'<p class="orderinfo">成品数量:'+data.rows[i].num+'</p>'+
+												'<p class="orderinfo">拼版尺寸:'+data.rows[i].makeupNetSize+'</p>'+
+											'</div>'+
+											'<div class="del">'+
+												'<span>'+data.rows[i].deliveryDateStr+'</span>'+
+											'</div>'+
+											'<div class="price">'+
+												'<span>'+data.rows[i].printNumber+'</span>'+
+											'</div>'+
+										'</div>'+
+								'</li>'	
+								
+	
+								
+								
+								
+							}
+	//						$('#content').html(li);
+							if(type == 'up') {
+								console.log(data.rows.length)
+								$("#content li:last").after(li);
+								if(data.rows.length == 10) {
+									console.log(333);
+									$('#page').val(parseInt(parseInt(page) + 1));
+									self.endPullupToRefresh(false);
+								} else {
+									
+									$('#page').val(page);
+									self.endPulldownToRefresh(true);
+								}
+							} else {
+								$('#page').val(parseInt(parseInt(page) + 1));
+								$('#content').html(li);
+						        if(data.rows.length < 10) {
+						        	console.log('测试')
+						        	self.endPulldownToRefresh(true);
+						        		
+								} else {
+									console.log(self)
+									self.endPullupToRefresh(false);
+									self.refresh(true);
+								}
+							}
+							
+							
+
+					}
+				})
+			}
+			
+	//		
+	
+</script>
+</html>

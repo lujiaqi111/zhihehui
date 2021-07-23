@@ -1,0 +1,309 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/initialization1.css"/>
+	</head>
+	<style type="text/css">
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		html,body{
+			width: 100%;
+			background-color: #FFFFFF;
+			
+		}
+		.headtitle{
+			width: 100%;
+			text-align: center;
+			color: #808080;
+			margin-top: 25%;
+			position: relative;
+			border: 1px solid #FFFFFF;
+			
+		}
+		.headtitle p:nth-child(1){
+			font-size: 2.3rem;
+			line-height: 3rem;
+		}
+		.headtitle p:nth-child(2){
+			font-size: 1.1rem;
+			line-height: 2rem;
+		}
+		.headtitle p:nth-child(3){
+			font-size: 1.1rem;
+			line-height: 2rem;
+		}
+		.content{
+			width: 100%;
+			height: 100%;
+			overflow: hidden
+		}
+		.content button{
+			width: 80%;
+			height: 50px;
+			border: 0px;
+			background-color: #ff6600;
+			color: #FFFFFF;
+			border-radius: 8px;
+			margin-left: 10%;
+			margin-top: 10px;
+		}
+
+		.papercol span{
+			margin-left: 6px;
+			color: #ff6f00;
+		}
+		.papercol span img{
+			height:25px;
+			width: auto;
+		}
+		.papercol span:nth-child(1){
+			display: inline-block;
+			width: 100px;
+		}
+		.papercol span input{
+			height: 20px;
+			width: 300px;
+			border: 0px;
+			text-align: left;
+			margin-bottom: 0px;
+			padding: 0px;
+			font-size: 1rem;
+		}
+		.papercol textarea{
+			min-height: 20px;
+			max-height: 230px;
+			width: 220px;
+			border: 0px;
+			text-align: left;
+			margin-bottom: 0px;
+			padding: 0px;
+			font-size: 1rem;
+			background-color: #FFFFFF;
+			color: #ff6f00;
+			word-break:break-all;
+		}
+	</style>
+
+	<body>
+		<div class="content">
+			<div class="papercol">
+				<p>完成情况：<span class="checks">全部完成<img class="check" src="img/uncheck2.png"/></span><span class="checks">部分完成<img class="check" src="img/uncheck2.png"/></span></p>
+			</div>
+			<div class="papercol">
+				<p>下机数量：<span><input style="width: 200px;" type="number" name="deplane" id="deplane" value="" /></span></p>
+			</div>
+			<div class="papercol">
+				<p>备注：<textarea autoHeight="true" type="text" name="memo" id="" value="" ></textarea></p>
+				<!--<p>备注：<span><textarea name="memo" rows="" cols=""></textarea></span></p>-->
+			</div>
+			<button class="back" id="submit">提 交</button>
+			
+		</div>
+	</body>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/layer3.0.1/layer.js"></script>
+		<script type="text/javascript" src="js/pages/share.js"></script>
+
+		<script type="text/javascript">
+			
+			var index = parent.layer.getFrameIndex(window.name);
+			console.log(index);
+			function getUrlParam(name) {
+			    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+			    var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+			    if (r != null) return decodeURI(r[2]); return null; //返回参数值
+			}
+			var paperCuttingId  = getUrlParam('paperCuttingId');
+			var workOrderId  = getUrlParam('workOrderId');
+			var processId = getUrlParam('processId');
+			var printingDepartmentId = getUrlParam('printingDepartmentId');
+			var type = getUrlParam('type');
+			var deplaneNumber = 0;
+			var memo = getUrlParam('memo');
+			
+			
+			var  positiveNumber = getUrlParam('positiveNumber');
+			console.log(positiveNumber);
+			var deplaneNumbers =Number(getUrlParam('deplaneNumber'));
+			if(isNaN(deplaneNumbers)){
+				deplaneNumbers = 0;
+			}
+			$('textarea[name="memo"]').val(memo=='undefined'?'':memo);
+			console.log($('textarea[name="memo"]')[0].scrollHeight)
+			if($('textarea[name="memo"]')[0].scrollHeight>80){
+				$('textarea[name="memo"]').height(80);
+			}else{
+				$('textarea[name="memo"]').height($('textarea[name="memo"]')[0].scrollHeight);
+			}
+			
+			   $('textarea[name="memo"]').on("keyup keydown", function(){
+			    $(this).height(this.scrollHeight);
+			   })
+			if(getUrlParam('deplaneNumber')==null || getUrlParam('deplaneNumber')=='undefined'){
+				deplaneNumber = 0;
+			}else{
+				deplaneNumber =Number(getUrlParam('deplaneNumber'));
+			}
+			$('#deplane').on('keyup',function(){
+							if(this.value.length==1){
+								this.value=this.value.replace(/[^1-9]/g,"")
+							}else{
+								this.value=this.value.replace(/\D/g,"")
+							}
+						})
+						$('#deplane').on('afterprint',function(){
+							if(this.value.length==1){
+								this.value=this.value.replace(/[^1-9]/g,"")
+							}else{
+								this.value=this.value.replace(/\D/g,"")
+							}
+						})
+//			console.log(parent.$('.mui-collapse-content').find('button[plateid='+plateId+']').parent().find('span').eq(0).html()+'测试')
+//			console.log(key);
+			mui.init();
+//			$('.back').on('click tap',function(){
+//				parent.parent.window.location.href = "adminorderlist.html"
+//			})
+			$('.check').on('tap',function(e){
+				e.stopPropagation()
+				console.log($(this).attr('src'));
+				if($(this).attr('src') == 'img/uncheck2.png'){
+					$(this).attr('src','img/checked.png');
+					$(this).parent().siblings().find('img').attr('src','img/uncheck2.png');
+				}else{
+					$(this).attr('src','img/uncheck2.png');
+				}
+			})
+			$('.checks').on('tap',function(){
+				var _this = this
+				console.log($(_this).children().attr('src'))
+				if($(_this).children().attr('src') == 'img/uncheck2.png'){
+					$(_this).children().attr('src','img/checked.png');
+					$(_this).siblings().find('img').attr('src','img/uncheck2.png');
+				}else{
+					$(_this).children().attr('src','img/uncheck2.png');
+				}
+				
+			})
+			$('#submit').on('tap',function(e){
+				e.preventDefault();
+				var number = Number($('input[name="deplane"]').val());
+				if(number==0){
+					mui.toast('请填写数据')
+					return false;
+					
+				}
+				var sendnum = deplaneNumbers + number
+				console.log($('.papercol img').length);
+				var memo = $('textarea[name="memo"]').val();
+				var execution = '';
+				for (var i = 0; i < $('.papercol img').length; i++) {
+					if ($('.papercol img').eq(i).attr('src') == 'img/checked.png') {
+						execution = $('.papercol img').eq(i).parent().text();
+					} 
+				}
+				console.log(execution+','+number);
+				
+				if(execution=="全部完成"){
+					var worderOrderNum = Number(localStorage.getItem('worderOrderNum'));
+					
+					var totalNumber = deplaneNumber+number;
+					status = 2;
+//					if(totalNumber<=positiveNumber){
+//						console.log(totalNumber)
+//						otherStatus = 1;
+//						alert('下机数量小于合同数量无法勾选全部完成');
+//						return false;
+//					}else if(totalNumber>positiveNumber){
+//						
+//					}
+					
+				}else if(execution == '部分完成'){
+//					var worderOrderNum = Number(localStorage.getItem('worderOrderNum'));
+					var totalNumber = deplaneNumber+number;
+					status = 3;
+				}else{
+					alert('请选择完成情况');
+					return false;
+				}
+				console.log( '测试'+parent.$('.mui-collapse-content').find('button[objId='+processId+'].hd').html());
+////				console.log(otherStatus);
+				$.ajax({
+					type:"post",
+					dataType:'json',
+					url:ajaxUrlPath+"/mobile/workOrder/updateStatus",
+					data:{
+						processId:processId,
+						workOrderId:workOrderId,
+						type:type,
+						status:status,
+						printingDepartmentId:printingDepartmentId,
+						userId:localStorage.getItem("memberId"),
+						deplaneNumber:number,
+						memo:memo
+					},
+					success:function(data){
+						console.log(data);
+//						location.reload();
+						if(data.code==0){
+							$.ajax({
+							type:"post",
+							dataType:'json',
+							url:ajaxUrlPath+"/mobile/workOrder/addMemo",
+							data:{
+//								type:3,
+//								workOrderId:workOrderId,
+								objId:processId,
+								memo:memo
+							},
+							success:function(data){
+								console.log(JSON.stringify(data));
+								if(data.code==0){
+									parent.$('.mui-collapse-content').find('textarea[name="memo"]').html(memo);
+//									location.reload();
+								}
+		//						
+							}
+						})
+							
+						}
+						var myDate = new Date();
+						var m =  myDate.getMonth()+1; 
+						if(m<9){
+							m = '0'+m;
+						}
+						var d =  myDate.getDate(); 
+						var h = myDate.getHours();
+						var mm = myDate.getMinutes();
+						var datetime = m+'-'+d+' '+h+':'+mm;
+//						var papertype = parent.$('.mui-collapse-content').find('button[plateid='+plateId+']').parent().find('span').eq(0).html();
+						console.log(parent.$('.mui-collapse-content').find('button[objId='+processId+']').next().html()+'测试')
+//						alert(sendnum);
+						parent.$('.mui-collapse-content').find('button[objId='+processId+']').next().html('下机'+sendnum+'张 '+datetime);
+						parent.$('.mui-collapse-content').find('button[objId='+processId+']').attr('deplanenumber',sendnum);
+						parent.$('.mui-collapse-content').find('button[objId='+processId+']').attr('memo',memo);
+						parent.$('.mui-collapse-content').find('.memo').html(memo);
+						if(status == 2){
+//							alert(status);
+//							console.log(parent.$('.mui-collapse-content').find('button[objId='+processId+']'))
+							parent.$('.mui-collapse-content').find('button[objId='+processId+'].hd').css('background-color','#CCCCCC');
+							parent.$('.mui-collapse-content').find('button[objId='+processId+'].hd').attr('disabled','disabled');
+							parent.$('.mui-collapse-content').find('button[objId='+processId+'].hd').html('已完成');
+						}
+					}
+				})
+				parent.layer.close(index);
+				
+				
+				
+			})
+		</script>
+</html>

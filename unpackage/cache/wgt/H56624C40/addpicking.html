@@ -1,0 +1,403 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/initialization1.css"/>
+	</head>
+	<style type="text/css">
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		html,body{
+			width: 100%;
+			background-color: #FFFFFF;
+			
+		}
+		.headtitle{
+			width: 100%;
+			text-align: center;
+			color: #808080;
+			margin-top: 25%;
+			position: relative;
+			border: 1px solid #FFFFFF;
+			
+		}
+		.headtitle p:nth-child(1){
+			font-size: 2.3rem;
+			line-height: 3rem;
+		}
+		.headtitle p:nth-child(2){
+			font-size: 1.1rem;
+			line-height: 2rem;
+		}
+		.headtitle p:nth-child(3){
+			font-size: 1.1rem;
+			line-height: 2rem;
+		}
+		.content button{
+			width: 80%;
+			height: 50px;
+			border: 0px;
+			background-color: #ff6600;
+			color: #FFFFFF;
+			border-radius: 8px;
+			margin-left: 10%;
+			margin-top: 50px;
+		}
+
+		.papercol span{
+			margin-left: 6px;
+			color: #ff6f00;
+		}
+		.papercol p{
+			line-height: 25px;
+		}
+		.papercol span img{
+			height:20px;
+			width: auto;
+		}
+		.papercol span input{
+			height: 20px;
+			width: 20%;
+			border: 0px;
+			text-align: center;
+			margin-bottom: 0px;
+			padding: 0px;
+			font-size: 1rem;
+			border-bottom: 1px solid #ff6600;
+			
+		}
+		textarea{
+			background-color: #FFFFFF;
+			border: 0px;
+			color: #222222;
+		}
+		.papercolline{
+			position: relative;
+		}
+		#normal{
+			width: 40%;
+		    height: 2rem;
+		    font-size: 1rem;
+		    padding: 0;
+		    margin-bottom: 4px;
+		    position: absolute;
+		    opacity: 0;
+		    z-index: 100;
+		    
+		}
+		.normaltext{
+			position: relative;
+			line-height: 33px;
+		}
+		#check{
+			width: 15%;
+		    height: 2rem;
+		    font-size: 1rem;
+		    padding: 0;
+		    margin-bottom: 4px;
+		}
+		textarea{
+			background-color:#FFFFFF;
+			border: 0px;
+			color: #8f8f94;
+			font-size: 16px;
+			padding: 0px;
+			min-height: 60px;
+		}
+		#num{
+			width: 70%;
+		}
+	</style>
+
+	<body>
+		<div class="content">
+			<div id="content">
+				<div class="papercol">
+					<p class="papercolline">
+						物料<span>
+							<select name="check" id="check">
+								<option value="2">ps版</option>
+								<option value="1">纸张</option>
+							</select>
+						</span>
+						规格<span id="normals"><select name="normal" id="normal">
+						<!--<option value="222">22</option>-->
+					</select></span>
+					<span class="normaltext"> </span>
+						</span></p>
+				</div>
+				<div class="papercol">
+					<p>数量：<span><input type="number" name="num" id="num" value="" /></span></p>
+				</div>
+				<div class="papercol">
+					<textarea name="reason" class="reason" rows="" cols="" placeholder="填写原因-必须填写："></textarea>
+				</div>
+				
+			</div>
+			
+			
+			<button class="back">确认补料</button>
+			
+		</div>
+	</body>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/layer3.0.1/layer.js"></script>
+		<script type="text/javascript" src="js/pages/share.js"></script>
+
+		<script type="text/javascript">
+			mui.init();
+			var indexs = parent.layer.getFrameIndex(window.name);
+			function getUrlParam(name) {
+			    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+			    var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+			    if (r != null) return decodeURI(r[2]); return null; //返回参数值
+			}
+			$('input[type=number]').keyup(function(e) {
+				this.value=this.value.replace(/D/g,'')
+			});
+			
+			var objId  = getUrlParam('objId');
+			var workOrderId  = getUrlParam('workorderid');
+//			var type = getUrlParam('type');
+			var printingDepartmentId = getUrlParam('printingDepartmentId');
+			var papercuttingstandard = getUrlParam('papercuttingstandard');
+			var ids= '';
+			var nums = '';
+			var type = 2;
+			changetype(type);
+			function changetype(type){
+				$.ajax({
+						type:"get",
+						dataType:'json',
+						url:ajaxUrlPath+"/mobile/workOrder/getSupplementaryFoods",
+						data:{
+							type:type,
+							printingDepartmentId:printingDepartmentId,
+						},
+						success:function(data){
+							var option='';
+							$('#normals').html('');
+							if(data.code==0){
+								if(data.result.length>0){
+									option = '<select name="normal" id="normal">';
+										for (var i = 0; i < data.result.length; i++) {
+											var length = data.result[i].length;
+											var width = data.result[i].width;
+											var widthstr = ''
+											if(data.result[i].normal == '大规' || data.result[i].normal=='标规'){
+												length = '';
+												width = '';
+												widthstr = '';
+											}else if(data.result[i].normal=='特规'){
+												widthstr = length+'X'+width
+											}else{
+												widthstr = '';
+											}
+											option += '<option value="'+data.result[i].id+'">'+data.result[i].materialStr+(data.result[i].brand==null?"":data.result[i].brand)+data.result[i].normal+widthstr+'</option>';
+										}
+									option += '</select>'
+								}else{
+									option = '<select name="normal" id="normal"><option value="">'+papercuttingstandard+'</option></select>';
+								}
+								
+								
+								$('#normals').html(option);
+								var normal = $("#normal").find("option:selected").html();
+								$('.normaltext').html(normal);
+								$('#normal').click(function(){
+									var normal = $("#normal").find("option:selected").html();
+									$('.normaltext').html(normal);
+								})
+							}
+						}
+					})
+			}
+			$('#check').change(function(){
+				type = $("#check").find("option:selected").val();
+				$('.normaltext').html('');
+				console.log(type);
+				changetype(type);
+			})
+			
+			$('.reasontitle').on('tap',function(){
+				$('.reason').focus();
+			})
+			
+//			$.ajax({
+//				type:"post",
+//				dataType:'json',
+//				url:ajaxUrlPath+"/mobile/workOrder/getPickMaterialInfo",
+//				data:{
+//					type:type,
+//					objId:objId,
+//				},
+//				success:function(data){
+//					console.log(JSON.stringify(data));
+//					var html = '';
+//					if(data.code == 0){
+//						console.log(data.result);
+//						if(data.result.length==0 ){
+//							html = '';
+//						}else{
+//							for (var i = 0; i < data.result.length; i++) {
+//								var paper = '';
+//								ids += data.result[i].id+',';
+//								if(data.result[i].name == undefined){
+//									paper = '';
+//								}else{
+//									paper = data.result[i].name
+//								}
+//								var num = 0;
+//								if(data.result[i].num == undefined){
+//									num = 0;
+//								}else{
+//									num = data.result[i].num-data.result[i].receiveNum;
+//								}
+//								html +='<div class="papercol">'+
+//									'<p>1.<span>'+paper+'</span></p>'+
+//									'<p>数量：<span><input class="papernum" num="'+num+'" receiveNum="'+data.result[i].receiveNum+'" type="text" name="" id="" value="0" materialId="'+data.result[i].materialId+'" />大张</span></p>'+
+//								'</div>';
+//							}
+//							
+//						}
+//						html = html +'<div class="papercol">'+
+//					'<p>填写原因-必须填写：</p>'+
+//					'<textarea name="reason" class="reason" rows="" cols=""></textarea>'+
+//				'</div>'
+//						$('#content').html(html);
+//						
+//						
+//					}else{
+//						$('#content').html('暂无领料信息');
+//					}
+//					console.log(JSON.stringify(data));
+//				}
+//			})
+			$('.back').on('tap',function(){
+				console.log(type);
+					var num = Number($('#num').val());
+					var reason = $('.reason').val();
+					var normal = $('#normal').val();
+					console.log(normal+'  '+num);
+					if(num==''){
+						alert('请输入数量')
+						return false;
+						
+					}
+					if(reason==''){
+						alert('请填写原因')
+						return false;
+						
+					}
+					
+					var num = Number($('#num').val());
+					var reason = $('.reason').val();
+					var materialId = $("#normal").find("option:selected").val();
+					if(materialId==undefined || materialId == ''){
+						alert('纸张为自带纸无法补料')
+						return false;
+					}
+					$.ajax({
+						type:"post",
+						dataType:'json',
+						url:ajaxUrlPath+"/mobile/workOrder/paperCuttingFeeding",
+						data:{
+							type:type,
+							objId:objId,
+							workOrderId:workOrderId,
+							memberId:localStorage.getItem('memberId'),
+							num:num,
+							reason:reason,
+							materialId:materialId,
+						},
+						success:function(data){
+							console.log(data);
+							if(data.code == 0){
+//								location.reload();
+							layer.alert('补料已完成', { title:'提示'}, function(index){
+							if(index>=1){
+								parent.layer.close(indexs);
+							}
+							})
+							}else{
+								parent.layer.msg(data.msg,{offset:'80%'});
+							}
+							
+						}
+					})
+				
+//				var receiveNum = Number($(this).attr('receiveNum'));
+//				var papernum = Number($(this).val());
+//				var totalNum = num-receiveNum;
+//				
+//				var materialId = $('.papernum').attr('materialId');
+//				console.log(111);
+//				nums = $('.papernum').val()
+//				var papernum = $('.papernum').val();
+//				if(papernum == 0){
+//					mui.toast('暂无领料数据')
+//				}
+//				$.ajax({
+//					type:"post",
+//					dataType:'json',
+//					url:ajaxUrlPath+"/mobile/workOrder/updateStatus",
+//					data:{
+//						objId:paperCuttingId,
+//						workOrderId:workOrderId,
+//						type:2,
+//						status:3,
+//						userId:localStorage.getItem("memberId"),
+//						pickNum:papernum,
+//					},
+//					success:function(data){
+//						console.log(JSON.stringify(data));
+//						console.log(index);
+//						if(data.code == 0){
+////							location.reload();
+//						}else{
+//							parent.layer.msg(data.msg,{offset:'80%'});
+//						}
+//						
+////						parent.$('.feedingtext').eq(numindex).html('已领'+papernum+'大张');
+////						parent.layer.close(index);
+//						
+//					}
+//				});
+//				$.ajax({
+//					type:"post",
+//					dataType:'json',
+//					url:ajaxUrlPath+"/mobile/workOrder/paperCuttingFeeding",
+//					data:{
+//						objId:objId,
+//						num:nums,
+//						reason:reason,
+//						materialId:materialId,
+//						type:3,
+//						memberId:localStorage.getItem("memberId"),
+//					},
+//					success:function(data){
+//						console.log(JSON.stringify(data));
+//						console.log(index);
+//						if(data.code == 0){
+////							location.reload();
+//						}else{
+//							parent.layer.msg(data.msg,{offset:'80%'});
+//						}
+//						
+//////						parent.$('.feedingtext').eq(numindex).html('已领'+papernum+'大张');
+//						parent.layer.close(index);
+//						
+//					}
+//				});
+				
+			})
+			
+		</script>
+</html>

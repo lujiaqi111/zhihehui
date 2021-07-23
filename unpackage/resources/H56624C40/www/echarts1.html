@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<!--<meta name="apple-mobile-web-app-capable" content="yes">-->
+		<!--<meta name="apple-mobile-web-app-status-bar-style" content="black">-->
+		<meta name="format-detection" content="telephone=no">
+		<title>印刷通-报价</title>		<link rel="stylesheet" type="text/css" href="css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/rem.css"/>
+		<link rel="stylesheet" type="text/css" href="css/initialization1.css"/>		<style type="text/css">
+						body,html{				background-color: #f2f2f2;				width: 100%;				height: 100%;				overflow: hidden;				position: relative;							}
+			*{
+				margin: 0;
+				padding: 0;
+			}			#main4{
+				width: 100%;
+				height: 100%;
+				background-color: #eeeeef;
+			}			
+		</style>		
+	</head>
+	<body>		<div id="main4">
+			
+		</div>		
+								
+	</body>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/mui.min.js"></script>
+	<script type="text/javascript" src="js/layer3.0.1/layer.js"></script>
+	<script src="js/pages/share.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="js/echarts.min.js"></script>	<script type="text/javascript">//		mui.init();		option = {
+			color: ['#001587', '#ff9500'],
+		    legend: {
+		    	x:'right',
+		    	orient:'vertical',
+				type:'scroll',
+				top:'1%',
+				right:'1%',
+				icon:'rect',
+				itemWidth:20,
+				itemHeight:20,
+		    },
+		    tooltip: {},
+		    // dataset: {
+		    //     source: [
+		    //         ['product', '2021', '2020'],
+		    //         ['1月', 11.05, 8.45],
+		    //         ['2月', 12.05, 11.05],
+		    //         ['3月', 15.35,11.05],
+		    //     ]
+		    // },
+		    xAxis: {
+				type: 'value',
+				show:false,
+				// type: 'category',
+				position :'top', //x 轴的位置【top bottom】
+				        nameRotate :-90, //坐标轴名字旋转，角度值。
+				axisLabel :{  //坐标轴刻度标签的相关设置。
+				           rotate : 90 //刻度标签旋转的角度，
+				        },
+				scale: true, //是否是脱离 0 值比例
+			},
+		    yAxis: {
+				type: 'category',
+		    	show:true,
+		        splitLine:{
+				    show:false //去掉网格线
+				},
+				axisLabel :{  //坐标轴刻度标签的相关设置。
+				   rotate : -90 //刻度标签旋转的角度，
+				},
+				data: ['1月', '2月', '3月', '4月', '5月', '6月','7月','8月','10月','11月','12月']
+		    },
+		    // Declare several bar series, each will be mapped
+		    // to a column of dataset.source by default.
+		    series: [
+		        {
+		        	type: 'bar',
+		        	barWidth:10,
+		        	barGap:1,
+		        	itemStyle: {
+							normal: {
+								label: {
+									show: true, //开启显示
+									position: 'right', //在上方显示
+									textStyle: { //数值样式
+										color: '#000000',
+										fontSize: 12
+									},
+									rotate : -90 //刻度标签旋转的角度，
+								}
+							}
+					},
+					data: [11.05, 12.02, 13.12, 14.02, 14.02, 13.02,16.02,17.03,14.06,15.06,13.17,16.34]
+		
+		        },
+		        {
+		        	type: 'bar',
+		        	barWidth:10,
+		        	barGap:1,
+		        	itemStyle: {
+							normal: {
+								label: {
+									show: true, //开启显示
+									position: 'right', //在上方显示
+									textStyle: { //数值样式
+										color: '#000000',
+										fontSize: 12
+									},
+									rotate : -90 //刻度标签旋转的角度，
+								}
+							}
+					},
+					data: [11.05, 12.56, 13.63, 14.02, 14.02, 13.02,16.02,17.03,14.06,15.06,13.17,16.34]
+		        },
+		       
+		    ]
+		};
+		//初始化echarts实例
+		var myChart = echarts.init(document.getElementById('main4'));
+		
+		//使用制定的配置项和数据显示图表
+		myChart.setOption(option);
+		pushHistory(); 
+		   window.addEventListener("popstate", function(e) { 
+		     window.location = 'indexview.html';
+		   }, false); 
+		   function pushHistory() { 
+		     var state = { 
+		       title: "title", 
+		       url: "#"
+		     }; 
+		     window.history.pushState(state, "title", "#"); 
+		   }				
+//						
+	</script>
+</html>

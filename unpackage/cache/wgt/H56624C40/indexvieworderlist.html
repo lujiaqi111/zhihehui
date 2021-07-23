@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<!--<meta name="apple-mobile-web-app-capable" content="yes">-->
+		<!--<meta name="apple-mobile-web-app-status-bar-style" content="black">-->
+		<meta name="format-detection" content="telephone=no">
+		<title>印刷通-报价</title>		<link rel="stylesheet" type="text/css" href="css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/rem.css"/>
+		<link rel="stylesheet" type="text/css" href="css/initialization1.css"/>		<style type="text/css">
+			#text{			    box-shadow: 0px 1px 6px #c3c3c3;			    border-radius: 10px;			    width: 90%;			    height: 400px;			    margin-left: 4%;			    background-color: #FFFFFF;			    margin-top: 10px;			}			body,html{				background-color: #f2f2f2;				width: 100%;				height: 100%;				overflow: hidden;				position: relative;							}			.title{				width: 100%;				height: 120px;				background-color: #ff6f00;				color: #FFFFFF;				position: absolute;				top: 0px;				z-index: 100;				/*margin-top: 80px;*/			}			.search{				width: 100%;				height: 60px;/*				background-color: red;*/			}			.search span{				display: inline-block;				float: left;				line-height: 50px;				font-size: 20px;				font-weight: inherit;				padding-left: 10px;			}			#search{				float: left;				width: 200px;				height: 40px;				border-radius: 20px;				background-color: #ff9a4d;				margin-top: 10px;				margin-left: 10px;			}			#search img{				display: block;				height: 20px;				width: 20px;				margin: 10px;				float: left;			}			#search input{				display: block;				float: left;				width: 150px;				background-color: rgba(0,0,0,0);				border: 0px;				text-align: left;    			color: #ffffff;			}			.list{				width: 100%;				height: 60px;				text-align: center;			}			.list ul li{				width: 16%;				height: 60px;				float: left;											}			.list ul li p{				color: #FFFFFF;			}			.list ul li p:first-child{				font-size: 18px;			}			.list ul li p:last-child{				font-size: 12px;			}			.orderlist{				width: 90%;				/*min-height: 110px;*/				/*background-color: red;*/				margin-left: 5%;				/*margin-top: 130px;*/							}			.orderlist ul li{				width: 100%;				height: 120px;				background-color: #FFFFFF;				margin-top: 10px;				border: 1px solid rgba(0,0,0,0.2);				border-radius: 5px;				cursor: pointer;			}			.rightinfo ul li p{				height: 20px;				position: relative;			}			.tip{				height: 30px;				position: relative;			}			.tip span{				height: 30px;			}			.tip:after{				content: '';				display: block;				position: absolute;				width: 90%;				left: 5%; 				bottom: 0;				height: 1px;				background-color: #c8c7cc;				transform: scaleY(0.5);			}			.leftspan{				display:inline-block ;				float: left;				padding: 6px;				font-size: 16px;				height: 30px;				color: #ff6f00;				width: 40%;				text-overflow:ellipsis;				white-space:nowrap;				overflow:hidden;							}			.rightspan{				display: inline-block;				text-align: right;				float: right;				padding: 6px;				font-size: 16px;				height: 30px;				width: 60%;			}			.info{				width: 100%;				height: 88px;				position: relative;			}			.info div{				float: left;			}			.leftinfo{				width: 66px;				height: 66px;							}			.orderlogo{				width: 50px;				height: 50px;				border: 1px solid #FFFFFF;				border-radius: 50%;				margin: 16px 8px;				/*background-color: #ff6f00;*/				text-align: center;			}			.orderlogo img{				display: inline-block;				width: auto;				height: 100%;							}			.rightinfo{				width: auto;				height: 66px;				width: 70%;			}			.ordername{				font-size: 12px;			}			.orderinfo{				font-size: 12px;				width: 225px;		        overflow:hidden;		        text-overflow:ellipsis; 		        white-space: nowrap;/*加宽度width属来兼容部分浏览*/			}			.del{				position: absolute;				right: 6px;				top: 6px;			}			.del img{				width: 20px;			}			.price{				position: absolute;				right: 6px;				bottom: 6px;				font-size: 16px;				color: #ff6f00;			}			.list .active{				color: #ffee4d !important;				background-color: #ff6f00 !important;			}			.orderlist{				padding-bottom: 200px;				position: absolute;				height: 100%;				top: 0px;
+				bottom: 3.75rem;    			/* overflow-y: hidden; */			}			#content{				width: 100%;				/* overflow-y: hidden; */				position: absolute;				top: 130px;
+				margin-bottom: 5rem;			}			/*.title{
+				position: fixed;
+				top: 0;
+			}
+			.orderlist{
+				overflow: auto;
+			    padding-bottom: 30px;
+			    margin-top: 120px;
+			}*/			.status{				background-color: #FF6F00;				color: #FFFFFF;				padding: 3px 5px;				border-radius: 5px;				position: absolute;				right: 5px;				bottom: 5px;			}			.mui-bar-tab{				position: absolute;				bottom: 0px;			}			.mui-scrollbar-indicator{				background: rgba(0,0,0,0);			}			.mui-pull-top-tips{position:absolute;top:-20px;left:50%;margin-left:-25px;width:40px;height:40px;border-radius:100%;z-index:999;}			.mui-bar~.mui-pull-top-tips{top:24px;}			.mui-pull-top-wrapper{width:42px;height:42px;display:block;text-align:center;background-color:#efeff4;border:1px solid #ddd;border-radius:25px;background-clip:padding-box;box-shadow:0 4px 10px #bbb;overflow: hidden;}			.mui-pull-top-tips.mui-transitioning {-webkit-transition-duration:200ms;transition-duration:200ms;}			.mui-pull-top-tips .mui-pull-loading{margin:0;}			.mui-pull-top-wrapper .mui-icon, .mui-pull-top-wrapper .mui-spinner{margin-top:7px;}			.mui-pull-bottom-tips{text-align:center;background-color:#efeff4;font-size:15px;line-height:40px;color:#777;}			.mui-pull-top-canvas{overflow:hidden;background-color:#fafafa;border-radius:40px;box-shadow:0 4px 10px #bbb;width:40px;height:40px;margin:0 auto;}			.mui-pull-top-canvas canvas{width:40px;}
+			.search span img{height: 26px; width: auto; margin-right: 10px;}
+		</style>		
+	</head>
+	<body>		<nav class="mui-bar mui-bar-tab foot-bar">			<a class="mui-tab-item orderlistbtn" href="orderlist.html">				<p><img src="img/nav02.png" style="height: 30px;padding-top:5px ;"/></p>				<span class="mui-tab-label" style="color: #FF6F00;">工单</span>			</a>			<a class="mui-tab-item scan" href="scan.html">				<p><img src="img/scan1.png" style="height: 30px;padding-top:5px ;"/></p>				<span class="mui-tab-label" >扫描</span>			</a>			<a class="mui-tab-item myself" href="myselfinfo.html">				<p><img src="img/nav3.png" style="height: 30px;padding-top:5px ;"/></p>				<span class="mui-tab-label" >我的</span>			</a>		</nav>		
+		<div class="title">			<div class="search">
+				<span><img  style="" src="img/backbtn.png"/>合同列表</span>
+			</div>
+		</div>		<div class="mui-scroll-wrapper" style="overflow: scroll;">
+		<!--<div class="mui-scroll">-->		<div class="orderlist mui-scroll">
+			<ul id="content" >
+				<!--<li>
+						<p class="tip"><span class="leftspan">画册211-35365</span><span class="rightspan">2019-8-25</span></p>
+						<div class="info">
+							<div class="leftinfo">
+								<div class="orderlogo">
+									<img src="img/orderlogo.png"/>
+								</div>
+							</div>
+							<div class="rightinfo">
+								<p class="ordername">C210421-01</p>
+								<p class="orderinfo">书刊事业部</p>
+								<p class="orderinfo">3600</p>
+							</div>
+							<div class="del">
+								<span>3-12</span>
+							</div>
+							<div class="price">
+								<span>￥:2300.00</span>
+							</div>
+						</div>
+				</li>
+				<li>
+					<p class="tip"><span class="leftspan">画册211-35365</span><span class="rightspan">2019-8-25</span></p>
+						<div class="info">
+							<div class="leftinfo">
+								<div class="orderlogo">
+									<img src="img/orderlogo.png"/>
+								</div>
+							</div>
+							<div class="rightinfo">
+								<p class="ordername">画册211-64746577</p>
+								<p class="orderinfo">16：45已经开始印刷</p>
+								<p class="orderinfo">16：45已经开始印刷</p>
+							</div>
+							<div class="del">
+								<img src="img/dellogo.png"/>
+							</div>
+							<div class="price">
+								<span>￥:2300.00</span>
+							</div>
+						</div>
+				</li>
+				<li>
+					<p class="tip"><span class="leftspan">画册211-35365</span><span class="rightspan">2019-8-25</span></p>
+						<div class="info">
+							<div class="leftinfo">
+								<div class="orderlogo">
+									<img src="img/orderlogo.png"/>
+								</div>
+							</div>
+							<div class="rightinfo">
+								<p class="ordername">画册211-64746577</p>
+								<p class="orderinfo">16：45已经开始印刷</p>
+								<p class="orderinfo">16：45已经开始印刷</p>
+							</div>
+							<div class="del">
+								<img src="img/dellogo.png"/>
+							</div>
+							<div class="price">
+								<span>￥:2300.00</span>
+							</div>
+						</div>
+				</li>
+				<li>
+					<p class="tip"><span class="leftspan">画册211-35365</span><span class="rightspan">2019-8-25</span></p>
+						<div class="info">
+							<div class="leftinfo">
+								<div class="orderlogo">
+									<img src="img/orderlogo.png"/>
+								</div>
+							</div>
+							<div class="rightinfo">
+								<p class="ordername">画册211-64746577</p>
+								<p class="orderinfo">16：45已经开始印刷</p>
+								<p class="orderinfo">16：45已经开始印刷</p>
+							</div>
+							<div class="del">
+								<img src="img/dellogo.png"/>
+							</div>
+							<div class="price">
+								<span>￥:2300.00</span>
+							</div>
+						</div>
+				</li>-->
+			</ul>
+			</div>		<!--</div>-->
+</div>				
+	</body>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/mui.min.js"></script>
+	<script type="text/javascript" src="js/layer3.0.1/layer.js"></script>
+	<script src="js/pages/share.js" type="text/javascript" charset="utf-8"></script>
+	<!--<script type="text/javascript" src="js/updateversion.js"></script>-->	<script type="text/javascript" src="js/pages/other-Materials.js"></script>	<script type="text/javascript" src="js/mui.pullToRefresh.min.js"></script>	<script type="text/javascript" src="js/mui.pullToRefresh.material.min.js"></script>	<script type="text/javascript">//		mui.init();		var html ='<a class="mui-tab-item indexbtn" href="indexview.html">'+
+						'<p><img src="img/nav02.png" style="height: 30px;padding-top:5px ;"/></p>'+
+						'<span class="mui-tab-label" style="color: #FF6F00;">首页</span>'+
+					'</a>'+
+					 '<a class="mui-tab-item orderlistbtn" href="orderlist.html">'+
+						'<p><img src="img/nav2.png" style="height: 30px;padding-top:5px ;"/></p>'+
+						'<span class="mui-tab-label">工单</span>'+
+					'</a>'+
+					'<a class="mui-tab-item scanbtn" href="scan.html">'+
+						'<p><img src="img/scan1.png" style="height: 30px;padding-top:5px ;"/></p>'+
+						'<span class="mui-tab-label" >扫描</span>'+
+					'</a>'+
+					'<a class="mui-tab-item myself" href="">'+
+						'<p><img src="img/nav3.png" style="height: 30px;padding-top:5px ;"/></p>'+
+						'<span class="mui-tab-label" >我的</span>'+
+					'</a>'
+			        $('.foot-bar').html(html);
+			        $('.orderlistbtn').on('tap',function(){
+						window.location = 'orderlist.html';
+					})
+					$('.indexbtn').on('tap',function(){
+							window.location = 'indexview.html';
+					})
+					$('.scanbtn').on('tap',function(){
+						window.location = 'scan.html';
+					})
+					$('.myself').on('tap',function(){
+						window.location = 'myselfinfo.html';
+					})
+//		(function($){
+//
+//		    $(".mui-scroll-wrapper").scroll();
+//		    list();
+//		})(mui);		window.ontouchmove=function(e){	        e.preventDefault && e.preventDefault();	        e.returnValue=true;	        e.stopPropagation && e.stopPropagation();	        return true;		}		var that = null;		var localdata = {};
+//       		function getUrlParam(name) {			    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象			    var r = window.location.search.substr(1).match(reg);  //匹配目标参数			    if (r != null) return decodeURI(r[2]); return null; //返回参数值		}		var dataType = getUrlParam('dataType');		if(dataType == 1){
+			$('.search span').html('<img  style="" src="img/backbtn.png"/>当日新增订单')
+		}else if(dataType == 2){
+			$('.search span').html('<img  style="" src="img/backbtn.png"/>未完成订单')
+		}else if(dataType == 3){
+			$('.search span').html('<img  style="" src="img/backbtn.png"/>延误订单')
+		}else if(dataType == 4){
+			$('.search span').html('<img  style="" src="img/backbtn.png"/>当日需完成订单')
+		}else if(dataType == 5){
+			$('.search span').html('<img  style="" src="img/backbtn.png"/>3日内需完成订单')
+		}else if(dataType == 6){
+			$('.search span').html('<img  style="" src="img/backbtn.png"/>延误订单')
+		}
+		$('.search').on('click',function(){
+			mui.back();
+		})
+		var name = '';		list(dataType);						pushHistory(); 
+	    window.addEventListener("popstate", function(e) { 
+	    	window.location.href = 'indexview.html'
+	      	
+	    }, false); 
+	    function pushHistory() { 
+	      var state = { 
+	        title: "title", 
+	        url: "#"
+	      }; 
+	      window.history.pushState(state, "title", "#"); 
+	    }
+		
+		
+	// 	var self = mui('.mui-scroll').pullRefresh({	// 		up: {	// 			callback: function() {	// 				console.log(1111);	// 				up_refresh(this);	// 			}	// 		}	// 	});		// 	function up_refresh(obj) {	// 		var per_page = $('#per_page').val();	// 		var page = $('#page').val();	// 		list('up', per_page, page);	// 	}		function list(type){
+			$.ajax({
+				type:"post",
+				dataType:'json',
+				url:ajaxUrlPath+"/mobile/index/homePageList",
+				data:{
+					 dataType:type
+					
+				},
+				success:function(data){					console.log('测试2')
+					console.log(data.length);
+						var li = '';						
+						for (var i = 0; i < data.length; i++) {
+							var papertype = '';
+							var orderstatus = '';
+							if(data[i].status==5){
+									orderstatus = '新增合同'
+							}else if(data[i].status==6){
+									orderstatus = '工单已创建'
+							}else if(data[i].status==90){
+									orderstatus = '运送中'
+							}else if(data[i].status==91){
+									orderstatus = '运送完成'
+							}else if(data[i].status==93){
+									orderstatus = '已销账'
+							}else if(data[i].status==11){
+									orderstatus = '切纸已开始'
+							}else if(data[i].status==12){
+									orderstatus = '切纸已完成'
+							}else if(data[i].status==13){
+									orderstatus = '制版已开始'
+							}else if(data[i].status==14){
+									orderstatus = '制版已完成'
+							}else if(data[i].status==15){
+									orderstatus = '印刷已开始'
+							}else if(data[i].status==16){
+									orderstatus = '印刷已完成'
+							}else if(data[i].status==17){
+									orderstatus = '覆膜已开始'
+							}else if(data[i].status==18){
+									orderstatus = '覆膜已完成'
+							}else if(data[i].status==19){
+									orderstatus = 'UV/丝印已开始'
+							}else if(data[i].status==20){
+									orderstatus = 'UV/丝印已完成'
+							}else if(data[i].status==21){
+									orderstatus = '烫印已开始'
+							}else if(data[i].status==22){
+									orderstatus = '烫印已完成'
+							}else if(data[i].status==23){
+									orderstatus = '凹凸已开始'
+							}else if(data[i].status==24){
+									orderstatus = '凹凸已完成'
+							}else if(data[i].status==25){
+									orderstatus = '模切已开始'
+							}else if(data[i].status==26){
+									orderstatus = '模切已完成'
+							}else if(data[i].status==27){
+									orderstatus = '糊盒已开始'
+							}else if(data[i].status==28){
+									orderstatus = '糊盒已完成'
+							}else if(data[i].status==29){
+									orderstatus = '喷码已开始'
+							}else if(data[i].status==30){
+									orderstatus = '喷码已完成'
+							}else if(data[i].status==31){
+									orderstatus = '装箱已开始'
+							}else if(data[i].status==32){
+									orderstatus = '装箱已完成'
+							}else if(data[i].status==33){
+									orderstatus = '手工已开始'
+							}else if(data[i].status==34){
+									orderstatus = '手工已完成'
+							}else if(data[i].status==35){
+									orderstatus = '拆边已开始'
+							}else if(data[i].status==36){
+									orderstatus = '拆边已完成'
+							}else if(data[i].status==37){
+									orderstatus = '品检已开始'
+							}else if(data[i].status==38){
+									orderstatus = '品检已完成'
+							}else if(data[i].status==81){
+									orderstatus = '成品入库'
+							}else if(data[i].status==61){									orderstatus = '切纸外协已完成'							}else if(data[i].status==62){									orderstatus = '制版外协已完成'							}else if(data[i].status==63){									orderstatus = '覆膜外协已完成'							}else if(data[i].status==64){									orderstatus = 'UV/丝印已完成'							}else if(data[i].status==65){									orderstatus = 'UV/丝印版已完成'							}else if(data[i].status==66){									orderstatus = '烫印外协已完成'							}else if(data[i].status==67){									orderstatus = '烫印版外协已完成'							}else if(data[i].status==68){									orderstatus = '凹凸外协已完成'							}else if(data[i].status==69){									orderstatus = '凹凸版外协已完成'							}else if(data[i].status==70){									orderstatus = '模切外协已完成'							}else if(data[i].status==71){									orderstatus = '模切版外协已完成'							}else if(data[i].status==72){									orderstatus = '喷码外协已完成'							}else if(data[i].status==73){									orderstatus = '装箱外协已完成'							}else if(data[i].status==74){									orderstatus = '手工外协已完成'							}else if(data[i].status==75){									orderstatus = '拆边外协已完成'							}else if(data[i].status==76){									orderstatus = '品检外协已完成'							}else if(data[i].status==77){									orderstatus = '整单外协已完成'							}else if(data[i].status==78){									orderstatus = '纸箱外协已完成'							}else if(data[i].status==80){									orderstatus = '其他外协已完成'							}else if(data[i].status==92){									orderstatus = '合同已完成'
+							}else if(data[i].status==112){
+									orderstatus = '切纸已暂停'
+							}else if(data[i].status==114){
+									orderstatus = '制版已暂停'
+							}else if(data[i].status==116){
+									orderstatus = '印刷已暂停'
+							}else if(data[i].status==118){
+									orderstatus = '覆膜已暂停'
+							}else if(data[i].status==120){
+									orderstatus = 'UV/丝印已暂停'
+							}else if(data[i].status==122){
+									orderstatus = '烫印已暂停'
+							}else if(data[i].status==124){
+									orderstatus = '凹凸已暂停'
+							}else if(data[i].status==126){
+									orderstatus = '模切已暂停'
+							}else if(data[i].status==128){
+									orderstatus = '糊盒已暂停'
+							}else if(data[i].status==130){
+									orderstatus = '喷码已暂停'
+							}else if(data[i].status==132){
+									orderstatus = '装箱已暂停'
+							}else if(data[i].status==134){
+									orderstatus = '手工已暂停'
+							}else if(data[i].status==136){
+									orderstatus = '拆边已暂停'
+							}else if(data[i].status==138){
+									orderstatus = '品检已暂停'							}
+							
+							var imgsrc = 'img/icon4.png'
+							
+								li += '<li>'+
+						'<p class="tip"><span class="leftspan">'+data[i].name+'</span><span class="rightspan">'+data[i].time.substring(0,16)+'</span></p>'+
+						'<div class="info">'+
+							'<div class="leftinfo">'+
+								'<div class="orderlogo">'+
+									'<img src="img/orderlogo.png"/>'+
+								'</div>'+
+							'</div>'+
+							'<div class="rightinfo">'+
+								'<p class="ordername">'+data[i].contractNo+'</p>'+
+								'<p class="orderinfo">'+data[i].customerCompany+'</p>'+
+								'<p class="orderinfo">'+data[i].num+'</p>'+
+							'</div>'+
+							'<div class="del">'+
+								'<span>'+data[i].deliveryDateStr+'</span>'+
+							'</div>'+
+							'<div class="price">'+
+								'<span>￥:'+data[i].totalPrice.toFixed(2)+'</span>'+
+							'</div>'+
+						'</div>'+
+				'</li>'
+				
+
+							
+							
+							
+						}
+						$('#content').html(li);
+				}
+			})
+		}
+		
+//						
+	</script>
+</html>

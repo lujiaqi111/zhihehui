@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<title>印刷通-报价</title>
+		<link rel="stylesheet" type="text/css" href="css/rem.css"/>
+		<link rel="stylesheet" type="text/css" href="css/initialization1.css"/>		<style type="text/css">
+			body{				background-color: #FFFFFF;			}			.select-special-tech .select-special-table .special-table-title{				text-align: right;			}			input,select,td{				color: #888888;			}			#color,#moQie{				text-align:center;				text-align-last:center;				padding-left: 20%;			}			select{				padding-right:0;				-webkit-appearance: none;			}
+		</style>
+	</head>
+	<body>
+		<div class="select-special-tech layer-custom" id="specialTech">			<p style="line-height: 40px;padding: 0px 15px;font-size: 1.5rem;">选择特殊工艺？</p>
+			<table class="select-special-table" cellpadding="0" cellspacing="1" style="margin-bottom: 2.0rem;">
+				<tr class="tr1">					<td rowspan="" width="65%" class="special-table-title" style="border-top: 1px solid #ccc;">烫电化铝/凹凸</td>					<td width="25%" rowspan="3" style="border-bottom: 1px solid #ccc;border-top: 1px solid #ccc;"><img src="img/icon11.png" /></td>				</tr>				<tr class="tr1">
+
+					<td width="70%" id="materialText">
+						材料
+						<input type="text" id="material" value="" readonly="readonly" style="width: 70%;"/>						<!--<span class="">烫电化铝/凹凸</span>-->
+					</td>
+					
+				</tr>
+				<tr class="tr1">
+					
+					<td style="border-bottom: 1px solid #ccc;">						<span id="area1Text">
+							面积							<input type="text" id="area1" class="area" value="" readonly="readonly"/>
+						</span>						
+						<select id="technology">
+							<option value=""  selected="selected">选择工艺</option>
+							<option value="电雕凹凸">凹凸</option>
+
+							<option value="普通电化铝平烫">普通平烫</option>
+
+							<option value="电雕烫凹一体">电雕烫凹一体</option>
+
+						</select>						
+
+					</td>					<!--<td>-->						<!--<select id="technology">
+
+							<option value="电雕凹凸">电雕凹凸</option>
+
+							<option value="普通电化铝平烫">普通电化铝平烫</option>
+
+							<option value="电雕烫凹一体">电雕烫凹一体</option>
+
+						</select>-->					<!--</td>-->
+
+				</tr>
+								<tr class="tr2">					<td rowspan="" width="65%" class="special-table-title">局部UV/丝网印刷</td>					<td width="25%" rowspan="3" style="border-bottom: 1px solid #ccc;"><img src="img/icon12.png" /></td>				</tr>
+				<tr class="tr2">
+					<!--<td rowspan="2" width="25%" class="special-table-title">局部UV/丝网印刷</td>-->
+					<td width="60%" id="colorText" style="position: relative;line-height: 36px;">
+						颜色							<!--<input type="text" name="color" id="color" value="" />
+							<ul style="width: 30%;margin-left: 20%;">
+								<li></li>
+								<li>透明uv</li>
+								<li>丝网</li>
+								
+							</ul>-->							<select id="color" style="position: absolute;left: 0;width: 50%;" >
+								<option value="" selected="selected"></option>							<option value="透明uv">透明uv</option>							<option value="丝网">丝网</option>
+							</select>
+							
+					</td>
+				</tr>
+				<tr class="tr2">
+					<td style="border-bottom: 1px solid #ccc;">
+						<span id="area2Text">
+							面积							<input type="text" id="area2" class="area" value="" readonly="readonly"/>
+						</span>
+						
+
+					</td>
+				</tr>
+								<tr class="tr1">					<td rowspan="" width="65%" class="special-table-title">模切</td>					<td width="25%" rowspan="2" style="border-bottom: 1px solid #ccc;"><img src="img/icon13.png" /></td>				</tr>
+				<tr class="tr1">
+					<td style="border-bottom: 1px solid #ccc;width: 60%;line-height: 36px;" id="moQieText">
+
+						模切
+
+						<select id="moQie" style="position: absolute;left: 0;width: 50%;border: none;" >							<option value="" selected="selected"></option>							<option value="一般模切">一般模切</option>							<option value="复杂模切">复杂模切</option>						</select>
+
+					</td>
+				</tr>
+				<tr class="tr1">					<td rowspan="" width="65%" class="special-table-title" >蝴蝶钉</td>					<td width="25%" rowspan="3" style="border-bottom: 1px solid #ccc;"><img src="img/icon14.png" /></td>				</tr>
+				<tr class="tr1" style="">
+					<td style="border-bottom: 1px solid #ccc;">
+						孔距
+						<input type="number" id="kongJu" value="" placeholder="" @blur="fixScroll"/>mm
+					</td>
+				</tr>				
+				<!--
+				<tr class="tr5">
+
+					<td colspan="3">
+
+						<p style="margin: .5rem;">特殊要求</p>
+
+						<textarea id="specialRequire" placeholder="特殊要求提交后，将不进行询价结果的计算，稍后会有报价人员与您进行联系！" rows="7"></textarea>
+
+					</td>
+
+				</tr>-->
+			</table>
+			<button type="button" class="sure-button" sign="0" id="sureButton01" style="margin-top: 0;">确定</button>
+		</div>
+		<div id="selectStuff" class="select-stuff hide">			<!--<p class="choosepaper" style="padding: 15px;text-align: left;border-bottom: 1px solid #d1d1d1;">选择电化铝
+				<span style="font-size: 1.2rem;display: inline-block;float: right;">准确颜色请参照实物样版</span>
+			</p>-->			<p style="line-height: 40px;padding: 0px 15px;font-size: 1.5rem;text-align: left;">选择电化铝？<span style="display: inline-block;float: right;font-size: 0.8rem;margin-right: 20px;">准确颜色请参照实物样版</span></p>
+			<table class="select-stuff-table" cellpadding="0" cellspacing="3">
+				<tr>
+					<td width="20%"><p>亮金</p><span>001</span></td>
+					<td width="20%"><p>浅金</p><span>009</span></td>
+					<td width="20%"><p>浅金</p><span>012</span></td>
+					<td width="20%"><p>哑金</p><span>061</span></td>
+				</tr>
+				<tr>
+					<td><p>哑金</p><span>063</span></td>
+					<td><p>哑金</p><span>070</span></td>
+					<td><p>古铜</p><span>081</span></td>
+					<td><p>红金</p><span>019</span></td>
+				</tr>
+				<tr>
+					<td><p>玫红</p><span>063</span></td>
+					<td><p>纯白</p><span>155</span></td>
+					<td><p>亮银</p><span>015</span></td>
+					<td><p>哑银</p><span>052</span></td>
+				</tr>
+				<tr>
+					<td><p>镭射银</p><span>083</span></td>
+					<td><p>亮黑</p><span>051</span></td>
+					<td><p>透光白</p><span>153</span></td>
+					<td><p>蓝金</p><span>032</span></td>
+				</tr>
+			</table>
+			<div id="otherStuffDiv"><p>其他指定材料</p><span>(指定材料会增加费用)</span></div>			<div id="surebtn">
+				<button type="button" class="sure-button" id="sureButton02" style="margin-left: 0%;">确认</button>			</div>
+		</div>
+		<div id="selectArea" class="layer-custom hide">			<!--<p class="choosepaper" style="padding: 15px;text-align: left;border-bottom: 1px solid #d1d1d1;">选择面积
+			</p>-->			<p style="line-height: 40px;padding: 0px 15px;font-size: 1.5rem;">选择面积？</p>
+			<div class="select-printing-size">
+				<div class="select-size-img">
+					<div class="select-size-shash" id="sizeShash"></div>
+				</div>
+				<!--<div style="">-->
+					<ul class="select-size-ul" id="areaUl">
+						<li>0%</li>
+						<li>15%</li>
+						<li>30%</li>
+						<li>50%</li>
+						<li>70%</li>
+						<li>100%</li>
+					</ul>
+				<!--</div>-->
+			</div>			
+				<button type="button" data-sign="0" class="sure-button" id="sureButton03" style="margin-left: 10%;margin-top: 2rem;">确认</button>
+			
+		</div>
+		<div id="otherStuff" class="layer-custom hide">
+			<span class="layer-span">烫印材料</span><input type="text" id="otherStuffInput" value="" />
+			<button type="button" class="sure-button" id="sureButton04">确定</button>
+		</div>
+		<div id="otherColor" class="layer-custom hide">
+			<span class="layer-span">颜色编号</span><input type="text" id="otherColorInput" value="" placeholder="请填写Pantone颜色编号"/>
+			<button type="button" class="sure-button" id="sureButton05">确定</button>
+		</div>
+	</body>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/layer3.0.1/layer.js"></script>
+	<script type="text/javascript" src="js/pages/share.js"></script>
+	<script type="text/javascript" src="js/pages/select-special-tech.js"></script>	<script type="text/javascript">		$("#colorText").on('click',function(){			console.log(111);//			$("#color").attr('size',1);		})
+	</script>
+</html>

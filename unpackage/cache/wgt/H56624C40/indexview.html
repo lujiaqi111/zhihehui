@@ -1,0 +1,1434 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<!--<meta name="apple-mobile-web-app-capable" content="yes">-->
+		<!--<meta name="apple-mobile-web-app-status-bar-style" content="black">-->
+		<meta name="format-detection" content="telephone=no">
+		<title>印刷通-报价</title>		<link rel="stylesheet" type="text/css" href="css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/rem.css"/>
+		<link rel="stylesheet" type="text/css" href="css/initialization1.css"/>
+		<link rel="stylesheet" type="text/css" href="css/mui.picker.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/mui.dtpicker.css"/>
+				<style type="text/css">
+			#text{			    box-shadow: 0px 1px 6px #c3c3c3;			    border-radius: 10px;			    width: 90%;			    height: 400px;			    margin-left: 4%;			    background-color: #FFFFFF;			    margin-top: 10px;			}			body,html{				background-color: #FFFFFF;				width: 100%;				height: 100%;				overflow: hidden;				position: relative;
+				font-family: "微软雅黑";							}			.mui-bar-tab{				position: absolute;				bottom: 0px;			}			.mui-scrollbar-indicator{				background: rgba(0,0,0,0);			}			.mui-pull-top-tips{position:absolute;top:-20px;left:50%;margin-left:-25px;width:40px;height:40px;border-radius:100%;z-index:999;}			.mui-bar~.mui-pull-top-tips{top:24px;}			.mui-pull-top-wrapper{width:42px;height:42px;display:block;text-align:center;background-color:#efeff4;border:1px solid #ddd;border-radius:25px;background-clip:padding-box;box-shadow:0 4px 10px #bbb;overflow: hidden;}			.mui-pull-top-tips.mui-transitioning {-webkit-transition-duration:200ms;transition-duration:200ms;}			.mui-pull-top-tips .mui-pull-loading{margin:0;}			.mui-pull-top-wrapper .mui-icon, .mui-pull-top-wrapper .mui-spinner{margin-top:7px;}			.mui-pull-bottom-tips{text-align:center;background-color:#efeff4;font-size:15px;line-height:40px;color:#777;}			.mui-pull-top-canvas{overflow:hidden;background-color:#fafafa;border-radius:40px;box-shadow:0 4px 10px #bbb;width:40px;height:40px;margin:0 auto;}			.mui-pull-top-canvas canvas{width:40px;}
+			.mui-card{margin: 0;box-shadow:0px 0px 0px;}
+			.mui-table-view-cell>a:not(.mui-btn){background-color: #eeeeef;}
+			.mui-table-view-cell:after{height: 0px;}
+			.mui-table-view-cell{margin-bottom: 10px;}
+			.datalist{
+				width: 100%;
+				margin: 0 auto;
+			}
+			.datalist ul li{
+				width: 24%;
+				height: 50px;
+				float: left;
+				margin-right: 1%;
+				box-sizing: border-box;
+				border: 1px solid #eeeeef;
+				list-style-type: none;
+			}
+			.datalist ul li:last-child{
+				margin-right: 0;
+			}
+			.datalist ul li p.datatitle{
+				font-size: 12px;
+				color: #FFFFFF;
+				background-color: #0077c7;
+			}
+			.datalist ul li p.datatitle.active{
+				background-color: #ff9500;
+			}
+			.datalist ul li p{
+				text-align: center;
+			}
+			.mui-table-view-cell.mui-collapse .mui-collapse-content{
+				padding: 8px 4px;
+			}
+			.datalist ul li p:nth-child(2){
+				height: 2rem;
+				line-height: 2.5rem;
+				font-size: 2rem;
+				color: #000000;
+				
+			}
+			#main{
+				height: 200px;
+				background-color: #eeeeef;
+				margin-top: 20px;
+			}
+			#main2{
+				height: 150px;
+				background-color: #eeeeef;
+				margin-top: 20px;
+			}
+			#main3{
+				height: 200px;
+				background-color: #eeeeef;
+				margin-top: 20px;
+			}
+			input.order{
+				    width: 100px;
+				    height: 33px;
+				    appearance: none;
+				    -moz-appearance: none;
+				    -webkit-appearance: none;
+				    background: url(img/up2.png) no-repeat 65px center;
+				    background-size: 33px;
+				    font-size: 16px;
+				    font-family: Microsoft YaHei;
+				    color: #666;
+				    outline: none;
+				    background-color: #FFFFFF;
+				    border: 1px solid #c8c9ca;
+				    /* margin-right: 10px; */
+				    /* text-indent: 10px; */
+					text-align: left;
+					padding-left: 3px;
+				}
+				.font2{
+					margin-left: 40px;
+				}
+				a.mui-navigate-right{
+					color: #001587 !important;
+				}
+				#fullScreenMask {
+				              position: fixed;
+				             top: 0;
+				             left: 0;
+				             width: 100%;
+				             height: 100%;
+				            display: none;
+				            background-color: #FFFFFF;
+							z-index: 9999;
+							transform: rotate(90deg);
+							-ms-transform: rotate(90deg); /* IE 9 */
+							-moz-transform: rotate(90deg); /* Firefox */
+							-webkit-transform: rotate(90deg); /* Safari 和 Chrome */
+							-o-transform: rotate(90deg); /* Opera */
+				}
+				  
+				#fullScreen {
+				             width: 100%;
+				            height: 100%;
+				}
+				.compare{
+					    background-color: #0077c7;
+					    color: #FFFFFF;
+					    padding: 6px 5px;
+					    border: 1px solid #0077c7;
+				}
+				
+				/*月日时*/
+				[data-type="day"] .mui-picker,
+				[data-type="day"] .mui-dtpicker-title h5 {
+				    width: 33.3%;
+				}
+				[data-type="day"] [data-id="picker-i"],
+				[data-type="day"] [data-id="title-i"],[data-type="day"] [data-id="picker-y"],
+				[data-type="day"] [data-id="title-y"]  {
+				    display: none;
+				}
+		</style>		
+	</head>
+	<body>		<nav class="mui-bar mui-bar-tab foot-bar">			<a class="mui-tab-item orderlistbtn" href="orderlist.html">				<p><img src="img/nav02.png" style="height: 30px;padding-top:5px ;"/></p>				<span class="mui-tab-label" style="color: #FF6F00;">工单</span>			</a>			<a class="mui-tab-item scan" href="scan.html">				<p><img src="img/scan1.png" style="height: 30px;padding-top:5px ;"/></p>				<span class="mui-tab-label" >扫描</span>			</a>			<a class="mui-tab-item myself" href="myselfinfo.html">				<p><img src="img/nav3.png" style="height: 30px;padding-top:5px ;"/></p>				<span class="mui-tab-label" >我的</span>			</a>		</nav>
+		<div class="mui-scroll-wrapper" style="overflow: scroll;">
+		<div class="orderlist mui-scroll">	
+		<div class="mui-card">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell mui-collapse mui-active">
+					<a class="mui-navigate-right" href="#">基础数据</a>
+					<div class="mui-collapse-content">
+						<div class="datalist" >
+							<ul>
+								<li class="data" type="1">
+									<p class="datatitle">当日新增订单</p>
+									<p class="veryDayAdd"></p>
+								</li>
+								<li class="data" type="2">
+									<p class="datatitle">未完成订单</p>
+									<p class="needCount"></p>
+								</li>
+								<li class="data" type="3">
+									<p class="datatitle active ">延误订单</p>
+									<p class="delayCount"></p>
+								</li>
+								<li class="data">
+									<p class="datatitle ">平均出货时间</p>
+									<p class="sumDay"></p>
+								</li>
+							</ul>
+						</div>
+						<div class="datacontent" style="margin-top: 30px;">
+						<div style="" id="basicDataDiv2" >
+						   <!-- <div  style="margin-left: 10px;margin-bottom: 15px;margin-top: 0px;padding-top: 30px">
+						        <table style="margin-left: 10px; width: 90%;text-align: right;">
+						            <tr>
+						                <td colspan="11" style="color: #9e9e9f;width: 100%;"> (hrs)</td>
+						                
+						            </tr>
+						        </table>
+						        <table>
+						            <tr>
+						                <td rowspan="2" style="width: 40px;">
+						                    <span class="font3"
+						                          onclick="productionClickTab(1)">印刷</span>
+						                </td>
+						                <td>
+						                    <div style="height: 23px; background-size:cover;background-repeat:no-repeat;">
+						                        <div id="divZong1" style="width: 100%; height: 23px; background: #0077c7;">
+						                            <table id="tableZong1"  style="width: 100%">
+						                                <tr>
+						                                    <td id="tdPlanZong1" style="width: 20%;color: #FFFFFF;text-align: right;background-color: #0077c7;">20</td>
+						                                    <td id="tdZong1" style="width: 80%;color: #FFFFFF;text-align: right; background-color: #001587;">>100</td>
+						                                </tr>
+						                            </table>
+						                        </div>
+						                    </div>
+						                </td>
+						            </tr>
+						            <tr>
+						                <td id="total1" class="font1">总任务：25.06万张/22印版  <span>已安排：11.12万张</span> </td>
+						            </tr>
+						        </table>
+						        <div id="statusSar1" class="font2">当前状态：G20210121-06 伊威水果米饼  01-21-19：32已开始</div>
+						    </div>
+						
+						    <div  style="margin-left: 10px; margin-bottom: 15px;">
+						        <table>
+						            <tr>
+						                <td rowspan="2" style="width: 40px;">
+						                    <span class="font3"
+						                          onclick="productionClickTab(2)">切纸</span>
+						                </td>
+						                <td>
+						                	<div style="width: 100%; height: 23px; background-size:cover;background-repeat:no-repeat;">
+						                        <div id="divZong2" style="width: 100%; height: 23px; background: #0077c7;">
+						                            <table id="tableZong2"  style="width: 100%">
+						                                <tr>
+						                                    <td id="tdPlanZong2" style="width: 30%;color: white;text-align: right;background-color: #0077c7;">82</td>
+						                                    <td id="tdZong2" style="width: 70%;color: white;text-align: right;background-color: #001587; ">152</td>
+						                                </tr>
+						                            </table>
+						                        </div>
+						                   </div>
+						                </td>
+						            </tr>
+						            <tr>
+						                <td id="total2" class="font1">总任务：25.06万张/22印版  <span>已安排：11.12万张</span></td>
+						              
+						            </tr>
+						        </table>
+						        <div id="statusSar2"  class="font2">当前状态: G210120-08 农药盒喷码 2021-01-22 19:36:33 已完成</div>
+						      
+						    </div>
+						
+						    <div  style="margin-left: 10px; margin-bottom: 15px;">
+						        <table>
+						            <tr>
+						                <td rowspan="2" style="width: 40px;">
+						                   
+						                    <span class="font3"
+						                          onclick="productionClickTab(3)">覆膜</span>
+						                </td>
+						                <td>
+						                    <div style="width: 100%; height: 23px; background-size:cover;background-repeat:no-repeat;">
+						                        <div id="divZong3" style="width: 100%; height: 23px; background: #0077c7;">
+						                            <table id="tableZong3"  style="width: 100%">
+						                                <tr>
+						                                    <td id="tdPlanZong3" style="width: 50%;color: white;text-align: right;background-color: #0077c7;">72</td>
+						                                    <td id="tdZong3" style="width: 50%;color: white;text-align: right;background-color: #001587; ">152</td>
+						                                </tr>
+						                            </table>
+						                        </div>
+						                   </div>
+						                </td>
+						            </tr>
+						            <tr>
+						                <td id="total3" class="font1">总任务：25.06万张/22印版  <span>已安排：11.12万张</span></td>
+						            </tr>
+						        </table>
+						        <div id="statusSar3"  class="font2">当前状态: G210120-08 农药盒喷码 2021-01-22 19:36:33 已完成</div>
+						    </div>
+						
+						
+						    <div  style="margin-left: 10px; margin-bottom: 15px;">
+						        <table>
+						            <tr>
+						                <td rowspan="2" style="width: 40px;">
+						                  
+						                    <span class="font3"
+						                          onclick="productionClickTab(4)">模切</span>
+						                </td>
+						                <td>
+						                    <div style="width: 100%; height: 23px; background-size:cover;background-repeat:no-repeat;">
+						                        <div id="divZong4" style="width: 100%; height: 23px; background: #0077c7;">
+						                            <table id="tableZong4"  style="width: 100%">
+						                                <tr>
+						                                    <td id="tdPlanZong4" style="width: 50%;color: white;text-align: right;background-color: #0077c7;">72</td>
+						                                    <td id="tdZong4" style="width: 50%;color: white;text-align: right;background-color: #001587; ">152</td>
+						                                </tr>
+						                            </table>
+						                        </div>
+						                   </div>
+						                </td>
+						            </tr>
+						            <tr>
+						                <td id="total4" class="font1">总任务：25.06万张/22印版  <span>已安排：11.12万张</span></td>
+						            </tr>
+						        </table>
+						        <div id="statusSar4"  class="font2">当前状态: G210120-08 农药盒喷码 2021-01-22 19:36:33 已完成</div>
+						    </div>
+						
+						    <div  style="margin-left: 10px; margin-bottom: 15px;">
+						        <table>
+						            <tr>
+						                <td rowspan="2" style="width: 40px;">
+						                  
+                    <span class="font3"
+                          onclick="productionClickTab(1)">印刷</span>
+                </td>
+                <td>
+                    <div style="width:100%; height: 23px; background-size:cover;background-repeat:no-repeat;">
+                        <div id="divZong1" style="width: 100%; height: 23px; background: #0077c7;">
+                            <table id="tableZong1"  style="width: 100%">
+                                <tr>
+                                    <td id="tdPlanZong1" style="width: 30%;color: #FFFFFF;text-align: right;background-color: #0077c7;">20</td>
+                                    <td id="tdZong1" style="width: 70%;color: #FFFFFF;text-align: right; background-color: #001587;">>100</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td id="total1" class="font1">总任务：25.06万张/22印版  <span>已安排：11.12万张</span> </td>
+            </tr>
+        </table>
+        <div id="statusSar1" class="font2">当前状态：G20210121-06 伊威水果米饼  01-21-19：32已开始</div>
+       
+    </div>
+
+							<div  style="margin-left: 10px; margin-bottom: 15px;">
+        <table>
+            <tr>
+                <td rowspan="2" style="width: 40px;">
+                    <span class="font3"
+                          onclick="productionClickTab(3)">覆膜</span>
+                </td>
+                <td>
+                    <div style="width: 100%; height: 23px; background-size:cover;background-repeat:no-repeat;">
+                        <div id="divZong3" style="width: 100%; height: 23px; background: #0077c7;">
+                            <table id="tableZong3"  style="width: 100%">
+                                <tr>
+                                    <td id="tdPlanZong3" style="width: 50%;color: white;text-align: right;background-color: #0077c7;">72</td>
+                                    <td id="tdZong3" style="width: 50%;color: white;text-align: right;background-color: #001587; ">152</td>
+                                </tr>
+                            </table>
+                        </div>
+                   </div>
+                </td>
+            </tr>
+            <tr>
+                <td id="total3" class="font1">总任务：25.06万张/22印版  <span>已安排：11.12万张</span></td>
+            </tr>
+        </table>
+        <div id="statusSar3"  class="font2">当前状态: G210120-08 农药盒喷码 2021-01-22 19:36:33 已完成</div>
+    </div>
+
+
+							<div  style="margin-left: 10px; margin-bottom: 15px;">
+        <table>
+            <tr>
+                <td rowspan="2" style="width:40px;">
+                    <span class="font3"
+                          onclick="productionClickTab(4)">模切</span>
+                </td>
+                <td>
+                    <div style="width: 100%; height: 23px; background-size:cover;background-repeat:no-repeat;">
+                        <div id="divZong4" style="width: 100%; height: 23px; background: #0077c7;">
+                            <table id="tableZong4"  style="width: 100%">
+                                <tr>
+                                    <td id="tdPlanZong4" style="width: 50%;color: white;text-align: right;background-color: #0077c7;">72</td>
+                                    <td id="tdZong4" style="width: 100%;color: white;text-align: right;background-color: #001587; ">152</td>
+                                </tr>
+                            </table>
+                        </div>
+                   </div>
+                </td>
+            </tr>
+            <tr>
+                <td id="total4" class="font1">总任务：25.06万张/22印版  <span>已安排：11.12万张</span></td>
+            </tr>
+        </table>
+        <div id="statusSar4"  class="font2">当前状态: G210120-08 农药盒喷码 2021-01-22 19:36:33 已完成</div>
+    </div>
+
+							<div  style="margin-left: 10px; margin-bottom: 15px;">
+        <table>
+            <tr>
+                <td rowspan="2" style="width: 40px;">
+                    <span class="font3"
+                          onclick="productionClickTab(5)">喷码</span>
+                </td>
+                <td>
+                    <div style="width: 100%; height: 23px; background-size:cover;background-repeat:no-repeat;">
+                        <div id="divZong5" style="width: 100%; height: 23px; background: #0077c7;">
+                            <table id="tableZong5"  style="width: 100%">
+                                <tr>
+                                    <td id="tdPlanZong5" style="width: 50%;color: white;text-align: right;background-color: #0077c7;">72</td>
+                                    <td id="tdZong5" style="width: 50%;color: white;text-align: right;background-color: #001587; ">152</td>
+                                </tr>
+                            </table>
+                        </div>
+                   </div>
+                </td>
+            </tr>
+            <tr>
+                <td id="total5" class="font1">总任务：25.06万张/22印版  <span>已安排：11.12万张</span></td>
+            </tr>
+        </table>
+        <div id="statusSar5"  class="font2">当前状态: G210120-08 农药盒喷码 2021-01-22 19:36:33 已完成</div>
+    </div>
+
+							<div  style="margin-left: 10px; margin-bottom: 15px;">
+        <table>
+            <tr>
+                <td rowspan="2" style="width: 40px;">
+                    <span class="font3"
+                          onclick="productionClickTab(6)">糊盒</span>
+                </td>
+                <td>
+                    <div style="width: 100% height: 23px; background-size:cover;background-repeat:no-repeat;">
+                        <div id="divZong6" style="width: 100%; height: 23px; background: #0077c7;">
+                            <table id="tableZong6"  style="width:100%">
+                                <tr>
+                                    <td id="tdPlanZong6" style="width: 40%;color: white;text-align: right;background-color: #0077c7;">72</td>
+                                    <td id="tdZong6" style="width: 60%;color: white;text-align: right;background-color: #001587; ">152</td>
+                                </tr>
+                            </table>
+                        </div>
+                   </div>
+                </td>
+            </tr>
+            <tr>
+                <td id="total6" class="font1">总任务：25.06万张/22印版  <span>已安排：11.12万张</span></td>
+            </tr>
+        </table>
+        <div id="statusSar6"  class="font2">当前状态: G210120-08 农药盒喷码 2021-01-22 19:36:33 已完成</div>
+    </div>
+
+ -->
+
+						</div>
+					</div>
+				     </div>
+				</li>
+				<li class="mui-table-view-cell mui-collapse  mui-active">
+					<a class="mui-navigate-right" href="#">业务统计</a>
+					<div class="mui-collapse-content">
+						<input type="text" class="order startTime datetimepicker" readonly="readonly" autocomplete="off"  name="startTime" id="datetimepicker" placeholder="日期" value="2021/04"/>
+						<!-- <button data-options='{"type":"month"}' class="startTime btn mui-btn mui-btn-block">选择月份 ...</button> -->
+						<span class="interval"></span>
+						<input type="text" class="order endTime datetimepicker" readonly="readonly"  autocomplete="off"  name="endTime" id="datetimepicker1" placeholder="日期" value="2021/04"/>
+						<span class="compare">与往年对比</span>
+						<!-- <span class="rolate">旋转</span> -->
+						<div id="main">
+							
+						</div>
+						<div id="main2">
+							
+						</div>
+					</div>
+				</li>
+				<li class="mui-table-view-cell mui-collapse mui-active">
+					<a class="mui-navigate-right" href="#">回款统计</a>
+					<div class="mui-collapse-content">
+						<input type="text" class="order startTime1" readonly="readonly" autocomplete="off"  name="startTime1" id="datetimepicker2" placeholder="日期" value="2021/04"/>
+						<!-- <button data-options='{"type":"month"}' class="startTime btn mui-btn mui-btn-block">选择月份 ...</button> -->
+						<span class="interval"></span>
+						<input type="text" class="order endTime1" readonly="readonly"  autocomplete="off"  name="endTime1" id="datetimepicker3" placeholder="日期" value="2021/04"/>
+						<div id="main3">
+							
+						</div>
+					</div>
+				</li>
+				<li class="mui-table-view-cell mui-collapse mui-active" style="margin-bottom: 60px;">
+					<a class="mui-navigate-right" href="#">交期统计</a>
+					<div class="mui-collapse-content">
+						<div class="datalist">
+							<ul>
+								<li class="data" type="4">
+									<p class="datatitle ">当日需完成</p>
+									<p class="oneDaySum"></p>
+								</li>
+								<li class="data" type="5">
+									<p class="datatitle ">3日需完成</p>
+									<p class="threeDaySum"></p>
+								</li>
+								<li class="data" type="6">
+									<p class="datatitle active">延误订单</p>
+									<p class="postponeSum"></p>
+								</li>
+								<li class="data">
+									<p class="datatitle ">延期订单比例</p>
+									<p class="percent"></p>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>				</div>
+		</div>		<input type="hidden" id="page" value="1" />		<input type="hidden" id="per_page" value="20" />
+		<div id="fullScreenMask">
+<!-- 			<input type="text" class="order startTime1" readonly="readonly" autocomplete="off"  name="startTime1" id="datetimepicker4" placeholder="日期" value="2021/04"/>
+			
+			<span class="interval"></span>
+			<input type="text" class="order endTime1" readonly="readonly"  autocomplete="off"  name="endTime1" id="datetimepicker5" placeholder="日期" value="2021/04"/>
+		    <span class="compare">与往年对比</span> -->
+			 <div id="fullScreen"></div>
+		</div>
+	</body>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/mui.min.js"></script>
+	<script type="text/javascript" src="js/layer3.0.1/layer.js"></script>
+	<script src="js/pages/share.js" type="text/javascript" charset="utf-8"></script>
+	<!--<script type="text/javascript" src="js/updateversion.js"></script>-->	<script type="text/javascript" src="js/pages/other-Materials.js"></script>	<script type="text/javascript" src="js/mui.pullToRefresh.min.js"></script>	<script type="text/javascript" src="js/mui.pullToRefresh.material.min.js"></script>
+	<script type="text/javascript" src="js/mui.picker.min.js"></script>
+	<script type="text/javascript" src="js/mui.dtpicker.js"></script>
+	<script type="text/javascript" src="js/echarts.min.js"></script>
+	<script type="text/javascript" src="js/template-native.min.js"></script>
+		<script type="text/javascript">				var html ='<a class="mui-tab-item indexbtn" href="indexview.html">'+				'<p><img src="img/nav02.png" style="height: 30px;padding-top:5px ;"/></p>'+				'<span class="mui-tab-label" style="color: #FF6F00;">首页</span>'+			'</a>'+
+		 '<a class="mui-tab-item orderlistbtn" href="">'+				'<p><img src="img/nav2.png" style="height: 30px;padding-top:5px ;"/></p>'+				'<span class="mui-tab-label" >工单</span>'+			'</a>'+			'<a class="mui-tab-item scanbtn" href="">'+				'<p><img src="img/scan1.png" style="height: 30px;padding-top:5px ;"/></p>'+				'<span class="mui-tab-label">扫描</span>'+			'</a>'+			'<a class="mui-tab-item myself" href="">'+				'<p><img src="img/nav3.png" style="height: 30px;padding-top:5px ;"/></p>'+				'<span class="mui-tab-label">我的</span>'+			'</a>'	        $('.foot-bar').html(html);
+			$('.orderlistbtn').on('tap',function(){
+							window.location = 'orderlist.html';
+						})
+						$('.indexbtn').on('tap',function(){
+								window.location = 'indexview.html';
+						})
+						$('.scanbtn').on('tap',function(){
+							window.location = 'scan.html';
+						})
+						$('.myself').on('tap',function(){
+							window.location = 'myselfinfo.html';
+						})		window.ontouchmove=function(e){	        e.preventDefault && e.preventDefault();	        e.returnValue=true;	        e.stopPropagation && e.stopPropagation();	        return true;		}
+		$('.datalist ul li.data').on('click',function(){
+			var dataType = $(this).attr('type');
+			if(dataType != undefined){
+				window.location.href = 'indexvieworderlist.html?dataType='+dataType
+			}
+		})
+		var fRStatisticsstartTime = '';
+		var fRStatisticsendTime = '';
+		var fRStatisticssum = 3;
+		var fRStatisticstype = 1;
+		
+		var statisticstype  = 1;
+		var statisticsyear1 = '0';
+		var statisticsyear2 = '0';
+		var statisticsstartTime = '';
+		var statisticsendTime = '';
+		
+		
+		var agenttype = 2;
+		var agentdays = 2021;
+		var agentstartTime = '2021/04';
+		var agentendTime = '2021/04';
+		$('#datetimepicker').on('click',function(){
+			
+			
+			var _this = this
+			var dtpicker = new mui.DtPicker({
+				type:'month',
+				
+			})
+			dtpicker.show(function(e) { 
+				    console.log(e.y); 
+					$(_this).val(e.y.text+'/'+e.m.text)
+					dtpicker.dispose();
+					agenttype = 3;
+					agentdays = 0;
+					agentstartTime = $('#datetimepicker').val();
+					agentendTime = $('#datetimepicker1').val();
+					statisticstype  = 2;
+					statisticsyear1 = '0';
+					statisticsyear2 = '0';
+					statisticsstartTime = $('#datetimepicker').val();
+					statisticsendTime = $('#datetimepicker1').val();
+					result1();
+					result3(statisticstype);
+			})
+		})
+		$('#datetimepicker1').on('click',function(){
+			var _this = this
+			var dtpicker = new mui.DtPicker({
+				type:'month'
+			})
+			dtpicker.show(function(e) { 
+				    console.log(e.y); 
+					$(_this).val(e.y.text+'/'+e.m.text)
+					dtpicker.dispose(); 
+					agenttype = 3;
+					agentdays = 0;
+					agentstartTime = $('#datetimepicker').val();
+					agentendTime = $('#datetimepicker1').val();
+					result1();
+					// result3(2);
+			})
+		})
+		$('#datetimepicker2').on('click',function(){
+			var _this = this
+			var dtpicker = new mui.DtPicker({
+				type:'month'
+			})
+			dtpicker.show(function(e) { 
+				    console.log(e.y); 
+					$(_this).val(e.y.text+'/'+e.m.text);
+					fRStatisticsstartTime = $('#datetimepicker2').val();
+					fRStatisticsendTime = $('#datetimepicker3').val();
+					fRStatisticstype = 2;
+					fRStatisticssum = 0;
+					
+					result2();
+					dtpicker.dispose(); 
+					
+					// result3(2);
+			})
+		})
+		$('#datetimepicker3').on('click',function(){
+			var _this = this
+			var dtpicker = new mui.DtPicker({
+				type:'month'
+			})
+				dtpicker.show(function(e) { 
+				    console.log(e.y); 
+					$(_this).val(e.y.text+'/'+e.m.text)
+					fRStatisticsstartTime = $('#datetimepicker2').val();
+					fRStatisticsendTime = $('#datetimepicker3').val();
+					fRStatisticstype = '2';
+					fRStatisticssum = '0';
+					result2();
+					dtpicker.dispose(); 
+					// result3(2);
+				})
+		})
+		result();
+		function result(){
+			var url = ajaxUrlPath + "/mobile/index/data";
+			mui.ajax(url, {
+				data: '',
+				dataType: "json",
+				type: "get",
+				success: function(res) {
+					console.log(JSON.stringify(res))
+					if(res.code==0){
+						var html = '';
+						var statusSar1 =''
+						for (var j = 0; j < res.result.productionPlanSum1.statusSar.length; j++) {
+							statusSar1 += res.result.productionPlanSum1.statusSar[j]+'<br/>'
+						}
+						html = '<div  style="margin-left: 10px;margin-bottom: 15px;margin-top: 0px;padding-top: 30px" class="plannav" hoursAdded="'+res.result.productionPlanSum1.hoursAdded+'" hours="'+res.result.productionPlanSum1.hours+'" total="'+res.result.productionPlanSum1.total+'" printingPlateCount="'+res.result.productionPlanSum1.printingPlateCount+'" planSum="'+res.result.productionPlanSum1.planSum+'" statusSar="'+statusSar1+'" type="1">'+
+						    '<table style="margin-left: 10px; width: 90%;text-align: right;">'+
+					        '<tr>'+
+						            '<td colspan="11" style="color: #9e9e9f;width: 100%;"> (hrs)</td>'+
+						        '</tr>'+
+						    '</table>'+
+						    '<table>'+
+						        '<tr>'+
+						            '<td rowspan="2" style="width: 40px;">'+
+						               '<span class="font3" hoursAdded="'+res.result.productionPlanSum1.hoursAdded+'" hours="'+res.result.productionPlanSum1.hours+'" total="'+res.result.productionPlanSum1.total+'" printingPlateCount="'+res.result.productionPlanSum1.printingPlateCount+'" planSum="'+res.result.productionPlanSum1.planSum+'" statusSar="'+statusSar1+'" type="1">'+res.result.productionPlanSum1.printers[0].deviceProcess+'</span>'+
+						            '</td>'+
+						            '<td>'+
+						                '<div style="height: 23px; background-size:cover;background-repeat:no-repeat;">'+
+						                    '<div id="divZong1" style="width: 100%; height: 23px; background: #0077c7;">'+
+						                        '<table id="tableZong1"  style="width: 100%">'+
+						                            '<tr>'+
+						                                '<td id="tdPlanZong1" style="width: '+(res.result.productionPlanSum1.hoursAdded/res.result.productionPlanSum1.hours)*100+'%;color: #FFFFFF;text-align: right;background-color: #0077c7;">'+res.result.productionPlanSum1.hoursAdded+'</td>'+
+						                                '<td id="tdZong1" style="width: '+(1-res.result.productionPlanSum1.hoursAdded/res.result.productionPlanSum1.hours)*100+'%;color: #FFFFFF;text-align: right; background-color: #001587;">>'+res.result.productionPlanSum1.hours+'</td>'+
+						                            '</tr>'+
+						                        '</table>'+
+						                   '</div>'+
+						                '</div>'+
+						            '</td>'+
+						        '</tr>'+
+						        '<tr>'+
+						            '<td id="total1" class="font1">总任务：'+res.result.productionPlanSum1.total+'万张/'+res.result.productionPlanSum1.printingPlateCount+'印版  <span>已安排：'+res.result.productionPlanSum1.planSum+'万张</span> </td>'+
+						        '</tr>'+
+						    '</table>'+
+						    '<div id="statusSar1" class="font2">当前状态：'+statusSar1+'</div>'+
+						'</div>';
+						for (var i = 2; i < 9; i++) {
+							var statusSar =''
+							for (var j = 0; j < res.result['productionPlanSum'+i].statusSar.length; j++) {
+								statusSar += res.result['productionPlanSum'+i].statusSar[j]+'<br/>'
+							}
+							html += '<div  style="margin-left: 10px; margin-bottom: 15px;" class="plannav" hoursAdded="'+res.result['productionPlanSum'+i].hoursAdded+'" hours="'+res.result['productionPlanSum'+i].hours+'" total="'+res.result['productionPlanSum'+i].total+'" printingPlateCount="'+res.result['productionPlanSum'+i].printingPlateCount+'" planSum="'+res.result['productionPlanSum'+i].planSum+'" statusSar="'+statusSar+'" type="'+i+'">'+
+						        '<table>'+
+						            '<tr>'+
+						                '<td rowspan="2" style="width: 40px;">'+
+						                    '<span class="font3" hoursAdded="'+res.result['productionPlanSum'+i].hoursAdded+'" hours="'+res.result['productionPlanSum'+i].hours+'" total="'+res.result['productionPlanSum'+i].total+'" printingPlateCount="'+res.result['productionPlanSum'+i].printingPlateCount+'" planSum="'+res.result['productionPlanSum'+i].planSum+'" statusSar="'+statusSar+'" type="'+i+'">'+res.result['productionPlanSum'+i].printers[0].deviceProcess+'</span>'+
+						                '</td>'+
+						                '<td>'+
+						                	'<div style="width: 100%; height: 23px; background-size:cover;background-repeat:no-repeat;">'+
+						                        '<div id="divZong2" style="width: 100%; height: 23px; background: #0077c7;">'+
+						                            '<table id="tableZong2"  style="width: 100%">'+
+						                                '<tr>'+
+						                                    '<td id="tdPlanZong2" style="width: '+(res.result['productionPlanSum'+i].hoursAdded/res.result['productionPlanSum'+i].hours)*100+'%;color: white;text-align: right;background-color: #0077c7;">'+res.result['productionPlanSum'+i].hoursAdded+'</td>'+
+						                                    '<td id="tdZong2" style="width: '+(1-res.result['productionPlanSum'+i].hoursAdded/res.result['productionPlanSum'+i].hours)*100+'%;color: white;text-align: right;background-color: #001587; ">'+res.result['productionPlanSum'+i].hours+'</td>'+
+						                                '</tr>'+
+						                            '</table>'+
+						                        '</div>'+
+						                   '</div>'+
+						                '</td>'+
+						            '</tr>'+
+						            '<tr>'+
+						                '<td id="total2" class="font1">总任务：'+res.result['productionPlanSum'+i].total+'万张/'+res.result['productionPlanSum'+i].printingPlateCount+'印版  <span>已安排：'+res.result['productionPlanSum'+i].planSum+'万张</span></td>'+
+						            '</tr>'+
+						        '</table>'+
+						        '<div id="statusSar2"  class="font2">'+(res.result['productionPlanSum'+i].statusSar[0]==undefined?'':'当前状态: '+statusSar)+'</div>'+
+							'</div>'
+						}
+						$('#basicDataDiv2').html(html);
+						$('.percent').html(res.result.data.percent);
+						$('.oneDaySum').html(res.result.data.oneDaySum);
+						$('.postponeSum').html(res.result.data.postponeSum);
+						$('.threeDaySum').html(res.result.data.threeDaySum);
+						$('.delayCount').html(res.result.data.delayCount);
+						$('.needCount').html(res.result.data.needCount);
+						$('.sumDay').html(res.result.data.sumDay);
+						$('.veryDayAdd').html(res.result.data.veryDayAdd);
+						$('.plannav').on('click',function(){
+							var dataType = $(this).attr('type');
+							var hoursAdded = $(this).attr('hoursAdded');
+							var hours = $(this).attr('hours');
+							var total = $(this).attr('total');
+							var printingPlateCount = $(this).attr('printingPlateCount');
+							var planSum = $(this).attr('planSum');
+							var statusSar = $(this).attr('statusSar');
+							window.open( encodeURI('productiondetail.html?dataType='+dataType+'&hoursAdded='+hoursAdded+'&hours='+hours+'&total='+total+'&printingPlateCount='+printingPlateCount+'&planSum='+planSum+'&statusSar='+statusSar))
+						})
+						
+					}
+					
+					
+				}
+			})
+		}
+	
+		
+		
+		result3(1);
+		$('.compare').on('click',function(){
+			statisticstype  = 3;
+			statisticsyear1 = 2020;
+			statisticsyear2 = 2021;
+			statisticsstartTime = '';
+			statisticsendTime = '';
+			result3(statisticstype)
+		})
+		var chartScreen = null;
+		function setFullScreenToolBox(option) {
+			 // console.log(JSON.stringify(option)+'测试数据')
+		         if ($('#fullScreenMask').css('display') === 'block') {
+		             $('#fullScreenMask').hide();
+					 // $('#fullScreen').html('');
+		             // chartScreen = null;
+		             return false;
+		         }else{
+					 $('#fullScreenMask').show();
+					 $("#fullScreenMask").css({
+					             "width": document.body.clientHeight,
+					             "height": document.body.clientWidth,
+					             "position": "fixed",
+					             "top": ((document.body.clientHeight - document.body.clientWidth) / 2),
+					             "left": -((document.body.clientHeight - document.body.clientWidth) / 2),
+					   });
+					 // chartScreen = echarts.init(document.getElementById('fullScreen'));
+					 // chartScreen.setOption(option,true);
+					 return true;
+				}
+		         
+	     }
+		 pushHistory(); 
+		    window.addEventListener("popstate", function(e) { 
+		      if ($('#fullScreenMask').css('display') === 'block') {
+		          $('#fullScreenMask').hide();
+		      					 // $('#fullScreen').html('');
+		          // chartScreen = null;
+		          return false;
+		      }
+		    }, false); 
+		    function pushHistory() { 
+		      var state = { 
+		        title: "title", 
+		        url: "#"
+		      }; 
+		      window.history.pushState(state, "title", "#"); 
+		    }
+		function result3(type){
+			var myChart = echarts.init(document.getElementById('main'));
+			
+			var option1;
+			if(type == 2){
+			statisticsstartTime = $("#datetimepicker").val();
+			statisticsendTime = $("#datetimepicker1").val();
+			if(statisticsstartTime == "" || statisticsendTime == ""){
+			                return;
+			 }
+			   
+			}
+			if(type == 3){
+			            statisticsyear1 =2020;
+			            statisticsyear2 =2021;
+			 }
+			 if(type == 1){
+				 statisticsstartTime='';
+				 statisticsendTime:''
+			     statisticsyear1 =0;
+			     statisticsyear2 =0;
+			  }
+			var url = ajaxUrlPath + "/mobile/index/statistics";
+			console.log(statisticstype+','+statisticsstartTime+','+statisticsendTime+','+statisticsyear1)
+			mui.ajax(url, {
+				data: {
+					type:type,
+					year1:statisticsyear1,
+					year2:statisticsyear2,
+					startTime: statisticsstartTime,
+					endTime: statisticsendTime
+				},
+				// headers:{'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'},
+				dataType: "json",
+				type: "post",
+				error:function(res){
+					
+				},
+				success: function(res) {
+					console.log(JSON.stringify(res)+111);
+					var data = res;
+					console.log(JSON.stringify(data)+'2222')
+					// 业务统计柱状图
+					if(type == 1|| type == 2){
+					                    var title = type == 1 ? "":"";
+					                    option4= {
+					                        title: {
+					                            text: '         '+title
+					                        },
+											legend: {
+											    type:'scroll',
+											    top:'1%',
+											    right:'1%',
+											    orient: 'vertical',
+											    icon:'rect',
+											    itemWidth:10,
+											    itemHeight:10,
+											},
+					                        xAxis: {
+					                            type: 'category',
+												axisLabel:{
+													interval:0
+												},
+					                            axisTick:{					//---坐标轴 刻度
+					                                show:true,					//---是否显示
+					                                inside:true,				//---是否朝内
+					                                lengt:3,					//---长度
+					                                lineStyle:{
+					                                    //color:'red',			//---默认取轴线的颜色
+					                                    width:1,
+					                                    type:'solid',
+					                                },
+					                            },
+					                            data: data.monthStr
+					                        },
+					                        yAxis: {
+					                            show:false,
+					                            type: 'value',
+					                        },
+											dataZoom: [{
+											   type: 'inside',// 内置于坐标系中
+											   maxValueSpan :3
+											}],
+					                        textStyle: {
+					                            fontFamily: '微软雅黑 Light' ,
+					                        },
+					                        tooltip: {
+					                            show:true,					//---是否显示提示框,默认为true
+					                            trigger:'item',				//---数据项图形触发
+					                            axisPointer:{				//---指示样式
+					                                type:'shadow',
+					                                axis:'auto',
+					                            },
+					                            padding:5,
+					                            textStyle:{					//---提示框内容样式
+					                                color:"#131111",
+					                                //textBorderColor: "rgba(193, 61, 61, 1)"
+					                            },
+					                            borderColor:"#001587",
+					                            borderWidth:1,
+					                            backgroundColor:"#fff",
+					                            formatter: function (params, ticket, callback) {
+					                                // $.get('detail?name=' + params.name, function (content) {
+					                                //     callback(ticket, toHTML(content));
+					                                // });
+					                                //console.log(params.data.showX)
+					                                // console.log("params")
+					                                return data.sumList[params.dataIndex]+"<br />"+data.sums[params.dataIndex]+"订单<br />";
+					                            }
+					                        },
+											toolbox: {// 工具栏
+											              itemSize:16,
+											              showTitle:false,
+											              left:10,
+											              feature: {
+											                  myTool: {//自定义工具 myTool
+											                      show: true,
+											                      title: '全屏显示',
+											                      icon: "image://" + "./img/open.png",//此处 图片路径前面必须加字符串  "image://"
+											                      onclick: function (res){
+																	  // alert(33)
+											                         //生成全屏显示的图表
+																	
+											                        if (setFullScreenToolBox()) {
+											                            console.log(statisticsyear1+','+statisticsyear2+','+statisticsstartTime+','+statisticsendTime+"测试数据");
+																		// getChartData(chartScreen,false);
+																		chartScreen = echarts.init(document.getElementById('fullScreen'));
+																		option4.dataZoom[0].maxValueSpan = 6
+																		chartScreen.setOption(option4,true)
+																		
+																		
+											                        }
+																	// 
+																	// 
+											                    }
+										                 }
+											            }
+											        },
+					                        series: [{
+					                            data:  data.sumWanList,
+					                            label: {
+					                                show: true,
+					                                /* position: 'bottom'*/
+					                                position:'top',	//---相对位置 insideTop
+					                                rotate:0,				//---旋转角度
+					                                color:'#070707',
+					                            },
+					                            itemStyle:{					//---图形形状
+					                                color:'#001587',
+					                                //barBorderRadius:[18,18,0,0],
+					                            },
+					                            barGap:1,
+					                            type: 'bar',
+					                            barWidth:'10',				//---柱形宽度
+					                            barCategoryGap:'20%',		//---柱形间距
+					                            showBackground: false,
+					                            backgroundStyle: {
+					                                color: 'rgba(220, 220, 220, 0.8)'
+					                            }
+					                        }]
+					                    };
+										myChart.setOption(option4,true);
+										// chartScreen = echarts.init(document.getElementById('fullScreen'));
+										// chartScreen.setOption(option4)
+					                }else if(type == 3){
+					                    option1 = {
+					                        title: {
+					                                                    text: '     与往年对比'
+					                                                },
+					                                                // tooltip: {
+					                                                //     trigger: 'axis',
+					                                                //     axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+					                                                //         type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+					                                                //     }
+					                                                // },
+					                                                legend: {
+					                                                    type:'scroll',
+					                                                    top:'1%',
+					                                                    right:'1%',
+					                                                    orient: 'vertical',
+					                                                    icon:'rect',
+					                                                    itemWidth:20,
+					                                                    itemHeight:20,
+					                                                },
+					                                                dataset: {
+					                                                    dimensions:  ['date', statisticsyear1, statisticsyear2],
+					                                                    source: data
+					                                                },
+					                                                textStyle: {
+					                                                    fontFamily: '微软雅黑 Light' ,
+					                                                },
+					                                                xAxis: {
+					                                                    axisTick:{					//---坐标轴 刻度
+					                                                        show:true,					//---是否显示
+					                                                        inside:true,				//---是否朝内
+					                                                        lengt:3,					//---长度
+					                                                        lineStyle:{
+					                                                            //color:'red',			//---默认取轴线的颜色
+					                                                            width:1,
+					                                                            type:'solid',
+					                                                        },
+					                                                    },
+					                                                    type: 'category'
+					                                                },
+					                                                yAxis: {
+					                                                    show:false,
+					                                                    type: 'value',
+					                                                },
+																	dataZoom: [{
+																	   type: 'inside',// 内置于坐标系中
+																	   maxValueSpan :3
+																	 }],
+					                                                tooltip: {
+					                                                    show:true,					//---是否显示提示框,默认为true
+					                                                    trigger:'item',				//---数据项图形触发
+					                                                    axisPointer:{				//---指示样式
+					                                                        type:'shadow',
+					                                                        axis:'auto',
+					                                                    },
+					                                                    padding:5,
+					                                                    textStyle:{					//---提示框内容样式
+					                                                        color:"#131111",
+					                                                        //textBorderColor: "rgba(193, 61, 61, 1)"
+					                                                    },
+					                                                    borderColor:"#001587",
+					                                                    borderWidth:1,
+					                                                    backgroundColor:"#fff",
+					                                                    formatter: function (params, ticket, callback) {
+					                                                        // $.get('detail?name=' + params.name, function (content) {
+					                                                        //     callback(ticket, toHTML(content));
+					                                                        // });
+					                                                        //console.log(params.data.showX)
+					                                                        // console.log("params")
+					                        
+					                                                        if(params.seriesIndex == 0){
+					                                                            return params.data.priceSum1+"<br />"+params.data.sum1+"订单<br />";
+					                                                        }else{
+					                                                            return params.data.priceSum2+"<br />"+params.data.sum2+"订单<br />";
+					                                                        }
+					                                                    }
+					                                                },
+																	toolbox: {// 工具栏
+																	              itemSize:16,
+																	              showTitle:false,
+																	              left:10,
+																	              feature: {
+																	                  myTool1: {//自定义工具 myTool
+																	                      show: true,
+																	                      title: '全屏显示',
+																	                      icon: "image://" + "./img/open.png",//此处 图片路径前面必须加字符串  "image://"
+																	                      onclick: function (res){
+																							  console.log(res);
+																	                         //生成全屏显示的图表
+																	                        if (setFullScreenToolBox()) {
+																	                            console.log(JSON.stringify());
+																								// getChartData(chartScreen,false);
+																								chartScreen = echarts.init(document.getElementById('fullScreen'));
+																								option1.dataZoom[0].maxValueSpan = 6
+																								chartScreen.setOption(option1,true)
+																	                        }
+																	                    }
+																	             }
+																	            }
+																	        },
+					                                                series: [
+					                                                    {type: 'bar',
+					                                                        // label: {
+					                                                        //     show: true,
+					                                                        //     /* position: 'bottom'*/
+					                                                        // }
+					                                                        label: {
+					                                                            show: true,
+					                                                            /* position: 'bottom'*/
+					                                                            position:'top',	//---相对位置 insideTop
+					                                                            rotate:0,				//---旋转角度
+					                                                            color:'#070707',
+					                                                        }, itemStyle:{					//---图形形状
+					                                                            color:'#001587',
+					                                                            //barBorderRadius:[18,18,0,0],
+					                                                        },
+					                                                        barGap:1,
+					                                                        type: 'bar',
+					                                                        barWidth:'10',				//---柱形宽度
+					                                                        showBackground: false,
+					                                                        backgroundStyle: {
+					                                                            color: 'rgba(220, 220, 220, 0.8)'
+					                                                        }
+					                        
+					                                                    },
+					                                                    {type: 'bar',
+					                                                        // label: {
+					                                                        //     show: true,
+					                                                        //     /* position: 'bottom'*/
+					                                                        // }
+					                                                        label: {
+					                                                            show: true,
+					                                                            /* position: 'bottom'*/
+					                                                            position:'top',	//---相对位置 insideTop
+					                                                            rotate:0,				//---旋转角度
+					                                                            color:'#070707',
+					                                                        }, itemStyle:{					//---图形形状
+					                                                            color:'#ff9500',
+					                                                            //barBorderRadius:[18,18,0,0],
+					                                                        },
+					                                                        barGap:1,
+					                                                        type: 'bar',
+					                                                        barWidth:'10',				//---柱形宽度
+					                                                        showBackground: false,
+					                                                        backgroundStyle: {
+					                                                            color: 'rgba(220, 220, 220, 0.8)'
+					                                                        }
+					                                                    }
+					                                                ]
+					                    };
+										myChart.setOption(option1,true);
+					                }
+									
+					     //            if(type == 1){
+					     //                myChart.setOption(option);
+					     //            }else if(type ==2){
+										// console.log(JSON.stringify(option)+"测试数据")
+					                    
+					     //            }else if(type ==3){
+					                    
+					     //            }
+				},
+			})
+		}
+		pushHistory();
+		   window.addEventListener("popstate", function(e) { 
+		     // window.location = 'indexview.html';
+			 $('#fullscreen').hide();
+		   }, false); 
+		   function pushHistory() { 
+		     var state = { 
+		       title: "title", 
+		       url: "#"
+		     }; 
+		     window.history.pushState(state, "title", "#"); 
+		   }
+		
+		result1();
+		function result1(){
+			var option2;
+			var agentdata = []
+			var url = ajaxUrlPath + "/mobile/index/agentStatistics";
+			mui.ajax(url, {
+				data: {
+					type:agenttype,
+					days: agentdays,
+					startTime: agentstartTime,
+					endTime: agentendTime
+				},
+				// headers:{'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'},
+				dataType: "json",
+				type: "post",
+				success: function(res) {
+					// alert(22);
+					console.log(JSON.stringify(res))
+					// if(res.code==0){
+						console.log(res.length);
+						for (var i = 0; i < res.length; i++) {
+							agentdata.push({
+								value:res[i].numWan,
+								name:res[i].name
+							})
+						}
+						console.log(JSON.stringify(agentdata));
+						option2 = {
+						    title: {
+						    },
+						    tooltip: {
+						        trigger: 'item',
+								show:true,					//---是否显示提示框,默认为true
+								trigger:'item',				//---数据项图形触发
+								axisPointer:{				//---指示样式
+								    type:'shadow',
+								    axis:'auto',
+								},
+								padding:5,
+								textStyle:{					//---提示框内容样式
+								    color:"#131111",
+								                        //textBorderColor: "rgba(193, 61, 61, 1)"
+								},
+								borderColor:"#001587",
+								borderWidth:1,
+								backgroundColor:"#fff",
+								formatter: function (params, ticket, callback) {
+								                        // $.get('detail?name=' + params.name, function (content) {
+								                        //     callback(ticket, toHTML(content));
+								                        // });
+								                        //onsole.log(params.data.showX)
+								    console.log(JSON.stringify(params)+'ceshi')
+								    return params.data.name+"<br />"+params.percent+"%<br />"+params.data.value+"";
+								}
+						    },
+							textStyle: {
+							    fontFamily: '微软雅黑 Light' ,
+							},
+						    legend: {
+						        type: 'scroll',
+						        orient: 'vertical',
+						        icon:'rect',
+						        itemWidth:20,
+						        itemHeight:20,
+						                            // right: 10,
+						                            // top: 20,
+						                            // bottom: 20,
+						        type:'scroll',
+						        top:'1%',
+						        right:'1%',
+						        // data: legendData,
+						        // selected: selected
+						    },
+						    series: [
+						        {
+						            name: '姓名',
+						            type: 'pie',
+						            radius: '80%',
+						            center: ['40%', '50%'],
+						            data:agentdata,
+									 itemStyle: {
+									        normal: {
+									                                    //这里是重点
+									            color: function(params) {
+									                                        //注意，如果颜色太少的话，后面颜色不会自动循环，最好多定义几个颜色
+									                var colorList = ['#001587', '#ff9500', '#0077c7','#749f83', '#ca8622'];
+									                return colorList[params.dataIndex]
+									            }
+									        }
+									},
+						            emphasis: {
+						                itemStyle: {
+						                    shadowBlur: 10,
+						                    shadowOffsetX: 0,
+						                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+						                }
+						            }
+						        }
+						    ]
+						};
+						//初始化echarts实例
+						var myChart2 = echarts.init(document.getElementById('main2'));
+						
+						//使用制定的配置项和数据显示图表
+						myChart2.setOption(option2,true);
+					// }
+					},
+				})
+		}
+		// console.log(agentdata)
+		// 业务统计饼图
+		
+		result2();
+		
+		function result2(){
+			var fRStatisticsdata = []
+			var myChart3 = echarts.init(document.getElementById('main3'));
+			
+			// alert(fRStatisticsendTime);
+			var url = ajaxUrlPath + "/mobile/index/fRStatistics";
+			console.log(fRStatisticssum+','+fRStatisticstype+','+fRStatisticsstartTime+','+fRStatisticsendTime)
+			mui.ajax(url, {
+				data: {
+					sum:fRStatisticssum,
+					type: fRStatisticstype,
+					startTime: fRStatisticsstartTime,
+					endTime: fRStatisticsendTime
+				},
+				// headers:{'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'},
+				dataType: "json",
+				type: "post",
+				error:function(res){
+					// alert(JSON.stringify(res));
+				},
+				success: function(res) {
+					console.log(JSON.stringify(res)+'ceshi');
+					fRStatisticsdata = res;
+					var fRStatisticsdatax  = [];
+					for (var i = 0; i < res.length; i++) {
+						fRStatisticsdatax.push(res[i].date)
+					}
+					console.log(JSON.stringify(fRStatisticsdata));
+					// for (var i = 0; i < res.length; i++) {
+					// 	fRStatisticsdata.push('['+res[i].date+','+res[i].priceSum+','+totalMoney+']')
+					// }
+					option3 = {
+						color: ['#001587', '#ff9500'],
+					    legend: {
+					    	x:'right',
+					    	orient:'vertical',
+					    	type:'scroll',
+					    	top:'1%',
+					    	right:'1%',
+					    	icon:'rect',
+					    	itemWidth:20,
+					    	itemHeight:20,
+					    },
+					    tooltip: {
+							 axisPointer:{				//---指示样式
+							                            type:'shadow',
+							                            axis:'auto',
+							                        },
+							                        showTip:{
+							
+							                        },
+							
+							                        padding:5,
+							                        textStyle:{					//---提示框内容样式
+							                            color:"#131111",
+							                            //textBorderColor: "rgba(193, 61, 61, 1)"
+							                        },
+							                        borderColor:"#001587",
+							                        borderWidth:1,
+							                        backgroundColor:"#fff",
+							                        // backgroundColor:"#fff",
+							                        formatter: function (params, ticket, callback) {
+							                            // $.get('detail?name=' + params.name, function (content) {
+							                            //     callback(ticket, toHTML(content));
+							                            // });
+							                            //console.log(params) priceSum
+							                            return "应收 "+params.data.priceSum+"<br />回款 " +params.data.totalMoney+"<br />回款率 "+ params.data.rate+"%";//+"<br />"+ params.seriesName+"<br />"+params.data.seriesName;
+							                        }
+						},
+					     dataset: {
+					                            dimensions:  ['date','应收','回款'],
+					                            source: fRStatisticsdata
+					        },
+						dataZoom: [
+						    {
+						            type: 'inside',// 内置于坐标系中
+						            maxValueSpan :3
+						        },
+						],
+					    xAxis: {
+							 axisTick:{					//---坐标轴 刻度
+							    show:true,					//---是否显示
+							    inside:true,				//---是否朝内
+							    lengt:3,					//---长度
+							    lineStyle:{
+							                                //color:'red',			//---默认取轴线的颜色
+							        width:1,
+							        type:'solid',
+							    },
+							},
+							axisLabel:{
+								interval:0,
+								formatter:function(params){
+									var newParamsName = params.replace(' ', '\n');// 最终拼接成的字符串
+									//将最终的字符串返回
+									return newParamsName
+								}
+								
+							},
+							type: 'category',
+							
+							},
+					    yAxis: {
+					    	show:false,
+					        splitLine:{
+							    show:false //去掉网格线
+							},
+					    },
+						toolbox: {// 工具栏
+						
+						              itemSize:16,
+						              showTitle:false,
+						              left:10,
+						              feature: {
+						                  myTool2: {//自定义工具 myTool
+						                      show: true,
+						                      title: '全屏显示',
+						                      icon: "image://" + "./img/open.png",//此处 图片路径前面必须加字符串  "image://"
+						                      onclick: function (){
+						                         //生成全屏显示的图表
+						                        if (setFullScreenToolBox()) {
+													chartScreen = echarts.init(document.getElementById('fullScreen'));
+													option3.dataZoom[0].maxValueSpan = 6
+													chartScreen.setOption(option3,true)
+													// getChartData(chartScreen,false);
+						                        }
+						                    }
+						             }
+						            }
+						        },
+					    // Declare several bar series, each will be mapped
+					    // to a column of dataset.source by default.
+					    series: [
+					        {
+					        	type: 'bar',
+					        	barWidth:10,
+								barGap:1,
+								label: {
+								    show: true,
+								    formatter: function(params){
+										alert(params+'测试数据')
+									},                            /* position: 'bottom'*/
+								    position:'top',	//---相对位置 insideTop
+								    rotate:0,				//---旋转角度
+								    color:'#070707',
+								}, 
+								showBackground: false,
+								backgroundStyle: {
+								    color: 'rgba(220, 220, 220, 0.8)'
+								},
+					        	itemStyle: {
+										normal: {
+											label: {
+												show: true, //开启显示
+												position: 'top', //在上方显示
+												textStyle: { //数值样式
+													color: '#000000',
+													fontSize: 12
+												}
+											}
+										}
+								}
+					
+					        },
+					        {
+					        	type: 'bar',
+					        	barWidth:10,
+					        	barGap:1,
+					        	label: {
+					        	    show: true,
+					        	                                /* position: 'bottom'*/
+					        	    position:'top',	//---相对位置 insideTop
+					        	    rotate:0,				//---旋转角度
+					        	    color:'#070707',
+					        	}, 
+					        	showBackground: false,
+					        	backgroundStyle: {
+					        	    color: 'rgba(220, 220, 220, 0.8)'
+					        	},
+					        	itemStyle: {
+					        			normal: {
+					        				label: {
+					        					show: true, //开启显示
+					        					position: 'top', //在上方显示
+					        					textStyle: { //数值样式
+					        						color: '#000000',
+					        						fontSize: 12
+					        					}
+					        				}
+					        			}
+					        	}
+					        },
+					       
+					    ]
+					};
+					//初始化echarts实例
+					
+					
+					//使用制定的配置项和数据显示图表
+					myChart3.setOption(option3,true);
+				},
+			})
+		}
+		// 回款统计柱状图
+				
+	</script>
+</html>

@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+	</head>
+	<style type="text/css">
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		html,body{
+			width: 100%;
+			background-color: #FFFFFF;
+			
+		}
+		.headtitle{
+			width: 100%;
+			text-align: center;
+			color: #808080;
+			margin-top: 25%;
+			position: relative;
+			border: 1px solid #FFFFFF;
+			
+		}
+		.headtitle p:nth-child(1){
+			font-size: 2.3rem;
+			line-height: 3rem;
+		}
+		.headtitle p:nth-child(2){
+			font-size: 1.1rem;
+			line-height: 2rem;
+		}
+		.headtitle p:nth-child(3){
+			font-size: 1.1rem;
+			line-height: 2rem;
+		}
+		.content button{
+			width: 80%;
+			height: 50px;
+			border: 0px;
+			background-color: #ff6600;
+			color: #FFFFFF;
+			border-radius: 8px;
+			margin-left: 10%;
+			margin-top: 20%;
+		}
+		.footer{
+			width: 100%;
+			height: 13%;
+			position: absolute;
+			bottom: 5%;
+		}
+		.left{
+			width: 50%;
+			height: 100%;
+			box-sizing: border-box;
+			border-right: 1px solid #cfcfcf;
+			float: left;
+		}
+		.left img{
+			height: 70%;
+			display: inline-block;
+			float: right;
+			margin-right: 15px;
+			margin-top: 6%;
+		}
+		.right{
+			width: 50%;
+			height: 100%;
+			float: left;
+		}
+		.right img{
+			height: 70%;
+			display: inline-block;
+			float: left;
+			margin-left: 35px;
+			margin-top: 6%;
+		}
+		.layui-layer-ico{
+				display: none;
+		}
+	</style>
+
+	<body>
+		<div class="content">
+			<div class="headtitle">
+				<p>下单成功！</p>
+			</div>
+			<button class="back">返 回</button>
+			<div class="footer">
+				<div class="left">
+					<img src="img/logo.png"/>
+				</div>
+				<div class="right">
+					<img src="img/minlogo.png"/>
+				</div>
+			</div>
+		</div>
+	</body>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/layer3.0.1/layer.js"></script>
+		<script type="text/javascript" src="js/pages/share.js"></script>
+
+		<script type="text/javascript">
+			mui.init();
+			$('.back').on('click tap',function(){
+				parent.parent.window.location.href = "adminorderlist.html"
+			})
+		</script>
+</html>

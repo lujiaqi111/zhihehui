@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<title>印刷通-报价</title>		<link rel="stylesheet" type="text/css" href="css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/rem.css"/>
+		<link rel="stylesheet" type="text/css" href="css/initialization1.css"/>		<style type="text/css">
+			#text{			    box-shadow: 0px 1px 6px #c3c3c3;			    border-radius: 10px;			    width: 90%;			    height: 400px;			    margin-left: 4%;			    background-color: #FFFFFF;			    margin-top: 10px;			}			body,html{				background-color: #f2f2f2;				width: 100%;				height: 100%;				overflow: auto;			}			.title{				width: 100%;				height: 120px;				background-color: #ff6f00;				color: #FFFFFF;				/*margin-top: 80px;*/			}			.search{				width: 100%;				height: 60px;/*				background-color: red;*/			}			.search span{				display: inline-block;				float: left;				line-height: 50px;				font-size: 20px;				font-weight: inherit;				padding-left: 10px;			}			#search{				float: right;				width: calc(100% - 100px);				height: 40px;				border-radius: 20px;				background-color: #ff9a4d;				margin-top: 10px;				margin-right: 20px;			}			#search img.searchicon{				display: inline-block;				height: 20px;				width: 20px;				margin: 10px;				float: left;			}			#search input{				display: block;				float: left;				width: 150px;				background-color: rgba(0,0,0,0);				border: 0px;				text-align: left;    			color: #ffffff;			}			.orderlist{				width: 90%;				min-height: 110px;				/*background-color: red;*/				margin-left: 5%;				margin-top: 10px;			}			.orderlist ul li{				width: 100%;				height: 100px;				background-color: #FFFFFF;				margin-top: 10px;				border: 1px solid rgba(0,0,0,0.2);				border-radius: 5px;				cursor: pointer;			}			.rightinfo ul li p{				height: 20px;				position: relative;			}			.tip{				height: 30px;				position: relative;			}			.tip span{				height: 30px;			}			.tip:after{				content: '';				display: block;				position: absolute;				width: 90%;				left: 5%; 				bottom: 0;				height: 1px;				background-color: #c8c7cc;				transform: scaleY(0.5);			}			.leftspan{				display:inline-block ;				float: left;				padding: 6px;				font-size: 16px;				height: 30px;				color: #ff6f00;				width: 40%;				text-overflow:ellipsis;				white-space:nowrap;				overflow:hidden;							}			.rightspan{				display: inline-block;				text-align: right;				float: right;				padding: 6px;				font-size: 16px;				height: 30px;				width: 60%;			}			.info{				width: 100%;				height: 66px;				position: relative;			}			.info div{				float: left;			}			.leftinfo{				width: 66px;				height: 66px;							}			.orderlogo{				width: 50px;				height: 50px;				border: 1px solid #FFFFFF;				border-radius: 50%;				margin: 8px;				/*background-color: #ff6f00;*/				text-align: center;			}			.orderlogo img{				display: inline-block;				width: auto;				height: 100%;							}			.rightinfo{				width: auto;				height: 66px;			}			.ordername{				font-size: 12px;			}			.orderinfo{				font-size: 12px;			}			.del{				position: absolute;				right: 6px;				top: 6px;			}			.del img{				width: 20px;			}			.price{				position: absolute;				right: 6px;				bottom: 6px;				font-size: 16px;				color: #ff6f00;			}			.list .active{				color: #ffee4d !important;				background-color: #ff6f00 !important;			}			.searchlist{				display: inline-block;				float: right;				height: 20px;				margin-top: 10px;				margin-right: 10px;			}			.time{				color: #FFFFFF;				padding: 20px 10px;				font-size: 18px;			}			.list{				width: 100%;							}			.list>ul>li {				width: 96%;				min-height: 80px;				background-color: #FFFFFF;				margin-top: 10px;				margin-left: 2%;				border: 1px solid rgba(0,0,0,0.2);			    border-radius: 5px;			    cursor: pointer;			}			.left,.right{				float: left;			}			.left{				width: 70%;				height: 100%;				text-align: left;			}			.right{				width: 30%;				height: 100%;				position: relative;							}			.right img{
+				width: 60px;
+				height: 60px;
+				position: absolute;
+				right: -10px;
+
+			}			.left p{				padding-left: 10px;			}			.left p:nth-child(1){				color: #ff6f00;				line-height: 35px;				font-size: 20px;							}			.left p:nth-child(2){				color: #676767;				font-size: 18px;							}			.btn{				width: 96%;				height: 60px;				margin-left: 2%;				margin-top: 20px;				margin-bottom: 70px;							}			.btn .submit{				width: 48%;				height: 100%;				background-color: #ff6600;				float: left;				border-radius: 10px;				text-align: center;				color: #FFFFFF;				line-height: 60px;				font-size: 18px;							}			.btn .submit:nth-child(1){				margin-right: 4%;			}			.orderinfo {			    font-size: 12px;			    width: 200px;			    overflow: hidden;			    text-overflow: ellipsis;			    white-space: nowrap;			}
+		</style>		
+	</head>
+	<body>
+		<div class="title">			<div class="search">
+				<span>待处理</span>				<div id="search">
+					<img src="img/search.png" class="searchicon"/>					<input type="text" name="" id="searchkey" value="" />					<img src="img/searchlist.png" class="searchlist"/>
+				</div>
+			</div>			<p class="time Current">2019-9-20</p>
+		</div>		<div class="list">
+			<ul>
+				<li>										<ul class="mui-table-view contentlist"> 				        <li class="mui-table-view-cell mui-collapse">				            <a class="mui-navigate-right" href="#">				            	<div>				            		<div class="left">										<p>待处理</p>										<p class="waitCount">0</p>									</div>									<div class="right">										<img src="img/info1.png"/>									</div>				            	</div>				            </a>				            <div class="mui-collapse-content">				                <div class="orderlist">			<ul id="content1">				<!--<li>
+						<p class="tip"><span class="leftspan">画册211-35365</span><span class="rightspan">2019-8-25</span></p>
+						<div class="info">
+							<div class="leftinfo">
+								<div class="orderlogo">
+									<img src="img/orderlogo.png"/>
+								</div>
+							</div>
+							<div class="rightinfo">
+								<p class="ordername">画册211-64746577</p>
+								<p class="orderinfo">16：45已经开始印刷</p>
+								<p class="orderinfo">16：45已经开始印刷</p>
+							</div>
+							<div class="del">
+								<img src="img/dellogo.png"/>
+							</div>
+							<div class="price">
+								<span>￥:2300.00</span>
+							</div>
+						</div>
+				</li>
+				<li>
+					<p class="tip"><span class="leftspan">画册211-35365</span><span class="rightspan">2019-8-25</span></p>
+						<div class="info">
+							<div class="leftinfo">
+								<div class="orderlogo">
+									<img src="img/orderlogo.png"/>
+								</div>
+							</div>
+							<div class="rightinfo">
+								<p class="ordername">画册211-64746577</p>
+								<p class="orderinfo">16：45已经开始印刷</p>
+								<p class="orderinfo">16：45已经开始印刷</p>
+							</div>
+							<div class="del">
+								<img src="img/dellogo.png"/>
+							</div>
+							<div class="price">
+								<span>￥:2300.00</span>
+							</div>
+						</div>
+				</li>
+				<li>
+					<p class="tip"><span class="leftspan">画册211-35365</span><span class="rightspan">2019-8-25</span></p>
+						<div class="info">
+							<div class="leftinfo">
+								<div class="orderlogo">
+									<img src="img/orderlogo.png"/>
+								</div>
+							</div>
+							<div class="rightinfo">
+								<p class="ordername">画册211-64746577</p>
+								<p class="orderinfo">16：45已经开始印刷</p>
+								<p class="orderinfo">16：45已经开始印刷</p>
+							</div>
+							<div class="del">
+								<img src="img/dellogo.png"/>
+							</div>
+							<div class="price">
+								<span>￥:2300.00</span>
+							</div>
+						</div>
+				</li>
+				<li>
+					<p class="tip"><span class="leftspan">画册211-35365</span><span class="rightspan">2019-8-25</span></p>
+						<div class="info">
+							<div class="leftinfo">
+								<div class="orderlogo">
+									<img src="img/orderlogo.png"/>
+								</div>
+							</div>
+							<div class="rightinfo">
+								<p class="ordername">画册211-64746577</p>
+								<p class="orderinfo">16：45已经开始印刷</p>
+								<p class="orderinfo">16：45已经开始印刷</p>
+							</div>
+							<div class="del">
+								<img src="img/dellogo.png"/>
+							</div>
+							<div class="price">
+								<span>￥:2300.00</span>
+							</div>
+						</div>
+				</li>-->			</ul>		</div>				                				            </div>				        </li>				        				    </ul>				</li>				<li>										<ul class="mui-table-view contentlist"> 				        <li class="mui-table-view-cell mui-collapse">				            <a class="mui-navigate-right" href="#">				            	<div class="left">									<p>需完成合同</p>									<p class="confirmCount">0</p>								</div>								<div class="right">									<img src="img/info4.png"/>								</div>				            </a>				            <div class="mui-collapse-content">				                <div class="orderlist">			<ul id="content4">				<!--<li>						<p class="tip"><span class="leftspan">画册211-35365</span><span class="rightspan">2019-8-25</span></p>						<div class="info">							<div class="leftinfo">								<div class="orderlogo">									<img src="img/orderlogo.png"/>								</div>							</div>							<div class="rightinfo">								<p class="ordername">画册211-64746577</p>								<p class="orderinfo">16：45已经开始印刷</p>								<p class="orderinfo">16：45已经开始印刷</p>							</div>							<div class="del">								<img src="img/dellogo.png"/>							</div>							<div class="price">								<span>￥:2300.00</span>							</div>						</div>				</li>				<li>					<p class="tip"><span class="leftspan">画册211-35365</span><span class="rightspan">2019-8-25</span></p>						<div class="info">							<div class="leftinfo">								<div class="orderlogo">									<img src="img/orderlogo.png"/>								</div>							</div>							<div class="rightinfo">								<p class="ordername">画册211-64746577</p>								<p class="orderinfo">16：45已经开始印刷</p>								<p class="orderinfo">16：45已经开始印刷</p>							</div>							<div class="del">								<img src="img/dellogo.png"/>							</div>							<div class="price">								<span>￥:2300.00</span>							</div>						</div>				</li>				<li>					<p class="tip"><span class="leftspan">画册211-35365</span><span class="rightspan">2019-8-25</span></p>						<div class="info">							<div class="leftinfo">								<div class="orderlogo">									<img src="img/orderlogo.png"/>								</div>							</div>							<div class="rightinfo">								<p class="ordername">画册211-64746577</p>								<p class="orderinfo">16：45已经开始印刷</p>								<p class="orderinfo">16：45已经开始印刷</p>							</div>							<div class="del">								<img src="img/dellogo.png"/>							</div>							<div class="price">								<span>￥:2300.00</span>							</div>						</div>				</li>				<li>					<p class="tip"><span class="leftspan">画册211-35365</span><span class="rightspan">2019-8-25</span></p>						<div class="info">							<div class="leftinfo">								<div class="orderlogo">									<img src="img/orderlogo.png"/>								</div>							</div>							<div class="rightinfo">								<p class="ordername">画册211-64746577</p>								<p class="orderinfo">16：45已经开始印刷</p>								<p class="orderinfo">16：45已经开始印刷</p>							</div>							<div class="del">								<img src="img/dellogo.png"/>							</div>							<div class="price">								<span>￥:2300.00</span>							</div>						</div>				</li>-->			</ul>		</div>				                				            </div>				        </li>				        				    </ul>				</li>				<li>										<ul class="mui-table-view contentlist"> 				        <li class="mui-table-view-cell mui-collapse">				            <a class="mui-navigate-right" href="#">				            	<div class="left">									<p>客户未确认</p>									<p class="needCount">0</p>								</div>								<div class="right">									<img src="img/info2.png"/>								</div>				            </a>				            <div class="mui-collapse-content">				                <div class="orderlist">			<ul id="content2">				<!--<li>
+						<p class="tip"><span class="leftspan">画册211-35365</span><span class="rightspan">2019-8-25</span></p>
+						<div class="info">
+							<div class="leftinfo">
+								<div class="orderlogo">
+									<img src="img/orderlogo.png"/>
+								</div>
+							</div>
+							<div class="rightinfo">
+								<p class="ordername">画册211-64746577</p>
+								<p class="orderinfo">16：45已经开始印刷</p>
+								<p class="orderinfo">16：45已经开始印刷</p>
+							</div>
+							<div class="del">
+								<img src="img/dellogo.png"/>
+							</div>
+							<div class="price">
+								<span>￥:2300.00</span>
+							</div>
+						</div>
+				</li>
+				<li>
+					<p class="tip"><span class="leftspan">画册211-35365</span><span class="rightspan">2019-8-25</span></p>
+						<div class="info">
+							<div class="leftinfo">
+								<div class="orderlogo">
+									<img src="img/orderlogo.png"/>
+								</div>
+							</div>
+							<div class="rightinfo">
+								<p class="ordername">画册211-64746577</p>
+								<p class="orderinfo">16：45已经开始印刷</p>
+								<p class="orderinfo">16：45已经开始印刷</p>
+							</div>
+							<div class="del">
+								<img src="img/dellogo.png"/>
+							</div>
+							<div class="price">
+								<span>￥:2300.00</span>
+							</div>
+						</div>
+				</li>
+				<li>
+					<p class="tip"><span class="leftspan">画册211-35365</span><span class="rightspan">2019-8-25</span></p>
+						<div class="info">
+							<div class="leftinfo">
+								<div class="orderlogo">
+									<img src="img/orderlogo.png"/>
+								</div>
+							</div>
+							<div class="rightinfo">
+								<p class="ordername">画册211-64746577</p>
+								<p class="orderinfo">16：45已经开始印刷</p>
+								<p class="orderinfo">16：45已经开始印刷</p>
+							</div>
+							<div class="del">
+								<img src="img/dellogo.png"/>
+							</div>
+							<div class="price">
+								<span>￥:2300.00</span>
+							</div>
+						</div>
+				</li>
+				<li>
+					<p class="tip"><span class="leftspan">画册211-35365</span><span class="rightspan">2019-8-25</span></p>
+						<div class="info">
+							<div class="leftinfo">
+								<div class="orderlogo">
+									<img src="img/orderlogo.png"/>
+								</div>
+							</div>
+							<div class="rightinfo">
+								<p class="ordername">画册211-64746577</p>
+								<p class="orderinfo">16：45已经开始印刷</p>
+								<p class="orderinfo">16：45已经开始印刷</p>
+							</div>
+							<div class="del">
+								<img src="img/dellogo.png"/>
+							</div>
+							<div class="price">
+								<span>￥:2300.00</span>
+							</div>
+						</div>
+				</li>-->			</ul>		</div>				                				            </div>				        </li>				        				    </ul>				</li>				<li>										<ul class="mui-table-view contentlist"> 				        <li class="mui-table-view-cell mui-collapse">				            <a class="mui-navigate-right" href="#">				            	<div class="left">									<p>客户已确认</p>									<p class="delayCount">0</p>								</div>								<div class="right">									<img src="img/info3.png"/>								</div>				            </a>				            <div class="mui-collapse-content">				                <div class="orderlist">			<ul id="content3">				<!--<li>
+						<p class="tip"><span class="leftspan">画册211-35365</span><span class="rightspan">2019-8-25</span></p>
+						<div class="info">
+							<div class="leftinfo">
+								<div class="orderlogo">
+									<img src="img/orderlogo.png"/>
+								</div>
+							</div>
+							<div class="rightinfo">
+								<p class="ordername">画册211-64746577</p>
+								<p class="orderinfo">16：45已经开始印刷</p>
+								<p class="orderinfo">16：45已经开始印刷</p>
+							</div>
+							<div class="del">
+								<img src="img/dellogo.png"/>
+							</div>
+							<div class="price">
+								<span>￥:2300.00</span>
+							</div>
+						</div>
+				</li>
+				<li>
+					<p class="tip"><span class="leftspan">画册211-35365</span><span class="rightspan">2019-8-25</span></p>
+						<div class="info">
+							<div class="leftinfo">
+								<div class="orderlogo">
+									<img src="img/orderlogo.png"/>
+								</div>
+							</div>
+							<div class="rightinfo">
+								<p class="ordername">画册211-64746577</p>
+								<p class="orderinfo">16：45已经开始印刷</p>
+								<p class="orderinfo">16：45已经开始印刷</p>
+							</div>
+							<div class="del">
+								<img src="img/dellogo.png"/>
+							</div>
+							<div class="price">
+								<span>￥:2300.00</span>
+							</div>
+						</div>
+				</li>
+				<li>
+					<p class="tip"><span class="leftspan">画册211-35365</span><span class="rightspan">2019-8-25</span></p>
+						<div class="info">
+							<div class="leftinfo">
+								<div class="orderlogo">
+									<img src="img/orderlogo.png"/>
+								</div>
+							</div>
+							<div class="rightinfo">
+								<p class="ordername">画册211-64746577</p>
+								<p class="orderinfo">16：45已经开始印刷</p>
+								<p class="orderinfo">16：45已经开始印刷</p>
+							</div>
+							<div class="del">
+								<img src="img/dellogo.png"/>
+							</div>
+							<div class="price">
+								<span>￥:2300.00</span>
+							</div>
+						</div>
+				</li>
+				<li>
+					<p class="tip"><span class="leftspan">画册211-35365</span><span class="rightspan">2019-8-25</span></p>
+						<div class="info">
+							<div class="leftinfo">
+								<div class="orderlogo">
+									<img src="img/orderlogo.png"/>
+								</div>
+							</div>
+							<div class="rightinfo">
+								<p class="ordername">画册211-64746577</p>
+								<p class="orderinfo">16：45已经开始印刷</p>
+								<p class="orderinfo">16：45已经开始印刷</p>
+							</div>
+							<div class="del">
+								<img src="img/dellogo.png"/>
+							</div>
+							<div class="price">
+								<span>￥:2300.00</span>
+							</div>
+						</div>
+				</li>-->			</ul>		</div>				                				            </div>				        </li>				        				    </ul>				</li>				
+			</ul>
+		</div>		<div class="btn">
+			<div class="submit" id="offerOrder">
+				报价
+			</div>			<div class="submit" id="palceOrder">				下单			</div>
+		</div>										<nav class="mui-bar mui-bar-tab foot-bar">			<a class="mui-tab-item way" href="#">				<p><img src="img/nav1.png" style="height: 30px;padding-top:5px ;"/></p>				<span class="mui-tab-label" style="color: #FF6F00;">询价/下单</span>			</a>			<a class="mui-tab-item listhref" href="#">				<p><img src="img/nav2.png" style="height: 30px;padding-top:5px ;"/></p>				<span class="mui-tab-label">订单</span>			</a>			<a class="mui-tab-item myself" href="#">				<p><img src="img/nav3.png" style="height: 30px;padding-top:5px ;"/></p>				<span class="mui-tab-label">我的</span>			</a>		</nav>
+	</body>
+	<script type="text/javascript" src="js/jquery.min.js"></script>	<script type="text/javascript" src="js/mui.min.js"></script>
+	<script type="text/javascript" src="js/layer3.0.1/layer.js"></script>
+	<script src="js/pages/share.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="js/pages/other-Materials.js"></script>	<script type="text/javascript">		var sort = 0;		var status = 0;		var name = '';		$('.way').on('tap',function(){			window.location = 'adminwaitorderlist.html';		})
+		$('.listhref').on('tap',function(){
+			window.location = 'adminorderlist.html';
+		})
+		$('.myself').on('tap',function(){
+			window.location = 'myselfinfo.html';
+		})		var Current = '';		getCurrentDate();		function getCurrentDate(){	              var timeStr = '-';	              var curDate = new Date();	              var curYear =curDate.getFullYear();  //获取完整的年份(4位,1970-????)	              var curMonth = curDate.getMonth()+1;  //获取当前月份(0-11,0代表1月)	              var curDay = curDate.getDate();       //获取当前日(1-31)	              var curWeekDay = curDate.getDay();    //获取当前星期X(0-6,0代表星期天)	              var curHour = curDate.getHours();      //获取当前小时数(0-23)	              var curMinute = curDate.getMinutes();   // 获取当前分钟数(0-59)	              var curSec =curDate.getSeconds();      //获取当前秒数(0-59)	              Current= curYear+timeStr+curMonth+timeStr+curDay;	              console.log(Current);	              // this.datetime=Current;	              return Current;					    }		$('.Current').html(Current);		$('.searchlist').on('tap',function(){
+			window.location.href = 'orderlistselect.html';
+		})		$('#palceOrder').on('tap',function(){			offerParaJson = {};			sessionStorage.setItem('offerParaJson',JSON.stringify(offerParaJson));//			console.log(JSON.stringify(offerParaJson));			window.location.href = 'customlist.html?palce0rder=3';		})		$('#offerOrder').on('tap',function(e){			e.preventDefault();			window.setTimeout(function(){				window.location.href = 'adminindex.html';			},50)					})//		list(sort,status);//		$('.list ul li').on('tap click',function(){
+//			console.log('qqq');
+//			$(this).find('p').addClass('active');
+//			$(this).siblings().find('p').removeClass('active');
+//			status = $(this).attr('status');
+//			list(sort,status);
+//		})			initindex()			function initindex(){											$.ajax({					type:"post",					dataType:'json',					url:ajaxUrlPath+"/mobile/enquiryOrder/orderNum1",					data:{		//				memberId:14						sellerId:10,						memberId:localStorage.getItem('memberId'),					},					success:function(data){						console.log(data);						if(data.code == 0){							$('.needCount').html(data.result.waitConfirmCount);							$('.delayCount').html(data.result.confirmCount);							$('.confirmCount').html(data.result.needCount);							$('.waitCount').html(data.result.waitCount);						}					}				})			}					var flag1 = false;		$('#searchkey').on({			'compositionstart': function() {					      flag1 = true;					    },					    'compositionend': function() {					      flag1 = false;					      if(!flag1) {					      	name = $('#searchkey').val();					        list();					      }					    },					    'input propertychange': function() {					        if(!flag1) {					        	name = $('#searchkey').val();						       list(); 					        }					    }		})
+		list();		function list(){			$.ajax({				type:"post",				dataType:'json',				url:ajaxUrlPath+"/mobile/enquiryOrder/orderList",				data:{//					memberId:14,					userId:localStorage.getItem('memberId'),					status:14,					sort:0,					name:name				},				success:function(data){					console.log(data);					if(data.code == 0){												var li = '';						$('#sort').attr('sort',sort);						if(data.result.length>0){							for (var i = 0; i < data.result.length; i++) {								var papertype = '';								var statustype = '订单待前台处理';//								if(data.result[i].status==1){
+//									statustype = '订单待前台确认'
+//								}else if(data.result[i].status==11){
+//									statustype = '订单需完成'
+//								}else if(data.result[i].status==12){
+//									statustype = '订单已延误'
+//								}else if(data.result[i].status==13){
+//									statustype = '订单已确认'
+//								}else if(data.result[i].status==13){
+//									statustype = '订单已确认'
+//								}								for (var j = 0; j < data.result[i].innerParams.length; j++) {									papertype += data.result[i].innerParams[j].summary.split(' ')[0]+data.result[i].innerParams[j].summary.split(' ')[1]+'/'								}								var imgsrc = ''								if(data.result[i].bindingMethod=="骑马订"){									imgsrc = 'img/icon4.png'								}else if(data.result[i].bindingMethod=="缝线装"){									imgsrc = 'img/icon5.png'								}else if(data.result[i].bindingMethod=="圈装"){									imgsrc = 'img/icon7.png'								}else if(data.result[i].bindingMethod=="锁线裸装"){									imgsrc = 'img/icon6.png'								}else if(data.result[i].bindingMethod=="软面精装" || data.result[i].bindingMethod=="硬面精装"){									imgsrc = 'img/icon3.png'								}else if(data.result[i].bindingMethod=="锁线胶装"){									imgsrc = 'img/icon1.png'								}else if(data.result[i].bindingMethod=="无线胶装"){									imgsrc = 'img/icon2.png'								}else if(data.result[i].bindingMethod=="其他装订"){									imgsrc = 'img/icon8.png'								}								var price = data.result[i].price;								if(data.result[i].bindingMethod =='其他装订'){									price = 0;								}									li += '<li enquiryorderid="'+data.result[i].enquiryOrderId+'" status="'+data.result[i].status+'">'+						'<p class="tip"><span class="leftspan">'+data.result[i].name+'</span><span class="rightspan">'+data.result[i].enquiryTime+'</span></p>'+							'<div class="info">'+								'<div class="leftinfo">'+									'<div class="orderlogo">'+										'<img src="'+imgsrc+'"/>'+									'</div>'+								'</div>'+								'<div class="rightinfo">'+									'<p class="ordername">'+data.result[i].num+' '+data.result[i].bindingMethod+'</p>'+									'<p class="orderinfo">'+papertype+'</p>'+									'<p class="orderinfo">'+statustype+'</p>'+								'</div>'+								'<div class="del" enquiryorderid="'+data.result[i].enquiryOrderId+'">'+								'</div>'+								'<div class="price">'+									'<span>￥'+price+'</span>'+								'</div>'+							'</div>'+					'</li>'																																					}						}else{							li = '暂无数据';						}												$('#content1').html(li);						$('#content1 li').on('tap',function(){			var enquiryorderid = $(this).attr('enquiryorderid');			console.log(enquiryorderid);			$.ajax({				type:"post",				dataType:'json',				url:ajaxUrlPath+"/mobile/enquiryOrder/newOrderDetail",				data:{enquiryOrderId:enquiryorderid},				success:function(data){					console.log(data);					if(data.code == 0){							var result = data.result;							var offerParaJson = {};							offerParaJson['binging']={								bindStyle:result.bindingMethod							}							offerParaJson['ordername'] = {								name:result.name,								agentId:result.agentId,								agentName:result.agentName,								customerCompany:result.customerCompany,								price:result.price,								num:result.num,								applyPrintTime:result.applyPrintTime,								confirmTime:result.confirmTime,								deliveryDate:result.deliveryDate,								payTime:result.payTime,								memo:result.memo,								addressInfo:result.addressInfo,								enquiryorderid:enquiryorderid,								customerId:result.customerId,								mobile:result.mobile,								sampleManuscript:result.sampleManuscript,								liningPaperMethod:result.liningPaperMethod,							}							offerParaJson['isPlasticSeal'] = result.isPlasticSeal;							offerParaJson['sizestr'] = {								pageSize:result.pageSize,								pageSizeCh:result.dimensions,								pageWidth:result.productWidth,								pageHeight:result.productLength							}							offerParaJson['booknum'] = result.num;//							console.log(JSON.stringify(offerParaJson)+'测试')//							offerParaJson['linling'] = [{
+//								dunWeiJia:result.innerParams[0].tonnagePrice,
+//								keZhong:result.innerParams[0].weight,
+//								type:result.innerParams[0].paperType,
+//								danShuang:result.innerParams[0].surfaceTreatmentType,
+//								surface:result.innerParams[0].surfaceTreatmentMethod,
+//								special:result.innerParams[0].afterTheProcesses.join(';'),
+//								pagesNum:result.innerParams[0].pages,
+//								color1:result.innerParams[0].colorNum1,
+//								color2:result.innerParams[0].colorNum2,
+//								spotColor:result.innerParams[0].properColor,
+//								hasSpread:result.innerParams[0].hasSpread,
+//								isSelfPaper:result.innerParams[0].isSelfPaper,
+//								selfPaperName:(result.innerParams[0].selfPaperName==null?'':result.innerParams[0].selfPaperName),
+//								selfPaperWeight:(result.innerParams[0].selfPaperWeight==null?0:result.innerParams[0].selfPaperWeight),
+//								selfPaperPrice:(result.innerParams[0].selfPaperPrice==null?0:result.innerParams[0].selfPaperPrice),
+//							}]							var insideAry = [];							var liningAry = [];							var huanchenAry= [];							console.log(result.innerParams.length+'ceshi');							for (var i = 0; i < result.innerParams.length; i++) {//								alert(result.innerParams[i].selfPaperName);								var insideobj = {									dunWeiJia:result.innerParams[i].tonnagePrice,									keZhong:result.innerParams[i].weight,									type:result.innerParams[i].paperType,									danShuang:result.innerParams[i].surfaceTreatmentType,									surface:result.innerParams[i].surfaceTreatmentMethod,									special:result.innerParams[i].afterTheProcesses.join(';'),									pagesNum:result.innerParams[i].pages,									color1:result.innerParams[i].colorNum1,									color2:result.innerParams[i].colorNum2,									spotColor:result.innerParams[i].properColor,									spreadPages:result.innerParams[i].spreadPages,									hasSpread:result.innerParams[i].hasSpread,									isSelfPaper:result.innerParams[i].isSelfPaper,									selfPaperName:(result.innerParams[i].selfPaperName==null?'':result.innerParams[i].selfPaperName),									selfPaperWeight:(result.innerParams[i].selfPaperWeight==null?0:result.innerParams[i].selfPaperWeight),									selfPaperPrice:(result.innerParams[i].selfPaperPrice==null?0:result.innerParams[i].selfPaperPrice),									selfPaperNormal:result.innerParams[i].selfPaperNormal,									selfPaperColor:result.innerParams[i].selfPaperColor,									selfPaperLength:(result.innerParams[i].selfPaperLength==null?'':result.innerParams[i].selfPaperLength),									selfPaperWidth:(result.innerParams[i].selfPaperWidth==null?'':result.innerParams[i].selfPaperWidth),								}//								alert(JSON.stringify(insideobj))								if(result.innerParams[i].type==1){									liningAry.push(insideobj);								}else if(result.innerParams[i].type==2){									insideAry.push(insideobj);								}else if(result.innerParams[i].type==3){//									if(result.liningPaperMethod==1){
+//										
+//									}else{
+//										huanchenAry.push(insideobj);
+//									}									huanchenAry.push(insideobj);																	}							}							offerParaJson['inside'] = insideAry;							offerParaJson['linling'] = liningAry;							offerParaJson['huanchen'] = huanchenAry;							sessionStorage.setItem('offerParaJson',JSON.stringify(offerParaJson));//							alert(JSON.stringify(offerParaJson));							window.location = 'admineditsingle.html?palce0rder=2';					}				}			})		})			$('.del').off('tap click').on('tap',function(e){				e.stopPropagation()			console.log('测试');			console.log($(this).attr('enquiryOrderId'))			var enquiryOrderId = $(this).attr('enquiryOrderId');			console.log(enquiryOrderId);			var _this = this;			var btnArray = ['确定','取消'];			mui.confirm('是否删除','信息提示', btnArray, function(e) {				if (e.index == 0) {					$.ajax({						type:"post",						dataType:'json',						url:ajaxUrlPath+"/mobile/enquiryOrder/deleteEnquiryOrder",						data:{enquiryOrderId:enquiryOrderId},						success:function(data){							console.log(data);							if(data.code == 0){								$(_this).parents('li').remove();								mui.toast('删除成功')								list();								initindex();							}						}					})				}else{					return;				}			})					})														}				}			})			//今日完成订单			$.ajax({				type:"post",				dataType:'json',				url:ajaxUrlPath+"/mobile/enquiryOrder/orderList",				data:{//					memberId:14,					userId:localStorage.getItem('memberId'),					status:3,					sort:0,					name:name				},				success:function(data){					console.log(data);					if(data.code == 0){												var li = '';						$('#sort').attr('sort',sort);						if(data.result.length>0){							for (var i = 0; i < data.result.length; i++) {								var papertype = '';								var statustype = '';								if(data.result[i].status==1){									statustype = '订单待确认'								}else if(data.result[i].status==11){									statustype = '订单需完成'								}else if(data.result[i].status==12){									statustype = '订单已延误'								}else if(data.result[i].status==13){									statustype = '订单已确认'								}								for (var j = 0; j < data.result[i].innerParams.length; j++) {									papertype += data.result[i].innerParams[j].summary.split(' ')[0]+data.result[i].innerParams[j].summary.split(' ')[1]+'/'								}								var imgsrc = ''								if(data.result[i].bindingMethod=="骑马订"){									imgsrc = 'img/icon4.png'								}else if(data.result[i].bindingMethod=="缝线装"){									imgsrc = 'img/icon5.png'								}else if(data.result[i].bindingMethod=="圈装"){									imgsrc = 'img/icon7.png'								}else if(data.result[i].bindingMethod=="锁线裸装"){									imgsrc = 'img/icon6.png'								}else if(data.result[i].bindingMethod=="软面精装" || data.result[i].bindingMethod=="硬面精装"){									imgsrc = 'img/icon3.png'								}else if(data.result[i].bindingMethod=="锁线胶装"){									imgsrc = 'img/icon1.png'								}else if(data.result[i].bindingMethod=="无线胶装"){									imgsrc = 'img/icon2.png'								}else if(data.result[i].bindingMethod=="其他装订"){									imgsrc = 'img/icon8.png'								}									li += '<li enquiryorderid="'+data.result[i].enquiryOrderId+'">'+						'<p class="tip"><span class="leftspan">'+data.result[i].name+'</span><span class="rightspan">'+data.result[i].enquiryTime+'</span></p>'+							'<div class="info">'+								'<div class="leftinfo">'+									'<div class="orderlogo">'+										'<img src="'+imgsrc+'"/>'+									'</div>'+								'</div>'+								'<div class="rightinfo">'+									'<p class="ordername">'+data.result[i].num+' '+data.result[i].bindingMethod+'</p>'+									'<p class="orderinfo">'+papertype+'</p>'+									'<p class="orderinfo">'+statustype+'</p>'+								'</div>'+								'<div class="del" enquiryorderid="'+data.result[i].enquiryOrderId+'">'+								'</div>'+								'<div class="price">'+									'<span>￥'+data.result[i].price+'</span>'+								'</div>'+							'</div>'+					'</li>'																																					}						}else{							li="暂无数据"						}												$('#content2').html(li);												$('#content2 li').on('tap',function(){			console.log(111);			var enquiryorderid = $(this).attr('enquiryorderid');			console.log(enquiryorderid);			$.ajax({				type:"post",				dataType:'json',				url:ajaxUrlPath+"/mobile/enquiryOrder/newOrderDetail",				data:{enquiryOrderId:enquiryorderid},				success:function(data){					console.log(data);					if(data.code == 0){							var result = data.result;							var offerParaJson = JSON.parse(sessionStorage.getItem('offerParaJson'));							console.log(JSON.stringify(offerParaJson));							if(offerParaJson==null){								offerParaJson = {};							}							offerParaJson['binging']={								bindStyle:result.bindingMethod							}							offerParaJson['ordername'] = {								name:result.name,								agentId:result.agentId,								agentName:result.agentName,								customerCompany:result.customerCompany,								price:result.price,								num:result.num,								applyPrintTime:result.applyPrintTime,								confirmTime:result.confirmTime,								deliveryDate:result.deliveryDate,								payTime:result.payTime,								memo:result.memo,								addressInfo:result.addressInfo,								enquiryorderid:enquiryorderid,								customerId:result.customerId,								mobile:result.mobile,								sampleManuscript:result.sampleManuscript,								liningPaperMethod:result.liningPaperMethod,															}							offerParaJson['isPlasticSeal'] = result.isPlasticSeal;							offerParaJson['sizestr'] = {								pageSize:result.pageSize,								pageSizeCh:result.dimensions,								pageWidth:result.productWidth,								pageHeight:result.productLength							}							offerParaJson['booknum'] = result.num;														var insideAry = [];							var liningAry = [];							var huanchenAry= [];							console.log(result.innerParams.length+'ceshi');							for (var i = 0; i < result.innerParams.length; i++) {								var insideobj = {									dunWeiJia:result.innerParams[i].tonnagePrice,									keZhong:result.innerParams[i].weight,									type:result.innerParams[i].paperType,									danShuang:result.innerParams[i].surfaceTreatmentType,									surface:result.innerParams[i].surfaceTreatmentMethod,									special:result.innerParams[i].afterTheProcesses.join(';'),									pagesNum:result.innerParams[i].pages,									color1:result.innerParams[i].colorNum1,									color2:result.innerParams[i].colorNum2,									spotColor:result.innerParams[i].properColor,									hasSpread:result.innerParams[i].hasSpread,									spreadPages:result.innerParams[i].spreadPages,									isSelfPaper:result.innerParams[i].isSelfPaper,									selfPaperName:(result.innerParams[i].selfPaperName==null?'':result.innerParams[i].selfPaperName),									selfPaperWeight:(result.innerParams[i].selfPaperWeight==null?0:result.innerParams[i].selfPaperWeight),									selfPaperPrice:(result.innerParams[i].selfPaperPrice==null?0:result.innerParams[i].selfPaperPrice),									selfPaperNormal:result.innerParams[i].selfPaperNormal,									selfPaperColor:result.innerParams[i].selfPaperColor,									selfPaperLength:(result.innerParams[i].selfPaperLength==null?'':result.innerParams[i].selfPaperLength),									selfPaperWidth:(result.innerParams[i].selfPaperWidth==null?'':result.innerParams[i].selfPaperWidth),																}								if(result.innerParams[i].type==1){									liningAry.push(insideobj);								}else if(result.innerParams[i].type==2){									insideAry.push(insideobj);								}else if(result.innerParams[i].type==3){//									if(result.liningPaperMethod==1){
+//										
+//									}else{
+//										
+//									}									huanchenAry.push(insideobj);																	}							}							offerParaJson['inside'] = insideAry;							offerParaJson['linling'] = liningAry;							offerParaJson['huanchen'] = huanchenAry;							sessionStorage.setItem('offerParaJson',JSON.stringify(offerParaJson));														window.location = 'admineditsingle.html?palce0rder=4';					}				}			})		})			$('.del').off('tap click').on('tap',function(e){				e.stopPropagation()			console.log('测试');			console.log($(this).attr('enquiryOrderId'))			var enquiryOrderId = $(this).attr('enquiryOrderId');			console.log(enquiryOrderId);			var _this = this;			var btnArray = ['确定','取消'];			mui.confirm('是否删除','信息提示', btnArray, function(e) {				if (e.index == 0) {					$.ajax({						type:"post",						dataType:'json',						url:ajaxUrlPath+"/mobile/enquiryOrder/deleteEnquiryOrder",						data:{enquiryOrderId:enquiryOrderId},						success:function(data){							console.log(data);							if(data.code == 0){								$(_this).parents('li').remove();								mui.toast('删除成功')								list();								initindex();							}						}					})				}else{					return;				}			})					})														}				}			})												//延误订单			$.ajax({				type:"post",				dataType:'json',				url:ajaxUrlPath+"/mobile/enquiryOrder/orderList",				data:{//					memberId:14,					userId:localStorage.getItem('memberId'),					status:13,					sort:0,					name:name				},				success:function(data){					console.log(data);					if(data.code == 0){												var li = '';						$('#sort').attr('sort',sort);						if(data.result.length>0){							for (var i = 0; i < data.result.length; i++) {								var papertype = '';								var statustype = '';								if(data.result[i].status==1){									statustype = '订单待确认'								}else if(data.result[i].status==11){									statustype = '订单需完成'								}else if(data.result[i].status==12){									statustype = '订单已延误'								}else if(data.result[i].status==13){									statustype = '订单已确认'								}								for (var j = 0; j < data.result[i].innerParams.length; j++) {									papertype += data.result[i].innerParams[j].summary.split(' ')[0]+data.result[i].innerParams[j].summary.split(' ')[1]+'/'								}								var imgsrc = ''								if(data.result[i].bindingMethod=="骑马订"){									imgsrc = 'img/icon4.png'								}else if(data.result[i].bindingMethod=="缝线装"){									imgsrc = 'img/icon5.png'								}else if(data.result[i].bindingMethod=="圈装"){									imgsrc = 'img/icon7.png'								}else if(data.result[i].bindingMethod=="锁线裸装"){									imgsrc = 'img/icon6.png'								}else if(data.result[i].bindingMethod=="软面精装" || data.result[i].bindingMethod=="硬面精装"){									imgsrc = 'img/icon3.png'								}else if(data.result[i].bindingMethod=="锁线胶装"){									imgsrc = 'img/icon1.png'								}else if(data.result[i].bindingMethod=="无线胶装"){									imgsrc = 'img/icon2.png'								}else if(data.result[i].bindingMethod=="其他装订"){									imgsrc = 'img/icon8.png'								}									li += '<li enquiryorderid="'+data.result[i].enquiryOrderId+'">'+						'<p class="tip"><span class="leftspan">'+data.result[i].name+'</span><span class="rightspan">'+data.result[i].enquiryTime+'</span></p>'+							'<div class="info">'+								'<div class="leftinfo">'+									'<div class="orderlogo">'+										'<img src="'+imgsrc+'"/>'+									'</div>'+								'</div>'+								'<div class="rightinfo">'+									'<p class="ordername">'+data.result[i].num+' '+data.result[i].bindingMethod+'</p>'+									'<p class="orderinfo">'+papertype+'</p>'+									'<p class="orderinfo">'+statustype+'</p>'+								'</div>'+								'<div class="del" enquiryorderid="'+data.result[i].enquiryOrderId+'">'+								'</div>'+								'<div class="price">'+									'<span>￥'+data.result[i].price+'</span>'+								'</div>'+							'</div>'+					'</li>'																																					}						}else{							li="暂无数据"						}						$('#content3').html(li);						$('#content3 li').on('tap',function(){			console.log(111);			var enquiryorderid = $(this).attr('enquiryorderid');			console.log(enquiryorderid);			$.ajax({				type:"post",				dataType:'json',				url:ajaxUrlPath+"/mobile/enquiryOrder/newOrderDetail",				data:{enquiryOrderId:enquiryorderid},				success:function(data){					console.log(data);					if(data.code == 0){							var result = data.result;							var offerParaJson = JSON.parse(sessionStorage.getItem('offerParaJson'));							console.log(offerParaJson);							if(offerParaJson==null){								offerParaJson ={};							}							offerParaJson['binging']={								bindStyle:result.bindingMethod							}							offerParaJson['ordername'] = {								name:result.name,								agentId:result.agentId,								agentName:result.agentName,								customerCompany:result.customerCompany,								price:result.price,								num:result.num,								applyPrintTime:result.applyPrintTime,								confirmTime:result.confirmTime,								deliveryDate:result.deliveryDate,								payTime:result.payTime,								memo:result.memo,								addressInfo:result.addressInfo,								enquiryorderid:enquiryorderid,								customerId:result.customerId,								mobile:result.mobile,								sampleManuscript:result.sampleManuscript,								liningPaperMethod:result.liningPaperMethod,								selfPaperLength:(result.innerParams[i].selfPaperLength==null?'':result.innerParams[i].selfPaperLength),								selfPaperWidth:(result.innerParams[i].selfPaperWidth==null?'':result.innerParams[i].selfPaperWidth),							}							offerParaJson['isPlasticSeal'] = result.isPlasticSeal;							offerParaJson['sizestr'] = {								pageSize:result.pageSize,								pageSizeCh:result.dimensions,								pageWidth:result.productWidth,								pageHeight:result.productLength							}							offerParaJson['booknum'] = result.num;														var insideAry = [];							var liningAry = [];							var huanchenAry= [];							console.log(result.innerParams.length+'ceshi');							for (var i = 0; i < result.innerParams.length; i++) {								var insideobj = {									dunWeiJia:result.innerParams[i].tonnagePrice,									keZhong:result.innerParams[i].weight,									type:result.innerParams[i].paperType,									danShuang:result.innerParams[i].surfaceTreatmentType,									surface:result.innerParams[i].surfaceTreatmentMethod,									special:result.innerParams[i].afterTheProcesses.join(';'),									pagesNum:result.innerParams[i].pages,									color1:result.innerParams[i].colorNum1,									color2:result.innerParams[i].colorNum2,									spotColor:result.innerParams[i].properColor,									hasSpread:result.innerParams[i].hasSpread,									spreadPages:result.innerParams[i].spreadPages,									isSelfPaper:result.innerParams[i].isSelfPaper,									selfPaperName:(result.innerParams[i].selfPaperName==null?'':result.innerParams[i].selfPaperName),									selfPaperWeight:(result.innerParams[i].selfPaperWeight==null?0:result.innerParams[i].selfPaperWeight),									selfPaperPrice:(result.innerParams[i].selfPaperPrice==null?0:result.innerParams[i].selfPaperPrice),									selfPaperNormal:result.innerParams[i].selfPaperNormal,									selfPaperColor:result.innerParams[i].selfPaperColor								}								if(result.innerParams[i].type==1){									liningAry.push(insideobj);								}else if(result.innerParams[i].type==2){									insideAry.push(insideobj);								}else if(result.innerParams[i].type==3){//									if(result.liningPaperMethod==1){
+//										
+//									}else{
+//										huanchenAry.push(insideobj);
+//									}									huanchenAry.push(insideobj);								}							}							offerParaJson['inside'] = insideAry;							offerParaJson['linling'] = liningAry;							offerParaJson['huanchen'] = huanchenAry;							sessionStorage.setItem('offerParaJson',JSON.stringify(offerParaJson));														window.location = 'admineditsingle.html?palce0rder=4';					}				}			})		})			$('.del').off('tap click').on('tap',function(e){				e.stopPropagation()			console.log('测试');			console.log($(this).attr('enquiryOrderId'))			var enquiryOrderId = $(this).attr('enquiryOrderId');			console.log(enquiryOrderId);			var _this = this;			var btnArray = ['确定','取消'];			mui.confirm('是否删除','信息提示', btnArray, function(e) {				if (e.index == 0) {					$.ajax({						type:"post",						dataType:'json',						url:ajaxUrlPath+"/mobile/enquiryOrder/deleteEnquiryOrder",						data:{enquiryOrderId:enquiryOrderId},						success:function(data){							console.log(data);							if(data.code == 0){								$(_this).parents('li').remove();								mui.toast('删除成功')								list();								initindex();							}						}					})				}else{					return;				}			})					})														}				}			})			//已确认订单		}		$.ajax({				type:"post",				dataType:'json',				url:ajaxUrlPath+"/mobile/enquiryOrder/orderList",				data:{//					memberId:14,					userId:localStorage.getItem('memberId'),					status:11,					sort:0,					name:name				},				success:function(data){					console.log(data);					if(data.code == 0){												var li = '';						$('#sort').attr('sort',sort);						if(data.result.length>0){							for (var i = 0; i < data.result.length; i++) {								var papertype = '';								var statustype = '';								if(data.result[i].status==1){									statustype = '订单待确认'								}else if(data.result[i].status==11){									statustype = '订单需完成'								}else if(data.result[i].status==12){									statustype = '订单已延误'								}else if(data.result[i].status==13){									statustype = '订单已确认'								}								for (var j = 0; j < data.result[i].innerParams.length; j++) {									papertype += data.result[i].innerParams[j].summary.split(' ')[0]+data.result[i].innerParams[j].summary.split(' ')[1]+'/'								}								var imgsrc = ''								if(data.result[i].bindingMethod=="骑马订"){									imgsrc = 'img/icon4.png'								}else if(data.result[i].bindingMethod=="缝线装"){									imgsrc = 'img/icon5.png'								}else if(data.result[i].bindingMethod=="圈装"){									imgsrc = 'img/icon7.png'								}else if(data.result[i].bindingMethod=="锁线裸装"){									imgsrc = 'img/icon6.png'								}else if(data.result[i].bindingMethod=="软面精装" || data.result[i].bindingMethod=="硬面精装"){									imgsrc = 'img/icon3.png'								}else if(data.result[i].bindingMethod=="锁线胶装"){									imgsrc = 'img/icon1.png'								}else if(data.result[i].bindingMethod=="无线胶装"){									imgsrc = 'img/icon2.png'								}else if(data.result[i].bindingMethod=="其他装订"){									imgsrc = 'img/icon8.png'								}									li += '<li enquiryorderid="'+data.result[i].enquiryOrderId+'">'+						'<p class="tip"><span class="leftspan">'+data.result[i].name+'</span><span class="rightspan">'+data.result[i].enquiryTime+'</span></p>'+							'<div class="info">'+								'<div class="leftinfo">'+									'<div class="orderlogo">'+										'<img src="'+imgsrc+'"/>'+									'</div>'+								'</div>'+								'<div class="rightinfo">'+									'<p class="ordername">'+data.result[i].num+' '+data.result[i].bindingMethod+'</p>'+									'<p class="orderinfo">'+papertype+'</p>'+									'<p class="orderinfo">'+statustype+'</p>'+								'</div>'+								'<div class="del" enquiryorderid="'+data.result[i].enquiryOrderId+'">'+								'</div>'+								'<div class="price">'+									'<span>￥'+data.result[i].price+'</span>'+								'</div>'+							'</div>'+					'</li>'																																					}						}else{							li="暂无数据"						}												$('#content4').html(li);						$('#content4 li').on('tap',function(){			console.log(111);			var enquiryorderid = $(this).attr('enquiryorderid');			console.log(enquiryorderid);			$.ajax({				type:"post",				dataType:'json',				url:ajaxUrlPath+"/mobile/enquiryOrder/newOrderDetail",				data:{enquiryOrderId:enquiryorderid},				success:function(data){					console.log(data);					if(data.code == 0){							var result = data.result;							var offerParaJson = JSON.parse(sessionStorage.getItem('offerParaJson'));							console.log(JSON.stringify(offerParaJson));							if(offerParaJson==null){								offerParaJson = {};							}							offerParaJson['binging']={								bindStyle:result.bindingMethod							}							offerParaJson['ordername'] = {								name:result.name,								agentId:result.agentId,								agentName:result.agentName,								customerCompany:result.customerCompany,								price:result.price,								num:result.num,								applyPrintTime:result.applyPrintTime,								confirmTime:result.confirmTime,								deliveryDate:result.deliveryDate,								payTime:result.payTime,								memo:result.memo,								addressInfo:result.addressInfo,								enquiryorderid:enquiryorderid,								customerId:result.customerId,								mobile:result.mobile,								sampleManuscript:result.sampleManuscript,								liningPaperMethod:result.liningPaperMethod,							}							offerParaJson['isPlasticSeal'] = result.isPlasticSeal;							offerParaJson['sizestr'] = {								pageSize:result.pageSize,								pageSizeCh:result.dimensions,								pageWidth:result.productWidth,								pageHeight:result.productLength							}							offerParaJson['booknum'] = result.num;														var insideAry = [];							var liningAry = [];							var huanchenAry= [];							console.log(result.innerParams.length+'ceshi');							for (var i = 0; i < result.innerParams.length; i++) {								var insideobj = {									dunWeiJia:result.innerParams[i].tonnagePrice,									keZhong:result.innerParams[i].weight,									type:result.innerParams[i].paperType,									danShuang:result.innerParams[i].surfaceTreatmentType,									surface:result.innerParams[i].surfaceTreatmentMethod,									special:result.innerParams[i].afterTheProcesses.join(';'),									pagesNum:result.innerParams[i].pages,									color1:result.innerParams[i].colorNum1,									color2:result.innerParams[i].colorNum2,									spotColor:result.innerParams[i].properColor,									hasSpread:result.innerParams[i].hasSpread,									spreadPages:result.innerParams[i].spreadPages,									isSelfPaper:result.innerParams[i].isSelfPaper,									selfPaperName:(result.innerParams[i].selfPaperName==null?'':result.innerParams[i].selfPaperName),									selfPaperWeight:(result.innerParams[i].selfPaperWeight==null?0:result.innerParams[i].selfPaperWeight),									selfPaperPrice:(result.innerParams[i].selfPaperPrice==null?0:result.innerParams[i].selfPaperPrice),									selfPaperNormal:result.innerParams[i].selfPaperNormal,									selfPaperColor:result.innerParams[i].selfPaperColor,									selfPaperLength:(result.innerParams[i].selfPaperLength==null?'':result.innerParams[i].selfPaperLength),									selfPaperWidth:(result.innerParams[i].selfPaperWidth==null?'':result.innerParams[i].selfPaperWidth),								}								if(result.innerParams[i].type==1){									liningAry.push(insideobj);								}else if(result.innerParams[i].type==2){									insideAry.push(insideobj);								}else if(result.innerParams[i].type==3){//									if(result.liningPaperMethod==1){
+//										
+//									}else{
+//										huanchenAry.push(insideobj);
+//									}									huanchenAry.push(insideobj);																	}							}							offerParaJson['inside'] = insideAry;							offerParaJson['linling'] = liningAry;							offerParaJson['huanchen'] = huanchenAry;							sessionStorage.setItem('offerParaJson',JSON.stringify(offerParaJson));														window.location = 'admineditsingle.html?palce0rder=4';					}				}			})		})			$('.del').off('tap click').on('tap',function(e){				e.stopPropagation()			console.log('测试');			console.log($(this).attr('enquiryOrderId'))			var enquiryOrderId = $(this).attr('enquiryOrderId');			console.log(enquiryOrderId);			var _this = this;			var btnArray = ['确定','取消'];			mui.confirm('是否删除','信息提示', btnArray, function(e) {				if (e.index == 0) {					$.ajax({						type:"post",						dataType:'json',						url:ajaxUrlPath+"/mobile/enquiryOrder/deleteEnquiryOrder",						data:{enquiryOrderId:enquiryOrderId},						success:function(data){							console.log(data);							if(data.code == 0){								$(_this).parents('li').remove();								mui.toast('删除成功')								list();								initindex();							}						}					})				}else{					return;				}			})					})														}				}			})								
+	</script>
+</html>

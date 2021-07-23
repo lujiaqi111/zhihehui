@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<!--<meta name="apple-mobile-web-app-capable" content="yes">-->
+		<!--<meta name="apple-mobile-web-app-status-bar-style" content="black">-->
+		<meta name="format-detection" content="telephone=no">
+		<title>印刷通-报价</title>		<link rel="stylesheet" type="text/css" href="css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/rem.css"/>
+		<link rel="stylesheet" type="text/css" href="css/initialization1.css"/>		<style type="text/css">
+			#text{			    box-shadow: 0px 1px 6px #c3c3c3;			    border-radius: 10px;			    width: 90%;			    height: 400px;			    margin-left: 4%;			    background-color: #FFFFFF;			    margin-top: 10px;			}			body,html{				background-color: #f2f2f2;				width: 100%;				height: 100%;				overflow: hidden;				position: relative;							}			.title{				width: 100%;				height: 120px;				background-color: #ff6f00;				color: #FFFFFF;				position: absolute;				top: 0px;				z-index: 100;				/*margin-top: 80px;*/			}			.search{				width: 100%;				height: 60px;/*				background-color: red;*/			}			.search span{				display: inline-block;				float: left;				line-height: 50px;				font-size: 20px;				font-weight: inherit;				padding-left: 10px;			}			#search{				float: left;				width: 200px;				height: 40px;				border-radius: 20px;				background-color: #ff9a4d;				margin-top: 10px;				margin-left: 10px;			}			#search img{				display: block;				height: 20px;				width: 20px;				margin: 10px;				float: left;			}			#search input{				display: block;				float: left;				width: 150px;				background-color: rgba(0,0,0,0);				border: 0px;				text-align: left;    			color: #ffffff;			}			.list{				width: 100%;				height: 60px;				text-align: center;			}			.list ul li{				width: 16%;				height: 60px;				float: left;											}			.list ul li p{				color: #FFFFFF;			}			.list ul li p:first-child{				font-size: 18px;			}			.list ul li p:last-child{				font-size: 12px;			}			.orderlist{				width: 90%;				/*min-height: 110px;*/				/*background-color: red;*/				margin-left: 5%;				/*margin-top: 130px;*/							}			.orderlist ul li{				width: 100%;				height: 120px;				background-color: #FFFFFF;				margin-top: 10px;				border: 1px solid rgba(0,0,0,0.2);				border-radius: 5px;				cursor: pointer;			}			.rightinfo ul li p{				height: 20px;				position: relative;			}			.tip{				height: 30px;				position: relative;			}			.tip span{				height: 30px;			}			.tip:after{				content: '';				display: block;				position: absolute;				width: 90%;				left: 5%; 				bottom: 0;				height: 1px;				background-color: #c8c7cc;				transform: scaleY(0.5);			}			.leftspan{				display:inline-block ;				float: left;				padding: 6px;				font-size: 16px;				height: 30px;				color: #ff6f00;				width: 40%;				text-overflow:ellipsis;				white-space:nowrap;				overflow:hidden;							}			.rightspan{				display: inline-block;				text-align: right;				float: right;				padding: 6px;				font-size: 16px;				height: 30px;				width: 60%;			}			.info{				width: 100%;				height: 88px;				position: relative;			}			.info div{				float: left;			}			.leftinfo{				width: 66px;				height: 66px;							}			.orderlogo{				width: 50px;				height: 50px;				border: 1px solid #FFFFFF;				border-radius: 50%;				margin: 16px 8px;				/*background-color: #ff6f00;*/				text-align: center;			}			.orderlogo img{				display: inline-block;				width: auto;				height: 100%;							}			.rightinfo{				width: auto;				height: 66px;				width: 70%;			}			.ordername{				font-size: 12px;			}			.orderinfo{				font-size: 12px;				width: 225px;		        overflow:hidden;		        text-overflow:ellipsis; 		        white-space: nowrap;/*加宽度width属来兼容部分浏览*/			}			.del{				position: absolute;				right: 6px;				top: 6px;			}			.del img{				width: 20px;			}			.price{				position: absolute;				right: 6px;				bottom: 6px;				font-size: 16px;				color: #ff6f00;			}			.list .active{				color: #ffee4d !important;				background-color: #ff6f00 !important;			}			.orderlist{				/* padding-bottom: 100px; */				position: relative;				height: 100%;				/* top: 0px; */    			overflow-y: scroll;
+				overflow-x: hidden;			}			#content{				width: 100%;				/* overflow-y: auto; */				position: absolute;				/* top: 130px; */
+				margin-top: 130px;
+				padding-bottom: 60px;			}			/*.title{
+				position: fixed;
+				top: 0;
+			}
+			.orderlist{
+				overflow: auto;
+			    padding-bottom: 30px;
+			    margin-top: 120px;
+			}*/			.status{				background-color: #FF6F00;				color: #FFFFFF;				padding: 3px 5px;				border-radius: 5px;				position: absolute;				right: 5px;				bottom: 5px;			}			.mui-bar-tab{				position: absolute;				bottom: 0px;			}			.mui-scrollbar-indicator{				background: rgba(0,0,0,0);			}			.mui-pull-top-tips{position:absolute;top:-20px;left:50%;margin-left:-25px;width:40px;height:40px;border-radius:100%;z-index:999;}			.mui-bar~.mui-pull-top-tips{top:24px;}			.mui-pull-top-wrapper{width:42px;height:42px;display:block;text-align:center;background-color:#efeff4;border:1px solid #ddd;border-radius:25px;background-clip:padding-box;box-shadow:0 4px 10px #bbb;overflow: hidden;}			.mui-pull-top-tips.mui-transitioning {-webkit-transition-duration:200ms;transition-duration:200ms;}			.mui-pull-top-tips .mui-pull-loading{margin:0;}			.mui-pull-top-wrapper .mui-icon, .mui-pull-top-wrapper .mui-spinner{margin-top:7px;}			.mui-pull-bottom-tips{text-align:center;background-color:#efeff4;font-size:15px;line-height:40px;color:#777;}			.mui-pull-top-canvas{overflow:hidden;background-color:#fafafa;border-radius:40px;box-shadow:0 4px 10px #bbb;width:40px;height:40px;margin:0 auto;}			.mui-pull-top-canvas canvas{width:40px;}
+		</style>		
+	</head>
+	<body>		<nav class="mui-bar mui-bar-tab foot-bar">			<a class="mui-tab-item orderlistbtn" href="orderlist.html">				<p><img src="img/nav02.png" style="height: 30px;padding-top:5px ;"/></p>				<span class="mui-tab-label" style="color: #FF6F00;">工单</span>			</a>
+			<a class="mui-tab-item daka" href="map.html">
+				<p><img src="img/daka2.png" style="height: 30px;padding-top:5px ;"/></p>
+				<span class="mui-tab-label" >打卡</span>
+			</a>			<a class="mui-tab-item scan" href="scan.html">				<p><img src="img/scan1.png" style="height: 30px;padding-top:5px ;"/></p>				<span class="mui-tab-label" >扫描</span>			</a>			<a class="mui-tab-item myself" href="myselfinfo.html">				<p><img src="img/nav3.png" style="height: 30px;padding-top:5px ;"/></p>				<span class="mui-tab-label" >我的</span>			</a>		</nav>		
+		<div class="title">			<div class="search">
+				<span>生产任务</span>				<div id="search">
+					<img src="img/search.png"/>					<input type="text" name="" id="searchkey" value="" />
+				</div>
+			</div>			<div class="list">
+				<ul>
+					<li status = '0'>						<p class="waitZhiBanCount">0</p>						<p>未晒版</p>					</li>					<li status = '1'>						<p class="waitCuttingCount">0</p>						<p>未切纸</p>					</li>					<li status = '2'>						<p class="waitPrintCount">0</p>						<p>未印刷</p>					</li>					<li status = '3'>						<p class="waitBindingCount">0</p>						<p>未装箱</p>					</li>					<li status = '4'>						<p class="waitOutCount">0</p>						<p>未完成</p>					</li>					<li status = ''>						<p class="totalCount active">0</p>						<p class="active">全部</p>					</li>
+				</ul>
+			</div>
+		</div>		<div class="" style="width: 100%;height: 100%;">
+		<!--<div class="mui-scroll">-->		<div class="orderlist" id="data_listview">
+			<ul id="content"  >
+				<!--<li>
+						<p class="tip"><span class="leftspan">画册211-35365</span><span class="rightspan">2019-8-25</span></p>
+						<div class="info">
+							<div class="leftinfo">
+								<div class="orderlogo">
+									<img src="img/orderlogo.png"/>
+								</div>
+							</div>
+							<div class="rightinfo">
+								<p class="ordername">画册211-64746577</p>
+								<p class="orderinfo">16：45已经开始印刷</p>
+								<p class="orderinfo">16：45已经开始印刷</p>
+							</div>
+							<div class="del">
+								<img src="img/dellogo.png"/>
+							</div>
+							<div class="price">
+								<span>￥:2300.00</span>
+							</div>
+						</div>
+				</li>
+				<li>
+					<p class="tip"><span class="leftspan">画册211-35365</span><span class="rightspan">2019-8-25</span></p>
+						<div class="info">
+							<div class="leftinfo">
+								<div class="orderlogo">
+									<img src="img/orderlogo.png"/>
+								</div>
+							</div>
+							<div class="rightinfo">
+								<p class="ordername">画册211-64746577</p>
+								<p class="orderinfo">16：45已经开始印刷</p>
+								<p class="orderinfo">16：45已经开始印刷</p>
+							</div>
+							<div class="del">
+								<img src="img/dellogo.png"/>
+							</div>
+							<div class="price">
+								<span>￥:2300.00</span>
+							</div>
+						</div>
+				</li>
+				<li>
+					<p class="tip"><span class="leftspan">画册211-35365</span><span class="rightspan">2019-8-25</span></p>
+						<div class="info">
+							<div class="leftinfo">
+								<div class="orderlogo">
+									<img src="img/orderlogo.png"/>
+								</div>
+							</div>
+							<div class="rightinfo">
+								<p class="ordername">画册211-64746577</p>
+								<p class="orderinfo">16：45已经开始印刷</p>
+								<p class="orderinfo">16：45已经开始印刷</p>
+							</div>
+							<div class="del">
+								<img src="img/dellogo.png"/>
+							</div>
+							<div class="price">
+								<span>￥:2300.00</span>
+							</div>
+						</div>
+				</li>
+				<li>
+					<p class="tip"><span class="leftspan">画册211-35365</span><span class="rightspan">2019-8-25</span></p>
+						<div class="info">
+							<div class="leftinfo">
+								<div class="orderlogo">
+									<img src="img/orderlogo.png"/>
+								</div>
+							</div>
+							<div class="rightinfo">
+								<p class="ordername">画册211-64746577</p>
+								<p class="orderinfo">16：45已经开始印刷</p>
+								<p class="orderinfo">16：45已经开始印刷</p>
+							</div>
+							<div class="del">
+								<img src="img/dellogo.png"/>
+							</div>
+							<div class="price">
+								<span>￥:2300.00</span>
+							</div>
+						</div>
+				</li>-->
+			</ul>
+			</div>		<!--</div>-->
+</div>						<input type="hidden" id="page" value="1" />		<input type="hidden" id="per_page" value="20" />
+	</body>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/mui.min.js"></script>
+	<script type="text/javascript" src="js/layer3.0.1/layer.js"></script>
+	<script src="js/pages/share.js" type="text/javascript" charset="utf-8"></script>
+	<!--<script type="text/javascript" src="js/updateversion.js"></script>-->	<script type="text/javascript" src="js/pages/other-Materials.js"></script>	<script type="text/javascript" src="js/mui.pullToRefresh.min.js"></script>	<script type="text/javascript" src="js/mui.pullToRefresh.material.min.js"></script>	<script type="text/javascript">//		mui.init();		var html = '<a class="mui-tab-item orderlistbtn" href="">'+				'<p><img src="img/nav02.png" style="height: 30px;padding-top:5px ;"/></p>'+				'<span class="mui-tab-label" style="color: #FF6F00;">工单</span>'+			'</a>'+
+			'<a class="mui-tab-item daka" href="map.html">'+
+				'<p><img src="img/daka2.png" style="height: 30px;padding-top:5px ;"/></p>'+
+				'<span class="mui-tab-label">打卡</span>'+
+			'</a>'+			'<a class="mui-tab-item scan" href="">'+				'<p><img src="img/scan1.png" style="height: 30px;padding-top:5px ;"/></p>'+				'<span class="mui-tab-label">扫描</span>'+			'</a>'+			'<a class="mui-tab-item myself" href="">'+				'<p><img src="img/nav3.png" style="height: 30px;padding-top:5px ;"/></p>'+				'<span class="mui-tab-label">我的</span>'+			'</a>'	        $('.foot-bar').html(html);
+		window.ontouchmove=function(e){	        e.preventDefault && e.preventDefault();	        e.returnValue=true;	        e.stopPropagation && e.stopPropagation();	        return true;		}		var listpos = '';		var that = null;		var localdata = {};
+		var flag = true;
+		var  totalnum = 0;
+		initindex();
+		finished = 1;
+		 sover=0;
+		 var pageindex = $('#page').val();//当前页
+		 console.log(pageindex)
+		 var per_page = 20;//数据总页数
+		var finishedstatus = 1;
+		$(function () {
+		        // 滑动加载更多
+		        $('#data_listview').scroll(function () {
+		            if (finished = 1) { 
+		                finished = 0;
+		                 var div_touch = document.getElementById("data_listview");
+		                        //按下时触发
+		                        div_touch.ontouchstart = function (e)
+		                        { }
+		                        //松开，往上滑动手离开触摸屏时触发
+		                        div_touch.ontouchend = function (e) {  
+		                            //页面滚动执行事件
+		                            if (sover == 0 && pageindex > 0) {
+		                                var scrollTop = $('#data_listview').scrollTop();
+		                                var scrollHeight = $('#content').height();
+		                                var windowHeight = $(window).height();
+												   listpos = scrollTop
+												   console.log(scrollTop+'测试');
+												   console.log(scrollHeight)
+												   // localStorage.setItem('listpos',listpos);
+		                                if (scrollTop + windowHeight >= scrollHeight) {
+		                                    // bt_search(pageindex + 1);//执行查询 下一页
+														
+														pageindex = $('#page').val();
+														console.log(pageindex + ','+Math.ceil(totalnum/per_page))
+														console.log(finishedstatus)
+														if(finishedstatus == 0){
+															return false
+														}else{
+															list('up', per_page, Number(pageindex)+1);
+														}
+														
+												   }
+		                            }
+		                 
+		                        }
+		
+		                finished = 1;
+		            }
+		        });
+		 
+		    });         function aa() {             //页面指定了DTD，即指定了DOCTYPE时，使用document.documentElement。             //页面没有DTD，即没指定DOCTYPE时，使用document.body。                          listpos = listpos;          // alert(listpos)             localStorage.setItem('listpos',listpos);         }      // checkMe()
+	  
+	  
+         function checkMe() {
+   　　　　　　//给scrollTop赋值
+   				if(localStorage.getItem('listpos')!=null){
+   					
+					if(flag){
+						console.log(Number(parseInt(localStorage.getItem('listpos')))+'测试数据2')
+						
+						$("#data_listview").scrollTop(localStorage.getItem('listpos'))
+						// var page = localStorage.getItem('page');
+						 $('#page').val(localStorage.getItem('page'));
+					}
+				
+   					
+   				}else{
+   					 $('#data_listview').animate({scrollTop:0},300);
+   				}
+                 
+         }
+//       
+		// document.querySelector('.mui-scroll' ).addEventListener('scroll', function (e ) { 
+		//       console.log(mui('.mui-scroll').scroll().y);
+		// }) 		function getUrlParam(name) {			    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象			    var r = window.location.search.substr(1).match(reg);  //匹配目标参数			    if (r != null) return decodeURI(r[2]); return null; //返回参数值		}		var qctype = getUrlParam('type');		var status = '';		if(localStorage.getItem('status')!=null){			status = localStorage.getItem('status');
+			totalnum = localStorage.getItem('totalnum');			if(status == ''){				$('.list ul li:last-child').find('p').addClass('active');				$('.list ul li:last-child').siblings().find('p').removeClass('active');			}else{				$('.list ul li').eq(status).find('p').addClass('active');				$('.list ul li').eq(status).siblings().find('p').removeClass('active');			}					}		var name = '';		var u = navigator.userAgent;		var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端		var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端		if(localStorage.getItem('authorityType')==1){
+			        var html ='<a class="mui-tab-item indexbtn" href="indexview.html">'+
+						'<p><img src="img/nav2.png" style="height: 30px;padding-top:5px ;"/></p>'+
+						'<span class="mui-tab-label">首页</span>'+
+					'</a>'+
+					 '<a class="mui-tab-item orderlistbtn" href="orderlist.html">'+
+						'<p><img src="img/nav02.png" style="height: 30px;padding-top:5px ;"/></p>'+
+						'<span class="mui-tab-label"  style="color: #FF6F00;">工单</span>'+
+					'</a>'+
+					'<a class="mui-tab-item scanbtn" href="scan.html">'+
+						'<p><img src="img/scan1.png" style="height: 30px;padding-top:5px ;"/></p>'+
+						'<span class="mui-tab-label" >扫描</span>'+
+					'</a>'+
+					'<a class="mui-tab-item myself" href="">'+
+						'<p><img src="img/nav3.png" style="height: 30px;padding-top:5px ;"/></p>'+
+						'<span class="mui-tab-label">我的</span>'+
+					'</a>'
+			        $('.foot-bar').html(html);
+			        $('.orderlistbtn').on('tap',function(){
+			        	if(qctype == 'qc'){
+							window.location = 'orderlist.html?type=qc';
+						}else{
+							window.location = 'orderlist.html';
+						}
+		//				window.location = 'orderlist.html';
+					})
+					$('.indexbtn').on('tap',function(){
+						localStorage.removeItem('listpos');
+							window.location = 'indexview.html';
+					})
+					$('.scanbtn').on('tap',function(){
+						localStorage.removeItem('listpos');
+						if(qctype == 'qc'){
+							window.location = 'scan.html?type=qc';
+						}else{
+							window.location = 'scan.html';
+						}
+					})
+					$('.myself').on('tap',function(){
+						localStorage.removeItem('listpos');
+						if(qctype == 'qc'){
+							window.location = 'myselfinfo.html?type=qc';
+						}else{
+							window.location = 'myselfinfo.html';
+						}
+					})
+		}else{
+			var html ='<a class="mui-tab-item orderlistbtn" href="orderlist.html">'+
+				'<p><img src="img/nav02.png" style="height: 30px;padding-top:5px ;"/></p>'+
+				'<span class="mui-tab-label" style="color: #FF6F00;">工单</span>'+
+			'</a>'+
+			'<a class="mui-tab-item daka" href="map.html">'+
+				'<p><img src="img/daka2.png" style="height: 30px;padding-top:5px ;"/></p>'+
+				'<span class="mui-tab-label">打卡</span>'+
+			'</a>'+
+			'<a class="mui-tab-item scanbtn" href="scan.html">'+
+				'<p><img src="img/scan1.png" style="height: 30px;padding-top:5px ;"/></p>'+
+				'<span class="mui-tab-label" >扫描</span>'+
+			'</a>'+
+			'<a class="mui-tab-item myself" href="">'+
+				'<p><img src="img/nav3.png" style="height: 30px;padding-top:5px ;"/></p>'+
+				'<span class="mui-tab-label" >我的</span>'+
+			'</a>'
+			$('.foot-bar').html(html);
+			$('.orderlistbtn').on('tap',function(){
+				localStorage.removeItem('listpos');
+						if(qctype == 'qc'){
+							window.location = 'orderlist.html?type=qc';
+						}else{
+							window.location = 'orderlist.html';
+						}
+						
+					})
+					
+					$('.scanbtn').on('tap',function(){
+						localStorage.removeItem('listpos');
+						if(qctype == 'qc'){
+							window.location = 'scan.html?type=qc';
+						}else{
+							window.location = 'scan.html';
+						}
+			//			window.location = 'scan.html';
+					})
+					$('.myself').on('tap',function(){
+						localStorage.removeItem('listpos');
+						if(qctype == 'qc'){
+							window.location = 'myselfinfo.html?type=qc';
+						}else{
+							window.location = 'myselfinfo.html';
+						}
+			//			window.location = 'myselfinfo.html';
+					})
+					$('.daka').on('tap',function(){
+						localStorage.removeItem('listpos');
+								if(qctype == 'qc'){
+									window.location = 'map.html?type=qc';
+								}else{
+									window.location = 'map.html';
+								}
+					//			window.location = 'myselfinfo.html';
+							})
+		}				window.onload = function () {		var per_page = $('#per_page').val();		// list('', per_page, '1');		
+		// window.addEventListener('refresh', function(e) { 
+		// 			initindex();//执行刷新方法;
+		// 			// list('', per_page, '1');
+					
+		// });//		alert(localdata.length+'ceshi');
+		var pagenum = localStorage.getItem('page');
+		if(pagenum == undefined || pagenum == null ){
+			list('', per_page, '1');
+		}else{
+			var time1 = new Date().getTime();
+			$('#page').val(pagenum);
+			console.log(pagenum+'页数')
+			for (var i = 1; i <= pagenum; i++) {
+				console.log(222);
+				if(i==1){
+					list('', per_page, '1');
+				}else{
+					list('up', per_page, i);
+					console.log(555);
+				}
+			}
+			var time2 = new Date().getTime();
+			// alert("for循环执行时间：" + (time2 - time1));
+			setTimeout(function(){
+				// console.log(1111);
+				checkMe();
+			},(time2 - time1))
+			
+		}
+		}		// var normalState=true;
+		//    $('.orderlist').scroll(function(){
+		// 	     var scrollTop = $(this).scrollTop();
+		// 	     var scrollHeight = $().height();
+		// 	      var windowHeight = $(this).height();
+		// 		  console.log(scrollTop + windowHeight+'测试');
+		// 		  console.log(scrollHeight);
+		// 	     if (scrollTop + windowHeight == scrollHeight) {　 //此处是滚动条到底部时候触发的事件，在这里写要加载的数据，或者是拉动滚动条的操作
+			                     
+		// 	    }
+		//    })
+					$('.list ul li').on('tap',function(){			name = '';			localStorage.removeItem('page');
+			console.log('qqq');			$('#content').html('');
+			$(this).find('p').addClass('active');
+			$(this).siblings().find('p').removeClass('active');
+			status = $(this).attr('status');
+			totalnum = $(this).find('p').eq(0).html();
+			console.log(totalnum)			localStorage.setItem('status',status);
+			localStorage.setItem('totalnum',totalnum);			localStorage.removeItem('listpos');			$('#page').val('1');			var per_page = $('#per_page').val();
+			list('', per_page, '1');
+			$('#data_listview').animate({scrollTop:0},300);			// $('#content').css('transform','translate3d(0px,0px, 0px) translateZ(0px)');//			if(isAndroid){
+//				
+//			}
+//			//			$('.mui-scroll-wrapper').animate({scrollTop:'0px'},200);
+		})		pushHistory(); 
+	    window.addEventListener("popstate", function(e) { 
+	    	plus.runtime.quit();
+	      	
+	    }, false); 
+	    function pushHistory() { 
+	      var state = { 
+	        title: "title", 
+	        url: "#"
+	      }; 
+	      window.history.pushState(state, "title", "#"); 
+	    }
+		var flag1 = false;
+		$('#searchkey').on({
+			'compositionstart': function() {
+					      flag1 = true;
+					    },
+					    'compositionend': function() {
+					      flag1 = false;
+					      if(!flag1) {
+					      	name = $('#searchkey').val();
+					        var per_page = $('#per_page').val();					        $('#page').val('1');					        $('#content').css('transform','translate3d(0px,0px, 0px) translateZ(0px)');							list('', per_page, '1');							
+					      }
+					    },
+					    'input propertychange': function() {
+					        if(!flag1) {
+					        	name = $('#searchkey').val();
+						       var per_page = $('#per_page').val();						       $('#page').val('1');						       $('#content').css('transform','translate3d(0px,0px, 0px) translateZ(0px)');								list('', per_page, '1');
+					        }
+					    }
+		})
+		
+		function initindex(){
+			
+		
+			$.ajax({
+				type:"post",
+				dataType:'json',
+				url:ajaxUrlPath+"/mobile/workOrder/orderNum",
+				data:{
+	//				memberId:14
+					sellerId:10,
+				},
+				success:function(data){
+					console.log(JSON.stringify(data));
+					if(data.code == 0){
+						$('.waitZhiBanCount').html(data.result.waitZhiBanCount);
+						$('.waitCuttingCount').html(data.result.waitCuttingCount);
+						$('.waitBindingCount').html(data.result.waitBindingCount);
+						$('.totalCount').html(data.result.totalCount);
+						$('.waitPrintCount').html(data.result.waitPrintCount);
+						$('.waitOutCount').html(data.result.waitOutCount);
+						totalnum = data.result.totalCount;
+					}
+				}
+			})
+		}
+
+				function list(type, per_page, page){			if (!that) {				that = this;			}			console.log(name+','+type+','+per_page+','+page+','+status+','+localStorage.getItem("memberId"))
+			$.ajax({
+				type:"post",
+				dataType:'json',
+				url:ajaxUrlPath+"/mobile/workOrder/workOrders",
+				async: false,
+				data:{
+//					memberId:14,
+					sellerId:10,
+					name:name,
+					status:status,
+					userId:localStorage.getItem("memberId"),					pageNo: page,					pageSize: per_page,
+					
+				},
+				success:function(data){					// alert('测试2')
+					console.log(data.result.length);
+					if(data.code == 0){
+						console.log(page+'多少页')
+						localStorage.setItem('page',page);
+						var li = '';						
+						for (var i = 0; i < data.result.length; i++) {
+							var papertype = '';
+							var statustype = '交期:暂无确定';
+							var statuscolor = '';
+							var licolor = '';
+							var timecolor = '';
+							if(data.result[i].deliveryTime!=null){
+									var time=new Date();
+									var time1 = time.getFullYear()+"/"+parseInt(time.getMonth()+1)+"/"+time.getDate()+" "+"00:00:00";;
+	 								var time2=time.getFullYear()+"/"+parseInt(time.getMonth()+1)+"/"+time.getDate()+" "+"11:59:00";
+//	 								console.log(time2+'测试2')
+	 								var time3 = Date.parse(time2);
+	 								var time5 = data.result[i].deliveryTime+' 11:59:00';
+//	 								console.log(time5+'测试5');
+	 								var time4 = new Date(time5).getTime();
+//	 								console.log(data.result[i].deliveryTime+'交货时间');
+	 								if(time4<time3){
+	 									statuscolor = '#feecd2';
+	 									licolor = '#e00019';
+	 									timecolor = '#e00019';
+	 									statustype = '交期:'+data.result[i].deliveryTime
+	 								}else if(time4==time3){
+	 									statuscolor = '#fffcdb';
+	 									statustype="交期:今天";
+	 									licolor = '#ff6e00'
+	 									timecolor = '#8f8f94';
+	 									console.log(1111);
+	 								}else if(time4>time3){
+	 									statuscolor = '#ffffff';
+	 									licolor = '#ff6e00';
+	 									timecolor = '#8f8f94';
+	 									statustype = '交期:'+data.result[i].deliveryTime
+	 								}
+//									console.log(time4+'测试4');
+//									console.log(time1+'测试1');
+//									console.log(time3+'测试3');
+								}
+							var orderstatus = '';
+							if(data.result[i].status==5){
+									orderstatus = '新增合同'
+							}else if(data.result[i].status==6){
+									orderstatus = '工单已创建'
+							}else if(data.result[i].status==90){
+									orderstatus = '运送中'
+							}else if(data.result[i].status==91){
+									orderstatus = '运送完成'
+							}else if(data.result[i].status==93){
+									orderstatus = '已销账'
+							}else if(data.result[i].status==11){
+									orderstatus = '切纸已开始'
+							}else if(data.result[i].status==12){
+									orderstatus = '切纸已完成'
+							}else if(data.result[i].status==13){
+									orderstatus = '制版已开始'
+							}else if(data.result[i].status==14){
+									orderstatus = '制版已完成'
+							}else if(data.result[i].status==15){
+									orderstatus = '印刷已开始'
+							}else if(data.result[i].status==16){
+									orderstatus = '印刷已完成'
+							}else if(data.result[i].status==17){
+									orderstatus = '覆膜已开始'
+							}else if(data.result[i].status==18){
+									orderstatus = '覆膜已完成'
+							}else if(data.result[i].status==19){
+									orderstatus = 'UV/丝印已开始'
+							}else if(data.result[i].status==20){
+									orderstatus = 'UV/丝印已完成'
+							}else if(data.result[i].status==21){
+									orderstatus = '烫印已开始'
+							}else if(data.result[i].status==22){
+									orderstatus = '烫印已完成'
+							}else if(data.result[i].status==23){
+									orderstatus = '凹凸已开始'
+							}else if(data.result[i].status==24){
+									orderstatus = '凹凸已完成'
+							}else if(data.result[i].status==25){
+									orderstatus = '模切已开始'
+							}else if(data.result[i].status==26){
+									orderstatus = '模切已完成'
+							}else if(data.result[i].status==27){
+									orderstatus = '糊盒已开始'
+							}else if(data.result[i].status==28){
+									orderstatus = '糊盒已完成'
+							}else if(data.result[i].status==29){
+									orderstatus = '喷码已开始'
+							}else if(data.result[i].status==30){
+									orderstatus = '喷码已完成'
+							}else if(data.result[i].status==31){
+									orderstatus = '装箱已开始'
+							}else if(data.result[i].status==32){
+									orderstatus = '装箱已完成'
+							}else if(data.result[i].status==33){
+									orderstatus = '手工已开始'
+							}else if(data.result[i].status==34){
+									orderstatus = '手工已完成'
+							}else if(data.result[i].status==35){
+									orderstatus = '拆边已开始'
+							}else if(data.result[i].status==36){
+									orderstatus = '拆边已完成'
+							}else if(data.result[i].status==37){
+									orderstatus = '品检已开始'
+							}else if(data.result[i].status==38){
+									orderstatus = '品检已完成'
+							}else if(data.result[i].status==81){
+									orderstatus = '成品入库'
+							}else if(data.result[i].status==61){									orderstatus = '切纸外协已完成'							}else if(data.result[i].status==62){									orderstatus = '制版外协已完成'							}else if(data.result[i].status==63){									orderstatus = '覆膜外协已完成'							}else if(data.result[i].status==64){									orderstatus = 'UV/丝印已完成'							}else if(data.result[i].status==65){									orderstatus = 'UV/丝印版已完成'							}else if(data.result[i].status==66){									orderstatus = '烫印外协已完成'							}else if(data.result[i].status==67){									orderstatus = '烫印版外协已完成'							}else if(data.result[i].status==68){									orderstatus = '凹凸外协已完成'							}else if(data.result[i].status==69){									orderstatus = '凹凸版外协已完成'							}else if(data.result[i].status==70){									orderstatus = '模切外协已完成'							}else if(data.result[i].status==71){									orderstatus = '模切版外协已完成'							}else if(data.result[i].status==72){									orderstatus = '喷码外协已完成'							}else if(data.result[i].status==73){									orderstatus = '装箱外协已完成'							}else if(data.result[i].status==74){									orderstatus = '手工外协已完成'							}else if(data.result[i].status==75){									orderstatus = '拆边外协已完成'							}else if(data.result[i].status==76){									orderstatus = '品检外协已完成'							}else if(data.result[i].status==77){									orderstatus = '整单外协已完成'							}else if(data.result[i].status==78){									orderstatus = '纸箱外协已完成'							}else if(data.result[i].status==79){									orderstatus = '其他外协已完成'							}else if(data.result[i].status==92){									orderstatus = '合同已完成'
+							}else if(data.result[i].status==112){
+									orderstatus = '切纸已暂停'
+							}else if(data.result[i].status==114){
+									orderstatus = '制版已暂停'
+							}else if(data.result[i].status==116){
+									orderstatus = '印刷已暂停'
+							}else if(data.result[i].status==118){
+									orderstatus = '覆膜已暂停'
+							}else if(data.result[i].status==120){
+									orderstatus = 'UV/丝印已暂停'
+							}else if(data.result[i].status==122){
+									orderstatus = '烫印已暂停'
+							}else if(data.result[i].status==124){
+									orderstatus = '凹凸已暂停'
+							}else if(data.result[i].status==126){
+									orderstatus = '模切已暂停'
+							}else if(data.result[i].status==128){
+									orderstatus = '糊盒已暂停'
+							}else if(data.result[i].status==130){
+									orderstatus = '喷码已暂停'
+							}else if(data.result[i].status==132){
+									orderstatus = '装箱已暂停'
+							}else if(data.result[i].status==134){
+									orderstatus = '手工已暂停'
+							}else if(data.result[i].status==136){
+									orderstatus = '拆边已暂停'
+							}else if(data.result[i].status==138){
+									orderstatus = '品检已暂停'							}
+							
+							var imgsrc = 'img/icon4.png'
+//							if(data.result[i].bindingMethod=="骑马订"){
+//								imgsrc = 'img/icon4.png'
+//							}else if(data.result[i].bindingMethod=="缝线装"){
+//								imgsrc = 'img/icon5.png'
+//							}else if(data.result[i].bindingMethod=="圈装"){
+//								imgsrc = 'img/icon7.png'
+//							}else if(data.result[i].bindingMethod=="锁线裸装"){
+//								imgsrc = 'img/icon6.png'
+//							}else if(data.result[i].bindingMethod=="软面精装" || data.result[i].bindingMethod=="硬面精装"){
+//								imgsrc = 'img/icon3.png'
+//							}else if(data.result[i].bindingMethod=="锁线胶装"){
+//								imgsrc = 'img/icon1.png'
+//							}else if(data.result[i].bindingMethod=="无线胶装"){
+//								imgsrc = 'img/icon2.png'
+//							}else if(data.result[i].bindingMethod=="其他装订"){
+//								imgsrc = 'img/icon8.png'
+//							}
+							var name = '';
+							if(data.result[i].isOutOrder==0){
+								name = data.result[i].name
+							}else if(data.result[i].isOutOrder==1){
+								name = data.result[i].name+'(外)'
+							}
+							
+								li += '<li workOrderId="'+data.result[i].workOrderId+'" status="'+data.result[i].status+'"  style="background-color:'+statuscolor+'">'+
+					'<p class="tip"><span class="leftspan" style="color:'+licolor+'">'+name+'</span><span class="rightspan">'+data.result[i].contractTime.substring(0,10)+'</span></p>'+
+						'<div class="info">'+
+							'<div class="leftinfo">'+
+								'<div class="orderlogo">'+
+									'<img src="'+imgsrc+'"/>'+
+								'</div>'+
+							'</div>'+
+							'<div class="rightinfo">'+
+								'<p class="ordername" style="width: 100%;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">'+data.result[i].num.toLocaleString()+'份  '+(data.result[i].finishedSize==undefined?'':data.result[i].finishedSize)+' '+ (data.result[i].packingSpecification==undefined?'':data.result[i].packingSpecification)+'</p>'+
+								'<p class="orderinfo"> '+(data.result[i].printingDepartmentStr==undefined?'':data.result[i].printingDepartmentStr)+'</p>'+
+								'<p class="orderinfo" style="color:'+timecolor+'">'+statustype+'</p>'+
+								'<p class="orderinfo" class="price" style="font-size:16px;color:#ff6f00">'+orderstatus+'<span style="margin-right:10px" class="status" enquiryorderid="'+data.result[i].enquiryOrderId+'">状态详情</span>'+'</p>'+							'</div>'+
+//							'<div class="price">'+
+//								'<span>'+orderstatus+(data.result[i].processFinishTime==undefined?'':data.result[i].processFinishTime.substring(3,14))+'</span>'+
+//							'</div>'+
+						'</div>'+
+				'</li>'
+				
+
+							
+							
+							
+						}
+//						$('#content').html(li);						if(type == 'up') {							console.log(data.result.length)							$("#content li[workorderid]:last").after(li);							if(data.result.length == 20) {								console.log(333);								$('#page').val(parseInt(parseInt(page) + 1));
+								finishedstatus = 1;								// self.endPullupToRefresh(false);							} else {																$('#page').val(page);
+								finishedstatus = 0;
+								// return false;								// self.endPulldownToRefresh(true);							}						} else {							$('#page').val(parseInt(parseInt(page) + 1));							$('#content').html(li);
+							finishedstatus = 1					        if(data.result.length < 20) {					        	console.log('测试')
+								finishedstatus = 0;
+								// return false;
+													        	// self.endPulldownToRefresh(true);							} else {								// console.log(self)								// self.endPullupToRefresh(false);								// self.refresh(true);							}						}						$('.status').unbind('tap').on('tap',function(e){							aa();							e.stopPropagation();							var enquiryorderid= $(this).attr('enquiryorderid');							$.ajax({								type:"post",								url:ajaxUrlPath+"/mobile/enquiryOrder/getOrderStatusRecord",								async:true,								data:{									enquiryOrderId:enquiryorderid,								},								success:function(data){									console.log(JSON.stringify(data));									if(data.code==0){										if(data.result.length>0){											mui.openWindow({                                            url:'orderstatus.html',                                            id:enquiryorderid,                                            extras: {							                    enquiryorderid: enquiryorderid							                }                                        });//											window.location = 'orderstatus.html?enquiryorderid='+enquiryorderid;										}else{											alert('暂无状态详情');										}									}									}								})													})
+						$('#content li').on('tap',function(){
+							aa();
+							var result = $(this).attr('workOrderId');
+							var  skipresult = result+Date.parse(new Date());
+//							localStorage.setItem('pos',0);							
+							setTimeout(function(){
+								var authorityType = localStorage.getItem('authorityType')
+//								alert(authorityType)								if(authorityType == 20){									// mui.openWindow({									// 	    url:'orderQCdetail2.html',									// 	    id:result,									// 	    extras: {									// 			workOrderId: result,									// 			type :'qc'									// 	    }									// 	});
+									window.location = 'orderQCdetail2.html?result='+result;
+									localStorage.removeItem('type')
+									localStorage.removeItem('index')									localStorage.removeItem('indexs');									localStorage.removeItem('Indexs')
+								}else{									if(qctype == "qc"){//										mui.openWindow({
+//                                          url:'orderQCdetail2.html',
+//                                          id:'orderQCdetail2.html',
+//                                          extras: {
+//							                    result: result,
+//							                    type :'qc'
+//							                }
+//                                      });
+										// mui.openWindow({
+										//     url:'orderQCdetail2.html',
+										//     id:result,
+										//     extras: {
+										// 		workOrderId: result,
+										// 		type :'qc'
+										//     }
+										// });										window.location = 'orderQCdetail2.html?result='+result+'&type=qc';									}else{										// mui.openWindow({          //                                   url:'orderdetail2.html',          //                                   id:skipresult,          //                                   extras: {							   //                  workOrderId: result							   //              }          //                               });										window.location = 'orderdetail2.html?result='+result;									}
+									
+									localStorage.removeItem('type')
+									localStorage.removeItem('index')									localStorage.removeItem('indexs');									localStorage.removeItem('Indexs');									localStorage.removeItem('pos');
+									
+								}
+								
+							},400);
+
+						})
+			
+			
+						
+					}
+				}
+			})
+		}
+		
+//						
+	</script>
+</html>

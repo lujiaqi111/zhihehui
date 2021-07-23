@@ -1,0 +1,312 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/initialization1.css"/>
+	</head>
+	<style type="text/css">
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		html,body{
+			width: 100%;
+			background-color: #FFFFFF;
+			
+		}
+		.headtitle{
+			width: 100%;
+			text-align: center;
+			color: #808080;
+			margin-top: 25%;
+			position: relative;
+			border: 1px solid #FFFFFF;
+			
+		}
+		.headtitle p:nth-child(1){
+			font-size: 2.3rem;
+			line-height: 3rem;
+		}
+		.headtitle p:nth-child(2){
+			font-size: 1.1rem;
+			line-height: 2rem;
+		}
+		.headtitle p:nth-child(3){
+			font-size: 1.1rem;
+			line-height: 2rem;
+		}
+		.content button{
+			width: 60%;
+			height: 40px;
+			border: 0px;
+			background-color: #ff6600;
+			color: #FFFFFF;
+			border-radius: 8px;
+			margin-left: 20%;
+			margin-top: 50px;
+		}
+
+		.papercol span{
+			margin-left: 6px;
+			color: #ff6f00;
+		}
+		.papercol span img{
+			height:20px;
+			width: auto;
+		}
+		.papercol span:nth-child(1){
+			/*display: inline-block;*/
+			/*width: 100px;*/
+		}
+		.papercol span input{
+			height: 20px;
+			width: 40%;
+			border: 0px;
+			text-align: left;
+			margin-bottom: 0px;
+			padding: 0px;
+			font-size: 1rem;
+		}
+		.papercol .righttext{
+			display: inline-block;
+			float: right;
+			margin-right: 20px;
+		}
+		.papercol b{
+			font-size: 30px;
+			margin-left: 20px;
+		}
+		.totle{
+			text-align: center;
+			padding: 30px 0px 10px 0px;
+		}
+		.totle span{
+			color: #ff6f00;
+		}
+		.papercol img{
+			width: 50px;
+			height: 50px;
+			margin-right: 10px;
+			margin-left: 10px;
+		}
+		#fileForm{
+			display: inline-block;
+		    float: left;
+		    position: absolute;
+		    top: 30px;
+		    width: 100px;
+		    left: 100px;
+		    z-index: 1000;
+		    opacity: 0;
+
+		}
+		.papercol textarea{
+			min-height: 20px;
+			max-height: 230px;
+			width: 220px;
+			border: 0px;
+			text-align: left;
+			margin-bottom: 0px;
+			padding: 0px;
+			font-size: 1rem;
+			background-color: #FFFFFF;
+			color: #ff6f00;
+		}
+	</style>
+
+	<body>
+		<div class="content" id="content">
+			<!--<div class="papercol">
+				<p style="margin-top: 10px;">1.<span style="margin-right: 10px;">封面250g双铜</span><span>单面哑膜</span></p>
+				<p style="margin-top: 10px;margin-left: 20px;">要求数量<span style="margin-right: 10px;">180张</span>发出数量<span>200张</span></p>
+				<p style="margin-top: 10px;margin-left: 20px;">返回数量<span style="margin-right: 10px;">185张</span></p>
+			</div>
+			<div class="papercol">
+				<p style="margin-top: 10px;">2.<span style="margin-right: 10px;">内页250g双铜</span><span>单面哑膜</span></p>
+				<p style="margin-top: 10px;margin-left: 20px;">要求数量<span style="margin-right: 10px;">180张</span>发出数量<span>200张</span></p>
+				<p style="margin-top: 10px;margin-left: 20px;">返回数量<span style="margin-right: 10px;">185张</span></p>
+			</div>
+			<div class="papercol">
+				<p style="margin-top: 10px;">加工内容：<span style="margin-right: 10px;">覆膜</span></p>
+				<p style="margin-top: 10px;">加工单位：<span style="margin-right: 10px;">xxxxx印刷厂</span></p>
+			</div>
+			<div class="papercol">
+				<p>备注<span class="memo">无</span></p>
+			</div>
+			<button class="back" id="submit">确定</button>-->
+			
+		</div>
+		<script id="tpl_content" type="text/html">
+			<%for (var i = 0, data_list = result; i < 1; i++) {%>
+				<%if(result.materialRecord.length>0){%>
+					<%for (var j = 0, materialRecord = result.materialRecord; j < result.materialRecord.length; j++) {%>
+					<div class="papercol outline" recordIds="<%=materialRecord[j].id%>" returnedNumber="<%=materialRecord[j].returnNumber%>">
+						<!--<p style="margin-top: 10px;"><%=j+1%>.<span style="margin-right: 10px;"><%=materialRecord[j].materialName%></span><span></span></p>-->
+						<!--<p style="margin-top: 10px;margin-left: 20px;">要求数量<span style="margin-right: 10px;"><%=materialRecord[j].needNumber%>张</span>发出数量<span><%=materialRecord[j].sendNumber%>张</span></p>-->
+						<p style="margin-top: 10px;">返回数量<span style="margin-right: 10px;"><input type="number" name="returnNumber" id="returnNumber" value="<%=materialRecord[j].returnNumber%>" />张</span></p>
+						<p style="margin-top: 10px;">总价<span style="margin-right: 10px;"><input type="number" name="price" id="price" value="<%=result.price%>" />元</span></p>
+					</div>
+					<%}%>
+				<%}else{%>
+					<div class="papercol outline" recordIds="<%=data_list.id%>" returnedNumber="<%=data_list.returnedNum%>">
+						<!--<p style="margin-top: 10px;"><%=i+1%>.<span style="margin-right: 10px;"><%=data_list.materialName%></span><span></span></p>-->
+						<!--<p style="margin-top: 10px;margin-left: 20px;">要求数量<span style="margin-right: 10px;"><%=data_list.needNum%>张</span>发出数量<span><%=data_list.sendNum%>张</span></p>-->
+						<p style="margin-top: 10px;">返回数量<span><input type="number" name="returnNumber" id="returnNumber" value="<%=data_list.returnedNum==0?'':data_list.returnedNum%>" />张</span></p>
+						<p style="margin-top: 10px;">总价<span style="margin-right: 10px;"><input type="number" name="price" id="price" value="<%=result.price%>" style="margin-left: 33px;"/>元</span></p>
+					</div>
+				<%}%>
+				
+				<div class="papercol">
+					<p style="margin-top: 10px;">加工内容：<span style="margin-right: 10px;"><%=data_list.name%></span></p>
+					<p style="margin-top: 10px;">加工单位：<span style="margin-right: 10px;"><%=data_list.company%></span></p>
+				</div>
+				<div class="papercol">
+					<p>备注<span class="memo"><textarea autoHeight="true" type="text" name="memo" id="" value="<%=data_list.memo%>" ><%=data_list.memo%></textarea></span></p>
+				</div>
+				<%if(data_list.status==0){%>
+					<button class="back" id="submit" outOrderId="<%=data_list.id%>">确定</button>
+				<%}%>
+				
+			<%}%>
+		</script>
+	</body>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="js/template-native.min.js"></script>
+	<script type="text/javascript" src="js/pages/share.js"></script>
+	<script type="text/javascript" src="js/layer3.0.1/layer.js"></script>
+		<script src="js/fly-zomm-img.js"></script>
+		<script type="text/javascript">
+			var index = parent.layer.getFrameIndex(window.name);
+			if (/Android/gi.test(navigator.userAgent)) {
+			    window.addEventListener('resize', function () {
+			    	console.log(JSON.stringify(document.activeElement));
+			        if (document.activeElement.tagName == 'INPUT' || document.activeElement.tagName == 'TEXTAREA') {
+			            console.log(document.activeElement.className);
+			            window.setTimeout(function () {
+				                document.activeElement.scrollIntoView({ block: "start", inline: "nearest"});
+				        }, 0);
+			            
+			            
+			        }
+			        
+			    })
+			    }
+			function getUrlParam(name) {
+			    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+			    var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+			    if (r != null) return decodeURI(r[2]); return null; //返回参数值
+			}
+			var afterProcessId = getUrlParam('objId');
+			var html = '';
+			$('input[name="returnNumber"]').val(0)
+			$.ajax({
+					type:"post",
+					dataType:'json',
+					url:ajaxUrlPath+"/mobile/workOrder/getOutwardOrder",
+					data:{
+						afterProcessId:afterProcessId,
+					},
+					success:function(data){
+						console.log(data);
+						console.log(data.result.outOrderNo)
+						html = template('tpl_content', data);
+						
+						$('#content').html(html);
+						$('textarea').each(function () {
+						  this.setAttribute('style', 'height:' + (this.scrollHeight) + 'px;overflow-y:hidden;');
+						}).on('input', function () {
+						  this.style.height = 'auto';
+						  this.style.height = (this.scrollHeight) + 'px';
+						});
+						$('#returnNumber').on('keyup',function(){
+							if(this.value.length==1){
+								this.value=this.value.replace(/[^1-9]/g,"")
+							}else{
+								this.value=this.value.replace(/\D/g,"")
+							}
+						})
+						$('#returnNumber').on('afterprint',function(){
+							if(this.value.length==1){
+								this.value=this.value.replace(/[^1-9]/g,"")
+							}else{
+								this.value=this.value.replace(/\D/g,"")
+							}
+						})
+						$('.outOrderNo').html(data.result.outOrderNo);
+						$('#submit').on('tap',function(){
+							var memo = $('textarea[name="memo"]').val();
+							
+							var outOrderId = $(this).attr("outOrderId");
+							
+							var recordIds = [];
+							var returnedNumbers = [];
+							for (var i = 0; i < $('.outline').length; i++) {
+								var recordId = $('.outline').eq(i).attr('recordIds');
+								var returnedNumber = $('input[name="returnNumber"]').eq(i).val(); 
+								recordIds.push(recordId);
+								returnedNumbers.push(returnedNumber);
+							}
+							recordIds = recordIds.toString();
+							returnedNumbers = returnedNumbers.toString();
+//							console.log(returnedNumbers);
+							var price = $('input[name="price"]').val();
+							if(returnedNumbers == 0 || returnedNumbers == ''){
+								alert('请填写返回数量');
+								return false;
+							}
+							if(price == 0 || price == ''){
+								alert('请填写总价');
+								return false;
+							}
+							$.ajax({
+								type:"post",
+								dataType:'json',
+								url:ajaxUrlPath+"/mobile/workOrder/updateOutOrder",
+								data:{
+									outOrderId:outOrderId,
+									returnedNum:returnedNumbers,
+									price:price,
+									userId:localStorage.getItem("memberId"),
+								},
+								success:function(data){
+			//						location.reload();
+									console.log(JSON.stringify(data));
+									$.ajax({
+									type:"post",
+									dataType:'json',
+									url:ajaxUrlPath+"/mobile/workOrder/addOutOrderMemo",
+									data:{
+										objId:outOrderId,
+										memo:memo
+									},
+									success:function(data){
+										console.log(JSON.stringify(data));
+										if(data.code==0){
+				//							location.reload();
+										}
+				//						
+									}
+								})
+									parent.$('button[objId="'+afterProcessId+'"].hd').attr('disabled','disabled');
+									parent.$('button[objId="'+afterProcessId+'"].hd').css('background-color','#CCCCCC');
+									parent.$('button[objId="'+afterProcessId+'"].hd').html('已完成');
+								}
+							})
+							parent.layer.close(index);
+							
+							
+							
+						})
+					}
+			})
+			mui.init();
+			
+		 
+			
+		</script>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover" name="viewport">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<title>印刷通-报价</title>		<link rel="stylesheet" type="text/css" href="css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/rem.css"/>
+		<link rel="stylesheet" type="text/css" href="css/initialization1.css"/>		<style type="text/css">			body,html{				background-color: #f2f2f2;				width: 100%;				height: 100%;							}			.title{				width: 100%;				height: 200px;				background-color: #ff6f00;				color: #FFFFFF;				/*margin-top: 80px;*/			}			.logo{				width: 60px;				height: 60px;				border: 1px solid #FFFFFF;				border-radius: 50%;				margin-top: 20px;				margin-left: 30px;				background-size: cover;			}			.left{				width: 100px;				height: 50%;				float: left;			}			.right{				width: auto;			}			.name{				line-height: 60px;				font-size: 20px;				color: #FFFFFF;				font-weight: inherit;			}			.company{				line-height: 20px;				color: #FFFFFF;				font-weight: inherit;			}			.box{							}			.box p{				line-height: 50px;				text-align: left;				width: 90%;				min-height: 50px;				background-color: #FFFFFF;				margin-left: 5%;				margin-top: 10px;				border: 1px solid rgba(0,0,0,0.2);				border-radius: 5px;				padding-left: 20px;			}			.box p span:nth-child(2){				margin-left: 10px;				color: #FF6600;			}			.title>p{				text-align: center;				color: #FFFFFF;				padding: 30px;				font-size: 20px;			}			.num{				width: 16px;				height: 16px;				border: 0px;				border-radius: 8px;				background-color: #FF0000;				color: #FFFFFF;				display: inline-block;				line-height: 16px;				font-size: 16px;				text-align: center;				position: relative;				top: -8px;			}
+		</style>		
+	</head>
+	<body>
+		<div class="title">			<p>个人中心</p>			<div class="left">
+				<div class="logo">								</div>
+			</div>
+			<div class="right">
+				<p class="name userName"></p>				<p class="company companyName"></p>
+			</div>
+		</div>		<!-- <div class="box">			<p>				<span>排班</span><span class="schedule"></span>			</p>
+		</div> -->						<!-- <div class="box qc">			<p>				<span>切换QC</span>			</p>		</div>		<div class="box product">			<p>				<span>切换生产</span>			</p>		</div> -->		<div class="box purchase">			<p>				<span>申购单审核<span class="num">1</span></span>			</p>		</div>
+		<!-- <div class="box guidework">
+			<p>
+				<span>指导书</span>
+			</p>
+		</div> -->		<div class="box">			<p>				<span>版本号</span><span class="system" id="system"></span>			</p>		</div>		<!-- <div class="box set" style="">			<p>				<span>设置</span>			</p>					</div> -->		<!-- <div class="box clockin" style="">			<p>				<span>打卡</span>			</p>					</div> -->		<div class="box" style="height: 70px;">					</div>		<nav class="mui-bar mui-bar-tab foot-bar">			<!--<a class="mui-tab-item orderlistbtn" href="orderlist.html">
+				<p><img src="img/nav2.png" style="height: 30px;padding-top:5px ;"/></p>
+				<span class="mui-tab-label">工单</span>
+			</a>
+			<a class="mui-tab-item scanbtn" href="scan.html">
+				<p><img src="img/scan1.png" style="height: 30px;padding-top:5px ;"/></p>
+				<span class="mui-tab-label" >扫描</span>
+			</a>-->			<!--<a class="mui-tab-item way" href="#">
+				<p><img src="img/nav01.png" style="height: 30px;padding-top:5px ;"/></p>
+				<span class="mui-tab-label" >询价/下单</span>
+			</a>
+			<a class="mui-tab-item listhref" href="#">
+				<p><img src="img/nav2.png" style="height: 30px;padding-top:5px ;"/></p>
+				<span class="mui-tab-label">订单</span>
+			</a>
+			<a class="mui-tab-item myself" href="">
+				<p><img src="img/nav03.png" style="height: 30px;padding-top:5px ;"/></p>
+				<span class="mui-tab-label" style="color: #FF6F00;">我的</span>
+			</a>-->
+			<a class="mui-tab-item orderlistbtn" href="orderlist.html">
+				<p><img src="img/nav02.png" style="height: 30px;padding-top:5px ;"/></p>
+				<span class="mui-tab-label" style="color: #FF6F00;">工单</span>
+			</a>
+			<a class="mui-tab-item daka" href="map.html">
+				<p><img src="img/daka2.png" style="height: 30px;padding-top:5px ;"/></p>
+				<span class="mui-tab-label" >打卡</span>
+			</a>
+			<a class="mui-tab-item scan" href="scan.html">
+				<p><img src="img/scan1.png" style="height: 30px;padding-top:5px ;"/></p>
+				<span class="mui-tab-label" >扫描</span>
+			</a>
+			<a class="mui-tab-item" href="">
+				<p><img src="img/nav3.png" style="height: 30px;padding-top:5px ;"/></p>
+				<span class="mui-tab-label" >我的</span>
+			</a>		</nav>
+	</body>
+	<script type="text/javascript" src="js/jquery.min.js"></script>	<script type="text/javascript" src="js/mui.min.js"></script>
+	<script type="text/javascript" src="js/layer3.0.1/layer.js"></script>	<script type="text/javascript" src="js/immersed.js"></script>
+	<script src="js/pages/share.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="js/pages/other-Materials.js"></script>	<script type="text/javascript">
+		$('.orderlistbtn').on('tap',function(){
+			window.location = 'orderlist.html';
+		})
+		$('.scan').on('tap',function(){
+			window.location = 'scan.html';
+		})
+		$('.daka').on('tap',function(){
+			window.location = 'map.html';
+		})		window.ontouchmove=function(e){	        e.preventDefault && e.preventDefault();	        e.returnValue=true;	        e.stopPropagation && e.stopPropagation();	        return true;		}		function getUrlParam(name) {			    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象			    var r = window.location.search.substr(1).match(reg);  //匹配目标参数			    if (r != null) return decodeURI(r[2]); return null; //返回参数值		}		var qctype = getUrlParam('type');//		alert(localStorage.getItem('authorityType'))//		var authorityAry = ['6','7','8','9','10','11','12','13','14','15','16','17','18','19','21']		var authorityType = localStorage.getItem('authorityType');		$('.system').html('v1.'+localStorage.getItem('verison'));		if(authorityType=='6'||authorityType=='7'||authorityType=='8'||authorityType=='9'||authorityType=='10'||authorityType=='11'||authorityType=='12'||authorityType=='13'||authorityType=='14'||authorityType=='15'||authorityType=='16'||authorityType=='17'||authorityType=='18'||authorityType=='19'||authorityType=='20'||authorityType=='21' || authorityType=='23' || authorityType=='24' || authorityType=='25'){//			alert(1111);			var html = '<a class="mui-tab-item orderlistbtn" href="orderlist.html">'+				'<p><img src="img/nav2.png" style="height: 30px;padding-top:5px ;"/></p>'+				'<span class="mui-tab-label">工单</span>'+			'</a>'+
+			'<a class="mui-tab-item daka" href="map.html">'+
+				'<p><img src="img/daka2.png" style="height: 30px;padding-top:5px ;"/></p>'+
+				'<span class="mui-tab-label">打卡</span>'+
+			'</a>'+			'<a class="mui-tab-item scanbtn" href="scan.html">'+				'<p><img src="img/scan1.png" style="height: 30px;padding-top:5px ;"/></p>'+				'<span class="mui-tab-label" >扫描</span>'+			'</a>'+			'<a class="mui-tab-item myself" href="">'+				'<p><img src="img/nav03.png" style="height: 30px;padding-top:5px ;"/></p>'+				'<span class="mui-tab-label" style="color: #FF6F00;">我的</span>'+			'</a>'			console.log(html);	        $('.foot-bar').html(html);	        $('.orderlistbtn').on('tap',function(){	        	if(qctype == 'qc'){					window.location = 'orderlist.html?type=qc';				}else{					window.location = 'orderlist.html';				}//				window.location = 'orderlist.html';			})			$('.scanbtn').on('tap',function(){				if(qctype == 'qc'){					window.location = 'scan.html?type=qc';				}else{					window.location = 'scan.html';				}			})			$('.myself').on('tap',function(){				if(qctype == 'qc'){					window.location = 'myselfinfo.html?type=qc';				}else{					window.location = 'myselfinfo.html';				}			})
+			$('.daka').on('tap',function(){
+						if(qctype == 'qc'){
+							window.location = 'map.html?type=qc';
+						}else{
+							window.location = 'map.html';
+						}
+					})	    }else if(localStorage.getItem('authorityType')==20){	        var html = '<a class="mui-tab-item orderlistbtn" href="orderlist.html">'+				'<p><img src="img/nav2.png" style="height: 30px;padding-top:5px ;"/></p>'+				'<span class="mui-tab-label">工单</span>'+			'</a>'+
+			'<a class="mui-tab-item daka" href="map.html">'+
+				'<p><img src="img/daka2.png" style="height: 30px;padding-top:5px ;"/></p>'+
+				'<span class="mui-tab-label">打卡</span>'+
+			'</a>'+			'<a class="mui-tab-item scanbtn" href="scan.html">'+				'<p><img src="img/scan1.png" style="height: 30px;padding-top:5px ;"/></p>'+				'<span class="mui-tab-label" >扫描</span>'+			'</a>'+			'<a class="mui-tab-item myself" href="">'+				'<p><img src="img/nav03.png" style="height: 30px;padding-top:5px ;"/></p>'+				'<span class="mui-tab-label" style="color: #FF6F00;">我的</span>'+			'</a>'	        $('.foot-bar').html(html);	        $('.orderlistbtn').on('tap',function(){	        	if(qctype == 'qc'){					window.location = 'orderlist.html?type=qc';				}else{					window.location = 'orderlist.html';				}//				window.location = 'orderlist.html';			})			$('.scanbtn').on('tap',function(){				if(qctype == 'qc'){					window.location = 'scan.html?type=qc';				}else{					window.location = 'scan.html';				}			})			$('.myself').on('tap',function(){				if(qctype == 'qc'){					window.location = 'myselfinfo.html?type=qc';				}else{					window.location = 'myselfinfo.html';				}			})
+			$('.daka').on('tap',function(){
+						if(qctype == 'qc'){
+							window.location = 'map.html?type=qc';
+						}else{
+							window.location = 'map.html';
+						}
+					})	    }else if(localStorage.getItem('authorityType')==5){	         var html = '<a class="mui-tab-item orderlistbtn" href="orderlist.html">'+				'<p><img src="img/nav2.png" style="height: 30px;padding-top:5px ;"/></p>'+				'<span class="mui-tab-label">工单</span>'+			'</a>'+
+			'<a class="mui-tab-item daka" href="map.html">'+
+				'<p><img src="img/daka2.png" style="height: 30px;padding-top:5px ;"/></p>'+
+				'<span class="mui-tab-label">打卡</span>'+
+			'</a>'+			'<a class="mui-tab-item scanbtn" href="scan.html">'+				'<p><img src="img/scan1.png" style="height: 30px;padding-top:5px ;"/></p>'+				'<span class="mui-tab-label" >扫描</span>'+			'</a>'+			'<a class="mui-tab-item myself" href="">'+				'<p><img src="img/nav03.png" style="height: 30px;padding-top:5px ;"/></p>'+				'<span class="mui-tab-label" style="color: #FF6F00;">我的</span>'+			'</a>'	        $('.foot-bar').html(html);	        $('.orderlistbtn').on('tap',function(){				 window.location.href='stockorderlist.html'			})			$('.scanbtn').on('tap',function(){				window.location = 'scan.html';			})			$('.myself').on('tap',function(){				window.location = 'myselfinfo.html';			})
+			$('.daka').on('tap',function(){
+						if(qctype == 'qc'){
+							window.location = 'map.html?type=qc';
+						}else{
+							window.location = 'map.html';
+						}
+					})	     }else if(localStorage.getItem('authorityType')==22){	     	var html = '<a class="mui-tab-item orderlistbtn" href="orderlist.html">'+				'<p><img src="img/nav2.png" style="height: 30px;padding-top:5px ;"/></p>'+				'<span class="mui-tab-label">工单</span>'+			'</a>'+
+			'<a class="mui-tab-item daka" href="map.html">'+
+				'<p><img src="img/daka2.png" style="height: 30px;padding-top:5px ;"/></p>'+
+				'<span class="mui-tab-label">打卡</span>'+
+			'</a>'+			'<a class="mui-tab-item scanbtn" href="scan.html">'+				'<p><img src="img/scan1.png" style="height: 30px;padding-top:5px ;"/></p>'+				'<span class="mui-tab-label" >扫描</span>'+			'</a>'+			'<a class="mui-tab-item myself" href="">'+				'<p><img src="img/nav03.png" style="height: 30px;padding-top:5px ;"/></p>'+				'<span class="mui-tab-label" style="color: #FF6F00;">我的</span>'+			'</a>'	        $('.foot-bar').html(html);	        $('.orderlistbtn').on('tap',function(){				 window.location.href='instockorderlist.html'			})			$('.scanbtn').on('tap',function(){				window.location = 'scan.html';			})			$('.myself').on('tap',function(){				window.location = 'myselfinfo.html';			})
+			$('.daka').on('tap',function(){
+						if(qctype == 'qc'){
+							window.location = 'map.html?type=qc';
+						}else{
+							window.location = 'map.html';
+						}
+					})	    }else if(localStorage.getItem('authorityType')==3){	         var html = '<a class="mui-tab-item orderlistbtn" href="orderlist.html">'+				'<p><img src="img/nav2.png" style="height: 30px;padding-top:5px ;"/></p>'+				'<span class="mui-tab-label">工单</span>'+			'</a>'+
+			'<a class="mui-tab-item daka" href="map.html">'+
+				'<p><img src="img/daka2.png" style="height: 30px;padding-top:5px ;"/></p>'+
+				'<span class="mui-tab-label">打卡</span>'+
+			'</a>'+			'<a class="mui-tab-item scanbtn" href="scan.html">'+				'<p><img src="img/scan1.png" style="height: 30px;padding-top:5px ;"/></p>'+				'<span class="mui-tab-label" >扫描</span>'+			'</a>'+			'<a class="mui-tab-item myself" href="">'+				'<p><img src="img/nav03.png" style="height: 30px;padding-top:5px ;"/></p>'+				'<span class="mui-tab-label" style="color: #FF6F00;">我的</span>'+			'</a>'	        $('.foot-bar').html(html);	        $('.orderlistbtn').on('tap',function(){				window.location = 'adminwaitorderlist.html';			})			$('.scanbtn').on('tap',function(){				window.location = 'scan.html';			})			$('.myself').on('tap',function(){				window.location = 'myselfinfo.html';			})
+			$('.daka').on('tap',function(){
+						if(qctype == 'qc'){
+							window.location = 'map.html?type=qc';
+						}else{
+							window.location = 'map.html';
+						}
+					})	    }else if(localStorage.getItem('authorityType')==1){	        var html ='<a class="mui-tab-item indexbtn" href="indexview.html">'+				'<p><img src="img/nav2.png" style="height: 30px;padding-top:5px ;"/></p>'+				'<span class="mui-tab-label">首页</span>'+			'</a>'+
+			 '<a class="mui-tab-item orderlistbtn" href="orderlist.html">'+				'<p><img src="img/nav2.png" style="height: 30px;padding-top:5px ;"/></p>'+				'<span class="mui-tab-label">工单</span>'+			'</a>'+			'<a class="mui-tab-item scanbtn" href="scan.html">'+				'<p><img src="img/scan1.png" style="height: 30px;padding-top:5px ;"/></p>'+				'<span class="mui-tab-label" >扫描</span>'+			'</a>'+			'<a class="mui-tab-item myself" href="">'+				'<p><img src="img/nav03.png" style="height: 30px;padding-top:5px ;"/></p>'+				'<span class="mui-tab-label" style="color: #FF6F00;">我的</span>'+			'</a>'	        $('.foot-bar').html(html);	        $('.orderlistbtn').on('tap',function(){	        	if(qctype == 'qc'){					window.location = 'orderlist.html?type=qc';				}else{					window.location = 'orderlist.html';				}//				window.location = 'orderlist.html';			})
+			$('.indexbtn').on('tap',function(){
+					window.location = 'indexview.html';
+			})			$('.scanbtn').on('tap',function(){				if(qctype == 'qc'){					window.location = 'scan.html?type=qc';				}else{					window.location = 'scan.html';				}			})			$('.myself').on('tap',function(){				if(qctype == 'qc'){					window.location = 'myselfinfo.html?type=qc';				}else{					window.location = 'myselfinfo.html';				}			})	    }	    //		$('.way').on('tap',function(){
+//			window.location = 'adminwaitorderlist.html';
+//		})
+//		$('.listhref').on('tap',function(){
+//			window.location = 'adminorderlist.html';
+//		})//		$('.myself').on('tap',function(){
+//			window.location = 'myselfinfo.html';
+//		})//		$('.orderlistbtn').on('tap',function(){
+//			window.location = 'orderlist.html';
+//		})
+//		$('.scanbtn').on('tap',function(){
+//			window.location = 'scan.html';
+//		})
+//		$('.myself').on('tap',function(){
+//			window.location = 'myselfinfo.html';
+//		})		$('.set').on('click',function(){			console.log(111);				location.href = 'setUpInfo.html';		})		$('.clockin').on('click',function(){			location.href = 'map.html';		})
+		$('.guidework').on('click',function(){
+			location.href = 'guidework.html';
+		})		if(localStorage.getItem('authorityType') == '24'|| localStorage.getItem('authorityType') == '25' || localStorage.getItem('authorityType') == '23' || localStorage.getItem('authorityType') == '20' || localStorage.getItem('authorityType') == '21'){						if(qctype == 'qc'){				$('.product').css('display','block');				$('.qc').css('display','none');			}else{				$('.qc').css('display','block');				$('.product').css('display','none');			}		}else{			$('.qc').css('display','none');			$('.product').css('display','none');		}				$('.qc').on('click',function(){			window.location = 'orderlist.html?type=qc';		})		$('.product').on('click',function(){			window.location = 'orderlist.html';		})		if(localStorage.getItem('authorityType') == '21'){			$('.purchase').css('display','block');			$.ajax({				type:"get",				dataType:'json',				url:ajaxUrlPath+"/mobile/material/apply/list",				data:'',				success:function(data){					$('.num').html(data.rows.length);				}			})		}else{			$('.purchase').css('display','none');		}				$('.purchase').on('click',function(){			location.href = 'purchaselist.html';		})		$.ajax({
+					type:"post",
+					url:ajaxUrlPath+"/mobile/member/getById",
+					async:true,
+					data:{
+						userId:localStorage.getItem('memberId'),
+						type:0,
+					},
+					success:function(data){
+						console.log(JSON.stringify(data));
+						if(data.code==0){							// if(data.result.schedule==1){							// 	$('.schedule').html('早班')							// }else if(data.result.schedule==2){							// 	$('.schedule').html('晚班')							// }else{							// 	$('.schedule').html(' ')							// }							var logo = '';							if(data.result.logo=='' || data.result.logo == null){								logo = 'img/header.png'							}else{								logo = data.result.logo							}
+							$('.logo').css('background-image','url('+logo+')')
+							$('.userName').html(data.result.userName);							var authorityType = '';							if(data.result.authorityType == 1){								authorityType = '老板'							}else if(data.result.authorityType == 2){								authorityType = '业务员'							}else if(data.result.authorityType == 3){								authorityType = '前台'							}else if(data.result.authorityType == 4){								authorityType = '财务'							}else if(data.result.authorityType == 5){								authorityType = '仓库'							}else if(data.result.authorityType == 6){								authorityType = '印刷'							}else if(data.result.authorityType == 7){								authorityType = '制版'							}else if(data.result.authorityType == 8){								authorityType = '切纸'							}else if(data.result.authorityType == 9){								authorityType = '覆膜'							}else if(data.result.authorityType == 10){								authorityType = 'UV/丝印'							}else if(data.result.authorityType == 11){								authorityType = '烫印'							}else if(data.result.authorityType == 12){								authorityType = '凹凸'							}else if(data.result.authorityType == 13){								authorityType = '模切'							}else if(data.result.authorityType == 14){								authorityType = '糊盒'							}else if(data.result.authorityType == 15){								authorityType = '喷码'							}else if(data.result.authorityType == 16){								authorityType = '装箱'							}else if(data.result.authorityType == 17){								authorityType = '手工'							}else if(data.result.authorityType == 18){								authorityType = '拆边'							}else if(data.result.authorityType == 19){								authorityType = '品检'							}else if(data.result.authorityType == 20){								authorityType = 'QC'							}else if(data.result.authorityType == 21){								authorityType = '生产厂长'							}else if(data.result.authorityType == 22){								authorityType = '成品入库'							}else if(data.result.authorityType == 23){								authorityType = '印刷主管'							}else if(data.result.authorityType == 24){								authorityType = '后道主管'							}else if(data.result.authorityType == 25){								authorityType = '外协主管'							}							
+							$('.companyName').html(authorityType)//							if(data.result.authorityType == 13){
+//								var foothtml = '<a class="mui-tab-item way" href="#">'+
+//									'<p><img src="img/nav01.png" style="height: 30px;padding-top:5px ;"/></p>'+
+//									'<span class="mui-tab-label" >询价/下单</span>'+
+//								'</a>'+
+//								'<a class="mui-tab-item listhref" href="#">'+
+//									'<p><img src="img/nav2.png" style="height: 30px;padding-top:5px ;"/></p>'+
+//									'<span class="mui-tab-label">订单</span>'+
+//								'</a>'+
+//								'<a class="mui-tab-item myself" href="#">'+
+//									'<p><img src="img/nav03.png" style="height: 30px;padding-top:5px ;"/></p>'+
+//									'<span class="mui-tab-label" style="color: #FF6F00;">我的</span>'+
+//								'</a>';
+//								$('.foot-bar').html(foothtml);
+//								$('.way').on('tap',function(){
+//									window.location = 'adminwaitorderlist.html';
+//								})
+//								$('.listhref').on('tap',function(){
+//									window.location = 'adminorderlist.html';
+//								})
+//								$('.myself').on('tap',function(){
+//									window.location = 'myselfinfo.html';
+//								})
+//							}else if(data.result.authorityType == 6){
+//								$('.orderlistbtn').on('tap',function(){
+//									window.location = 'stockorderlist.html';
+//								});
+//								$('.scan').on('tap',function(){
+//									window.location = 'scan.html';
+//								})
+//								$('.myself').on('tap',function(){
+//									window.location = 'myselfinfo.html';
+//								})
+//							}						}else{
+							mui.toast(data.message);
+						}
+					}
+					
+				});
+//		$.ajax({
+//			type:"post",
+//			dataType:'json',
+//			url:ajaxUrlPath+"/mobile/enquiryOrder/orderNum",
+//			data:{
+////				memberId:14
+//				memberId:localStorage.getItem('memberId')
+//			},
+//			success:function(data){
+//				console.log(JSON.stringify(data));
+//				if(data.code == 0){
+//					$('.waitCount').html(data.result.waitCount);
+//					$('.orderCount').html(data.result.orderCount);
+//					$('.enquiryCount').html(data.result.enquiryCount);
+//					$('.completeCount').html(data.result.completeCount);
+//				}
+//			}
+//		})								
+	</script>
+</html>

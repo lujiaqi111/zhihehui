@@ -1,0 +1,158 @@
+{
+	"adminlogin.html": {
+		"refer": [
+			"adminwaitorderlist.html",
+			"orderlist.html",
+			"instockorderlist.html",
+			"stockorderlist.html"
+		],
+		"resources": [
+			"js/jquery.min.js",
+			"img/minlogo.png",
+			"js/mui.min.js",
+			"js/pages/share.js",
+			"img/uncheck2.png",
+			"css/mui.min.css",
+			"img/plogo.png",
+			"js/immersed.js"
+		]
+	},
+	"orderdetail.html": {
+		"refer": [
+			"orderlist.html",
+			"myselfinfo.html",
+			"picklist.html",
+			"scan.html"
+		],
+		"resources": []
+	},
+	"myselfinfo.html": {
+		"refer": [
+			"setUpInfo.html",
+			"orderlist.html",
+			"adminwaitorderlist.html",
+			"stockorderlist.html",
+			"scan.html",
+			"purchaselist.html",
+			"instockorderlist.html",
+			"map.html"
+		],
+		"resources": []
+	},
+	"setUpInfo.html": {
+		"refer": [
+			"adminlogin.html",
+			"myselfinfo.html",
+			"updatepassword.html"
+		],
+		"resources": []
+	},
+	"orderQCdetail.html": {
+		"refer": [
+			"scan.html",
+			"orderlist.html",
+			"myselfinfo.html"
+		],
+		"resources": []
+	},
+	"adminwaitorderlist.html": {
+		"refer": [
+			"adminorderlist.html",
+			"myselfinfo.html"
+		],
+		"resources": []
+	},
+	"adminorderlist.html": {
+		"refer": [
+			"orderlistselect.html",
+			"adminwaitorderlist.html"
+		],
+		"resources": []
+	},
+	"picklist.html": {
+		"refer": [
+			"orderlist.html",
+			"orderdetail2.html"
+		],
+		"resources": []
+	},
+	"orderdetail2.html": {
+		"refer": [
+			"orderlist.html",
+			"myselfinfo.html",
+			"picklist.html",
+			"scan.html",
+			"instockorderlist.html"
+		],
+		"resources": []
+	},
+	"orderdetail3.html": {
+		"refer": [
+			"orderlist.html"
+		],
+		"resources": []
+	},
+	"orderlist.html": {
+		"refer": [
+			"orderQCdetail2.html",
+			"myselfinfo.html",
+			"scan.html",
+			"orderlist.html",
+			"orderdetail2.html"
+		],
+		"resources": []
+	},
+	"orderQCdetail2.html": {
+		"refer": [
+			"myselfinfo.html",
+			"orderlist.html",
+			"scan.html",
+			"scan1.html"
+		],
+		"resources": []
+	},
+	"scan.html": {
+		"refer": [
+			"orderlist.html",
+			"myselfinfo.html",
+			"scan1.html",
+			"orderQCdetail.html",
+			"orderQCdetail2.html"
+		],
+		"resources": []
+	},
+	"updatepassword.html": {
+		"refer": [
+			"setUpInfo.html"
+		],
+		"resources": []
+	},
+	"orderstatus.html": {
+		"refer": [
+			"orderlist.html"
+		],
+		"resources": []
+	},
+	"purchasedetail.html": {
+		"refer": [
+			"purchaselist.html"
+		],
+		"resources": []
+	},
+	"purchaselist.html": {
+		"refer": [
+			"myselfinfo.html"
+		]
+	},
+	"map.html": {
+		"refer": [
+			"myselfinfo.html"
+		]
+	},
+	"scan1.html": {
+		"refer": [
+			"scan.html",
+			"orderQCdetail2.html"
+		]
+	}
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<title>印刷通-报价</title>
+	    <link rel="stylesheet" type="text/css" href="css/rem.css"/>		<link rel="stylesheet" type="text/css" href="css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/initialization1.css?v=Date.parse(new Date())"/>		<style type="text/css">			body{				background-color: #FFFFFF;			}			.mui-table-view:before,.mui-table-view:after{				height: 0px;			}			.mui-table-view a span{				display: inline-block;				width: 25%;			}			.mui-table-view a span:nth-child(2){				width: 15%;			}			.mui-table-view a span:nth-child(3){				width: 27%;			}			.mui-table-view a span:nth-child(4){				width: 33%;			}			.mui-table-view .mui-collapse-content span{				display: inline-block;				width: 25%;			}		</style>
+	</head>
+	<body>
+		<div class="select-papers layer-custom" id="selectPapers">
+			<table cellspacing="0" cellpadding="0" id="selectPapersTable">				<!--<tr data-sign = "title"><td width="25%"></td><td width="15%">颜色</td><td width="27%">克重</td><td width="33%">表面处理</td></tr>
+				<tr class="table-title" data-sign="title"><td colspan="4">普通纸</td></tr>-->
+				<!--<tr>
+					<td colspan="4">
+						<ul class="mui-table-view"> 
+					        <li class="mui-table-view-cell mui-collapse">
+					            <a class="" href="#"><span>铜制</span><span>白色</span><span>200~300</span><span>光面</span></a>
+					            <div class="mui-collapse-content">
+					                <p><span>铜制</span><span>白色</span><span>200</span><span>光面</span></p>
+					                 <p><span>铜制</span><span>白色</span><span>200</span><span>光面</span></p>
+					            </div>
+					        </li>
+				        </ul>
+					</td>
+					 
+			    
+				</tr>
+				<tr>
+					<td colspan="4">
+						<ul class="mui-table-view"> 
+					        <li class="mui-table-view-cell mui-collapse">
+					            <a class="" href="#"><span>铜制</span><span>白色</span><span>200~300</span><span>光面</span></a>
+					            <div class="mui-collapse-content">
+					                <p><span>铜制</span><span>白色</span><span>200</span><span>光面</span></p>
+					                 <p><span>铜制</span><span>白色</span><span>200</span><span>光面</span></p>
+					            </div>
+					        </li>
+				        </ul>
+					</td>
+					 
+			    
+				</tr>-->
+				<!--<tr data-sign = "title"><td width="25%"></td><td width="15%">颜色</td><td width="27%">克重</td><td width="33%">表面处理</td></tr>
+				<tr class="table-title" data-sign="title"><td colspan="4">普通纸</td></tr>
+				<tr><td>A级双铜</td><td>白</td><td weight="80~300">80~300</td><td><div class="'+rendition+'">双面涂布</div></td></tr>
+				<tr><td>A级哑粉</td><td>白</td><td weight="80~300">80~300</td><td><div class="'+rendition+'">双面涂布</div></td></tr>
+				<tr><td>双胶纸</td><td>白</td><td weight="70~140">70~140</td><td><div class="'+rendition+'">未涂布</div></td></tr>
+				<tr><td>白卡</td><td>白</td><td weight="200~400">200~400</td><td><div class="'+rendition+'">双面涂布</div></td></tr>
+				<tr class="table-title" data-sign="title"><td colspan="4">特种纸</td></tr>
+				<tr><td>优品丽印</td><td>白</td><td weight="120~260">120~260</td><td><div class="'+rendition+'">双面涂布</div></td></tr>
+				<tr><td>雅致</td><td>白</td><td weight="100~250">100~250</td><td><div class="'+rendition+'">双面涂布</div></td></tr>-->
+			</table>
+			<button type="button" class="sure-button" id="sureButton" sign="0">确认</button>
+		</div>
+		<div class="layer-custom hide" id="customPapers">
+			<div><span class="layer-span">纸张类型</span><input id="customPapers01" type="text" value="" /></div>
+			<div><span class="layer-span">纸张克重</span><input id="customPapers02" type="number" value="" /></div>
+			<div><span class="layer-span">纸张吨位价</span><input id="customPapers03" type="number" value="" /></div>
+			<button type="button" class="sure-button" id="sureButton2" style="margin-left: 10%;">确定</button>
+		</div>
+	</body>
+	<script type="text/javascript" src="js/jquery.min.js"></script>	<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="js/layer3.0.1/layer.js"></script>
+	<script type="text/javascript" src="js/pages/share.js?v=Date.parse(new Date())"></script>
+	<script type="text/javascript" src="js/pages/select-papers.js"></script>
+</html>

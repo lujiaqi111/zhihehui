@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+		<meta name="HandheldFriendly" content="true"/>
+		<meta name="MobileOptimized" content="320"/>
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+		<link rel="stylesheet" href="https://at.alicdn.com/t/font_234130_nem7eskcrkpdgqfr.css">  <!--阿里图标库-->
+	</head>
+	<body>
+		<div class="headcontent">
+			<h2 class="header">
+					<img src="img/back.png" >
+					<span class="title">打卡记录</span>
+			</h2>
+		</div>
+		<div class="index_frame_leftTop">
+			<div id='schedule-boxS'></div>
+			<div class="index_liTLeft">
+				<div class="index_liTline"></div>
+			</div>
+			<div class="index_liTRight">
+				<div class="index_liTline"></div>
+			</div>
+		</div>
+		<div class="index_frame_leftBottom">
+			<p class="index_frame_title">当天打卡记录</p>
+			<ul class="index_frame_list">
+			<!-- 	<li>
+					1.上班打卡   8：00  正常打卡
+				</li>
+				<li>
+					2.下班打卡   20：00  外勤打卡
+				</li> -->
+			</ul>
+		</div>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="js/mui.min.js" ></script>
+		<script src="js/pages/share.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/schedule.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/echarts.simple.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			// alert(localStorage.getItem('memberId'));
+			var zcDatelist = []
+			$.ajax({
+							type:"post",
+							url:ajaxUrlPath+"/mobile/userPunch/punchRecord",
+							data:{
+								userId:localStorage.getItem('memberId'),
+							},
+							success:function(data){
+								// alert(JSON.stringify(data));
+								if(data.code==0){
+									for (var i = 0; i < data.result.length; i++) {
+										zcDatelist.push({time:data.result[i].punchDateStr})
+									}
+									var mySchedule = new Schedule({
+										el: '#schedule-boxS',
+										//异常考勤
+										// qqDate : [{time:"2021-05-09",Morning:"",Afternoon:"16:01"},{time:"2021-05-16",Morning:"08:15",Afternoon:""},{time:"2021-06-19",Morning:"08:15",Afternoon:""}],
+										//正常考勤
+										zcDate : zcDatelist
+									})
+									
+									
+								}else{
+									mui.toast(data.message);
+								}
+							}
+							
+				});
+			
+			$('.header').on('tap',function(){
+						mui.back();
+					})
+			
+		</script>
+	</body>
+</html>

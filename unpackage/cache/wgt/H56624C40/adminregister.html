@@ -1,0 +1,458 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/mui.picker.css"/>
+		<link rel="stylesheet" type="text/css" href="css/mui.poppicker.css"/>
+	</head>
+	<style type="text/css">
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		html,body{
+			width: 100%;
+			height: 100%;
+			background-color: #f2f2f2;
+			position: relative;
+		}
+		.line{
+			width: 100%;
+			height: 6px;
+			background-color: #ff6f00;
+			position: absolute;
+			top: 80%;
+			z-index: 1;
+		}
+		.content{
+			position: absolute;
+			width: 94%;
+			height: 96%;
+			/*background-color: red;*/
+			left: 3%;
+			bottom: 2%;
+			z-index: 2;
+			border-radius: 8px;
+			overflow: auto;
+			
+		}
+		.content p{
+			font-size: 18px;
+			line-height: 30px;
+		}
+		.content>input{
+			height: 45px;
+			border-radius: 6px;
+			box-shadow: 2px 2px 0px #b2b2b2;
+			margin-bottom: 6px;
+		}
+		.info{
+			width: 100%;
+			height: auto;
+			background-color: #FFFFFF;
+			border-radius: 10px;
+			box-shadow: 2px 2px 0px #b2b2b2;
+		}
+		li{
+			list-style-type: none;
+		}
+		.mui-content{
+			background-color: #FFFFFF;
+			border-radius: 10px;
+			color: #808080;
+			box-shadow: 2px 2px 0px #b2b2b2;
+		}
+		.mui-table-view-cell:last-child:after{
+			    position: absolute;
+			    width: 94%;
+			    right: 0;
+			    bottom: 0;
+			    left: 0px;
+			    height: 1px;
+			    content: '';
+			    -webkit-transform: scaleY(.5);
+			    transform: scaleY(.5);
+			    background-color: #c8c7cc;
+		}
+		.col .mui-table-view-cell:last-child:after{
+			left: 3%;
+		}
+		.col:first-child .mui-table-view-cell:last-child:after{
+			left: 6%;
+		}
+		.col:nth-child(2) .mui-table-view-cell:last-child:after{
+			left: -2%;
+		}
+		
+		.mui-table-view-cell>a:not(.mui-btn){
+			margin: -5px -15px -33px -15px;
+		}
+		.footer{
+			width: 100%;
+			height: auto;
+		}
+		.footer button{
+			width: 70%;
+			height: 50px;
+			background-color: #ff6600;
+			color: #FFFFFF;
+			margin-left: 15%;
+			position: relative;
+			bottom: -15px;
+			border-radius: 10px;
+			font-size: 18px;
+		}
+		.content input::-webkit-input-placeholder{
+			color: #9b9c9e;
+			font-size: 16px;
+		}
+		.mui-table-view-cell{
+			padding: 14px;
+		}
+		.mui-table-view-cell input{
+		    border: 0px;
+		    height: auto;
+		    margin-bottom: 0;
+		}
+		select{
+			margin-top: 0;
+			/*padding: 0;*/
+			margin-bottom: 0px;
+			 font-size: 1rem;
+		}
+	</style>
+
+	<body>
+		<div class="line">
+			
+		</div>
+		<div class="content">
+			<p>填写个人资料</p>
+			<input type="text" name="username" id="username" value="" placeholder="请输入登录账号"/>
+			<input type="password" name="password" id="password" value="" placeholder="请输入登录密码"/>
+			<input type="password" name="passwords" id="passwords" value="" placeholder="请重新输入登录密码"/>
+			<div class="info">
+				<div class="mui-content">
+				    <div class="mui-row">
+				        <div class="mui-col-sm-6 mui-col-xs-6 col">
+				            <li class="mui-table-view-cell">
+				                <a class="">
+				                    姓  名   <input type="text" name="name" id="name" value="" />
+				                </a>
+				            </li>
+				        </div>
+				        <div class="mui-col-sm-6 mui-col-xs-6 col">
+				            <li class="mui-table-view-cell">
+				                <a class="">
+				                    性  别<input type="text" name="sex" id="sex"/>
+				                </a>
+				            </li>
+				        </div>
+				        <div class="mui-col-sm-12 mui-col-xs-12 col">
+				            <li class="mui-table-view-cell" id="area">
+				                <a class="">
+				                    地  区<input type="text" name="area1" id="area1" style="width: 35%;"/>
+				             <input type="text" name="area2" id="area2" style="width: 35%;"/>
+				                </a>
+				            </li>
+				        </div>
+				    	<div class="mui-col-sm-12 mui-col-xs-12 col">
+				            <li class="mui-table-view-cell">
+				                <a class="">
+				                      公  司<input type="text" name="company" id="company" />
+				                </a>
+				            </li>
+				       </div>
+				        <div class="mui-col-sm-12 mui-col-xs-12 col">
+				            <li class="mui-table-view-cell">
+				                <a class="">
+				                    手机号<input type="text" name="mobile" id="mobile" style="width: 50%;"/><span style="color: #FF6F00;" id="code">获取验证码</span>
+				                </a>
+				            </li>
+				        </div>
+				        <div class="mui-col-sm-12 mui-col-xs-12 col">
+				            <li class="mui-table-view-cell">
+				                <a class="">
+				                    验证码<input type="text" name="code" id="code" />
+				                </a>
+				            </li>
+				        </div>
+				        <div class="mui-col-sm-12 mui-col-xs-12 col">
+				            <p style="text-align: center;color: #ff9d52;margin-top: 15px;line-height: 40px;height: 40px;" id="agree">
+					        	
+					        </p>
+				        </div>
+				        
+				    </div>
+				</div>
+			</div>
+			<div class="footer">
+				<button id="submit">提  交</button>
+			</div>
+		</div>
+	</body>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/pages/share.js"></script>
+		<script type="text/javascript" src="js/pick/mui.picker.js"></script>
+		<script type="text/javascript" src="js/pick/mui.poppicker.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			var timer = null;
+			var wait = 60;
+			var agentId = getUrlParam('agentId');
+			console.log(agentId);
+			function time() {
+			if (wait == 0) {
+				flag = 0;
+				$('#code').html("获取验证");
+				wait = 60;
+			} else {
+				flag = 1;
+				$('#code').html("(" + wait + ")重新获取");
+				wait--;
+				timer = setTimeout(function() {
+					time();
+				}, 1000)
+			}
+		}
+			
+			$('#agree').on('tap',function(){
+				var select = $(this).attr('select');
+				console.log(select)
+				if(select != undefined){
+					$(this).removeAttr('select');
+					$(this).find('img').attr('src','img/uncheck.png');
+				}else{
+					$(this).attr('select','true');
+					$(this).find('img').attr('src','img/checked.png');
+				}
+			})
+			$('#code').on('tap',function(){
+				console.log(111);
+				var mobile = $('#mobile').val();
+				if (!mobile) {
+					mui.toast('请输入手机号');
+					return;
+				}
+				var reg = /^((\(\d{2,3}\))|(\d{3}\-))?(13|14|15|16|17|18|19)\d{9}$/;
+				if (!reg.test(mobile)) {
+					mui.toast("请输入正确的手机号");
+					return;
+				}
+				$.ajax({
+					type:"post",
+					url:ajaxUrlPath+"/mobile/member/sendCode",
+					async:true,
+					data:{
+						mobile:mobile,
+						type:1
+					},
+					success:function(data){
+						console.log(JSON.stringify(data));
+						if(data.code == 1){
+							mui.toast('该手机号已注册');
+						}else if(data.code == 2){
+							mui.toast('手机号码不存在');
+						}else if(data.code == 3){
+							mui.toast('发送失败');
+						}else if(data.code == 0){
+							mui.toast('验证码已发送');
+							time();
+						}else{
+							mui.toast(code.message);
+						}
+					}
+				});
+			})
+			
+//			var select = document.getElementById("select");
+//	        select.onchange=function(){
+//	            var selvalue = select.value;
+//	            var val = document.getElementById("val");
+//	            switch(selvalue){
+//	                case "single" : val.innerHTML="<option value='0.0125'>杭州</option><option value='0.0175'>绍兴</option><option value='0.075'>金华</option><option value='0.05' selected='selected'>温州</option>";break;
+//	                case "dablue" : val.innerHTML="<option value='0.0125'>福建</option><option value='0.0175'>深圳</option><option value='0.075'>漳州</option><option value='0.05' selected='selected'>厦门</option>";break;
+//	                default : alert("erro");
+//	            }
+//	        };
+			showLevel1()
+			showLevel2()
+			function showLevel1() {
+			var picker = new mui.PopPicker({
+				layer: 1,
+				buttons: ['取消', '确定']
+			});
+			picker.setData([{
+				value: "0",
+				text: "男"
+			}, {
+				value: "1",
+				text: "女"
+			}]);
+			document.getElementById("sex").addEventListener('tap', function(event) {
+				// 默认显示第4项
+				$(".mui-picker").eq(1).remove();
+				$(".mui-picker").eq(0).css('width','100%');
+				$(":input").blur();
+				picker.pickers[0].setSelectedIndex(1, 2000);
+				picker.show(function(selectItems) {
+					var text = selectItems[0].text;
+					$("#sex").val(text);
+				});
+			});
+		}
+			function showLevel2() {
+			var picker = new mui.PopPicker({
+				layer: 2,
+				buttons: ['取消', '确定']
+			});
+			var addressdata = [];
+			
+			$.ajax({
+					type:"post",
+					url:ajaxUrlPath+"/mobile/receiveAddress/getAllCity",
+					async:true,
+					data:'',
+					success:function(data){
+						console.log(data);
+						for(var i=0;i<data.result.length;i++){
+							var childreListary = [];
+							for (var j = 0; j < data.result[i].childreList.length; j++) {
+								var childreListobj = {
+									value:data.result[i].childreList[j].id,
+									text:data.result[i].childreList[j].name
+								}
+								childreListary.push(childreListobj);
+							}
+							var addressobj = {
+								value:data.result[i].id,
+								text:data.result[i].name,
+								children:childreListary
+							};
+							
+							addressdata.push(addressobj);
+						}
+						console.log(addressdata);
+						picker.setData(addressdata);
+					}
+					
+			})
+			
+ 
+			document.getElementById("area").addEventListener('tap', function(event) {
+				// 默认第一层显示第1项;第二层显示第2项
+				$(":input").blur();
+				picker.pickers[0].setSelectedIndex(0);
+				picker.pickers[1].setSelectedIndex(2);
+				picker.show(function(selectItems) {
+					var text1 = selectItems[0].text;
+					var text2 = selectItems[1].text;
+					$("#area1").val(text1);
+					$('#area1').attr("provinceId",selectItems[0].value);
+					$("#area2").val(text2);
+					$('#area2').attr("cityId",selectItems[1].value);
+				})
+				// picker.dispose();
+			});
+		}
+			$('#submit').on('tap',function(){
+				console.log(222);
+				var account = $('input[name="username"]').val();
+				var password = $('input[name="password"]').val();
+				var name = $('input[name="name"]').val();
+				var sex = $('input[name="sex"]').val();
+				var mobile = $('input[name="mobile"]').val();
+				var code = $('input[name="code"]').val();
+				var provinceId = $('#area1').attr("provinceId");
+				var cityId = $('#area2').attr('cityId');
+				var company = $('input[name="company"]').val();
+				if(!account){
+					mui.toast("请输入账号");
+					return;
+				}
+				if(!password){
+					mui.toast("请输入密码");
+					return;
+				}
+				if(!name){
+					mui.toast("请输入姓名");
+					return;
+				}
+				if(!sex){
+					mui.toast("请输入性别");
+					return;
+				}
+				if (!mobile) {
+					mui.toast('请输入手机号');
+					return;
+				}
+				var reg = /^((\(\d{2,3}\))|(\d{3}\-))?(13|14|15|16|17|18|19)\d{9}$/;
+				if (!reg.test(mobile)) {
+					mui.toast("请输入正确的手机号");
+					return;
+				}
+				if(!provinceId){
+					mui.toast("请选择地区");
+					return;
+				}
+				if (!cityId) {
+					mui.toast('请选择地区');
+					return;
+				}if (!company) {
+					mui.toast('请输入公司');
+					return;
+				}
+				if(!code){
+					mui.toast("请输入验证码");
+					return;
+				}
+//				alert(localStorage.getItem('sellerId')+','+localStorage.getItem('memberId')+'账号'+account+'密码'+password+'姓名'+name+'性别'+sex+'地区'+provinceId+'：'+cityId+'公司'+company+'手机号'+mobile+'验证码'+code);
+//				alert(ajaxUrlPath+"/mobile/member/newReg");
+				$.ajax({
+					type:"post",
+					url:ajaxUrlPath+"/mobile/sellerUser/addCustomer",
+					async:true,
+					data:{
+						sellerId:localStorage.getItem('sellerId'),
+						agentId:agentId,
+						account:account,
+						password:password,
+						name:name,
+						sex:sex,
+						provinceId:provinceId,
+						cityId:cityId,
+						company:company,
+						mobile:mobile,
+					},
+					success:function(data){
+//						alert(JSON.stringify(data));
+						if(data.code==0){
+							window.location = "customlist.html";
+						}else{
+							mui.toast(data.message);
+						}
+					}
+					
+				});
+			})
+			function getUrlParam(name){
+			
+				var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)"); 
+			
+				var r = window.location.search.substr(1).match(reg);  
+			
+				if (r!=null) 
+			
+					return decodeURI(r[2]); 
+			
+				return null; 
+			
+			}
+
+		</script>
+</html>

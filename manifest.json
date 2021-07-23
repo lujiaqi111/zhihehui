@@ -1,0 +1,537 @@
+{
+    "@platforms" : [ "android", "iPhone", "iPad" ],
+    "id" : "H56624C40", /*应用的标识，创建应用时自动生成，勿手动修改*/
+    "name" : "纸合汇", /*应用名称，程序桌面图标名称*/
+    "version" : {
+        "name" : "12", /*应用版本名称*/
+        "code" : ""
+    },
+    "description" : "", /*应用描述信息*/
+    "icons" : {
+        "72" : "icon.png"
+    },
+    "launch_path" : "adminlogin.html", /*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
+    "developer" : {
+        "name" : "", /*开发者名称*/
+        "email" : "", /*开发者邮箱地址*/
+        "url" : "" /*开发者个人主页地址*/
+    },
+    "permissions" : {
+        "Messaging" : {
+            "description" : "短彩邮件插件"
+        },
+        "Cache" : {
+            "description" : "管理应用缓存"
+        },
+        "Console" : {
+            "description" : "跟踪调试输出日志"
+        },
+        "Contacts" : {
+            "description" : "访问系统联系人信息"
+        },
+        "Events" : {
+            "description" : "应用扩展事件"
+        },
+        "Speech" : {
+            "description" : "管理语音识别插件"
+        },
+        "Maps" : {}
+    },
+    "plus" : {
+        "statusbar" : {
+            "immersed" : false
+        },
+        "splashscreen" : {
+            "autoclose" : true, /*是否自动关闭程序启动界面，true表示应用加载应用入口页面后自动关闭；false则需调plus.navigator.closeSplashscreen()关闭*/
+            "waiting" : true /*是否在程序启动界面显示等待雪花，true表示显示，false表示不显示。*/
+        },
+        "popGesture" : "close", /*设置应用默认侧滑返回关闭Webview窗口，"none"为无侧滑返回功能，"hide"为侧滑隐藏Webview窗口。参考http://ask.dcloud.net.cn/article/102*/
+        "runmode" : "normal", /*应用的首次启动运行模式，可取liberate或normal，liberate模式在第一次启动时将解压应用资源（Android平台File API才可正常访问_www目录）*/
+        "signature" : "Sk9JTiBVUyBtYWlsdG86aHIyMDEzQGRjbG91ZC5pbw==", /*可选，保留给应用签名，暂不使用*/
+        "distribute" : {
+            "apple" : {
+                "appid" : "", /*iOS应用标识，苹果开发网站申请的appid，如io.dcloud.HelloH5*/
+                "mobileprovision" : "", /*iOS应用打包配置文件*/
+                "password" : "", /*iOS应用打包个人证书导入密码*/
+                "p12" : "", /*iOS应用打包个人证书，打包配置文件关联的个人证书*/
+                "devices" : "universal", /*iOS应用支持的设备类型，可取值iphone/ipad/universal*/
+                "frameworks" : [] /*调用Native.js调用原生Objective-c API需要引用的FrameWork，如需调用GameCenter，则添加"GameKit.framework"*/
+            },
+            "google" : {
+                "packagename" : "", /*Android应用包名，如io.dcloud.HelloH5*/
+                "keystore" : "", /*Android应用打包使用的密钥库文件*/
+                "password" : "", /*Android应用打包使用密钥库中证书的密码*/
+                "aliasname" : "", /*Android应用打包使用密钥库中证书的别名*/
+                "ImmersedStatusbar" : true,
+                "minSdkVersion" : 20,
+                "targetSdkVersion" : 26,
+                "permissions" : [
+                    "<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>",
+                    "<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>",
+                    "<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>",
+                    "<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>",
+                    "<uses-permission android:name=\"android.permission.READ_CONTACTS\"/>",
+                    "<uses-permission android:name=\"android.permission.INTERNET\"/>",
+                    "<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.VIBRATE\"/>",
+                    "<uses-permission android:name=\"android.permission.READ_LOGS\"/>",
+                    "<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>",
+                    "<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>",
+                    "<uses-permission android:name=\"android.permission.CALL_PHONE\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>",
+                    "<uses-feature android:name=\"android.hardware.camera.autofocus\"/>",
+                    "<uses-feature android:name=\"android.hardware.camera\"/>",
+                    "<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>",
+                    "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>",
+                    "<uses-permission android:name=\"android.permission.CAMERA\"/>"
+                ]
+            },
+            /*使用Native.js调用原生安卓API需要使用到的系统权限*/
+            "orientation" : [ "portrait-primary" ], /*应用支持的方向，portrait-primary：竖屏正方向；portrait-secondary：竖屏反方向；landscape-primary：横屏正方向；landscape-secondary：横屏反方向*/
+            "icons" : {
+                "ios" : {
+                    "prerendered" : true, /*应用图标是否已经高亮处理，在iOS6及以下设备上有效*/
+
+                    /*应用图标，分辨率：512x512，用于自动生成各种尺寸程序图标*/
+                    "iphone" : {
+                        "normal" : "", /*iPhone3/3GS程序图标，分辨率：57x57*/
+                        "retina" : "", /*iPhone4程序图标，分辨率：114x114*/
+
+                        /*iPhone4S/5/6程序图标，分辨率：120x120*//*iPhone6 Plus程序图标，分辨率：180x180*/
+                        "spotlight-normal" : "", /*iPhone3/3GS Spotlight搜索程序图标，分辨率：29x29*/
+                        "spotlight-retina" : "", /*iPhone4 Spotlight搜索程序图标，分辨率：58x58*/
+
+                        /*iPhone4S/5/6 Spotlight搜索程序图标，分辨率：80x80*/
+                        "settings-normal" : "", /*iPhone4设置页面程序图标，分辨率：29x29*/
+
+                        /*iPhone4S/5/6设置页面程序图标，分辨率：58x58*/
+                        "app@2x" : "C:/2021年0517/2020.5.19/iphone/zhk-07.png",
+                        "app@3x" : "C:/2021年0517/2020.5.19/iphone/zhk-08.png",
+                        "settings@3x" : "C:/2021年0517/2020.5.19/iphone/zhk-04.png",
+                        "settings@2x" : "C:/2021年0517/2020.5.19/iphone/zhk-03.png",
+                        "spotlight@2x" : "C:/2021年0517/2020.5.19/iphone/zhk-01.png",
+                        "spotlight@3x" : "C:/2021年0517/2020.5.19/iphone/zhk-02.png",
+                        "notification@3x" : "C:/2021年0517/2020.5.19/iphone/zhk-06.png",
+                        "notification@2x" : "C:/2021年0517/2020.5.19/iphone/zhk-05.png" /*iPhone6Plus设置页面程序图标，分辨率：87x87*/
+                    },
+                    "ipad" : {
+                        "normal" : "", /*iPad普通屏幕程序图标，分辨率：72x72*/
+                        "retina" : "", /*iPad高分屏程序图标，分辨率：144x144*/
+
+                        /*iPad iOS7程序图标，分辨率：76x76*//*iPad iOS7高分屏程序图标，分辨率：152x152*/
+                        "spotlight-normal" : "", /*iPad Spotlight搜索程序图标，分辨率：50x50*/
+                        "spotlight-retina" : "", /*iPad高分屏Spotlight搜索程序图标，分辨率：100x100*/
+
+                        /*iPad iOS7 Spotlight搜索程序图标，分辨率：40x40*//*iPad iOS7高分屏Spotlight搜索程序图标，分辨率：80x80*//*iPad设置页面程序图标，分辨率：29x29*/
+                        "app" : "C:/2021年0517/2020.5.19/ipad/zhk-15.png",
+                        "app@2x" : "C:/2021年0517/2020.5.19/ipad/zhk-16.png",
+                        "settings" : "C:/2021年0517/2020.5.19/ipad/zhk-11.png",
+                        "proapp@2x" : "C:/2021年0517/2020.5.19/ipad/zhk-17.png",
+                        "spotlight" : "C:/2021年0517/2020.5.19/ipad/zhk-09.png",
+                        "settings@2x" : "C:/2021年0517/2020.5.19/ipad/zhk-12.png",
+                        "spotlight@2x" : "C:/2021年0517/2020.5.19/ipad/zhk-10.png",
+                        "notification" : "C:/2021年0517/2020.5.19/ipad/zhk-13.png",
+                        "notification@2x" : "C:/2021年0517/2020.5.19/ipad/zhk-14.png" /*iPad高分屏设置页面程序图标，分辨率：58x58*/
+                    },
+                    "appstore" : "C:/2021年0517/2020.5.19/iphone/zhk-08.png"
+                },
+                "android" : {
+                    "mdpi" : "C:/12.24/1/焕炜/纸客汇报价PSD/android/zhk-18.png", /*普通屏程序图标，分辨率：48x48*/
+                    "ldpi" : "C:/12.24/1/焕炜/纸客汇报价PSD/android/zhk-18.png", /*大屏程序图标，分辨率：48x48*/
+                    "hdpi" : "C:/2021年0517/2020.5.19/android/zhk-19.png", /*高分屏程序图标，分辨率：72x72*/
+                    "xhdpi" : "C:/2021年0517/2020.5.19/android/zhk-20.png", /*720P高分屏程序图标，分辨率：96x96*/
+                    "xxhdpi" : "C:/2021年0517/2020.5.19/android/zhk-21.png",
+                    "xxxhdpi" : "C:/2021年0517/2020.5.19/android/zhk-22.png" /*1080P 高分屏程序图标，分辨率：144x144*/
+                }
+            },
+            "splashscreen" : {
+                "ios" : {
+                    "iphone" : {
+                        "default" : "", /*iPhone3启动图片选，分辨率：320x480*/
+                        "retina35" : "", /*3.5英寸设备(iPhone4)启动图片，分辨率：640x960*/
+                        "retina40" : "", /*4.0 英寸设备(iPhone5/iPhone5s)启动图片，分辨率：640x1136*/
+                        "retina47" : "", /*4.7 英寸设备(iPhone6)启动图片，分辨率：750x1334*/
+                        "retina55" : "", /*5.5 英寸设备(iPhone6 Plus)启动图片，分辨率：1242x2208*/
+                        "retina55l" : "" /*5.5 英寸设备(iPhone6 Plus)横屏启动图片，分辨率：2208x1242*/
+                    },
+                    "ipad" : {
+                        "portrait" : "", /*iPad竖屏启动图片，分辨率：768x1004*/
+                        "portrait-retina" : "", /*iPad高分屏竖屏图片，分辨率：1536x2008*/
+                        "landscape" : "", /*iPad横屏启动图片，分辨率：1024x748*/
+                        "landscape-retina" : "", /*iPad高分屏横屏启动图片，分辨率：2048x1496*/
+                        "portrait7" : "", /*iPad iOS7竖屏启动图片，分辨率：768x1024*/
+                        "portrait-retina7" : "", /*iPad iOS7高分屏竖屏图片，分辨率：1536x2048*/
+                        "landscape7" : "", /*iPad iOS7横屏启动图片，分辨率：1024x768*/
+                        "landscape-retina7" : "" /*iPad iOS7高分屏横屏启动图片，分辨率：2048x1536*/
+                    }
+                },
+                "android" : {
+                    "mdpi" : "", /*普通屏启动图片，分辨率：240x282*/
+                    "ldpi" : "", /*大屏启动图片，分辨率：320x442*/
+                    "hdpi" : "", /*高分屏启动图片，分辨率：480x762*/
+                    "xhdpi" : "", /*720P高分屏启动图片，分辨率：720x1242*/
+                    "xxhdpi" : "" /*1080P高分屏启动图片，分辨率：1080x1882*/
+                }
+            },
+            "plugins" : {
+                "ad" : {},
+                "speech" : {
+                    "ifly" : {}
+                },
+                "geolocation" : {
+                    "baidu" : {
+                        "__platform__" : [ "ios", "android" ],
+                        "appkey_ios" : "RSIHCgeXKbO5lzesLB28DCKU48PNwAoi",
+                        "appkey_android" : "5DfgtMYzfffuvEi9GxvGXHqHTcFCjF8e"
+                    }
+                },
+                "maps" : {
+                    "baidu" : {
+                        "appkey_ios" : "RSIHCgeXKbO5lzesLB28DCKU48PNwAoi",
+                        "appkey_android" : "5DfgtMYzfffuvEi9GxvGXHqHTcFCjF8e"
+                    }
+                }
+            }
+        }
+    },
+    "dependencies" : {
+        "pages" : {
+            "adminlogin.html" : {
+                "resources" : [
+                    "js/jquery.min.js",
+                    "img/minlogo.png",
+                    "js/mui.min.js",
+                    "js/pages/share.js",
+                    "img/uncheck2.png",
+                    "css/mui.min.css",
+                    "img/plogo.png",
+                    "js/immersed.js"
+                ],
+                "refer" : [
+                    "adminwaitorderlist.html",
+                    "orderlist.html",
+                    "instockorderlist.html",
+                    "stockorderlist.html"
+                ],
+                "priority" : 0
+            },
+            "orderdetail.html" : {
+                "resources" : [],
+                "refer" : [ "orderlist.html", "myselfinfo.html", "picklist.html", "scan.html" ],
+                "priority" : 0
+            },
+            "myselfinfo.html" : {
+                "resources" : [],
+                "refer" : [
+                    "setUpInfo.html",
+                    "orderlist.html",
+                    "adminwaitorderlist.html",
+                    "stockorderlist.html",
+                    "scan.html",
+                    "purchaselist.html",
+                    "instockorderlist.html",
+                    "map.html"
+                ],
+                "priority" : 0
+            },
+            "setUpInfo.html" : {
+                "resources" : [],
+                "refer" : [ "adminlogin.html", "myselfinfo.html", "updatepassword.html" ],
+                "priority" : 0
+            },
+            "orderQCdetail.html" : {
+                "resources" : [],
+                "refer" : [ "scan.html", "orderlist.html", "myselfinfo.html" ],
+                "priority" : 0
+            },
+            "adminwaitorderlist.html" : {
+                "resources" : [],
+                "refer" : [ "adminorderlist.html", "myselfinfo.html" ],
+                "priority" : 0
+            },
+            "adminorderlist.html" : {
+                "resources" : [],
+                "refer" : [ "orderlistselect.html", "adminwaitorderlist.html" ],
+                "priority" : 0
+            },
+            "picklist.html" : {
+                "resources" : [],
+                "refer" : [ "orderlist.html", "orderdetail2.html" ],
+                "priority" : 0
+            },
+            "orderdetail2.html" : {
+                "resources" : [],
+                "refer" : [
+                    "orderlist.html",
+                    "myselfinfo.html",
+                    "picklist.html",
+                    "scan.html",
+                    "instockorderlist.html"
+                ],
+                "priority" : 0
+            },
+            "orderdetail3.html" : {
+                "resources" : [],
+                "refer" : [ "orderlist.html" ],
+                "priority" : 0
+            },
+            "orderlist.html" : {
+                "resources" : [],
+                "refer" : [
+                    "orderQCdetail2.html",
+                    "myselfinfo.html",
+                    "scan.html",
+                    "orderlist.html",
+                    "orderdetail2.html"
+                ],
+                "priority" : 0
+            },
+            "orderQCdetail2.html" : {
+                "resources" : [],
+                "refer" : [ "myselfinfo.html", "orderlist.html", "scan.html" ],
+                "priority" : 0
+            },
+            "scan.html" : {
+                "resources" : [],
+                "refer" : [
+                    "orderlist.html",
+                    "myselfinfo.html",
+                    "scan1.html",
+                    "orderQCdetail.html",
+                    "orderQCdetail2.html"
+                ],
+                "priority" : 0
+            },
+            "updatepassword.html" : {
+                "resources" : [],
+                "refer" : [ "setUpInfo.html" ],
+                "priority" : 0
+            },
+            "orderstatus.html" : {
+                "resources" : [],
+                "refer" : [ "orderlist.html" ],
+                "priority" : 0
+            },
+            "purchasedetail.html" : {
+                "resources" : [],
+                "refer" : [ "purchaselist.html" ],
+                "priority" : 0
+            },
+            "purchaselist.html" : {
+                "resources" : [],
+                "refer" : [ "myselfinfo.html" ],
+                "priority" : 0
+            },
+            "map.html" : {
+                "resources" : [],
+                "refer" : [ "myselfinfo.html" ],
+                "priority" : 0
+            },
+            "scan1.html" : {
+                "resources" : [],
+                "refer" : [ "scan.html" ],
+                "priority" : 0
+            }
+        },
+        "idle" : {
+            "resources" : [
+                "js/layer3.0.1/skin/default/loading-0.gif",
+                "js/layer3.0.1/mobile/need/layer.css",
+                "js/pages/binging.js",
+                "img/nav3.png",
+                "js/pages/edit-single.js",
+                "js/pages/select-special-tech.js",
+                "img/scan1.png",
+                "js/pages/yang-gao.js",
+                "img/nav02.png",
+                "img/zhuan.png",
+                "img/star1.png",
+                "fonts/mui.ttf",
+                "js/pages/lining-papers.js",
+                "js/layer2.4/skin/default/loading-0.gif",
+                "adminedit-single.html",
+                "img/icon16.png",
+                "img/stepbtn1.png",
+                "img/nextbtn.png",
+                "admin-select-special-tech.html",
+                "img/icon06.png",
+                "js/layer3.0.1/mobile/layer.js",
+                "img/statusline2.png",
+                "js/pages/inquiry-papers.js",
+                "img/icon14.png",
+                "Delivery.html",
+                "img/icon1.png",
+                "img/cookie.png",
+                "img/icon03.png",
+                "img/line.png",
+                "img/leftline.png",
+                "adminindex.html",
+                "select-papers.html",
+                "img/header.png",
+                "js/template-native.min.js",
+                "img/nav03.png",
+                "img/up.png",
+                "img/icon-index01.png",
+                "js/layer3.0.1/skin/default/loading-2.gif",
+                "css/swiper.min.css",
+                "admincustomlist.html",
+                "js/fly-zomm-img.js",
+                "img/info1.png",
+                "img/icon-user02.png",
+                "admininquiry-success.html",
+                "img/icon-user01.png",
+                "img/icon7.png",
+                "img/icon4.png",
+                "img/delete.png",
+                "img/slide.png",
+                "css/initialization1.css",
+                "forgetpassword.html",
+                "img/icon09.png",
+                "js/pick/mui.picker.min.js",
+                "img/icon8.png",
+                "js/pages/single-offer.js",
+                "img/uncheck.png",
+                "admineditsingle3.html",
+                "adminedit-single4.html",
+                "img/demo.jpg",
+                "js/mui.pullToRefresh.material.min.js",
+                "img/dellogo.png",
+                "feeding.html",
+                "img/icon08.png",
+                "img/icon2.png",
+                "other-papers.html",
+                "js/layer2.4/skin/default/icon.png",
+                "js/swiper.js",
+                "js/rem.js",
+                "img/nav1.png",
+                "admininquiry-comfirm.html",
+                "img/icon04.png",
+                "img/infolist.png",
+                "img/search.png",
+                "addpicking.html",
+                "img/info2.png",
+                "js/layer3.0.1/skin/default/loading-1.gif",
+                "img/icon01.png",
+                "js/pages/single-page.js",
+                "img/del.png",
+                "js/pages/single-size.js",
+                "css/mui.poppicker.min.css",
+                "img/note.png",
+                "css/mui.poppicker.css",
+                "img/icon-index02.png",
+                "img/pic.png",
+                "picking.html",
+                "outpicking.html",
+                "js/layer3.0.1/layer.js",
+                "img/radion01.png",
+                "add-remark.html",
+                "js/pick/mui.poppicker.js",
+                "img/icon13.png",
+                "img/waiaxie.png",
+                "img/icon-order01.png",
+                "js/layer2.4/layer_mobile/layer.js",
+                "img/icon5.png",
+                "img/icon3.png",
+                "js/pick/mui.poppicker.min.js",
+                "img/updatelogo.png",
+                "img/down.png",
+                "img/info3.png",
+                "adminordersearchlist.html",
+                "img/add.png",
+                "img/Check.png",
+                "instock.html",
+                "img/underline.png",
+                "img/border02.png",
+                "cover-laye.html",
+                "js/mui.js",
+                "js/layer3.0.1/skin/default/icon.png",
+                "js/pages/single-papers.js",
+                "img/stepbtn.png",
+                "img/icon001.png",
+                "js/pages/select-papers.js",
+                "js/pages/edit-inquiry.js",
+                "js/layer3.0.1/skin/default/icon-ext.png",
+                "img/border.png",
+                "img/icon6.png",
+                "js/layer2.4/skin/default/icon-ext.png",
+                "index.html",
+                "js/pages/other-Materials.js",
+                "img/checked.png",
+                "img/badd.png",
+                "js/pages/way.js",
+                "img/back2.png",
+                "js/pick/mui.picker.js",
+                "img/scan.png",
+                "customlist.html",
+                "admininquiry-papers.html",
+                "img/radion02.png",
+                "admineditsingle2.html",
+                "img/icon-order02.png",
+                "img/searchlist.png",
+                "img/icon15.png",
+                "img/icon02.png",
+                "addpicking2.html",
+                "js/layer2.4/skin/layer.css",
+                "img/bbtn.png",
+                "img/tip.png",
+                "img/nav2.png",
+                "js/layer2.4/skin/default/loading-2.gif",
+                "img/info4.png",
+                "number.html",
+                "img/upline.png",
+                "js/pages/adminway.js",
+                "img/logo.png",
+                "materials-request.html",
+                "js/layer3.0.1/skin/default/layer.css",
+                "js/layer2.4/skin/default/loading-1.gif",
+                "admin-select-papers.html",
+                "adminregister.html",
+                "lining-laye.html",
+                "stocklist.html",
+                "js/layer2.4/layer.js",
+                "js/pages/cover-papers.js",
+                "img/icon07.png",
+                "img/lininglog.png",
+                "goodCount.html",
+                "img/star.png",
+                "img/close.png",
+                "img/icon10.png",
+                "css/mui.picker.min.css",
+                "materials-success.html",
+                "img/scan01.png",
+                "img/addimage.png",
+                "js/pages/inside-papers.js",
+                "css/mui.css",
+                "img/icon05.png",
+                "img/icon11.png",
+                "js/pages/materiel.js",
+                "js/pages/all-papers.js",
+                "js/layer2.4/layer_mobile/need/layer.css",
+                "add-deliveryremark.html",
+                "img/back.png",
+                "css/rem.css",
+                "js/mui.pullToRefresh.min.js",
+                "img/select.png",
+                "outstock.html",
+                "select-special-tech.html",
+                "img/selected.png",
+                "css/mui.picker.css",
+                "img/grid-img.png",
+                "img/backbtn.png",
+                "admineditsingle.html",
+                "img/icon12.png",
+                "img/coverlog.png",
+                "img/nav01.png",
+                "img/orderlogo.png",
+                "img/statusline.png"
+            ]
+        }
+    },
+    "screenOrientation" : [ "portrait-primary" ]
+}

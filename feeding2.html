@@ -1,0 +1,199 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/initialization1.css"/>
+	</head>
+	<style type="text/css">
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		html,body{
+			width: 100%;
+			background-color: #FFFFFF;
+			
+		}
+		.headtitle{
+			width: 100%;
+			text-align: center;
+			color: #808080;
+			margin-top: 25%;
+			position: relative;
+			border: 1px solid #FFFFFF;
+			
+		}
+		.headtitle p:nth-child(1){
+			font-size: 2.3rem;
+			line-height: 3rem;
+		}
+		.headtitle p:nth-child(2){
+			font-size: 1.1rem;
+			line-height: 2rem;
+		}
+		.headtitle p:nth-child(3){
+			font-size: 1.1rem;
+			line-height: 2rem;
+		}
+		.content button{
+			width: 80%;
+			height: 50px;
+			border: 0px;
+			background-color: #ff6600;
+			color: #FFFFFF;
+			border-radius: 8px;
+			margin-left: 10%;
+			margin-top: 50px;
+		}
+
+		.papercol span{
+			margin-left: 6px;
+			color: #ff6f00;
+		}
+		.papercol p{
+			line-height: 25px;
+		}
+		.papercol span img{
+			height:20px;
+			width: auto;
+		}
+		.papercol span input{
+			height: 20px;
+			width: 20%;
+			border: 0px;
+			text-align: left;
+			margin-bottom: 0px;
+			padding: 0px;
+			font-size: 1rem;
+			
+		}
+		textarea{
+			background-color:#FFFFFF;
+			border: 0px;
+			color: #8f8f94;
+			font-size: 16px;
+			padding: 0px;
+			min-height: 60px;
+			word-break:break-all;
+		}
+		#num{
+			width: 70%;
+		}
+	</style>
+
+	<body>
+		<div class="content">
+			<div class="papercol" style="margin-top: 20px;">
+				<p>物料<span class="material"  style="margin-right: 50px;"></span></p>
+			</div>
+			<div class="papercol">
+				<p>数量：<span><input type="number" name="num" id="num" value="" /></span></p>
+			</div>
+			<div class="papercol">
+				<!--<p class="reasontitle">填写原因-必须填写:</p>-->
+				<textarea name="reason" rows="" cols="" placeholder="填写原因-必须填写:"></textarea>
+			</div>
+			<div class="papercol">
+				&nbsp;
+			</div>
+			
+			
+			<button class="back" id="submit">确认补料</button>
+			
+		</div>
+	</body>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/layer3.0.1/layer.js"></script>
+		<script type="text/javascript" src="js/pages/share.js"></script>
+
+		<script type="text/javascript">
+			mui.init();
+			var index = parent.layer.getFrameIndex(window.name);
+			function getUrlParam(name) {
+			    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+			    var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+			    if (r != null) return decodeURI(r[2]); return null; //返回参数值
+			}
+			
+			
+		
+			
+			var psMaterialName = parent.$('#caseid3').attr('psMaterialName');
+			console.log(psMaterialName)
+			$('.material').html(psMaterialName);
+			$('input[type="number"]').keypress(function(event){
+				var key = event.key;
+				if (key === 'e' || key === 'E' || key === '+' || key === '-') {
+					event.returnValue = false;
+					return false;
+				}
+				return true;
+			})
+			$('.reasontitle').on('tap',function(){
+				$('.reason').focus();
+			})
+			$('#submit').on('tap',function(){
+				var psMaterialId = parent.$('#caseid3').attr('psMaterialId');
+				
+				var objId =  parent.$('#caseid3').attr('objId');
+				var workOrderId = parent.$('#caseid3').attr('workorderid');
+				var num = $('input[name="num"]').val();
+				var reason = $('textarea[name="reason"]').val();
+				if(num==''){
+					mui.toast('请填写数量');
+					return false;
+				}
+				if(reason == ''){
+					mui.toast('请填写原因');
+					return false;
+				}
+				$.ajax({
+					type:"post",
+					dataType:'json',
+					url:ajaxUrlPath+"/mobile/workOrder/paperCuttingFeeding",
+					data:{
+						type:2,
+						objId:objId,
+						workOrderId:workOrderId,
+						memberId:localStorage.getItem("memberId"),
+						materialId:psMaterialId,
+						num:num,
+						reason:reason,
+					},
+					success:function(data){
+						if(data.code==0){
+							layer.alert('补料已完成', { title:'提示'}, function(index){
+								if(index==1){
+//									parent.layer.close(index);
+									parent.$('#caseid3').hide();
+									parent.$('html').css('height',"auto");
+									parent.$('html').css('overflow','auto');
+									parent.$('body').css('height',"auto");
+									parent.$('body').css('overflow','auto');
+									if(localStorage.getItem('pos')!=null){
+					 					parent.$('body,html').animate({scrollTop: localStorage.getItem('pos')+'px'},200);
+					 				}else{
+					 					parent.$('body,html').animate({scrollTop: '0px'},200);
+					 				}
+								}
+							})
+//							;
+						}else{
+							mui.toast(data.message);
+						}
+//						
+					}
+				})
+				
+				
+				
+				
+				
+			})
+		</script>
+</html>

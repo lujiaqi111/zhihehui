@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<title>印刷通-报价</title>		<link rel="stylesheet" type="text/css" href="css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/rem.css"/>
+		<link rel="stylesheet" type="text/css" href="css/initialization1.css"/>		<style type="text/css">
+			#text{			    box-shadow: 0px 1px 6px #c3c3c3;			    border-radius: 10px;			    width: 90%;			    height: 400px;			    margin-left: 4%;			    background-color: #FFFFFF;			    margin-top: 10px;			}			body,html{				background-color: #f2f2f2;				width: 100%;				height: 100%;							}			.title{				width: 100%;				height: 60px;				background-color: #ff6f00;				color: #FFFFFF;				/*margin-top: 80px;*/			}			.search{				width: 100%;				height: 60px;/*				background-color: red;*/			}			.search span{				display: inline-block;				float: left;				line-height: 50px;				font-size: 20px;				font-weight: inherit;				padding-left: 10px;			}			#search{				float: left;				width: 250px;				height: 40px;				border-radius: 20px;				background-color: #ff9a4d;				margin-top: 10px;				margin-left: 10px;			}			#search img{				display: block;				height: 20px;				width: 20px;				margin: 10px;				float: left;			}			#search input{				display: block;				float: left;				width: 200px;				background-color: rgba(0,0,0,0);				border: 0px;				text-align: left;    			color: #ffffff;			}			.list{				width: 100%;				height: 60px;				text-align: center;			}			.list ul li{				width: 16%;				height: 60px;				float: left;											}			.list ul li p{				color: #FFFFFF;			}			.list ul li p:first-child{				font-size: 18px;			}			.list ul li p:last-child{				font-size: 12px;			}			.orderlist{				width: 90%;				min-height: 110px;				/*background-color: red;*/				margin-left: 5%;				margin-top: 10px;			}			.orderlist ul li{				width: 100%;				height: 93px;				background-color: #FFFFFF;				margin-top: 10px;				border: 1px solid rgba(0,0,0,0.2);				border-radius: 5px;				cursor: pointer;			}			.rightinfo ul li p{				height: 20px;				position: relative;			}			.tip{				height: 30px;				position: relative;			}			.tip span{				height: 30px;			}			.tip:after{				content: '';				display: block;				position: absolute;				width: 90%;				left: 5%; 				bottom: 0;				height: 1px;				background-color: #c8c7cc;				transform: scaleY(0.5);			}			.leftspan{				display:inline-block ;				float: left;				padding: 6px;				font-size: 16px;				height: 30px;				color: #ff6f00;				width: 40%;				text-overflow:ellipsis;				white-space:nowrap;				overflow:hidden;							}			.rightspan{				display: inline-block;				text-align: right;				float: right;				padding: 6px;				font-size: 16px;				height: 30px;				width: 60%;			}			.info{				width: 100%;				height: 66px;				position: relative;				display:flex;			}			.info div{				float: left;			}			.leftinfo{				width: 66px;				height: 66px;							}			.orderlogo{				width: 50px;				height: 50px;				border: 1px solid #FFFFFF;				border-radius: 50%;				margin: 8px;				/*background-color: #ff6f00;*/				text-align: center;			}			.orderlogo img{				display: inline-block;				width: auto;				height: 100%;							}			.rightinfo{				height: 66px;				flex: 1;			}			.ordername{				font-size: 12px;			}			.orderinfo{				font-size: 12px;				width: 100%;		        overflow:hidden;		        text-overflow:ellipsis; 		        /*white-space: nowrap;/*加宽度width属来兼容部分浏览*/*/			}			.del{				position: absolute;				right: 6px;				top: 6px;			}			.del img{				width: 20px;			}			.price{				position: absolute;				right: 6px;				bottom: 6px;				font-size: 16px;				color: #ff6f00;			}			.list .active{				color: #ffee4d !important;				background-color: #ff6f00 !important;			}			.orderlist{				padding-bottom: 30px;			}			.totalPrice{				display: inline-block;				float: right;				font-size: 16px;				color: #FF6F00;				margin-right: 10px;			}			.ordernum{				display: inline-block;				float: right;				text-align: right;				padding-right: 20px;				line-height: 24px;			}			.back img{				height: 24px;				padding-right:6px ;				display: inline-block;				line-height: 24px;			}
+		</style>		
+	</head>
+	<body>		<!--<div class="mui-scroll-wrapper">
+			<div class="mui-scroll">-->
+		<h1 class="header">			<span class="back">				<img  style="" src="img/backbtn.png"/>				申购单审核			</span>		</h1>		<div class="orderlist">
+			<ul id="content" style="margin-bottom: 30px;">				<!--<img src="img/zwsj.png" style="display: block;position: absolute;left: 0;top: 0;right: 0;bottom: 0;margin: auto;"/>
+				<p style="text-align: center;font-size: 24px;margin-top: 30px;">暂无数据</p>-->
+				<!--<li>
+						<p class="tip"><span class="leftspan">画册211-35365</span><span class="rightspan">2019-8-25</span></p>
+						<div class="info">
+							<div class="leftinfo">
+								<div class="orderlogo">
+									<img src="img/orderlogo.png"/>
+								</div>
+							</div>
+							<div class="rightinfo">
+								<p class="ordername">画册211-64746577</p>
+								<p class="orderinfo">16：45已经开始印刷</p>
+								<p class="orderinfo">16：45已经开始印刷</p>
+							</div>
+							<div class="del">
+								<img src="img/dellogo.png"/>
+							</div>
+							<div class="price">
+								<span>￥:2300.00</span>
+							</div>
+						</div>
+				</li>
+				<li>
+					<p class="tip"><span class="leftspan">画册211-35365</span><span class="rightspan">2019-8-25</span></p>
+						<div class="info">
+							<div class="leftinfo">
+								<div class="orderlogo">
+									<img src="img/orderlogo.png"/>
+								</div>
+							</div>
+							<div class="rightinfo">
+								<p class="ordername">画册211-64746577</p>
+								<p class="orderinfo">16：45已经开始印刷</p>
+								<p class="orderinfo">16：45已经开始印刷</p>
+							</div>
+							<div class="del">
+								<img src="img/dellogo.png"/>
+							</div>
+							<div class="price">
+								<span>￥:2300.00</span>
+							</div>
+						</div>
+				</li>
+				<li>
+					<p class="tip"><span class="leftspan">画册211-35365</span><span class="rightspan">2019-8-25</span></p>
+						<div class="info">
+							<div class="leftinfo">
+								<div class="orderlogo">
+									<img src="img/orderlogo.png"/>
+								</div>
+							</div>
+							<div class="rightinfo">
+								<p class="ordername">画册211-64746577</p>
+								<p class="orderinfo">16：45已经开始印刷</p>
+								<p class="orderinfo">16：45已经开始印刷</p>
+							</div>
+							<div class="del">
+								<img src="img/dellogo.png"/>
+							</div>
+							<div class="price">
+								<span>￥:2300.00</span>
+							</div>
+						</div>
+				</li>
+				<li>
+					<p class="tip"><span class="leftspan">画册211-35365</span><span class="rightspan">2019-8-25</span></p>
+						<div class="info">
+							<div class="leftinfo">
+								<div class="orderlogo">
+									<img src="img/orderlogo.png"/>
+								</div>
+							</div>
+							<div class="rightinfo">
+								<p class="ordername">画册211-64746577</p>
+								<p class="orderinfo">16：45已经开始印刷</p>
+								<p class="orderinfo">16：45已经开始印刷</p>
+							</div>
+							<div class="del">
+								<img src="img/dellogo.png"/>
+							</div>
+							<div class="price">
+								<span>￥:2300.00</span>
+							</div>
+						</div>
+				</li>-->
+			</ul>
+		</div>		<!--</div>
+		</div>-->					
+	</body>
+	<script type="text/javascript" src="js/jquery.min.js"></script>	<script type="text/javascript" src="js/mui.min.js"></script>
+	<script type="text/javascript" src="js/layer3.0.1/layer.js"></script>	<script type="text/javascript" src="js/immersed.js"></script>
+	<script src="js/pages/share.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="js/pages/other-Materials.js"></script>	<script type="text/javascript">		var status = '';		var name = '';		$('.back').on('tap',function(){			window.location = 'myselfinfo.html';		})//		mui.init();
+//		(function($){
+//
+//		    $(".mui-scroll-wrapper").scroll();
+//		})(mui);		window.ontouchmove=function(e){	        e.preventDefault && e.preventDefault();	        e.returnValue=true;	        e.stopPropagation && e.stopPropagation();	        return true;		}		list();		$('.list ul li').on('tap',function(){			console.log('qqq');			$(this).find('p').addClass('active');			$(this).siblings().find('p').removeClass('active');			status = $(this).attr('status');			list();		})//		pushHistory(); 
+//	    window.addEventListener("popstate", function(e) { 
+//	    	plus.runtime.quit();
+//	      	
+//	    }, false); 
+//	    function pushHistory() { 
+//	      var state = { 
+//	        title: "title", 
+//	        url: "#"
+//	      }; 
+//	      window.history.pushState(state, "title", "#"); 
+//	    }		var flag1 = false;		$('#searchkey').on({			'compositionstart': function() {					      flag1 = true;					    },					    'compositionend': function() {					      flag1 = false;					      if(!flag1) {					      	name = $('#searchkey').val();					        list(name,status);					      }					    },					    'input propertychange': function() {					        if(!flag1) {					        	name = $('#searchkey').val();						       list(name,status); 					        }					    }		})		
+				function list(){			$.ajax({				type:"get",				dataType:'json',				url:ajaxUrlPath+"/mobile/material/apply/list",				data:'',				success:function(data){					console.log(JSON.stringify(data));						var li = '';						console.log(data.rows.length);						if(data.rows.length>0){							for (var i = 0; i < data.rows.length; i++) {								var imgsrc = 'img/icon4.png'	//							if(data.result[i].bindingMethod=="骑马订"){	//								imgsrc = 'img/icon4.png'	//							}else if(data.result[i].bindingMethod=="缝线装"){	//								imgsrc = 'img/icon5.png'	//							}else if(data.result[i].bindingMethod=="圈装"){	//								imgsrc = 'img/icon7.png'	//							}else if(data.result[i].bindingMethod=="锁线裸装"){	//								imgsrc = 'img/icon6.png'	//							}else if(data.result[i].bindingMethod=="软面精装" || data.result[i].bindingMethod=="硬面精装"){	//								imgsrc = 'img/icon3.png'	//							}else if(data.result[i].bindingMethod=="锁线胶装"){	//								imgsrc = 'img/icon1.png'	//							}else if(data.result[i].bindingMethod=="无线胶装"){	//								imgsrc = 'img/icon2.png'	//							}else if(data.result[i].bindingMethod=="其他装订"){	//								imgsrc = 'img/icon8.png'	//							}																									li += '<li workOrderId="'+data.rows[i].id+'" >'+						'<p class="tip"><span class="leftspan" >'+data.rows[i].applyNo+'</span><span class="rightspan">'+data.rows[i].arrivalTime+'</span></p>'+							'<div class="info">'+								'<div class="leftinfo">'+									'<div class="orderlogo">'+										'<img src="'+imgsrc+'"/>'+									'</div>'+								'</div>'+								'<div class="rightinfo">'+									'<p class="orderinfo"> '+data.rows[i].brand+' '+data.rows[i].name+' '+data.rows[i].normal+' '+data.rows[i].weight+' '+(data.rows[i].normal=='标规'?"":(data.rows[i].length+'*'+data.rows[i].width))+' '+data.rows[i].num+'</p>'+									'<p class="orderinfo" >'+data.rows[i].supplierName+' <span class="totalPrice">￥'+data.rows[i].totalPrice+'</span>'+'</p>'+								'</div>'+							'</div>'+					'</li>'																																					}							}else{							li='<img src="img/zwsj.png" style="display: block;position: absolute;left: 0;top: 0;right: 0;bottom: 0;margin: auto;"/>'+				'<p style="text-align: center;font-size: 24px;margin-top: 30px;">暂无数据</p>'						}												console.log(li)						$('#content').html(li);						$('#content li').on('tap',function(){														var result = $(this).attr('workOrderId');//							localStorage.setItem('pos',0);							setTimeout(function(){								var authorityType = localStorage.getItem('authorityType')								window.location = 'purchasedetail.html?result='+result;															},400);						})																					}			})		}								
+	</script>
+</html>

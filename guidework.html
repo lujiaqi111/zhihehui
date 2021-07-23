@@ -1,0 +1,100 @@
+<!DOCTYPE html><html>	<head>		<meta charset="UTF-8">		<meta http-equiv="X-UA-Compatible" content="IE=edge">		<!--<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />-->		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">		<meta name="apple-mobile-web-app-capable" content="yes">		<meta name="apple-mobile-web-app-status-bar-style" content="black">		<meta name="format-detection" content="telephone=no">		<title>印刷通-报价</title>		<link rel="stylesheet" type="text/css" href="css/mui.min.css"/>		<link rel="stylesheet" type="text/css" href="css/rem.css"/>				<link rel="stylesheet" type="text/css" href="css/initialization1.css"/>		<style type="text/css">
+			textarea{
+				word-break:break-all;
+			}			body,html{				background-color: #FFFFFF;				overflow-y: scroll;    				-webkit-overflow-scrolling: touch;			}									.back img{				height: 24px;				padding-right:6px ;				display: inline-block;				line-height: 24px;			}			.status{				color: #ff7206;				line-height: 30px;			}			.papercol span:nth-child(1){				/*padding: 1.0rem ;*/			}
+			.orderstatus{
+				position: relative;
+			}			.orderstatus button{				color: #FFFFFF;				background-color: #ff6f00;				border: 0px;				border-radius: 6px;				float: right;				margin-right: 10px;			}									.orderdetail p.bigline{				line-height: 40px;			}			.mui-table-view-cell:after{				height: 0px;			}			.mui-table-view-cell{				margin-bottom: 6px;				padding: 8px 15px;			}									.stepbtn{				width: 100%;				height: 30px;			}			.stepbtn img{				float: right;				display: inline-block;				height: 10px;				width: auto;				margin-right: 30px;			}									.ordercol ul li{				display: inline-block;				float: left;			}			/*.orderdetail p>span.col3{
+				display: inline-block;
+				width: 90px;
+			}*/			.orderdetail p>span.col4{				display: inline-block;				width: 70px;			}			.orderdetail p>span.col5{				display: inline-block;				width: 90px;			}			.orderdetail p>span{				margin-right: 15px;			}								.header{				position: fixed;			    top: 0;			    width: 100%;			    z-index: 99999;			}			#content{				margin-top: 54px;				overflow: auto;				margin-bottom: 30px;				height:100%;				overflow-Y:scroll;				-webkit-overflow-scrolling:touch;			}			.flexd{				position: fixed;				width: 100%;			}									.list{				/*width: 100%;*/				min-height: 60px;				/*background-color: antiquewhite;*/				/*margin-top: 54px;*/				overflow-y: scroll;				margin-bottom: 10px;			}			.list li{				width: auto;				/*height: 35px;*/				border: 1px solid #CCCCCC;				border-radius: 5px;				background-color: #CCCCCC;				float: left;				margin-top: 10.5px;				margin-left: 5px;				color: #FFFFFF;				text-align: center;				line-height: 35px;				padding: 0px 5px;							}			.active{				background-color: #FF6F00;			}			.nav{
+				padding: 0 10px;
+			}			.nav img{
+				width: 100% !important;
+				/* background-size: 100% 100%;
+				display: block;
+				height: auto; */
+			}
+			
+			
+		</style>	</head>	<body class="mian">		<!--<div class="mui-scroll-wrapper">
+		<div class="mui-scroll">-->		<h1 class="header">			<span class="back">				<img  style="" src="img/backbtn.png"/>				作业指导书			</span>		</h1>		<div class="container" id="content">			<div class="orderdetail">
+				<ul class="list">
+					<!-- <li class="active">指导书A</li>
+					<li>指导书B</li>
+					<li>指导书C</li>
+					<li>指导书A</li>
+					<li>指导书B</li>
+					<li>指导书C</li> -->
+				</ul>
+				<div class="nav">
+					
+				</div>	
+					
+			</div>
+		</div>	</div>				</body>	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>	<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>	<script type="text/javascript" src="js/template-native.min.js"></script>	<!--<script type="text/javascript" src="js/immersed.js"></script>-->	<script type="text/javascript" src="js/pages/share.js"></script>	<script type="text/javascript" src="js/layer3.0.1/layer.js"></script>	<script type="text/javascript">
+		function getUrlParam(name) {
+			    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+			    var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+			    if (r != null) return decodeURI(r[2]); return null; //返回参数值
+		}
+		var type = getUrlParam('type');
+		if(type){
+			$('.back').on('tap',function(){
+				location.href = 'orderdetail2.html?result='+type;
+			})
+		}else{
+			$('.back').on('tap',function(){
+				location.href = 'myselfinfo.html';
+			})
+		}
+		$.ajax({
+			type:"post",
+			url:ajaxUrlPath+"/mobile/careerInstructions/list",
+			data:{
+				pageNo:1,
+				pageSize:20,
+				
+			},
+			success:function(data){
+				console.log(JSON.stringify(data));
+				if(data.code == 0){
+					var li = ''
+					for (var i=0;i<data.result.length;i++){ 
+					    li += '<li id="'+data.result[i].id+'">'+data.result[i].name.replace(/工序作业指导书/ig, '')+'</li>'
+					}
+					$('.list').html(li);
+					$('.list li').eq(0).addClass('active');
+					var initid = $('.list li').eq(0).attr('id');
+					instructiondetail(initid)
+					$('.list li').on('tap',function(){
+						$(this).addClass('active');
+						$(this).siblings().removeClass('active');
+						var id = $(this).attr('id');
+						console.log(id);
+						instructiondetail(id)
+					})
+					
+				}
+			},
+		})
+		function instructiondetail(id){
+			$.ajax({
+				type:"post",
+				url:ajaxUrlPath+"/mobile/careerInstructions/getById",
+				data:{
+					id:id
+				},
+				success:function(data){
+					console.log(JSON.stringify(data));
+					if(data.code == 0){
+						$('.nav').html(data.result.detail);
+						
+						
+					}
+				},
+			})
+		}
+		
+
+			</script></html>

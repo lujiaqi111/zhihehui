@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<title>印刷通-报价</title>		<link rel="stylesheet" type="text/css" href="css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/rem.css"/>
+		<link rel="stylesheet" type="text/css" href="css/initialization1.css"/>		<style type="text/css">			body,html{				background-color: #f2f2f2;				width: 100%;				height: 100%;							}						h3.header{				background-color: #f2f2f2;				color: #888888;			}			.set{				text-align: center;				display: inline-block;				width: 80%;			}			.content{				width: 100%;				height: auto;			}			#content li{				width: 96%;				min-height: 60px;				margin-left: 2%;				background-color: #646465;				margin-top: 10px;				border-radius: 6px;			}			#content li:first-child{				background-color: #ff6f00;			}			.left,.right,.circle{				float: left;							}			.left p,.right p{				color: #FFFFFF;			}			.left p:first-child{				font-size: 14px;			}
+			.left p:last-child{
+				font-size: 14px;
+			}			.left p{				/* display: inline-block; */				/* line-height: 30px; */				font-weight:lighter;				vertical-align: middle;			}			.right p{				text-align: right;				padding-right: 15px;				line-height: 60px;				font-size: 14px;				font-weight:lighter;			}			.circle{				width: 20%;				position: relative;			}			.left{				width: 45%;				margin-left: 20%;				line-height: 60px;			}			.right{				width: 35%;			}			.circle img{				position: absolute;				margin-top: 20px;			}
+		</style>		
+	</head>
+	<body>
+		<h3 class="header"><span class="back back1"><img  style="height: 20px;padding-right:10px ;" src="img/bbtn.png"/></span><span class="set">订单状态</span></h3>				<div class="content">
+			<ul id="content">
+				<!-- <li>
+					<div class="circle">
+						<img src="img/statusline.png" />
+					</div>
+					<div class="left">
+						<p>质检完成质检完成质检完成质检完成</p>
+						<p>负责人:</p>
+					</div>
+					<div class="right">
+						<p>08-31 14:00</p>
+					</div>
+				</li>
+				
+				<li>
+					<div class="circle">
+						<img src="img/statusline2.png" />
+					</div>
+					<div class="left">
+						<p>质检完成</p>
+					</div>
+					<div class="right">
+						<p>08-31 14:00</p>
+					</div>
+				</li> -->
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript" src="js/jquery.min.js"></script>	<script type="text/javascript" src="js/mui.min.js"></script>
+	<script type="text/javascript" src="js/layer3.0.1/layer.js"></script>
+	<script src="js/pages/share.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="js/pages/other-Materials.js"></script>	<script type="text/javascript">		$('.back').on('click',function(){				mui.back()		})		window.ontouchmove=function(e){	        e.preventDefault && e.preventDefault();	        e.returnValue=true;	        e.stopPropagation && e.stopPropagation();	        return true;		}//		function getUrlParam(name){
+//		
+//			var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)"); 
+//		
+//			var r = window.location.search.substr(1).match(reg);  
+//		
+//			if (r!=null) 
+//		
+//				return unescape(r[2]); 
+//		
+//			return null; 
+//		
+//		}//		var enquiryorderid = getUrlParam('enquiryorderid');		document.addEventListener('plusready', function(){
+   			//console.log("所有plus api都应该在此事件发生后调用，否则会出现plus is undefined。"
+		});
+//		       扩展API加载完毕后调用onPlusReady回调函数
+		document.addEventListener('plusready', onPlusReady, false);
+			// 扩展API加载完毕，现在可以正常调用扩展API
+		function onPlusReady(){
+				// 获取apk/ipa版本号
+//				alert('Application(apk/ipa) version：' + plus.runtime.version);
+				$('.system').html(plus.runtime.version);
+		}		mui.plusReady(function() {	        var self = plus.webview.currentWebview();			console.log(JSON.stringify(self));	        var enquiryorderid = self.enquiryorderid;			$.ajax({
+					type:"post",
+					url:ajaxUrlPath+"/mobile/enquiryOrder/getOrderStatusRecord",
+					async:true,
+					data:{
+						enquiryOrderId:enquiryorderid,
+					},
+					success:function(data){
+						// alert(JSON.stringify(data));
+						if(data.code==0){							var li = '';							for (var i = 0; i < data.result.length; i++) {
+								var height = 30;								var srcimg ='img/statusline.png'								if(i == data.result.length-1){									srcimg = 'img/statusline2.png'								}								if(data.result[i].desc.length>13){
+									height = 20;
+								}else{
+									height = 30;
+								}
+								li += '<li ><div class="circle">'+									'<img src="'+srcimg+'" />'+								'</div>'+								'<div class="left">'+									'<p style="line-height:'+height+'px">'+data.result[i].desc+'</p>'+
+									'<p style="line-height:'+height+'px">负责人:'+data.result[i].userName+'</p>'+								'</div>'+								'<div class="right">'+									'<p>'+(data.result[i].createTime==undefined?'':data.result[i].createTime.substring(5,16))+'</p>'+
+								'</div></li>';
+													
+							}							$('#content').html(li);
+							
+						}else{
+							mui.toast(data.message);
+						}
+					}
+					
+				});				})				
+	</script>
+</html>

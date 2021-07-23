@@ -1,0 +1,334 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/initialization1.css"/>
+	</head>
+	<style type="text/css">
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		html,body{
+			width: 100%;
+			background-color: #FFFFFF;
+			
+		}
+		.headtitle{
+			width: 100%;
+			text-align: center;
+			color: #808080;
+			margin-top: 25%;
+			position: relative;
+			border: 1px solid #FFFFFF;
+			
+		}
+		.headtitle p:nth-child(1){
+			font-size: 2.3rem;
+			line-height: 3rem;
+		}
+		.headtitle p:nth-child(2){
+			font-size: 1.1rem;
+			line-height: 2rem;
+		}
+		.headtitle p:nth-child(3){
+			font-size: 1.1rem;
+			line-height: 2rem;
+		}
+		.content button{
+			width: 21%;
+			height: 40px;
+			border: 0px;
+			background-color: #ff6600;
+			color: #FFFFFF;
+			border-radius: 8px;
+			margin-top: 10px;
+			margin-right: 10px;
+		}
+
+		.papercol span{
+			margin-left: 6px;
+			color: #ff6f00;
+		}
+		.papercol span img{
+			height:20px;
+			width: auto;
+		}
+		.papercol span:nth-child(1){
+			/*display: inline-block;*/
+			/*width: 100px;*/
+		}
+		.papercol span input{
+			height: 20px;
+			width: 70%;
+			border: 0px;
+			text-align: left;
+			margin-bottom: 0px;
+			padding: 0px;
+			font-size: 1rem;
+		}
+		.papercol .righttext{
+			display: inline-block;
+			float: right;
+			margin-right: 20px;
+		}
+		.papercol b{
+			font-size: 30px;
+			margin-left: 20px;
+		}
+		.totle{
+			text-align: center;
+			padding: 30px 0px 10px 0px;
+		}
+		.totle span{
+			color: #ff6f00;
+		}
+		.papercol img{
+			width: 50px;
+			height: 50px;
+			margin-right: 10px;
+			margin-left: 10px;
+		}
+		#fileForm{
+			display: inline-block;
+		    float: left;
+		    position: absolute;
+		    top: 30px;
+		    width: 70px;
+		    left: 30%;
+		    z-index: 1000;
+		    opacity: 0;
+
+		}
+		#uploadimage{
+			display: inline-block;
+			float: left;
+			position: absolute;
+			top: 20px;
+			left: 30%;
+		}
+		#addMemo{
+			display: inline-block;
+			float: left;
+			position: absolute;
+			top: 20px;
+			left: 53%;
+		}
+		#finish{
+			display: inline-block;
+			float: left;
+			position: absolute;
+			top: 20px;
+			left: 76%;
+		}
+	</style>
+
+	<body>
+		<div class="content">
+			<div class="papercol">
+				<p><span style="color: #8f8f94;" class="name"></span> </p>
+				<p><font class="time"></font></p>
+				<p style="margin-top: 10px;">下单数量<span style="margin-right: 10px;"><span class="printNum">1000</span>份</span>本次送货数量<span><span class="num">500</span>份</span></p>
+				<p style="margin-top: 10px;">包装明细<span class="packDetail">50份/箱X10箱</span></p>
+			</div>
+			<div class="papercol">
+				<p>送货方式<span style="margin-right: 10px;" class="expressType">配送</span>承运公司<span class="expressName">-----</span></p>
+				<p style="margin-top: 10px;">配送信息<span style="margin-right: 10px;" class="address">杭州市拱墅区科园路7号2号楼</p>
+				<!--<p style="margin-top: 10px;"><span style="margin-right: 10px;margin-left: 70px;" class="customeName">王总</span><span class="mobile">13888888888</span></p>-->
+			</div>
+			<div class="papercol">
+				<p>备注<span class="memo">无</span></p>
+			</div>
+			<div class="papercol">
+				<div id='getRecord'>
+					<img src="img/pic.png" id="view1" style="opacity: 0;"/>
+				</div>
+				
+				<form id="fileForm"  enctype="multipart/form-data" method="post">
+						<div>
+							<input type="file" class="easyui-filebox" name="image" id="file" type=""
+				                 data-options="buttonText:'选择',prompt:'请选择上传文件'" style="width:100%" > 
+				        </div>
+				</form>
+
+				<button class="back" id="uploadimage">上传</button>
+				<button class="back" id="addMemo">备注</button>
+				<button class="back" id="finish">完成</button>
+			</div>
+			
+		</div>
+		<div id="photograph" class="mui-popover mui-popover-bottom mui-popover-action ">
+		    <!-- 可选择菜单 -->
+		    <ul class="mui-table-view">
+		      	<li class="mui-table-view-cell">
+		        	<a onclick="getImage()" href="javascript:;">拍照</a>
+		      	</li>
+		      	<li class="mui-table-view-cell">
+		       		<a onclick="galleryImg()" href="javascript:;">从相册中选择</a>
+		      	</li>
+		    </ul>
+		    <!-- 取消菜单 -->
+		    <ul class="mui-table-view">
+		      	<li class="mui-table-view-cell">
+		        	<a href="#photograph">取消</a>
+		      	</li>
+		    </ul>
+		</div>
+	</body>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/layer3.0.1/layer.js"></script>
+		<script type="text/javascript" src="js/pages/share.js"></script>
+		<script src="js/fly-zomm-img.js"></script>
+		<script type="text/javascript">
+			var index = parent.layer.getFrameIndex(window.name);
+			function getUrlParam(name) {
+			    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+			    var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+			    if (r != null) return decodeURI(r[2]); return null; //返回参数值
+			}
+			var paperCuttingId  = getUrlParam('paperCuttingId');
+			var workOrderId  = getUrlParam('workOrderId');
+			var pntype = getUrlParam('pntype');
+			var key = getUrlParam('key');
+			var plateId = getUrlParam('plateId');
+			console.log(key);
+			mui.init();
+			window.addEventListener('resize', function () {
+				if (document.activeElement.tagName == 'INPUT' || document.activeElement.tagName == 'TEXTAREA') {
+					document.activeElement.scrollIntoView({ behavior: "smooth" , inline: "nearest"});
+				}
+			})
+			$("input").on("focus",function(){
+				    var top = $(this).offset().top;
+			            $('body').animate({
+			                scrollTop: top-200
+			            })
+			})
+			$("textarea").on("focus",function(){
+					    var top = $(this).offset().top;
+			            $('body').animate({
+			                scrollTop: top-200
+			            })
+			})
+//			$('.back').on('click tap',function(){
+//				parent.parent.window.location.href = "adminorderlist.html"
+//			})
+			$("#file").change(function () {
+				var formData = new FormData($('#fileForm')[0]);//获取表单中的文件
+           		console.log(formData);
+           $.ajax({
+               url:ajaxUrlPath+'/mobile/image/saveImage',//后台的接口地址
+               type:"post",//post请求方式
+               data:formData,//参数
+               cache: false,
+               processData: false,
+               contentType: false,
+               success:function (data) {
+                   //处理返回参数
+                   if(data.code==0){
+                   		$('#view1').attr('src',data.result.viewUrl)
+                   		$('#view1').css('opacity','1');
+                   }
+               },error:function () {
+                   alert("操作失败~");
+               }
+ 
+           })
+			   
+			});
+			$('#getRecord').FlyZommImg({
+			  rollSpeed: 200,//切换速度
+			  miscellaneous: false,//是否显示底部辅助按钮
+			  closeBtn: true,//是否打开右上角关闭按钮
+			  hideClass: 'hideImg',//不需要显示预览的 class
+			  imgQuality: 'thumb',//图片质量类型  thumb 缩略图  original 默认原图
+			  slitherCallback: function (direction, DOM) {//左滑动回调 两个参数 第一个动向 'left,firstClick,close' 第二个 当前操作DOM
+			    setTimeout(function(){
+			       // 为了一开始居中显示
+			      $('.fly-zoom-box-img').css('width','100%').css('height','auto').css('top',0).css('bottom',0).css('margin','auto');
+			    },300)
+			  }
+			});
+			$('.check').on('tap',function(){
+				console.log($(this).attr('src'));
+				if($(this).attr('src') == 'img/uncheck2.png'){
+					$(this).attr('src','img/checked.png');
+					$(this).parent().siblings().find('img').attr('src','img/uncheck2.png');
+				}else{
+					$(this).attr('src','img/uncheck2.png');
+				}
+			})
+			mui.plusReady(function() {    
+	              var images=document.querySelectorAll('img'); 
+	              var urls=[];    
+	              for(var i=0;i<images.length;i++){
+			      urls[i]=images[i].src;   
+			      (function(i){   
+			      	  images[i].addEventListener('tap',function(){
+					plus.nativeUI.previewImage(urls,{ 
+					     current:i,   //点击图片时显示图片的索引值    
+					     background:'#000',  //图片的背景颜色，值为RGB
+					     indicator: 'number', 
+					     loop:true  
+					});      
+				 });    
+			      })(i);      
+		     }
+		 });
+		 //添加备注
+		 $('#addMemo').on('tap',function(){
+			var memo=$(this).attr('memo');
+			layer.open({
+							  type: 2,
+							  skin: 'demo-class',
+							  area: ['100%', '100%'], //宽高
+				//			  scrollbar: false,
+							  title:"添加备注",
+							  content: 'add-deliveryremark.html?memo='+memo,
+							  scrollbar: false,
+							  closeBtn: 2,
+							  shadeClose:false,
+							  success: function(layero,index){
+							  	$(layero).addClass("scroll-wrapper");
+							  	var body = layer.getChildFrame('body', index);
+							  },
+							  end:function(){
+//							  	location.reload();
+								
+							  }
+							});
+		})
+			$('#finish').on('tap',function(){
+				var memo = $('.memo').html();
+				var deliveryId = $(this).attr('deliveryId');
+				var image = $('#view1').attr('src');
+//				alert(image);
+				if(image == 'img/pic.png'){
+					alert('请上传送货单');
+					return false;
+				}
+				$.ajax({
+					type:"post",
+					dataType:'json',
+					url:ajaxUrlPath+"/mobile/workOrder/finishDelivery",
+					data:{
+						id:deliveryId,
+						image:image,
+						memo:memo
+					},
+					success:function(data){
+//						location.reload();
+					}
+				})
+				parent.layer.close(index);
+				
+				
+				
+			})
+		</script>
+</html>

@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<title>印刷通-报价</title>		<link rel="stylesheet" type="text/css" href="css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/rem.css"/>
+		<link rel="stylesheet" type="text/css" href="css/initialization1.css"/>		<link rel="stylesheet" type="text/css" href="css/mui.picker.min.css"/>		<link rel="stylesheet" type="text/css" href="css/mui.poppicker.css"/>		<style type="text/css">			/*body{
+				 position: fixed; 
+			}*/			* { touch-action: pan-y; } 
+			.add{				width: 80px;				height: 80px;				background-color: #FFFFFF;				border-radius: 80px 0 0 0;				position: absolute;				bottom: 0;				right: 0;				border: 1px solid #dadada;			}			.last-requirement{				position: relative;			}			.layui-layer-ico{				display: none;			}			select{				text-align: center;				text-align-last: center;			}			input {			    padding: 0px !important;			    color: #ff6f00;			    border: none !important;			    padding-left: 3%;			    height: 3rem;			    font-size: 1.4rem;			    margin-right: 5px;			    box-sizing: border-box;			    text-align: center;			    margin-bottom: 0px !important;			}			input:after{				content: " ";			    display: inline-block;			    width: 100%;			}			select {			    color: #ff8b32;			    height: 3rem;			    border: none;			    margin-right: 5px;			    font-size: 1.4rem;			    appearance: none;			    -moz-appearance: none;			    -webkit-appearance: none;			    background: url(../img/slide.png) no-repeat scroll right center;			    background-size: 1.2rem;			    background-position-x: 95%;			    padding: 0px !important;			    margin-bottom: 0px !important;			}			.requirement .binding-handle .size-paper{				width: 30%;			}			select{				margin-top: -2px;			}			textarea{				color: #808080;			}			body{
+				overflow: scroll; -webkit-overflow-scrolling: touch;
+			}
+			.container{
+				 overflow: scroll; -webkit-overflow-scrolling: touch;
+			}
+		</style>
+	</head>
+	<body>		<div class="col" style="position: fixed;font-size: 1.2rem;width: 100%;z-index: 1000;top: 0px; padding: 2.0rem 0rem 2.0rem 1.5rem;">				<div class="price" style="display: inline-block;">					<p class="back" style="position: absolute;top: 20px;font-size: 1.6rem;"><img src="img/bbtn.png" style="height: 24px;width: auto;margin-right: 6px;"/>全部要求</p>					<p></p>				</div>								<!--<button style="padding:10px 25px;background-color: #ff6f00;color: #FFFFFF;border: 0px;border-radius: 6px;position: absolute;right: 5%;top: 15px;" id="sureprice">确 定</button>
+				<button style="padding:10px 15px;background-color: #ff6f00;color: #FFFFFF;border: 0px;border-radius: 6px;position: absolute;right: 30%;top: 15px;" id="reviseprice">提交客户</button>-->			</div>
+		<div class="container cover mui-content">
+			<!--<h3 class="header"></h3>-->
+						<div id="content" style="overflow: auto;margin-top: 80px;">			<div class="requirement">				<div class="papercol">						<font>印件名称</font>						<input type="text" class="name" value="" style="text-align: left;width: auto;margin-left: 15px;" />				</div>				<div class="papercol">						<font>业务员</font>						<input type="text" class="agentName" value="" style="text-align: left;width: auto;margin-left: 15px;" />											</select>				</div>				<div class="papercol">						<font>客户单位</font>						<input type="text" class="customerCompany" value="" style="text-align: left;width: auto;margin-left: 15px;" />				</div>				<div class="papercol">						<font>联系方式</font>						<input type="text" class="customermobile" value="" style="text-align: left;width: auto;margin-left: 15px;" />				</div>				<div class="papercol">						<font>送货信息</font>						<input type="text" class="addressInfo" value="" style="text-align: left;width: auto;margin-left: 15px;" />				</div>				<div class="papercol">						<font>印刷数量</font>						<input type="text" class="num" value="" style="text-align: left;width: 20%;margin-left: 15px;" />										</div>				<div class="papercol surface-handle">					<font>装订方式</font>					<select class="" id="productType" style="text-align: left;text-align-last: left;margin-left: 15px;text-indent: 0;width: 40%;">						<option value="锁线胶装" selected="selected">锁线胶装</option>											</select>									</div>				<div class="papercol binding-handle">					<font>纸张尺寸</font>					<span class="pagesizenum" style="color: #ff8b32;margin-left: 15px;">180X230</span>					<select class="size-paper" style="text-align: left;text-align-last:left;text-indent:0;width: 60%;display: none;">						<option value=""></option>						<option value="d32" size="尺寸:140X210" pagewidth="140" pageheight="210">大32开</option>						<option value="s16" size="尺寸:180X250" pagewidth="180" pageheight="250">小16开</option>						<option value="b16" size="尺寸:185X260" pagewidth="185" pageheight="260">标16开</option>						<option value="d16" size="尺寸:210X285" pagewidth="210" pageheight="285">大16开</option>						<option value="s8" size="尺寸:240X320" pagewidth="240" pageheight="320">小8开</option>						<option value="b8" size="尺寸:260X370" pagewidth="260" pageheight="370">标8开</option>					</select>									</div>				<div class="papercol binding-handle">					<font>备注</font>					<textarea name="" class="memo" rows="" cols="" style="background-color:#FFFFFF;border: 0px;"></textarea>									</div>			</div>			
+			<!--<div class="requirement coverpage" type="1">
+
+				<div class="papercol paper papers-type" status='cover'>
+
+					<font>封面纸张</font>
+
+					<select class="paper-keZhong">
+
+						<option value="">300</option>
+
+					</select>
+					<span>克</span>
+					<input type="text" value="双铜" class="paper-type" readonly="readonly" />
+
+				</div>
+				<div class="papercol color">
+
+					<font>印刷色数</font>
+
+					<input type="number" class="color1" value="4" />色
+
+					<b>+</b>
+
+					<input type="number" class="color2" value="4" />色
+
+					<div class="spot-color-info spot-color-div hide">
+
+						<font>专&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;色</font>
+
+						<input type="text" class="primary-color" value="" />
+
+					</div>
+
+				</div>
+				<div class="papercol">
+
+						<font>专&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;色</font>
+
+						<input type="text" class="spot-color" value="Pantone" style="width: auto;"/>
+
+				</div>
+				<div class="papercol pages">
+
+					<font>封面页数</font>
+
+					<input type="number" class="pages-num" value="4" />P
+
+					<span>勒口/拉页</span>
+
+					<input type="checkbox" class="img-checkbox hide if-leKou"/>
+
+					<img src="img/radion01.png" class="checkbox-img" data-sign='leKou'/>
+
+					<img src="img/note.png" class="question-icon covernote"/>
+
+				</div>
+
+				<div class="papercol surface-handle handle">
+
+					<font>表面处理</font>
+
+					<input type="text" class="select" value="" style="width: 35%;"/>
+					<input type="text" class="val" value="" style="width: 35%;" readonly="readonly"/>
+
+					
+
+				</div>
+
+				
+
+				<div class="papercol special-tech add-special-div">
+
+					<font>特殊工艺</font>
+
+					<img src="img/add.png" class="add-icon" />
+
+					<div class="special-tech-value"></div>
+
+				</div>
+
+			</div>-->			<!--<div class="requirement">
+				<p style="padding: 0px 15px;color: #8e8e8e;">内页1</p>
+				<div class="papercol paper">
+
+					<font>封面纸张</font>
+
+					<select class="paper-keZhong">
+
+						<option value="">300</option>
+
+					</select>
+					<span>克</span>
+					<input type="text" value="双铜" class="paper-type" readonly="readonly" />
+
+				</div>
+				<div class="papercol color">
+
+					<font>印刷色数</font>
+
+					<input type="number" class="color1" value="4" />色
+
+					<b>+</b>
+
+					<input type="number" class="color2" value="4" />色
+
+					<div class="spot-color-info spot-color-div hide">
+
+						<font>专&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;色</font>
+
+						<input type="text" class="spot-color" value="" />
+
+					</div>
+
+				</div>
+				<div class="papercol">
+
+						<font>专&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;色</font>
+
+						<input type="text" class="spot-color" value="Pantone" style="width: auto;"/>
+
+				</div>
+				<div class="papercol pages">
+
+					<font>封面页数</font>
+
+					<input type="number" class="pages-num" value="4" />P
+
+					<span>勒口/拉页</span>
+
+					<input type="checkbox" class="img-checkbox hide if-leKou"/>
+
+					<img src="img/radion01.png" class="checkbox-img" data-sign='leKou'/>
+
+					<img src="img/note.png" class="question-icon"/>
+
+				</div>
+
+				<div class="papercol surface-handle">
+
+					<font>表面处理</font>
+
+					<select class="danShuang-paper">
+
+						<option value=""></option>
+
+						<option value="单面" selected="selected">单面</option>
+
+						<option value="双面">双面</option>
+
+					</select>
+
+					<select class="surface-handle-tech">
+
+						<option value=""></option>
+
+						<option value="0.0125">水性光油</option>
+
+						<option value="0.0175">水性哑油</option>
+
+						<option value="0.075">哑膜</option>
+
+						<option value="0.05" selected="selected">光膜</option>
+
+					</select>
+
+					
+
+				</div>
+
+				
+
+				<div class="papercol special-tech add-special-div">
+
+					<font>特殊工艺</font>
+
+					<img src="img/add.png" class="add-icon" />
+
+					<div class="special-tech-value">11111</div>
+
+				</div>
+
+			</div>-->			<!--<div class="requirement last-requirement">
+				<p style="padding: 0px 15px;color: #8e8e8e;">内页2</p>
+				<div class="papercol paper">
+
+					<font>封面纸张</font>
+
+					<select class="paper-keZhong">
+
+						<option value="">300</option>
+
+					</select>
+					<span>克</span>
+					<input type="text" value="双铜" class="paper-type" readonly="readonly" />
+
+				</div>
+				<div class="papercol color">
+
+					<font>印刷色数</font>
+
+					<input type="number" class="color1" value="4" />色
+
+					<b>+</b>
+
+					<input type="number" class="color2" value="4" />色
+
+					<div class="spot-color-info spot-color-div hide">
+
+						<font>专&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;色</font>
+
+						<input type="text" class="spot-color" value="" />
+
+					</div>
+
+				</div>
+				<div class="papercol">
+
+						<font>专&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;色</font>
+
+						<input type="text" class="spot-color" value="Pantone" style="width: auto;"/>
+
+				</div>
+				<div class="papercol pages">
+
+					<font>封面页数</font>
+
+					<input type="number" class="pages-num" value="4" />P
+
+					<span>勒口/拉页</span>
+
+					<input type="checkbox" class="img-checkbox hide if-leKou"/>
+
+					<img src="img/radion01.png" class="checkbox-img" data-sign='leKou'/>
+
+					<img src="img/note.png" class="question-icon"/>
+
+				</div>
+
+				<div class="papercol surface-handle">
+
+					<font>表面处理</font>
+
+					<select class="danShuang-paper">
+
+						<option value=""></option>
+
+						<option value="单面" selected="selected">单面</option>
+
+						<option value="双面">双面</option>
+
+					</select>
+
+					<select class="surface-handle-tech">
+
+						<option value=""></option>
+
+						<option value="0.0125">水性光油</option>
+
+						<option value="0.0175">水性哑油</option>
+
+						<option value="0.075">哑膜</option>
+
+						<option value="0.05" selected="selected">光膜</option>
+
+					</select>
+
+					
+
+				</div>
+
+				
+
+				<div class="papercol special-tech add-special-div">
+
+					<font>特殊工艺</font>
+
+					<img src="img/add.png" class="add-icon" />
+
+					<div class="special-tech-value">111111</div>
+
+				</div>
+				<!--<div class="add">
+					<img src="img/add.png" style="display: inline-block;margin-left: 45%;margin-top: 10px;"/>
+					<p style="text-align: center;margin-left: 20%;">更多内页</p>
+				</div>-->
+
+			<!--</div>-->				
+			</div>
+			
+		</div>		<nav class="mui-bar mui-bar-tab foot-bar">			<a class="mui-tab-item orderlistbtn" href="orderlist.html">				<p><img src="img/nav2.png" style="height: 30px;padding-top:5px ;"/></p>				<span class="mui-tab-label">工单</span>			</a>			<a class="mui-tab-item scan" href="scan.html">				<p><img src="img/scan01.png" style="height: 30px;padding-top:5px ;"/></p>				<span class="mui-tab-label" style="color: #FF6F00;">扫描</span>			</a>						<a class="mui-tab-item" href="">				<p><img src="img/nav3.png" style="height: 30px;padding-top:5px ;"/></p>				<span class="mui-tab-label" >我的</span>			</a>		</nav>
+	</body>
+	<script type="text/javascript" src="js/jquery.min.js"></script>	<script src="js/swiper.js" type="text/javascript" charset="utf-8"></script>	<script type="text/javascript" src="js/mui.min.js"></script>	<script type="text/javascript" src="js/pick/mui.picker.min.js"></script>	<script type="text/javascript" src="js/pick/mui.poppicker.js"></script>
+	<script type="text/javascript" src="js/layer3.0.1/layer.js"></script>
+	<script type="text/javascript" src="js/pages/share.js"></script>
+<!--	<script type="text/javascript" src="js/pages/edit-inquiry.js"></script>-->	<script type="text/javascript">		function getUrlParam(name){					var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)"); 					var r = window.location.search.substr(1).match(reg);  					if (r!=null) 						return decodeURI(r[2]); 					return null; 				}		$('.orderlistbtn').on('tap',function(){			window.location = 'orderlist.html';		})		$('.scan').on('tap',function(){			window.location = 'scan.html';		})		$("input").on("focus",function(){		    window.setTimeout(function () {//	                document.activeElement.scrollIntoViewIfNeeded(true);	                document.activeElement.scrollIntoView({ behavior: "smooth" , inline: "nearest"});	        	}, 0);		})		$('.back').on('tap',function(){			mui.back();		})		if (/Android/gi.test(navigator.userAgent)) {    window.addEventListener('resize', function () {    	console.log(JSON.stringify(document.activeElement));        if (document.activeElement.tagName == 'INPUT' || document.activeElement.tagName == 'TEXTAREA') {            console.log(document.activeElement.className);            if(document.activeElement.className == 'spot-color' || document.activeElement.id=="color1" || document.activeElement.id=="color2"){            	document.activeElement.scrollIntoView({ behavior: "smooth" , inline: "nearest"});            }else if(document.activeElement.id=='bookNum'){            	document.activeElement.scrollIntoViewIfNeeded(true);            }else if(document.activeElement.className == 'color2' || document.activeElement.className == 'primary-color'){            	document.activeElement.scrollIntoView({ behavior: "smooth" , inline: "nearest"});            }else if(document.activeElement.className == 'layePages-num'){            	window.setTimeout(function () {//	                document.activeElement.scrollIntoViewIfNeeded(true);	                document.activeElement.scrollIntoView({ behavior: "smooth" , inline: "nearest"});	        	}, 0);            }else{            	window.setTimeout(function () {//	                document.activeElement.scrollIntoViewIfNeeded(true);	                document.activeElement.scrollIntoView({ behavior: "smooth" , inline: "nearest"});	        	}, 0);            }                    }            })//	$('input').on('click', function () {//          var top = $(this).offset().top//          console.log(top)//          $('.container').animate({//              scrollTop: top//          })//          console.log(top)//这个值貌似不对//      })    }		var palce0rder = getUrlParam('palce0rder');		if(palce0rder==1 || palce0rder == 2 || palce0rder == 3){			if(palce0rder == 2 || palce0rder == 3){				$('#sureprice').css('display','none');			}else{				$('#sureprice').css('display','block');			}			$('#reviseprice').css('display','none');		}else{			$('#reviseprice').css('display','block');		}		if(palce0rder==1){			$('#sureprice').css('display','none');			$('#reviseprice').css('display','none');		}else if(palce0rder==2){			$('#sureprice').css('display','none');			$('#reviseprice').css('display','block');			$('#reviseprice').css('right','5%');		}else if(palce0rder==3){			$('#reviseprice').css('display','none');			$('#sureprice').css('display','block');		}else if(palce0rder==4){			$('#sureprice').css('display','none');			$('#reviseprice').css('display','block');			$('#reviseprice').css('right','5%');			$('#reviseprice').css('background-color','#666666');			$('#reviseprice').attr('disabled','disabled');		}else{			$('#sureprice').css('display','block');			$('#reviseprice').css('display','block');		}		//		pushHistory(); 
+//	    window.addEventListener("popstate", function(e) { 
+//	    	mui.back();
+//	      	
+//	    }, false); 
+//	    function pushHistory() { 
+//	      var state = { 
+//	        title: "title", 
+//	        url: "#"
+//	      }; 
+//	      window.history.pushState(state, "title", "#"); 
+//	    }	    function showLevel2() {//			$("#area").text("");			var picker = new mui.PopPicker({				layer: 2,				buttons: ['取消', '确定']			});			picker.setData([{				value: '110000',				text: '单面',				children: [{					value: "0.0127",					text: "水性光油"				}, {					value: "0.0175",					text: "水性哑油"				},{					value: "0.075",					text: "哑膜"				}, {					value: "0.05",					text: "光膜"				}]			}, {				value: '120000',				text: '双面',				children: [{					value: "0.0127",					text: "水性光油"				}, {					value: "0.0175",					text: "水性哑油"				},{					value: "0.075",					text: "哑膜"				}, {					value: "0.05",					text: "光膜"				}]			},{				value: '',				text: '无',				children: [{					value: "0",					text: "无"				}]			}]); //			$(".requirement .handle").off('tap').on('tap', function(event) {
+//				event.preventDefault();
+//				event.stopPropagation()
+//				// 默认第一层显示第1项;第二层显示第2项
+//				picker.pickers[0].setSelectedIndex(0);
+//				picker.pickers[1].setSelectedIndex(2);
+//				picker.show(function(selectItems) {
+//					var text1 = selectItems[0].text;
+//					var text2 = selectItems[1].text;
+//					$('.requirement .handle').find('.select').val(text1);
+//					$('.requirement .handle').find('.val').val(text2)
+//				})
+//				// picker.dispose();
+//			});		}		$('.way').on('tap',function(){
+			window.location = 'adminwaitorderlist.html';
+		})
+		$('.listhref').on('tap',function(){
+			window.location = 'adminorderlist.html';
+		})
+//		$('.myself').on('tap',function(){
+//			window.location = 'myselfinfo.html';
+//		})//		document.getElementById('deliveryDate').addEventListener('tap', function() {
+//			var picker = new mui.DtPicker({ "type": "date"});
+//			picker.show(function(rs) {
+//				$('#deliveryDate').val(rs.text);
+//				picker.dispose();
+//			});
+//		});//		document.getElementById('payTime').addEventListener('tap', function() {
+//			var picker = new mui.DtPicker({ "type": "date"});
+//			picker.show(function(rs) {
+//				$('#payTime').val(rs.text);
+//				picker.dispose();
+//			});
+//		});		var enquiryOrderId = '';		$('.covernote').on('tap',function(){		layer.open({							  type: 2,							  skin: 'demo-class',							  area: ['80%', '40%'], //宽高				//			  scrollbar: false,							  title:"",							  content: 'cover-laye.html',							  scrollbar: false,							  closeBtn: 1,							  shadeClose:false,							  success: function(layero,index){							  	$(layero).addClass("scroll-wrapper");							  	$(layero).find('.back').on('tap',function(){							  		layer.close(index);								})							  								  },							  end:function(){							  	$('html').css('height',"auto");							  	$('html').css('overflow','auto');							  	$('body').css('height',"auto");							  	$('body').css('overflow','auto');							  }							});	})		$(document).ready(function(){			var offerParaJson = JSON.parse(sessionStorage.getItem('offerParaJson'));			console.log(offerParaJson);			if(offerParaJson.ordername.enquiryorderid == undefined ){				enquiryOrderId = '';			}else{				enquiryOrderId = offerParaJson.ordername.enquiryorderid;			}						console.log(typeof(enquiryOrderId))			offerParaJson.productType = '画册';//			alert(getUrlParam('price'));			if(enquiryOrderId != null && enquiryOrderId !='undefined' && enquiryOrderId != undefined){				console.log(111);				$('.price').val(offerParaJson.ordername.price);				$('.num').val(offerParaJson.ordername.num);				$('.name').val(offerParaJson.ordername.name);				$('.name').attr('customerId',offerParaJson.ordername.customerId);								$('.customermobile').val(offerParaJson.ordername.mobile);				$('.agentName').val(offerParaJson.ordername.agentName);				$('.agentName').attr('agentId',offerParaJson.ordername.agentId);				$('.customerCompany').val(offerParaJson.ordername.customerCompany);				$('.deliveryDate').val(offerParaJson.ordername.deliveryDate);				$('.payTime').val(offerParaJson.ordername.payTime);				$('.memo').val(offerParaJson.ordername.memo=='undefined'?'':offerParaJson.ordername.memo);				$('.addressInfo').val(offerParaJson.ordername.addressInfo);				$('#sureprice').attr('enquiryOrderId',enquiryOrderId);				console.log(offerParaJson.binging.bindStyle+'哈哈哈');				$('#productType option').val(offerParaJson.binging.bindStyle);				$('#productType option').html(offerParaJson.binging.bindStyle);					//			for (var i = 0; i < $('.danShuang-paper option').length; i++) {	//				if($('.danShuang-paper option').eq(i).html() == offerParaJson.binging.bindStyle){	//					$('.danShuang-paper option').eq(i).attr('selected','selected');	//				}else{	//					$('.danShuang-paper option').eq(i).removeAttr('selected');	//				}	//			}//				alert(offerParaJson.sizestr.pageWidth+'尺寸宽');
+//				alert(offerParaJson.sizestr.pageHeight+'尺寸高');				for (var i = 0; i < 7; i++) {//					alert($('.size-paper').find('option').eq(i).attr('pagewidth'));
+//					alert($('.size-paper').find('option').eq(i).attr('pageheight'));					if($('.size-paper').find('option').eq(i).attr('pagewidth') == offerParaJson.sizestr.pageWidth && $('.size-paper').find('option').eq(i).attr('pageheight') == offerParaJson.sizestr.pageHeight){						$('.size-paper').find('option').eq(i).prop('selected',true);					}
+					
+				}				$('.pagesizenum').html(offerParaJson.sizestr.pageWidth+'X'+offerParaJson.sizestr.pageHeight);				$('.pagesizenum').attr('pageWidth',offerParaJson.sizestr.pageWidth);				$('.pagesizenum').attr('pageHeight',offerParaJson.sizestr.pageHeight);//				$('.coverpage').find('.paper-keZhong').find('option:selected').text(offerParaJson.linling[0].keZhong);
+//				$('.coverpage').find('.paper-type').val(offerParaJson.linling[0].type);
+//				$('.coverpage').find('.color1').val(offerParaJson.linling[0].color1)
+//				$('.coverpage').find('.color2').val(offerParaJson.linling[0].color2)
+//				$('.coverpage').find('.spot-color').val(offerParaJson.linling[0].spotColor)
+//				$('.coverpage').find('.pages-num').val(offerParaJson.linling[0].pagesNum);
+//				$('.coverpage').find('.select').val(offerParaJson.linling[0].danShuang)
+//				$('.coverpage').find('.val').val(offerParaJson.linling[0].surface)
+//				$('.coverpage').find('.special-tech-value').html(offerParaJson.linling[0].special);				if(offerParaJson.linling[0].hasSpread==0){					$('.coverpage').find('.if-leKou').removeAttr('checked')					$('.coverpage').find('.checkbox-img').attr('src','img/radion01.png');				}else if(offerParaJson.linling[0].hasSpread == 1){					$('.coverpage').find('.checkbox-img').attr('src','img/radion02.png');					$('.coverpage').find('.if-leKou').attr('checked','checked')				}				var indexAry = ['A','B','C','D','E','F','G','H','I','J'];				for (var i = 0; i < offerParaJson.linling.length; i++) {
+										var coverpagehtml='<div class="requirement coverpage" type="1">'+
+					'<p style="padding: 0px 15px;color: #8e8e8e;" class="del">封面'+indexAry[i]+'</p>'+					'<div class="papercol paper papers-type" status="cover">'+
+						'<font>封面纸张</font>'+
+						'<select class="paper-keZhong">'+
+							'<option value="">300</option>'+
+						'</select>'+
+						'<span>克</span>'+
+						'<input type="text" value="'+offerParaJson.linling[i].type+'" class="paper-type" readonly="readonly" />'+
+					'</div>'+
+					'<div class="papercol color">'+
+						'<font>印刷色数</font>'+
+						'<input type="number" class="color1" value="'+offerParaJson.linling[i].color1+'" />色'+
+						'<b>+</b>'+
+						'<input type="number" class="color2" value="'+offerParaJson.linling[i].color2+'" />色'+
+						'<div class="spot-color-info spot-color-div hide">'+
+							'<font>专&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;色</font>'+
+							'<input type="text" class="primary-color" value="" />'+
+						'</div>'+
+					'</div>'+
+					'<div class="papercol">'+
+							'<font>专&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;色</font>'+
+							'<input type="text" class="spot-color" value="'+offerParaJson.linling[i].spotColor+'" style="width: auto;"/>'+
+					'</div>'+
+					'<div class="papercol pages">'+
+						'<font>封面页数</font>'+
+						'<input type="number" class="pages-num" value="'+offerParaJson.linling[i].pagesNum+'" />P'+
+						'<span>勒口/拉页</span>'+
+						'<input type="checkbox" class="img-checkbox hide if-leKou"/>'+
+						'<img src="img/radion01.png" class="checkbox-img" data-sign="leKou"/>'+
+						'<img src="img/note.png" class="question-icon covernote"/>'+
+					'</div>'+
+					'<div class="papercol surface-handle handle">'+
+						'<font>表面处理</font>'+
+						'<input type="text" class="select" value="'+offerParaJson.linling[i].danShuang+'" style="width: 35%;"/>'+
+						'<input type="text" class="val" value="'+offerParaJson.linling[i].surface+'" style="width: 35%;" readonly="readonly"/>'+
+					'</div>'+
+					'<div class="papercol special-tech add-special-div">'+
+						'<font>特殊工艺</font>'+
+						'<img src="img/add.png" class="add-icon" />'+
+						'<div class="special-tech-value">'+offerParaJson.linling[0].special+'</div>'+
+					'</div>'+
+				'</div>';				$(".requirement:last-child").after(coverpagehtml);
+				}				for (var i = 0; i < offerParaJson.huanchen.length; i++) {
+					var huanchenhtml = '<div class="requirement" index="'+(i+1)+'" type="3">'+						'<p style="padding: 0px 15px;color: #8e8e8e;" class="del">环衬'+indexAry[i]+'</p>'+						'<div class="papercol paper papers-type" status="lining">'+							'<font>环衬纸张</font>'+							'<select class="paper-keZhong">'+								'<option value="">'+offerParaJson.huanchen[i].keZhong+'</option>'+							'</select>'+							'<span>克</span>'+							'<input type="text" value="'+offerParaJson.huanchen[i].type+'" class="paper-type"  />'+						'</div>'+						'<div class="papercol color">'+							'<font>印刷色数</font>'+							'<input type="number" class="color1" value="'+offerParaJson.huanchen[i].color1+'" />色'+							'<b>+</b>'+							'<input type="number" class="color2" value="'+offerParaJson.huanchen[i].color2+'" />色'+							'<div class="spot-color-info spot-color-div hide">'+								'<font>专&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;色</font>'+								'<input type="text" class="primary-color" value="" readonly="readonly"/>'+							'</div>'+						'</div>'+						'<div class="papercol">'+								'<font>专&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;色</font>'+								'<input type="text" class="spot-color" value="'+offerParaJson.huanchen[i].spotColor+'" style="width:auto" />'+						'</div>'+						'<div class="papercol pages">'+							'<font>环衬页数</font>'+							'<input type="number" class="pages-num" value="'+offerParaJson.huanchen[i].pagesNum+'" />P'+							'<font>拉页</font>'+							'<input type="number" class="layePages-num" value="'+offerParaJson.huanchen[i].spreadPages+'" style="width: 24%;"/>处'+							'<img src="img/note.png" class="question-icon liningnote"/>'+						'</div>'+						'<div class="papercol surface-handle handle" index="'+(i+1)+'">'+							'<font>表面处理</font>'+							'<input type="text" class="select" value="'+offerParaJson.huanchen[i].danShuang+'" style="width: 35%;" />'+							'<input type="text" class="val" value="'+offerParaJson.huanchen[i].surface+'" style="width: 35%;" />'+						'</div>'+						'<div class="papercol special-tech add-special-div">'+							'<font>特殊工艺</font>'+							'<img src="img/add.png" class="add-icon" />'+							'<div class="special-tech-value">'+offerParaJson.huanchen[i].special+'</div>'+						'</div>'+					'</div>';					$(".requirement:last-child").after(huanchenhtml);
+				}				console.log(offerParaJson.inside.length)				for (var i = 0; i < offerParaJson.inside.length; i++) {					var html = '<div class="requirement" index="'+(i+1)+'" type="2">'+						'<p style="padding: 0px 15px;color: #8e8e8e;" class="del">内页'+indexAry[i]+'</p>'+						'<div class="papercol paper papers-type" status="lining">'+							'<font>内页纸张</font>'+							'<select class="paper-keZhong">'+								'<option value="">'+offerParaJson.inside[i].keZhong+'</option>'+							'</select>'+							'<span>克</span>'+							'<input type="text" value="'+offerParaJson.inside[i].type+'" class="paper-type"  />'+						'</div>'+						'<div class="papercol color">'+							'<font>印刷色数</font>'+							'<input type="number" class="color1" value="'+offerParaJson.inside[i].color1+'" />色'+							'<b>+</b>'+							'<input type="number" class="color2" value="'+offerParaJson.inside[i].color2+'" />色'+							'<div class="spot-color-info spot-color-div hide">'+								'<font>专&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;色</font>'+								'<input type="text" class="primary-color" value="" readonly="readonly"/>'+							'</div>'+						'</div>'+						'<div class="papercol">'+								'<font>专&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;色</font>'+								'<input type="text" class="spot-color" value="'+offerParaJson.inside[i].spotColor+'" style="width:auto" />'+						'</div>'+						'<div class="papercol pages">'+							'<font>内页页数</font>'+							'<input type="number" class="pages-num" value="'+offerParaJson.inside[i].pagesNum+'" />P'+							'<font>拉页</font>'+							'<input type="number" class="layePages-num" value="'+offerParaJson.inside[i].spreadPages+'" style="width: 24%;"/>处'+							'<img src="img/note.png" class="question-icon liningnote"/>'+						'</div>'+						'<div class="papercol surface-handle handle" index="'+(i+1)+'">'+							'<font>表面处理</font>'+							'<input type="text" class="select" value="'+offerParaJson.inside[i].danShuang+'" style="width: 35%;" />'+							'<input type="text" class="val" value="'+offerParaJson.inside[i].surface+'" style="width: 35%;" />'+						'</div>'+						'<div class="papercol special-tech add-special-div">'+							'<font>特殊工艺</font>'+							'<img src="img/add.png" class="add-icon" />'+							'<div class="special-tech-value">'+offerParaJson.inside[i].special+'</div>'+						'</div>'+					'</div>';					$(".requirement:last-child").after(html);					$("input").on("focus",function(){					    window.setTimeout(function () {			//	                document.activeElement.scrollIntoViewIfNeeded(true);				                document.activeElement.scrollIntoView({ behavior: "smooth" , inline: "nearest"});				        	}, 0);					})					showLevel2()					$('.requirement').on('tap','.papers-type',function(){					var status = $(this).attr('status');					$('html').css('height',"100%");					$('html').css('overflow','hidden');					$('body').css('height',"100%");					$('body').css('overflow','hidden');					var divIndex=$('.requirement').index($(this).parents('.requirement'));					console.log(divIndex);		//			console.log("divIndex"+divIndex);					layer.open({					  type: 2,					  skin: 'demo-class',					  area: ['95%','90%'], //宽高		//			  offset: '10%',		//			  scrollbar: false,					  title:"<small>选择纸张</small>",					  shadeClose:true,					  content: 'admin-select-papers.html?sellerId='+getUrlParam('sellerId')+'&status='+status,					  success: function(layero, index){					  	console.log(layero);					  	$(layero).addClass("scroll-wrapper");					    var body = layer.getChildFrame('body', index);					    var iframeWin = window[layero.find('iframe')[0]['name']]; //得到iframe页的窗口对象，执行iframe页的方法：iframeWin.method();						body.find('#sureButton').attr('sign',divIndex);
+						body.find('#sureButton2').attr('sign',divIndex);					  },					  end:function(){					  	$('html').css('height',"auto");					  	$('html').css('overflow','auto');					  	$('body').css('height',"auto");					  	$('body').css('overflow','auto');					  }					});				});				$('.liningnote').on('tap',function(){		layer.open({							  type: 2,							  skin: 'demo-class',							  area: ['80%', '40%'], //宽高				//			  scrollbar: false,							  title:"",							  content: 'lining-laye.html',							  scrollbar: false,							  closeBtn: 1,							  shadeClose:false,							  success: function(layero,index){							  	$(layero).addClass("scroll-wrapper");							  	$(layero).find('.back').on('tap',function(){							  		layer.close(index);								})							  								  },							  end:function(){							  	$('html').css('height',"auto");							  	$('html').css('overflow','auto');							  	$('body').css('height',"auto");							  	$('body').css('overflow','auto');							  }							});	})//				$('.requirement').off('tap').on('tap','.add-special-div',function(e){
+//				e.preventDefault();
+//				e.stopPropagation()
+//				console.log(111+'测试');
+//				var status = 1;
+//				var divIndex1=$('.requirement').index($(this).parents('.requirement'));
+//				console.log(divIndex1);
+////				$('html,body').animate({scrollTop: 0}, 100);
+//				$('html,body').css('z-index', '1000');
+//				$('html').addClass('scrollFix');
+//	//			stop();
+//	//			
+//				layer.open({
+//				  type: 2,
+//				  skin: 'demo-class',
+//				  area: ['350px','580px'], //宽高
+//				  scrollbar: false,
+//				  title:"",
+//				  content: 'admin-select-special-tech.html',
+//	//			  closeBtn: 0,
+//	//			  shadeClose:true,
+//				  success: function(layero, index){
+//				  	$(layero).addClass("scroll-wrapper");
+//				    var body = layer.getChildFrame('body', index);
+//				    var iframeWin = window[layero.find('iframe')[0]['name']]; //得到iframe页的窗口对象，执行iframe页的方法：iframeWin.method();
+//					body.find('#sureButton01').attr('sign',divIndex1);
+////					body.find('#sureButton01').attr('status',status);
+//				  },
+//				  end:function(){
+//	//			  	alert(222);
+//	//			  	$('html').removeClass('scrollFix');
+//				  	$('html,body').css('z-index', '0');
+//	//			  	move();
+//				  }
+//				  
+//				});
+//		});		        					if(i==0){						$('.del img').remove();					}													}				}else{				var html = '<div class="requirement" index="1" type="2">'+						'<p style="padding: 0px 15px;color: #8e8e8e;" class="del">内页1</p>'+						'<div class="papercol paper papers-type" status="lining">'+							'<font>内页纸张</font>'+							'<select class="paper-keZhong">'+								'<option value="300"></option>'+							'</select>'+							'<span>克</span>'+							'<input type="text" value="双铜" class="paper-type" />'+						'</div>'+						'<div class="papercol color">'+							'<font>印刷色数</font>'+							'<input type="number" class="color1" value="4" />色'+							'<b>+</b>'+							'<input type="number" class="color2" value="4" />色'+							'<div class="spot-color-info spot-color-div hide">'+								'<font>专&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;色</font>'+								'<input type="text" class="primary-color" value="" />'+							'</div>'+						'</div>'+						'<div class="papercol">'+								'<font>专&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;色</font>'+								'<input type="text" class="spot-color" value="Pantone" style="width:auto" />'+						'</div>'+						'<div class="papercol pages">'+							'<font>内页页数</font>'+							'<input type="number" class="pages-num" value="4" readonly="readonly"/>P'+							'<font>拉页</font>'+							'<input type="number" class="layePages-num" value="" style="width: 24%;"/>处'+							'<img src="img/note.png" class="question-icon liningnote"/>'+						'</div>'+						'<div class="papercol surface-handle handle" index="1">'+							'<font>表面处理</font>'+							'<input type="text" class="select" value="" style="width: 35%;" />'+							'<input type="text" class="val" value="" style="width: 35%;" />'+						'</div>'+						'<div class="papercol special-tech add-special-div">'+							'<font>特殊工艺</font>'+							'<img src="img/add.png" class="add-icon" />'+							'<div class="special-tech-value"></div>'+						'</div>'+					'</div>';					$(".requirement:last-child").after(html);					if(i==0){						$('.del img').remove();					}//					$('.requirement:last-child').addClass('last-requirement');
+//					var index = $('.requirement:last-child').attr('index');
+//					var addhtml = '<div class="add add-papers-icon" index="'+(Number(index)+1)+'" sign="inside">'+
+//							'<img src="img/badd.png" style="display: inline-block;margin-left: 45%;margin-top: 20px;width: 33%;"/>'+
+//							'<p style="text-align: center;margin-left: 20%;font-size:12px;">更多内页</p>'+
+//						'</div>'
+//					$('.last-requirement .papercol:last-child').after(addhtml);					$("input").on("focus",function(){					    window.setTimeout(function () {			//	                document.activeElement.scrollIntoViewIfNeeded(true);				                document.activeElement.scrollIntoView({ behavior: "smooth" , inline: "nearest"});				        	}, 0);					})					$('.requirement').on('tap','.papers-type',function(){					var status = $(this).attr('status');					$('html').css('height',"100%");					$('html').css('overflow','hidden');					$('body').css('height',"100%");					$('body').css('overflow','hidden');					var divIndex=$('.requirement').index($(this).parents('.requirement'));					console.log(divIndex);		//			console.log("divIndex"+divIndex);					layer.open({					  type: 2,					  skin: 'demo-class',					  area: ['95%','90%'], //宽高		//			  offset: '10%',		//			  scrollbar: false,					  title:"<small>选择纸张</small>",					  shadeClose:true,					  content: 'admin-select-papers.html?sellerId='+getUrlParam('sellerId')+'&status='+status,					  success: function(layero, index){					  	console.log(layero);					  	$(layero).addClass("scroll-wrapper");					    var body = layer.getChildFrame('body', index);					    var iframeWin = window[layero.find('iframe')[0]['name']]; //得到iframe页的窗口对象，执行iframe页的方法：iframeWin.method();						body.find('#sureButton').attr('sign',divIndex);
+						body.find('#sureButton2').attr('sign',divIndex);					  },					  end:function(){					  	$('html').css('height',"auto");					  	$('html').css('overflow','auto');					  	$('body').css('height',"auto");					  	$('body').css('overflow','auto');					  }					});				});				$('.liningnote').on('tap',function(){		layer.open({							  type: 2,							  skin: 'demo-class',							  area: ['80%', '40%'], //宽高				//			  scrollbar: false,							  title:"",							  content: 'lining-laye.html',							  scrollbar: false,							  closeBtn: 1,							  shadeClose:false,							  success: function(layero,index){							  	$(layero).addClass("scroll-wrapper");							  	$(layero).find('.back').on('tap',function(){							  		layer.close(index);								})							  								  },							  end:function(){							  	$('html').css('height',"auto");							  	$('html').css('overflow','auto');							  	$('body').css('height',"auto");							  	$('body').css('overflow','auto');							  }							});	})				$('.requirement').on('tap','.add-special-div',function(e){				e.preventDefault();				e.stopPropagation()				console.log(111);				var status = 1;				var divIndex1=$('.requirement').index($(this).parents('.requirement'));				console.log(divIndex1);//				$('html,body').animate({scrollTop: 0}, 100);				$('html,body').css('z-index', '1000');				$('html').addClass('scrollFix');	//			stop();	//							layer.open({				  type: 2,				  skin: 'demo-class',				  area: ['350px','580px'], //宽高				  scrollbar: false,				  title:"",				  content: 'admin-select-special-tech.html',	//			  closeBtn: 0,	//			  shadeClose:true,				  success: function(layero, index){				  	$(layero).addClass("scroll-wrapper");				    var body = layer.getChildFrame('body', index);				    var iframeWin = window[layero.find('iframe')[0]['name']]; //得到iframe页的窗口对象，执行iframe页的方法：iframeWin.method();//					body.find('#sureButton01').attr('sign',divIndex1);
+//					body.find('#sureButton01').attr('status',status);				  },				  end:function(){	//			  	alert(222);	//			  	$('html').removeClass('scrollFix');				  	$('html,body').css('z-index', '0');	//			  	move();				  }				  				});		});					showLevel2();									$('.requirement').on('tap','.checkbox-img',function(){					console.log('测试'+$(this).siblings('.img-checkbox').attr('checked'));					console.log(1111);					if($(this).siblings('.img-checkbox').attr('checked')==undefined || $(this).siblings('.img-checkbox').attr('checked')=='undefined'){						$(this).siblings('.img-checkbox').attr('checked',true);						$(this).attr('src','img/radion02.png');						if($(this).attr('data-sign')=='leKou'){							var pagesNum=parseInt($(this).parents('.requirement').find('.pages-num').val())+4;							$(this).parents('.requirement').find('.pages-num').val(pagesNum);						}					}else{						$(this).siblings('.img-checkbox').attr('checked',false);						$(this).attr('src','img/radion01.png');						//点击自带纸按钮  取消自带纸张						if($(this).attr('data-sign')=='leKou'){							var pagesNum=parseInt($(this).parents('.requirement').find('.pages-num').val())-4;							$(this).parents('.requirement').find('.pages-num').val(pagesNum<0?0:pagesNum);						}					}				});					$(this).attr('index',Number(index)+1);				$('.requirement:last-child').siblings().removeClass('last-requirement')				$('.requirement:last-child').siblings().find(".add-papers-icon").remove();				$('.del').on('click',function(){//					console.log(333);//							console.log($('this').parent().siblings().find('.add-papers-icon').attr('index'));							$('this').parent().siblings('.add-papers-icon').attr('index',Number(index)-1);							$(this).parents('.requirement').remove();							$('.requirement:last-child').addClass('last-requirement');							var appendhtml = '<div class="add add-papers-icon" index="'+(Number(index)+1)+'" sign="inside">'+					'<img src="img/badd.png" style="display: inline-block;margin-left: 45%;margin-top: 20px;width: 33%;"/>'+					'<p style="text-align: center;margin-left: 20%;font-size:12px;">更多内页</p>'+				'</div>'							$('.requirement:last-child').append(appendhtml);										})												}			});									$('.container').on('tap','.add-papers-icon',function(){//			console.log(111);//			var sign=$(this).attr('sign');//			console.log(sign);//			var standardNum=0;			index=$(this).attr('index');			var kezhong = $('.requirement').eq(1).find('.paper-keZhong option:selected').html();						var price = $('.requirement').eq(1).find('.paper-keZhong option:selected').attr('price');			console.log(kezhong+','+price);			var paper_type = $('.requirement').eq(1).find('.paper-type').val();//			console.log(index)//			if(index>standardNum){//				layer.msg("最多只能添加3种内页呦！",{offset: '80%'});//			}else{//				$('.container').find('.requirement').eq(index).css('display','block');				var html = '<div class="requirement last-requirement" type="2">'+				'<p style="padding: 0px 15px;color: #8e8e8e;" class="del">内页'+($('.requirement').length-1)+'<img style="margin-left: 5px;height: 1rem;" src="img/del.png" alt="" /></p>'+				'<div class="papercol paper papers-type" status="lining">'+					'<font>内页纸张</font>'+					'<select class="paper-keZhong">'+						'<option value="'+price+'" price="'+price+'">'+kezhong+'</option>'+					'</select>'+					'<span>克</span>'+					'<input type="text" value="'+paper_type+'" class="paper-type" readonly="readonly" status="lining"/>'+				'</div>'+				'<div class="papercol color">'+					'<font>印刷色数</font>'+					'<input type="number" class="color1" value="4" />色'+					'<b>+</b>'+					'<input type="number" class="color2" value="4" />色'+					'<div class="spot-color-info spot-color-div hide">'+						'<font>专&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;色</font>'+						'<input type="text" class="primary-color" value="" />'+					'</div>'+				'</div>'+				'<div class="papercol">'+						'<font>专&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;色</font>'+						'<input type="text" class="spot-color" value="Pantone" style="width:auto"/>'+				'</div>'+				'<div class="papercol pages">'+					'<font>内页页数</font>'+					'<input type="number" class="pages-num" value="4" />P'+					'<font>拉页</font>'+					'<input type="number" class="layePages-num" value="" style="width: 24%;"/>处'+					'<img src="img/note.png" class="question-icon liningnote"/>'+				'</div>'+				'<div class="papercol surface-handle handle" index="'+(Number(index)+1)+'">'+					'<font>表面处理</font>'+					'<input type="text" class="select" value="" style="width: 35%;"/>'+					'<input type="text" class="val" value="" style="width: 35%;"/>'+				'</div>'+				'<div class="papercol special-tech add-special-div">'+					'<font>特殊工艺</font>'+					'<img src="img/add.png" class="add-icon" />'+					'<div class="special-tech-value hide"></div>'+				'</div>'+			'</div>'				$(".requirement:last-child").after(html);				$("input").on("focus",function(){				    window.setTimeout(function () {		//	                document.activeElement.scrollIntoViewIfNeeded(true);			                document.activeElement.scrollIntoView({ behavior: "smooth" , inline: "nearest"});			        	}, 0);				})				showLevel2();				$('.requirement').on('tap','.papers-type',function(){					console.log(333);					var status = $(this).attr('status');					$('html').css('height',"100%");					$('html').css('overflow','hidden');					$('body').css('height',"100%");					$('body').css('overflow','hidden');					var divIndex=$('.requirement').index($(this).parents('.requirement'));					console.log(divIndex);		//			console.log("divIndex"+divIndex);					layer.open({					  type: 2,					  skin: 'demo-class',					  area: ['95%','90%'], //宽高		//			  offset: '10%',		//			  scrollbar: false,					  title:"<small>选择纸张</small>",					  shadeClose:true,					  content: 'admin-select-papers.html?sellerId='+getUrlParam('sellerId')+'&status='+status,					  success: function(layero, index){					  	$(layero).addClass("scroll-wrapper");					    var body = layer.getChildFrame('body', index);					    var iframeWin = window[layero.find('iframe')[0]['name']]; //得到iframe页的窗口对象，执行iframe页的方法：iframeWin.method();						body.find('#sureButton').attr('sign',divIndex);
+						body.find('#sureButton2').attr('sign',divIndex);					  },					  end:function(){					  	$('html').css('height',"auto");					  	$('html').css('overflow','auto');					  	$('body').css('height',"auto");					  	$('body').css('overflow','auto');					  }					});				});								$('.liningnote').on('tap',function(){		layer.open({							  type: 2,							  skin: 'demo-class',							  area: ['80%', '40%'], //宽高				//			  scrollbar: false,							  title:"",							  content: 'lining-laye.html',							  scrollbar: false,							  closeBtn: 1,							  shadeClose:false,							  success: function(layero,index){							  	$(layero).addClass("scroll-wrapper");							  	$(layero).find('.back').on('tap',function(){							  		layer.close(index);								})							  								  },							  end:function(){							  	$('html').css('height',"auto");							  	$('html').css('overflow','auto');							  	$('body').css('height',"auto");							  	$('body').css('overflow','auto');							  }							});	})				$('.requirement').on('tap','.checkbox-img',function(){					console.log('测试'+$(this).siblings('.img-checkbox').attr('checked'));					if($(this).siblings('.img-checkbox').attr('checked')==undefined || $(this).siblings('.img-checkbox').attr('checked')=='undefined'){						$(this).siblings('.img-checkbox').attr('checked',true);						$(this).attr('src','img/radion02.png');						if($(this).attr('data-sign')=='leKou'){							var pagesNum=parseInt($(this).parents('.requirement').find('.pages-num').val())+4;							$(this).parents('.requirement').find('.pages-num').val(pagesNum);						}					}else{						$(this).siblings('.img-checkbox').attr('checked',false);						$(this).attr('src','img/radion01.png');						//点击自带纸按钮  取消自带纸张						if($(this).attr('data-sign')=='leKou'){							var pagesNum=parseInt($(this).parents('.requirement').find('.pages-num').val())-4;							$(this).parents('.requirement').find('.pages-num').val(pagesNum<0?0:pagesNum);						}					}				});					$(this).attr('index',Number(index)+1);				$('.requirement:last-child').siblings().removeClass('last-requirement')				$('.requirement:last-child').siblings().find(".add-papers-icon").remove();				$('.del').on('click',function(){//					console.log(333);//							console.log($('this').parent().siblings().find('.add-papers-icon').attr('index'));							$('this').parent().siblings('.add-papers-icon').attr('index',Number(index)-1);							$(this).parents('.requirement').remove();							$('.requirement:last-child').addClass('last-requirement');							var appendhtml = '<div class="add add-papers-icon" index="'+(Number(index)+1)+'" sign="inside">'+					'<img src="img/badd.png" style="display: inline-block;margin-left: 45%;margin-top: 20px;width: 33%;"/>'+					'<p style="text-align: center;margin-left: 20%;font-size:12px;">更多内页</p>'+				'</div>'							$('.requirement:last-child').append(appendhtml);										})								$('.requirement').on('tap','.add-special-div',function(e){				e.preventDefault();				e.stopPropagation()				console.log(111);				var status = 1;				var divIndex1=$('.requirement').index($(this).parents('.requirement'));				console.log(divIndex1);//				$('html,body').animate({scrollTop: 0}, 100);				$('html,body').css('z-index', '1000');				$('html').addClass('scrollFix');	//			stop();	//							layer.open({				  type: 2,				  skin: 'demo-class',				  area: ['350px','580px'], //宽高				  scrollbar: false,				  title:"",				  content: 'admin-select-special-tech.html',	//			  closeBtn: 0,	//			  shadeClose:true,				  success: function(layero, index){				  	$(layero).addClass("scroll-wrapper");				    var body = layer.getChildFrame('body', index);				    var iframeWin = window[layero.find('iframe')[0]['name']]; //得到iframe页的窗口对象，执行iframe页的方法：iframeWin.method();//					body.find('#sureButton01').attr('sign',divIndex1);
+//					body.find('#sureButton01').attr('status',status);				  },				  end:function(){	//			  	alert(222);	//			  	$('html').removeClass('scrollFix');				  	$('html,body').css('z-index', '0');	//			  	move();				  }				  				});		});		//			}		});		showLevel2()			$('.agentName').on('tap',function(){			window.location.href = 'customlist.html?enquiryOrderId='+enquiryOrderId;		})//	
+//		$('#agentName').on('change',function(){
+//			var agentId  = $("#agentName option:selected").val();
+//			var agentName = $("#agentName option:selected").html();
+//			console.log(agentName);
+//			
+
+//		})		$('#reviseprice').on('tap',function(){			var sellerId = 10;			console.log(sellerId);			var memberId = Number($('.name').attr('customerId'));			var offerParaJson=JSON.parse(sessionStorage.getItem('offerParaJson'));			var productType = '画册';			var bindingStyle = $('#productType option:selected').text();			var pageWidth = $('.pagesizenum').attr('pageWidth');			var pageHeight = $('.pagesizenum').attr('pageHeight');			var pageSize = $('.size-paper option:selected').val();			var pageSizeCh = $('.size-paper option:selected').text();			var price = Number($('.price').val());			var num = Number($('.num').val());			var agentId = Number($('.agentName').attr('agentid'));			var customerCompany = $('.customerCompany').val();			var payTime = $('.payTime').val();			var deliveryDate = $('.deliveryDate').val();			var addressInfo = $('.addressInfo').val();			var mobile = $('.customermobile').val();			var name = $('.name').val();			var memo = $('.memo').val();			var bodyArr=[];			var _isSelfPaper=2;			for (var i = 1; i < $('.requirement').length; i++) {				var _type=Number($('.requirement').eq(i).attr('type'));				var _weight=Number($('.requirement').eq(i).find('.paper-keZhong').find('option:selected').text());				var _paperType=$('.requirement').eq(i).find('.paper-type').val();				var _surfaceTreatmentType=$('.requirement').eq(i).find('.select').val();				var _surfaceTreatmentMethod=$('.requirement').eq(i).find('.val').val();				var _afterTheProcesses=$('.requirement').eq(i).find('.special-tech-value').text().split(';');				var _pages=Number($('.requirement').eq(i).find('.pages-num').val());				var _colorNum1=Number($('.requirement').eq(i).find('.color1').val());				var _colorNum2=Number($('.requirement').eq(i).find('.color2').val());				var _properColor=$('.requirement').eq(i).find('.spot-color').val();				var _spreadPages=$('.requirement').eq(i).find('.layePages-num').val();								if(_spreadPages == null || _spreadPages == undefined){					_spreadPages = 0				}else{					_spreadPages = Number(_spreadPages)				}				var hasSpread=0;				if($('.requirement').eq(i).find('.if-leKou').attr('checked')=='checked'){					hasSpread=1;				}else{					hasSpread=0;				}												_tonnagePrice=$('.requirement').eq(i).find('.paper-keZhong').find('option:selected').attr('price');		//		alert(_tonnagePrice);				if(_tonnagePrice==undefined || _tonnagePrice == 'undefined' || _tonnagePrice == null){					_tonnagePrice = 0;				}else{					_tonnagePrice = _tonnagePrice				}				var bodyObj={"type":_type,"colorNum1": _colorNum1,"colorNum2": _colorNum2,"properColor": _properColor,"pages": _pages,				"weight": _weight,"paperType": _paperType,"surfaceTreatmentType": _surfaceTreatmentType,				"surfaceTreatmentMethod": _surfaceTreatmentMethod,"isFlag":0,"hasSpread":hasSpread,"afterTheProcesses": _afterTheProcesses,"spreadPages":_spreadPages,"tonnagePrice":_tonnagePrice};				var str = JSON.stringify(bodyObj);				if(_type==1 || _type == 2){					bodyArr.push(str);				}							}						var dataObj = '{"sellerId":'+sellerId+',"id":'+enquiryOrderId+',"memberId":'+memberId+',"price":'+price+',"agentId":'+agentId+',"addressInfo":"'+addressInfo+'","name":"'+name+'","memo":"'+memo+'","mobile":"'+mobile+'","customerCompany":"'+customerCompany+'","payTime":"'+payTime+'","deliveryDate":"'+deliveryDate+'","productType":"'+productType+'","bindingMethod":"'+bindingStyle+'",'+			'"productLength":'+pageHeight+',"productWidth":'+pageWidth+',"innerParams":['+bodyArr+'],"pageSize":"'+pageSize+'","dimensions":"'+pageSizeCh+'","num":'+num+'}';					console.log(dataObj)
+			$.ajax({				type:"post",				dataType:'json',				url:ajaxUrlPath+"/mobile/enquiryOrder/confirmOrder",				contentType:'application/json',				async:true,				data:dataObj,				success:function(resultData){		//			alert(JSON.stringify(resultData)+'数据');					if(resultData.code==0){						window.location = 'adminorderlist.html'
+						window.scrollTo(0,0);											}else{						layer.msg('网络堵塞1',{offset:'80%'});					}				},				error: function(XMLHttpRequest, textStatus, errorThrown) {				 	layer.msg('网络堵塞2',{offset:'80%'});				}			});//			window.location = 'inquiry-papers.html'		})		$('.requirement').on('click','.checkbox-img',function(){			console.log($(this).siblings('.img-checkbox').attr('checked'));			if($(this).siblings('.img-checkbox').attr('checked')==undefined){				$(this).siblings('.img-checkbox').attr('checked',true);				$(this).attr('src','img/radion02.png');				//点击自带纸按钮  选中自带纸张				if($(this).attr('data-sign')=='myselfPaper'){					$(this).parents('.requirement4').find('.myself-paper-div').removeClass('hide');				}				if($(this).attr('data-sign')=='laye'){					$(this).parents('.requirement4').find('.laye-pages-div').removeClass('hide');				}				if($(this).attr('data-sign')=='leKou'){					var pagesNum=parseInt($(this).parents('.requirement').find('.pages-num').val())+4;					$(this).parents('.requirement').find('.pages-num').val(pagesNum);				}			}else{				$(this).siblings('.img-checkbox').attr('checked',false);				$(this).attr('src','img/radion01.png');				//点击自带纸按钮  取消自带纸张				if($(this).attr('data-sign')=='myselfPaper'){					$(this).parents('.requirement4').find('.myself-paper-div').find('input').val('');					$(this).parents('.requirement4').find('.myself-paper-div').addClass('hide');				}				if($(this).attr('data-sign')=='laye'){					$(this).parents('.requirement4').find('.laye-pages-div').find('input').val('');					$(this).parents('.requirement4').find('.laye-pages-div').addClass('hide');				}				if($(this).attr('data-sign')=='leKou'){					var pagesNum=parseInt($(this).parents('.requirement').find('.pages-num').val())-4;					$(this).parents('.requirement').find('.pages-num').val(pagesNum<0?0:pagesNum);				}			}		});		$('#sureprice').on('tap',function(){			var sellerId = 10;			console.log(sellerId);			var memberId = Number($('.name').attr('customerId'));			var offerParaJson=JSON.parse(sessionStorage.getItem('offerParaJson'));			var productType = '画册';			var bindingStyle = $('#productType option:selected').text();			var pageWidth = $('.size-paper option:selected').attr('pageWidth');			var pageHeight = $('.size-paper option:selected').attr('pageHeight');			var pageSize = $('.size-paper option:selected').val();			var pageSizeCh = $('.size-paper option:selected').text();			var price = Number($('.price').val());			var num = Number($('.num').val());			var agentId = Number($('.agentName').attr('agentid'));			var customerCompany = $('.customerCompany').val();			var payTime = $('.payTime').val();			var deliveryDate = $('.deliveryDate').val();			var addressInfo = $('.addressInfo').val();			var name = $('.name').val();			var mobile = $('.customermobile').val();			var memo = $('.memo').val();			var bodyArr=[];			var _isSelfPaper=2;			for (var i = 1; i < $('.requirement').length; i++) {				var _type=Number($('.requirement').eq(i).attr('type'));				var _weight=Number($('.requirement').eq(i).find('.paper-keZhong').find('option:selected').text());				var _paperType=$('.requirement').eq(i).find('.paper-type').val();				var _surfaceTreatmentType=$('.requirement').eq(i).find('.select').val();				var _surfaceTreatmentMethod=$('.requirement').eq(i).find('.val').val();				var _afterTheProcesses=$('.requirement').eq(i).find('.special-tech-value').text().split(';');				var _pages=Number($('.requirement').eq(i).find('.pages-num').val());				var _colorNum1=Number($('.requirement').eq(i).find('.color1').val());				var _colorNum2=Number($('.requirement').eq(i).find('.color2').val());				var _properColor=$('.requirement').eq(i).find('.spot-color').val();				var _spreadPages=$('.requirement').eq(i).find('.layePages-num').val();				if(_spreadPages == null || _spreadPages == undefined){					_spreadPages = 0				}else{					_spreadPages = Number(_spreadPages)				}				var _isFlag=0;				if($(this).find('.if-leKou').attr('checked')=='checked'){					_isFlag=1;				}else{					_isFlag=0;				}												_tonnagePrice=$('.requirement').eq(i).find('.paper-keZhong').find('option:selected').attr('price');		//		alert(_tonnagePrice);				if(_tonnagePrice==undefined || _tonnagePrice == 'undefined' || _tonnagePrice == null){					_tonnagePrice = 0;				}else{					_tonnagePrice = _tonnagePrice				}				var bodyObj={"type":_type,"colorNum1": _colorNum1,"colorNum2": _colorNum2,"properColor": _properColor,"pages": _pages,				"weight": _weight,"paperType": _paperType,"surfaceTreatmentType": _surfaceTreatmentType,				"surfaceTreatmentMethod": _surfaceTreatmentMethod,"isFlag":_isFlag,"afterTheProcesses": _afterTheProcesses,"spreadPages":_spreadPages,"tonnagePrice":_tonnagePrice};				var str = JSON.stringify(bodyObj);				if(_type==1 || _type == 2){					bodyArr.push(str);				}				console.log(bodyArr);			}			console.log(typeof(customerCompany));			var dataObj = '{"sellerId":'+sellerId+',"memberId":'+memberId+',"price":'+price+',"agentId":'+agentId+',"addressInfo":"'+addressInfo+'","name":"'+name+'","mobile":"'+mobile+'","memo":"'+memo+'","customerCompany":"'+customerCompany+'","payTime":"'+payTime+'","deliveryDate":"'+deliveryDate+'","productType":"'+productType+'","bindingMethod":"'+bindingStyle+'",'+			'"productLength":'+pageHeight+',"productWidth":'+pageWidth+',"innerParams":['+bodyArr+'],"pageSize":"'+pageSize+'","dimensions":"'+pageSizeCh+'","num":'+num+'}';								$.ajax({				type:"post",				dataType:'json',				url:ajaxUrlPath+"/mobile/enquiryOrder/manageAddOrder",				contentType:'application/json',				async:true,				data:dataObj,				success:function(resultData){		//			alert(JSON.stringify(resultData)+'数据');					if(resultData.code==0){												layer.open({							  type: 2,							  skin: 'demo-class',							  area: ['80%', '80%'], //宽高				//			  scrollbar: false,							  title:"",							  content: 'admininquiry-success.html',							  scrollbar: false,							  closeBtn: 0,							  shadeClose:true,							  fix:true,							  success: function(layero,index){							  	$(layero).addClass("scroll-wrapper");							  	$(layero).find('.back').on('tap',function(){							  		layer.close(index);									window.location = 'adminorderlist.html';								})							  								  },							  end:function(){							  	$('html').css('height',"auto");							  	$('html').css('overflow','auto');							  	$('body').css('height',"auto");							  	$('body').css('overflow','auto');							  }							});					}else{						layer.msg('网络堵塞1',{offset:'80%'});					}				},				error: function(XMLHttpRequest, textStatus, errorThrown) {				 	layer.msg('网络堵塞2',{offset:'80%'});				}			});
+			
+
+		});		function uploadOffer1(sellerId,memberId,productType,bindingStyle,pageSize,pageSizeCh,pageWidth,pageHeight,bookNum,memo){			var bodyArr=[];			var _isSelfPaper=2;			for (var i = 0; i < $('.requirement').length; i++) {				var _type=Number($('.requirement').eq(i).attr('type'));				var _weight=Number($('.requirement').eq(i).find('.paper-keZhong').find('option:selected').text());				var _paperType=$('.requirement').eq(i).find('.paper-type').val();				var _surfaceTreatmentType=$('.requirement').eq(i).find('.select').val();				var _surfaceTreatmentMethod=$('.requirement').eq(i).find('.val').val();				var _afterTheProcesses=$('.requirement').eq(i).find('.special-tech-value').text().split(';');				var _pages=Number($('.requirement').eq(i).find('.pages-num').val());				var _colorNum1=Number($('.requirement').eq(i).find('.color1').val());				var _colorNum2=Number($('.requirement').eq(i).find('.color2').val());				var _properColor=$('.requirement').eq(i).find('.spot-color').val();				var _spreadPages=$('.requirement').eq(i).find('.layePages-num').val();				if(_spreadPages == null || _spreadPages == undefined){					_spreadPages = 0				}else{					_spreadPages = Number(_spreadPages)				}				var _isFlag=0;				if($(this).find('.if-leKou').attr('checked')=='checked'){					_isFlag=1;				}else{					_isFlag=0;				}												_tonnagePrice=$('.requirement').eq(i).find('.paper-keZhong').find('option:selected').attr('price');		//		alert(_tonnagePrice);				if(_tonnagePrice==undefined || _tonnagePrice == 'undefined' || _tonnagePrice == null){					_tonnagePrice = 0;				}else{					_tonnagePrice = _tonnagePrice				}				var bodyObj={"type":_type,"colorNum1": _colorNum1,"colorNum2": _colorNum2,"properColor": _properColor,"pages": _pages,				"weight": _weight,"paperType": _paperType,"surfaceTreatmentType": _surfaceTreatmentType,				"surfaceTreatmentMethod": _surfaceTreatmentMethod,"isFlag":_isFlag,"afterTheProcesses": _afterTheProcesses,"spreadPages":_spreadPages,"tonnagePrice":_tonnagePrice};				var str = JSON.stringify(bodyObj);				if(_type==1 || _type == 2){					bodyArr.push(str);				}			}		//	$('.requirement').each(function(){		//		console.log(1111);		//		var _type=$(this).attr('type');		//		var _weight=Number($(this).find('.paper-keZhong').find('option:selected').text());		//		var _paperType=$(this).find('.paper-type').val();		//		var _surfaceTreatmentType=$(this).find('.select').val();		//		var _surfaceTreatmentMethod=$(this).find('.val').val();		//		var _afterTheProcesses=$(this).find('.special-tech-value').text().split(';');		//		var _pages=Number($(this).find('.pages-num').val());		//		var _isFlag=2;		//		if($(this).find('.if-leKou').attr('checked')=='checked'){		//			_isFlag=1;		//		}		//		var _colorNum1=Number($(this).find('.color1').val());		//		var _colorNum2=Number($(this).find('.color2').val());		//		var _properColor=$(this).find('.spot-color').val();		//		//				//		_tonnagePrice=$(this).find('.paper-keZhong').find('option:selected').attr('price');		//		var bodyObj={"type":_type,"colorNum1": _colorNum1,"colorNum2": _colorNum2,"properColor": _properColor,"pages": _pages,		//		"weight": _weight,"paperType": _paperType,"surfaceTreatmentType": _surfaceTreatmentType,		//		"surfaceTreatmentMethod": _surfaceTreatmentMethod,"afterTheProcesses": _afterTheProcesses,"isFlag":_isFlag,"tonnagePrice":_tonnagePrice};		//		var str = JSON.stringify(bodyObj);		//		alert(str);		//		if(_type==1 || _type == 2){		//			bodyArr.push(str);		//		}		//				//	});						var dataObj = '{"sellerId":'+sellerId+',"memberId":'+memberId+',"productType":"'+productType+'","bindingMethod":"'+bindingStyle+'",'+			'"productLength":'+pageHeight+',"productWidth":'+pageWidth+',"innerParams":['+bodyArr+'],"pageSize":"'+pageSize+'","dimensions":"'+pageSizeCh+'","num":'+bookNum+'}';					//price总价		//materialCost材料费		//batPrinter印工费		//afterTheProcessCost装订费		//faceCost表面处理费		//specialProcess特殊加工费		//coverMaterialCost封面材料费		//innerMaterialCost内页材料费		//coverFaceCost封面表面处理		//insideFaceCost内页表面处理		//	alert(dataObj);		//	alert(typeof(dataObj));		//	var u = navigator.userAgent;		//	if (u.indexOf('Android') > -1 || u.indexOf('Linux') > -1) {//安卓手机		//		dataObj = dataObj		//	} else if (u.indexOf('iPhone') > -1) {//苹果手机		//		dataObj = JSON.parse(dataObj);		//	} 			//上传数据		//	alert(dataObj+'测试');			$.ajax({				type:"post",				dataType:'json',				url:ajaxUrlPath+"/mobile/enquiryOrder/manageAddOrder",				contentType:'application/json',				async:true,				data:dataObj,				success:function(resultData){		//			alert(JSON.stringify(resultData)+'数据');					if(resultData.code==0){						mui.toast('提交成功');						localStorage.setItem('name',resultData.result.name);						localStorage.setItem('indexItem',3);						window.location = 'adminorderlist.html';												window.scrollTo(0,0);					}else{						layer.msg('网络堵塞1',{offset:'80%'});					}				},				error: function(XMLHttpRequest, textStatus, errorThrown) {				 	layer.msg('网络堵塞2',{offset:'80%'});				}			});		}	</script>
+</html>
